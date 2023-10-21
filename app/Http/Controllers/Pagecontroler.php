@@ -52,25 +52,45 @@ class Pagecontroler extends Controller
             '/css/datve.css',
             '/css/chon-ghe-film.css'
         ];
-        return view('datve.datghe',compact('customCssArr'));
+        $customJsArr = [
+            '/js/chair.js'
+        ];
+        return view('datve.datghe',compact(
+            'customCssArr',
+            'customJsArr'
+        ));
     }
 
     public function getdatbapnuoc(){
-        return view('datve.datbapnuoc');
+        $customCssArr = [
+            '/css/datve.css',
+            '/css/datve-bap-nuoc.css'
+        ];
+        $customJsArr = [
+            '/js/datve.js'
+        ];
+        return view('datve.datbapnuoc',compact(
+            'customCssArr',
+            'customJsArr'
+        ));
     }
 
     public function getthanhtoan()
-    {
-        return view('datve.thanhtoan');
+    {   
+        $customCssArr = [
+            '/css/datve.css',
+            '/css/datve-thanhtoan.css'
+        ];
+        return view('datve.thanhtoan',compact('customCssArr'));
     }
 
-    public function getdatve()
-    {
-        return view('datve.dat_ve');
-    }
 
     public function getthongtinve()
     {
-        return view('datve.thongtinve');
+        $customCssArr = [
+            '/css/datve.css',
+            '/css/thong-tin-ve.css'
+        ];
+        return view('datve.thongtinve',compact('customCssArr'));
     }
 }

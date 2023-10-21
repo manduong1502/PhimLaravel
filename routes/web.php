@@ -32,6 +32,5 @@ Route::get('/blog_review', [Pagecontroler::class,'getBlog_review']);
 Route::get('/datghe', [Pagecontroler::class,'getchoghe']);
 Route::get('/datbapnuoc', [Pagecontroler::class,'getdatbapnuoc']);
 Route::get('/thanhtoan', [Pagecontroler::class,'getthanhtoan']);
-Route::get('/dat-ve', [Pagecontroler::class,'getdatve']);
 Route::get('/thongtinve', [Pagecontroler::class,'getthongtinve']);
 
