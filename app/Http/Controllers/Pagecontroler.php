@@ -5,19 +5,25 @@ namespace App\Http\Controllers;
 
 class Pagecontroler extends Controller
 {
-    public function getIndex(){
+    public function getGioithieu(){
+        return view('pages.gioithieu');
+    }
+    public function getTrangchu(){
      return view('pages.trangchu');
     }
-     public function getLoaiSP(){
-         return view('pages.chitiet');
+    public function getChitiet(){
+        return view('pages.chitiet');
+    }
+    public function getXemphim(){
+        return view('pages.xemphim');
+    }
+     public function getTheloai(){
+         return view('pages.theloai');
      }
-    //  public function getChitiet(){
-    //      return view('page.chitietsanpham');
-    //  }
-    //  public function getLienhe(){
-    //      return view('page.lienhe');
-    //  }
-    //  public function getAbout(){
-    //      return view('page.about');
-    //  }
+    public function getBlog(){
+        return view('pages.blog');
+    }
+    public function getBlog_review(){
+        return view('pages.blog_review');
+    }
 }
