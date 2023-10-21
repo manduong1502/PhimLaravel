@@ -33,7 +33,7 @@ class Pagecontroler extends Controller
     }
 
     public function getdatbapnuoc(){
-        return view('datve.datbatnuoc');
+        return view('datve.datbapnuoc');
     }
 
     public function getthanhtoan(){
