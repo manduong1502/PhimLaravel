@@ -3,6 +3,9 @@
 
 <head>
   @include('include.head')
+  @if(isset($customCss))
+        <link rel="stylesheet" href="{{ asset($customCss) }}">
+    @endif
 </head>
 
 <body>

@@ -26,3 +26,12 @@ Route::get('/xemphim', [Pagecontroler::class,'getXemphim']);
 Route::get('/theloai', [Pagecontroler::class,'getTheloai']);
 Route::get('/blog', [Pagecontroler::class,'getBlog']);
 Route::get('/blog_review', [Pagecontroler::class,'getBlog_review']);
+
+
+//Đặt vé
+Route::get('/datghe', [Pagecontroler::class,'getchoghe']);
+Route::get('/datbapnuoc', [Pagecontroler::class,'getdatbapnuoc']); //lỗi
+Route::get('/thanhtoan', [Pagecontroler::class,'getthanhtoan']);
+Route::get('/dat-ve', [Pagecontroler::class,'getdatve']); //lỗi
+Route::get('/thongtinve', [Pagecontroler::class,'getthongtinve']);
+

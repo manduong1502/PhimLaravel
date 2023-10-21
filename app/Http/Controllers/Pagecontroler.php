@@ -12,7 +12,8 @@ class Pagecontroler extends Controller
      return view('pages.trangchu');
     }
     public function getChitiet(){
-        return view('pages.chitiet');
+        $customCss = 'css/chitiet.css';
+        return view('pages.chitiet',compact('customCss'));
     }
     public function getXemphim(){
         return view('pages.xemphim');
@@ -25,5 +26,25 @@ class Pagecontroler extends Controller
     }
     public function getBlog_review(){
         return view('pages.blog_review');
+    }
+
+    public function getchoghe(){
+        return view('datve.datghe');
+    }
+
+    public function getdatbapnuoc(){
+        return view('datve.datbatnuoc');
+    }
+
+    public function getthanhtoan(){
+        return view('datve.thanhtoan');
+    }
+
+    public function getdatve(){
+        return view('datve.dat_ve');
+    }
+
+    public function getthongtinve(){
+        return view('datve.thongtinve');
     }
 }
