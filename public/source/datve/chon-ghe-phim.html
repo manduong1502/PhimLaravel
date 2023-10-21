@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đặt vé</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <link rel="stylesheet" href="/css/datve.css">
+    <link rel="stylesheet" href="/css/chon-ghe-film.css">
+</head>
+
+<body>
+    <header id="site-header">
+        <nav class="navbar navbar-expand-lg" style="background-color:rgba(0, 0, 0, 0.50);">
+            <div class="container-fluid">
+                <img class="navbar-brand" src="/public/image/logo/logo.png" alt="">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-ul navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active text-white" aria-current="page" href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active text-white" aria-current="page" href="#">Product</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active text-white" aria-current="page" href="#">Pricing</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link active text-white" aria-current="page" href="#">Contact</a>
+                        </li>
+                    </ul>
+                    <form class="d-flex" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                    <ul class="navbar-nav mb-2 mb-lg-0">
+                        <li class="nav-item mt-3">
+                            <a class="nav-link active text-white" aria-current="page" href="#"><i
+                                    class="fa-regular fa-clock"></i> Xem
+                                lịch
+                                sử</a>
+                        </li>
+                        <li class="nav-item dropdown ">
+                            <a href="#" class="nav-link" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false"><img class="navbar-brand" src="public/image/image-13.png"
+                                    alt=""></a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Thông tin</a></li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#">Đăng xuất</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item mt-3 btn-vip">
+                            <button class="btn btn-outline-success" type="submit"><i
+                                    class="fa-solid fa-star"></i>VIP</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="steppage">
+        <div class="container steppage-block">
+            <div class="row steppage-block-header">
+                <div class="col">
+                    <div class="active" id="item1">
+                        <i class="fa-solid fa-table-cells-large fa-2xl"></i>
+                        <p>Chọn ghế</p>
+                    </div>
+                </div>
+                <div class="col">
+                    <div id="item2">
+                        <i class="fa-solid fa-boxes-packing fa-2xl"></i>
+                        <p>Bắp nước</p>
+                    </div>
+                </div>
+                <div class="col">
+                    <div id="item3">
+                        <i class="fa-regular fa-credit-card fa-2xl"></i>
+                        <p>Thanh toán</p>
+                    </div>
+                </div>
+                <div class="col">
+                    <div id="item4">
+                        <i class="fa-solid fa-inbox fa-2xl"></i>
+                        <p>Thông tin vé</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="chair-film">
+                    <div class="chair-film-header">
+                        Chọn ghế phim
+                    </div>
+                    <div class="chair-film-content">
+                        <div class="screen">
+                            Màn Hình
+                        </div>
+                        <div class="information-chair">
+                            <div class="seating-container pb-3" id="seating-map"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 ">
+                <div class="corn-water-information-2">
+                    <div class="chair-film-header">
+                        Thông tin
+                    </div>  
+                  <div class="information-2-content ">
+                    <div class="information-2-content-img p-3">
+                      <h4>Thanh gươm trừ tà</h4>
+                      <div class="information-2-content-text">Rio Đà Nẵng</div>
+                      <div class="information-2-content-text">Suất chiếu:15h40 12/10/2023</div>
+                      <p >Ghế: <span class="information-2-content-text" id="selected-seat-list">Chưa có</span></p>
+                    </div>
+                  </div>
+                </div>
+                <div class="information-2-content-price mt-2">
+                    <p class="p-3">Tổng tiền: <span id="total-price">0</span> VNĐ</p>
+                </div>
+        
+                <div class="information-2-content-btn row mt-3">
+                    <button class="btn  btn-dark col-md-5">thoát</button>
+
+                    <button class="btn  btn-dark col-md-7">Tiếp tục</button>
+
+                </div>
+        
+              </div>
+        </div>
+    </div>
+
+
+    <footer class="bg-dark text-white pt-5 pb-4 mt-5">
+
+        <div class="container text-center text-md-left">
+
+            <div class="row text-center text-md-left">
+
+                <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+                    <h5 class="text-uppercase mb-4 font-weight-bold text-warning">Company Name</h5>
+                    <p>Here you can use rows and columns to organize your footer content. Lorem ipsum dolor sit amet,
+                        ital consectetur lorem ipsum dolor sit amet adipisicing elit.</p>
+
+                </div>
+
+                <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+                    <h5 class="text-uppercase mb-4 font-weight-bold text-warning">Products</h5>
+                    <p>
+                        <a href="#" class="text-white" style="text-decoration: none;"> TheProviders</a>
+                    </p>
+                    <p>
+                        <a href="#" class="text-white" style="text-decoration: none;"> Creativity</a>
+                    </p>
+                    <p>
+                        <a href="#" class="text-white" style="text-decoration: none;"> SourceFiles</a>
+                    </p>
+                    <p>
+                        <a href="#" class="text-white" style="text-decoration: none;"> bootstrap 5 alpha</a>
+                    </p>
+
+                </div>
+
+                <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
+                    <h5 class="text-uppercase mb-4 font-weight-bold text-warning">Useful links</h5>
+                    <p>
+                        <a href="#" class="text-white" style="text-decoration: none;"> Your Account</a>
+                    </p>
+                    <p>
+                        <a href="#" class="text-white" style="text-decoration: none;"> Become an Affiliates</a>
+                    </p>
+                    <p>
+                        <a href="#" class="text-white" style="text-decoration: none;">Shipping Rates</a>
+                    </p>
+                    <p>
+                        <a href="#" class="text-white" style="text-decoration: none;"> Help</a>
+                    </p>
+                </div>
+
+                <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+                    <h5 class="text-uppercase mb-4 font-weight-bold text-warning">Contact</h5>
+                    <p>
+                        <i class="fas fa-home mr-3"></i>New York, NY 2333, US
+                    </p>
+                    <p>
+                        <i class="fas fa-envelope mr-3"></i>theproviders98@gmail.com
+                    </p>
+                    <p>
+                        <i class="fas fa-phone mr-3"></i>+92 3162859445
+                    </p>
+                    <p>
+                        <i class="fas fa-print	 mr-3"></i>+01 335 633 77
+                    </p>
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </footer>
+
+    <script src="/js/index.js"></script>
+    <script src="/js/chair.js"></script>
+</body>
+
+</html>

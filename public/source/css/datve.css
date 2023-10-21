@@ -1,0 +1,32 @@
+
+.steppage-block{
+    margin-top: 100px;
+    background-color: #353535;
+    height: auto;  
+    border-radius: 8px; 
+}
+.steppage-block .steppage-block-header{
+    height: 110px;
+    border: 2px solid black;
+    border-radius: 8px;
+}
+.steppage-block .steppage-block-header .col{
+    text-align: center;
+    border-right: 2px solid black;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+.steppage-block .steppage-block-header .col div{
+    margin-top: auto;
+}
+.steppage-block .steppage-block-header .col p{
+    padding-top: 20px;
+}
+.active p{
+    color: green;
+    font-weight: bold;
+}
+.active i {
+    color: green;
+}
