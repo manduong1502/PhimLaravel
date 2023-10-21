@@ -1,9 +1,8 @@
 <?php
 
-use App\Http\Controllers\chitietController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Pagecontroler;
-use Illuminate\Contracts\Pagination\Paginator;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,5 +15,12 @@ use Illuminate\Contracts\Pagination\Paginator;
 |
 */
 
+//login
+Route::get('/login', [LoginController::class,'index']);
+
+
+
+
 Route::get('/index', [Pagecontroler::class, 'getIndex']);
+
 Route::get('/chitiet', [Pagecontroler::class,'getLoaiSP']);
