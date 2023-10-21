@@ -55,9 +55,8 @@ class Pagecontroler extends Controller
         return view('datve.datghe',compact('customCssArr'));
     }
 
-    public function getdatbapnuoc()
-    {
-        return view('datve.datbatnuoc');
+    public function getdatbapnuoc(){
+        return view('datve.datbapnuoc');
     }
 
     public function getthanhtoan()

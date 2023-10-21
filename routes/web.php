@@ -30,8 +30,8 @@ Route::get('/blog_review', [Pagecontroler::class,'getBlog_review']);
 
 //Đặt vé
 Route::get('/datghe', [Pagecontroler::class,'getchoghe']);
-Route::get('/datbapnuoc', [Pagecontroler::class,'getdatbapnuoc']); //lỗi
+Route::get('/datbapnuoc', [Pagecontroler::class,'getdatbapnuoc']);
 Route::get('/thanhtoan', [Pagecontroler::class,'getthanhtoan']);
-Route::get('/dat-ve', [Pagecontroler::class,'getdatve']); //lỗi
+Route::get('/dat-ve', [Pagecontroler::class,'getdatve']);
 Route::get('/thongtinve', [Pagecontroler::class,'getthongtinve']);
 
