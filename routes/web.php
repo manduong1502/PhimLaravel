@@ -16,3 +16,5 @@ Route::get('/xemphim', [Pagecontroler::class,'getXemphim']);
 Route::get('/theloai', [Pagecontroler::class,'getTheloai']);
 Route::get('/blog', [Pagecontroler::class,'getBlog']);
 Route::get('/blog_review', [Pagecontroler::class,'getBlog_review']);
+Route::get('/booking', [Pagecontroler::class,'getBooking']);
+

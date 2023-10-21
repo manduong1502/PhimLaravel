@@ -26,4 +26,7 @@ class Pagecontroler extends Controller
     public function getBlog_review(){
         return view('pages.blog_review');
     }
+    public function getBooking(){
+        return view('pages.booking');
+    }
 }
