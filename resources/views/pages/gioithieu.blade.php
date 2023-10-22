@@ -43,7 +43,7 @@
           <h2>THAM GIA NGAY NÀO</h2>
 
           <h4>Bạn đã sẵn sàng xem chưa? hãy đăng kí tài khoản của bạn ngay</h4>
-          <button class="btn carousel-item-btn">Đăng Kí Ngay</button>
+          <a href="{{route('auth.index')}}" class="btn carousel-item-btn">Đăng Kí Ngay</a>
         </div>
       </div>
     </div>
@@ -116,7 +116,7 @@
       <div class="col-md-6 content-3">
         <div class="content-3-header">
           <h2>Tận hưởng trọn vẹn, không gián đoạn mỗi phút giây cảm xúc khi thưởng thức bộ phim yêu thích.</h2>
-          <button class="btn content-3-header-btn">Đăng kí ngay</button>
+          <a  href="{{route('auth.index')}}" class="btn content-3-header-btn">Đăng kí ngay</a>
         </div>
       </div>
       <div class="col-md-6 content-3">

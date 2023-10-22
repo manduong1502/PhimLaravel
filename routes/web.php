@@ -1,5 +1,5 @@
 <?php
-
+use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\LoginController;
@@ -22,6 +22,17 @@ use App\Http\Controllers\RegisterController;
 Route::get('/login', [LoginController::class, 'index'])->name('auth.index')->middleware(LoginMiddleware::class);
 Route::post('/do_login', [LoginController::class, 'login'])->name('auth.do_login');
 Route::get('/logout', [LoginController::class, 'logout'])->name('auth.logout');
+
+
+//facebook
+
+Route::get('/auth/facebook',function () {
+    return Socialite::driver('github')->redirect();
+});
+Route::get('/auth/facebook/callback',function () {
+    return 'Call back facebook';
+});
+
 
 //Register
 Route::get('/register', [RegisterController::class, 'index'])->name('auth.register.index');
