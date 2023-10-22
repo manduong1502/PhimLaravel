@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 
-class Pagecontroler extends Controller
+class PageController extends Controller
 {
     public function getGioithieu()
     {

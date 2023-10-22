@@ -23,7 +23,7 @@
         <img class="navbar-brand" src="public/image/logo/logo.png" alt="">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a href="#">
+            <a href="{{route('auth.index')}}">
               <div class="btn login-introduce">
                 Đăng Nhập
               </div>

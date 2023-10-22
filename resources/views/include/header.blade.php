@@ -34,14 +34,14 @@
             </li>
             <li class="nav-item dropdown ">
               <a href="#" class="nav-link" role="button" data-bs-toggle="dropdown" aria-expanded="false"><img
-                  class="navbar-brand" src="source/public/image/image-13.png" alt=""></a>
+                  class="navbar-brand" src="public/image/image-13.png" alt=""></a>
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="#">Thông tin</a></li>
                 <li><a class="dropdown-item" href="#">Another action</a></li>
                 <li>
                   <hr class="dropdown-divider">
                 </li>
-                <li><a class="dropdown-item" href="#">Đăng xuất</a></li>
+                <li><a class="dropdown-item" href="{{route('auth.logout')}}">Đăng xuất</a></li>
               </ul>
             </li>
             <li class="nav-item mt-3 btn-vip">

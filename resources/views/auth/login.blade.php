@@ -28,10 +28,26 @@
     </div>
 
     <div class="form-container login-container">
-      <form action="#">
+      <form method="POST" action="{{route('auth.do_login')}}">
+        @csrf
         <h1>Đăng Nhập</h1>
-        <input type="email" placeholder="Email">
-        <input type="password" placeholder="Password">
+        <input
+        name="email"
+        type="email"
+        placeholder="Email"
+        value="{{old('email')}}"
+        >
+        @if($errors->has('email'))
+          <span class="errors-message">{{$errors->first('email')}}</span>
+        @endif
+        <input
+        name="password"
+        type="password"
+        placeholder="Password"
+        >
+        @if($errors->has('password'))
+          <span class="errors-message">{{$errors->first('password')}}</span>
+        @endif
         <div class="content">
           <div class="checkbox">
             <input type="checkbox" name="checkbox" id="checkbox">
@@ -41,14 +57,14 @@
             <a href="#">Quên mật khẩu</a>
           </div>
         </div>
-        <button>Đăng Nhập</button>
+        <button type="submit">Đăng Nhập</button>
+      </form>
         <span>or use your account</span>
         <div class="social-container">
           <a href="#" class="social"><i class="lni lni-facebook-fill"></i></a>
           <a href="#" class="social"><i class="lni lni-google"></i></a>
           <a href="#" class="social"><i class="lni lni-linkedin-original"></i></a>
         </div>
-      </form>
     </div>
 
     <div class="overlay-container">
