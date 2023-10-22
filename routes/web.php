@@ -5,6 +5,7 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\LoginController;
 use App\Http\Middleware\AuthMiddleware;
 use App\Http\Middleware\LoginMiddleware;
+use App\Http\Controllers\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +22,12 @@ use App\Http\Middleware\LoginMiddleware;
 Route::get('/login', [LoginController::class, 'index'])->name('auth.index')->middleware(LoginMiddleware::class);
 Route::post('/do_login', [LoginController::class, 'login'])->name('auth.do_login');
 Route::get('/logout', [LoginController::class, 'logout'])->name('auth.logout');
+
+//Register
+Route::get('/register', [RegisterController::class, 'index'])->name('auth.register.index');
+Route::post('/do_register', [RegisterController::class, 'register'])->name('auth.do_register');
+
+
 
 
 Route::get('/', [PageController::class, 'getGioithieu']);

@@ -36,6 +36,9 @@
               <a href="#" class="nav-link" role="button" data-bs-toggle="dropdown" aria-expanded="false"><img
                   class="navbar-brand" src="public/image/image-13.png" alt=""></a>
               <ul class="dropdown-menu">
+                @auth
+                    <li>Xin chào, {{ Auth::user()->username }}</li>
+                @endauth
                 <li><a class="dropdown-item" href="#">Thông tin</a></li>
                 <li><a class="dropdown-item" href="#">Another action</a></li>
                 <li>

@@ -12,12 +12,49 @@
   <div class="container" id="container">
 
     <div class="form-container register-container">
-      <form action="#">
+      <form method="POST" action="{{route('auth.do_register')}}">
+        @csrf
         <h1>Đăng ký</h1>
-        <input type="text" placeholder="Name">
-        <input type="email" placeholder="Email">
-        <input type="password" placeholder="Password">
-        <button>Đăng Ký</button>
+        <input
+        name="username"
+        type="text"
+        placeholder="username"
+        required
+        value="{{old('username')}}"
+        >
+        @if($errors->has('username'))
+          <span class="errors-message">{{$errors->first('username')}}</span>
+        @endif
+        <input
+        name="email"
+        type="email"
+        placeholder="Email"
+        required
+        value="{{old('email')}}"
+        >
+        @if($errors->has('email'))
+          <span class="errors-message">{{$errors->first('email')}}</span>
+        @endif
+        <input
+        name="password"
+        type="password"
+        placeholder="Password"
+        required
+        >
+        @if($errors->has('password'))
+          <span class="errors-message">{{$errors->first('password')}}</span>
+        @endif
+        <input
+        name="password_confirmation"
+        type="password"
+        placeholder="Password confirmation"
+        id="password_confirmation"
+        class="form-control"
+        >
+        @if($errors->has('password_confirmation'))
+          <span class="errors-message">{{$errors->first('password_confirmation')}}</span>
+        @endif
+        <button type="submit">Đăng Ký</button>
         <span>or use your account</span>
         <div class="social-container">
           <a href="#" class="social"><i class="lni lni-facebook-fill"></i></a>
@@ -35,7 +72,8 @@
         name="email"
         type="email"
         placeholder="Email"
-        value="{{old('email')}}"
+        c
+        required
         >
         @if($errors->has('email'))
           <span class="errors-message">{{$errors->first('email')}}</span>
@@ -44,6 +82,7 @@
         name="password"
         type="password"
         placeholder="Password"
+        required
         >
         @if($errors->has('password'))
           <span class="errors-message">{{$errors->first('password')}}</span>
