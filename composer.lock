@@ -1388,9 +1388,7 @@
                     "dev-master": "5.x-dev"
                 },
                 "laravel": {
-                    "providers": [
-                        "Laravel\\Socialite\\SocialiteServiceProvider"
-                    ],
+                    
                     "aliases": {
                         "Socialite": "Laravel\\Socialite\\Facades\\Socialite"
                     }

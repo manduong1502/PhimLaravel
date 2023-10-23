@@ -24,14 +24,14 @@ Route::post('/do_login', [LoginController::class, 'login'])->name('auth.do_login
 Route::get('/logout', [LoginController::class, 'logout'])->name('auth.logout');
 
 
-//facebook
+// //facebook
 
-Route::get('/auth/facebook',function () {
-    return Socialite::driver('github')->redirect();
-});
-Route::get('/auth/facebook/callback',function () {
-    return 'Call back facebook';
-});
+// Route::get('/auth/facebook',function () {
+//     return Socialite::driver('github')->redirect();
+// });
+// Route::get('/auth/facebook/callback',function () {
+//     return 'Call back facebook';
+// });
 
 
 //Register
