@@ -55,6 +55,7 @@
         }
     },
     "config": {
+        "process-timeout": 600,
         "optimize-autoloader": true,
         "preferred-install": "dist",
         "sort-packages": true,
@@ -63,6 +64,7 @@
             "php-http/discovery": true
         }
     },
+    
     "minimum-stability": "stable",
     "prefer-stable": true
 }
