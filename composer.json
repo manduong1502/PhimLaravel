@@ -63,11 +63,7 @@
             "php-http/discovery": true
         }
     },
-    "repositories": {
-        
-            "type": "vcs",
-            "url": "https://github.com/manduong1502/PhimLaravel.git"
-    },
+    
     "minimum-stability": "stable",
     "prefer-stable": true
 }
