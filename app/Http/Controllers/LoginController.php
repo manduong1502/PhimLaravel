@@ -11,8 +11,11 @@ class LoginController extends Controller
 {
     public function index () {
         if (Auth::check()) {
-            // Kiểm tra xem người dùng đã đăng nhập chưa
-            if (Auth::user()->role === 'admin') {
+            // Kiểm tra xem người dùng đã đăng nhập hay chưa
+            $user = Auth::user();
+            
+            if ($user && $user->role === 'admin') {
+                // Kiểm tra quyền admin
                 return redirect()->route('admin.dashboard'); // Điều hướng đến trang quản trị
             } else {
                 return redirect()->route('pages.trangchu'); // Điều hướng đến trang chính
@@ -27,8 +30,17 @@ class LoginController extends Controller
             'password' =>  $authRequest ->input('password'),
         ];
         
-        if(Auth::attempt($credentials)) {
-            return redirect() ->route('pages.trangchu')->with('success','Bạn đã đăng nhập thành công');
+        if (Auth::attempt($credentials)) {
+            // Đăng nhập thành công
+            $user = Auth::user();
+    
+            if ($user->role === 'admin') {
+                // Nếu người dùng có quyền admin, điều hướng đến trang quản trị
+                return redirect()->route('admin.dashboard')->with('success', 'Bạn đã đăng nhập thành công');
+            } else {
+                // Nếu người dùng không phải là admin, điều hướng đến trang chính
+                return redirect()->route('pages.trangchu')->with('success', 'Bạn đã đăng nhập thành công');
+            }
         }
         return redirect() ->route('auth.index')->with('error','Email hoặc mật khẩu của bạn sai');
     }

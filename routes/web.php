@@ -5,6 +5,7 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\LoginController;
 use App\Http\Middleware\AuthMiddleware;
 use App\Http\Middleware\LoginMiddleware;
+use App\Http\Middleware\CheckAdmin;
 use App\Http\Controllers\RegisterController;
 
 
@@ -15,11 +16,8 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('auth.logout');
 
 
 // login admin
-Route::middleware(['admin'])->group(function () {
-    // Định nghĩa các route cho trang quản trị ở đây
-    Route::get('/admin/dashboard', [LoginController::class, 'index']);
-    // ...
-});
+Route::get('/admin/dashboard', [LoginController::class, 'index'])->middleware(CheckAdmin::class);
+
 
 //Register
 Route::get('/register', [RegisterController::class, 'index'])->name('auth.register.index');
