@@ -1,7 +1,7 @@
 <header id="site-header">
     <nav class="navbar navbar-expand-lg" style="background-color:rgba(0, 0, 0, 0.50);">
       <div class="container-fluid">
-        <img class="navbar-brand" src="source/public/image/logo/logo.png" alt="">
+        <img class="navbar-brand" src="public/image/logo/logo.png" alt="">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -22,9 +22,12 @@
               <a class="nav-link active text-white" aria-current="page" href="#">Contact</a>
             </li>
           </ul>
-          <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <form class="d-flex" action="" method="GET">
+            <div class="d-flex input-group">
+              <input class="form-control me-2" id="timkiem" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success" type="submit">Search</button>
+            </div>
+            <ul class="list-group " id="result" style="display:none"></ul>
           </form>
           <ul class="navbar-nav mb-2 mb-lg-0">
             <li class="nav-item mt-3">
