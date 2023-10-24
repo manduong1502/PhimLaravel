@@ -10,8 +10,13 @@ use Illuminate\Support\Facades\Auth;
 class LoginController extends Controller
 {
     public function index () {
-        if(Auth::id() >0) {
-            return redirect() ->route('pages.trangchu');
+        if (Auth::check()) {
+            // Kiểm tra xem người dùng đã đăng nhập chưa
+            if (Auth::user()->role === 'admin') {
+                return redirect()->route('admin.dashboard'); // Điều hướng đến trang quản trị
+            } else {
+                return redirect()->route('pages.trangchu'); // Điều hướng đến trang chính
+            }
         }
         return view('auth.login');
     }

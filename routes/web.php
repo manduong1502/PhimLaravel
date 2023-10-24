@@ -14,15 +14,12 @@ Route::post('/do_login', [LoginController::class, 'login'])->name('auth.do_login
 Route::get('/logout', [LoginController::class, 'logout'])->name('auth.logout');
 
 
-// //facebook
-
-// Route::get('/auth/facebook',function () {
-//     return Socialite::driver('github')->redirect();
-// });
-// Route::get('/auth/facebook/callback',function () {
-//     return 'Call back facebook';
-// });
-
+// login admin
+Route::middleware(['admin'])->group(function () {
+    // Định nghĩa các route cho trang quản trị ở đây
+    Route::get('/admin/dashboard', [LoginController::class, 'index']);
+    // ...
+});
 
 //Register
 Route::get('/register', [RegisterController::class, 'index'])->name('auth.register.index');

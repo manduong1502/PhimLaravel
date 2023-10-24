@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('SDT')->nullable();
             $table->date('NgaySinh')->nullable();
+            $table->string('role')->default('user');
             $table->rememberToken();
             $table->timestamp('login_at')->nullable();
             $table->timestamp('change_password_at')->nullable();
