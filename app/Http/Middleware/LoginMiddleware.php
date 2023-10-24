@@ -20,5 +20,6 @@ class LoginMiddleware
             return redirect() ->route('pages.trangchu');
         }
         return $next($request);
+        
     }
 }

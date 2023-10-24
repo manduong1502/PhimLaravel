@@ -20,6 +20,6 @@ class CheckAdmin
             return $next($request);
         }
     
-        return redirect()->route('pages.trangchu')->with('error', 'Bạn không có quyền truy cập trang quản trị.');
+        return redirect()->route('auth.index')->with('error', 'Bạn không có quyền truy cập trang quản trị.');
     }
 }
