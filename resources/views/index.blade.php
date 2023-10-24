@@ -3,15 +3,6 @@
 
 <head>
   @include('include.head')
-  @if(isset($customCss))
-        <link rel="stylesheet" href="{{ asset($customCss) }}">
-    @endif
-
-  @if(isset($customCssArr))  
-    @foreach ($customCssArr as $key => $val)
-        <link rel="stylesheet" href="{{ asset($val) }}">
-    @endforeach
-  @endif
 </head>
 
 <body>
