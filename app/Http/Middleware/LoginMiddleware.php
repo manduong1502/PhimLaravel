@@ -16,9 +16,24 @@ class LoginMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {   
-        if(Auth::id() >0) {
-            return redirect() ->route('pages.trangchu');
+        if (Auth::check()) {
+            $user = Auth::user();
+            
+            if ($user->role === 'admin') {
+                if ($request->routeIs('auth.index')) {
+                    // Nếu là admin và đang truy cập trang đăng nhập, điều hướng đến trang admin
+                    return redirect()->route('admin.dashboard');
+                }
+                // Nếu là admin và không phải trang đăng nhập, tiếp tục xử lý request
+            } else {
+                if ($request->routeIs('auth.index')) {
+                    // Nếu là người dùng bình thường và đang truy cập trang đăng nhập, điều hướng đến trang người dùng bình thường
+                    return redirect()->route('user.dashboard');
+                }
+                // Nếu là người dùng bình thường và không phải trang đăng nhập, tiếp tục xử lý request
+            }
         }
+    
         return $next($request);
         
     }

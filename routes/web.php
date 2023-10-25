@@ -7,6 +7,16 @@ use App\Http\Middleware\AuthMiddleware;
 use App\Http\Middleware\LoginMiddleware;
 use App\Http\Middleware\CheckAdmin;
 use App\Http\Controllers\RegisterController;
+//Admin Controller
+use App\Http\Controllers\admin\AdminController;
+use App\Http\Controllers\admin\CategoryController;
+use App\Http\Controllers\admin\MovieController;
+use App\Http\Controllers\admin\CountryController;
+use App\Http\Controllers\admin\EpisodeController;
+use App\Http\Controllers\admin\GenreController;
+
+
+
 
 
 //login
@@ -16,7 +26,13 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('auth.logout');
 
 
 // login admin
-Route::get('/admin/dashboard', [LoginController::class, 'index'])->middleware(CheckAdmin::class);
+Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard') ->middleware(CheckAdmin::class);
+//route admin
+Route::resource('/admin/category', CategoryController::class)->middleware(CheckAdmin::class);
+Route::resource('/admin/genre', GenreController::class)->middleware(CheckAdmin::class);
+Route::resource('/admin/movie', MovieController::class)->middleware(CheckAdmin::class);
+Route::resource('/admin/country', CountryController::class)->middleware(CheckAdmin::class);
+Route::resource('/admin/episode', EpisodeController::class)->middleware(CheckAdmin::class);
 
 
 //Register
