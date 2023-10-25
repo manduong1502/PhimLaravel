@@ -11,25 +11,26 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('phim', function (Blueprint $table) {
+        Schema::create('categories', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('mota')->nullable();
-            $table->string('daodien');
-            $table->double('gia');
+            $table->string('title');
+            $table->string('description');
+            $table->integer('status');
+            $table->string('daodien')->nullable();
+            $table->double('gia')->nullable();
             $table->string('anh')->nullable();
             $table->string('video')->nullable();
-            $table->string('thoiluong');
-            $table->date('ngaybd');
-            $table->date('ngaykt');
-            $table->string('quocgia');
-            $table->string('hangphim');
-            $table->string('phienban');
-            $table->string('theloai');
-            $table->string('trangthai');
+            $table->string('thoiluong')->nullable();
+            $table->date('ngaybd')->nullable();
+            $table->date('ngaykt')->nullable();
+            $table->string('quocgia')->nullable();
+            $table->string('hangphim')->nullable();
+            $table->string('phienban')->nullable();
+            $table->string('theloai')->nullable();
+            $table->string('trangthai')->nullable();
             $table->timestamps();
-            $table->integer('luotxem');
-            $table->integer('danhgia');
+            $table->integer('luotxem')->nullable();
+            $table->integer('danhgia')->nullable();
         });
     }
 

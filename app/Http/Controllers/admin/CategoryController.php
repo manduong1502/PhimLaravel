@@ -21,7 +21,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return  view('admin.pagesadmin.category');
+        $list = Category::all();
+        return  view('admin.pagesadmin.category',compact('list'));
     }
 
     /**
@@ -29,7 +30,12 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $category = new Category();
+        $category->title = $request->title;
+        $category->description = $request->description;
+        $category->status = $request->status;
+        $category->save();
+        return redirect()->back();
     }
 
     /**
