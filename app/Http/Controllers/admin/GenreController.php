@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Genre;
 
 class GenreController extends Controller
 {
@@ -20,7 +21,8 @@ class GenreController extends Controller
      */
     public function create()
     {
-        //
+        $list = Genre::all();
+        return  view('admin.pagesadmin.genre',compact('list'));
     }
 
     /**
@@ -28,7 +30,12 @@ class GenreController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $genre = new Genre();
+        $genre->title = $request->title;
+        $genre->description = $request->description;
+        $genre->status = $request->status;
+        $genre->save();
+        return redirect()->back();
     }
 
     /**
@@ -43,8 +50,10 @@ class GenreController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
-    {
-        //
+    {   
+        $genre = Genre::find($id);
+        $list = Genre::all();
+        return  view('admin.pagesadmin.genre',compact('list','genre'));
     }
 
     /**
@@ -52,7 +61,12 @@ class GenreController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $genre = Genre::find($id);
+        $genre->title = $request->title;
+        $genre->description = $request->description;
+        $genre->status = $request->status;
+        $genre->save();
+        return redirect()->route('genre.create');
     }
 
     /**
@@ -60,6 +74,7 @@ class GenreController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Genre::find($id) -> delete();
+        return redirect()->back();
     }
 }

@@ -50,8 +50,10 @@ class CategoryController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
-    {
-        //
+    {   
+        $category = Category::find($id);
+        $list = Category::all();
+        return  view('admin.pagesadmin.category',compact('list','category'));
     }
 
     /**
@@ -59,7 +61,12 @@ class CategoryController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $category = Category::find($id);
+        $category->title = $request->title;
+        $category->description = $request->description;
+        $category->status = $request->status;
+        $category->save();
+        return redirect()->route('category.create');
     }
 
     /**
@@ -67,6 +74,7 @@ class CategoryController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Category::find($id) -> delete();
+        return redirect()->back();
     }
 }

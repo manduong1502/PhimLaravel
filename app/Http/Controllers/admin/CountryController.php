@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Country;
 
 class CountryController extends Controller
 {
@@ -20,7 +21,8 @@ class CountryController extends Controller
      */
     public function create()
     {
-        //
+        $list = Country::all();
+        return  view('admin.pagesadmin.country',compact('list'));
     }
 
     /**
@@ -28,7 +30,12 @@ class CountryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $country = new Country();
+        $country->title = $request->title;
+        $country->description = $request->description;
+        $country->status = $request->status;
+        $country->save();
+        return redirect()->back();
     }
 
     /**
@@ -43,8 +50,10 @@ class CountryController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
-    {
-        //
+    {   
+        $country = Country::find($id);
+        $list = Country::all();
+        return  view('admin.pagesadmin.country',compact('list','country'));
     }
 
     /**
@@ -52,7 +61,12 @@ class CountryController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $country = Country::find($id);
+        $country->title = $request->title;
+        $country->description = $request->description;
+        $country->status = $request->status;
+        $country->save();
+        return redirect()->route('country.create');
     }
 
     /**
@@ -60,6 +74,7 @@ class CountryController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Country::find($id) -> delete();
+        return redirect()->back();
     }
 }
