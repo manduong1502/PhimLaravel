@@ -88,7 +88,7 @@
                         {!! Form::close() !!}
                     </div>
                 </div>
-                <table class="table mt-4 table-success table-striped">
+                <table class="table mt-4 table-success table-striped" id="myTable">
                     <thead>
                         <tr>
                             <th scope="col">#</th>
@@ -103,7 +103,7 @@
                             <th scope="col">Chỉnh sửa</th>
                         </tr>
                     </thead>
-                    <tbody class="order_position">
+                    <tbody class="order_position" >
                         @foreach ($list as $key => $cate)
                             <tr id="{{$cate->id}}">
                                 <th scope="row">{{ $key }}</th>

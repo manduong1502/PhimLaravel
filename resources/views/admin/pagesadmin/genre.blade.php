@@ -46,7 +46,7 @@
                         {!! Form::close() !!}
                     </div>
                 </div>
-                <table class="table mt-4 table-success table-striped">
+                <table class="table mt-4 table-success table-striped" id="myTable">
                     <thead>
                       <tr>
                         <th scope="col">#</th>
