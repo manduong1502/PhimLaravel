@@ -11,14 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('phim', function (Blueprint $table) {
+        Schema::create('movies', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('description');
+            $table->string('slug');
+            $table->longText('description');
             $table->integer('status');
+            $table->string('image');
+            $table->integer('category_id');
+            $table->integer('genre_id');
+            $table->integer('country_id');
             $table->string('daodien')->nullable();
             $table->double('gia')->nullable();
-            $table->string('anh')->nullable();
             $table->string('video')->nullable();
             $table->string('thoiluong')->nullable();
             $table->date('ngaybd')->nullable();

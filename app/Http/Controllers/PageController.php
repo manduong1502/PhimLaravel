@@ -56,15 +56,26 @@ class PageController extends Controller
 
     public function getTheloai($slug)
     {
-        $category = Category::orderBy('id','DESC') ->get();
+        //điền kiện
+        $category = Category::orderBy('id','DESC') ->where('status',1)->get();
         $genre = Genre::orderBy('id','DESC') ->get();
-        $country = Country::orderBy('id','DESC') ->get();
+        $country = Genre::orderBy('id','DESC') ->get();
+
+        //css
         $customCss = 'css/tong-the-loai.css';
+
+        //điều kiện slug
+        $cate_slug = Category::where('slug',$slug) ->first();
+        $gen_slug = Genre::where('slug',$slug) ->first();
+        $coun_slug = Country::where('slug',$slug) ->first();
         return view('pages.theloai', compact(
             'customCss',
             'category',
             'genre',
-            'country'
+            'country',
+            'cate_slug',
+            'gen_slug',
+            'coun_slug'
         ));
     }
 
