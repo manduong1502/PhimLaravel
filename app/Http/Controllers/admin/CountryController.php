@@ -32,6 +32,7 @@ class CountryController extends Controller
     {
         $country = new Country();
         $country->title = $request->title;
+        $country->slug = $request->slug;
         $country->description = $request->description;
         $country->status = $request->status;
         $country->save();
@@ -63,6 +64,7 @@ class CountryController extends Controller
     {
         $country = Country::find($id);
         $country->title = $request->title;
+        $country->slug = $request->slug;
         $country->description = $request->description;
         $country->status = $request->status;
         $country->save();

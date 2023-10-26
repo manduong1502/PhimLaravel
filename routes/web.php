@@ -44,9 +44,18 @@ Route::post('/do_register', [RegisterController::class, 'register'])->name('auth
 
 Route::get('/', [PageController::class, 'getGioithieu']);
 Route::get('/index', [PageController::class, 'getTrangchu'])->name('pages.trangchu')->middleware(AuthMiddleware::class);
+
+
 Route::get('/chitiet', [PageController::class, 'getChitiet'])->middleware(AuthMiddleware::class);
 Route::get('/xemphim', [PageController::class, 'getXemphim'])->middleware(AuthMiddleware::class);
-Route::get('/theloai', [PageController::class, 'getTheloai'])->middleware(AuthMiddleware::class);
+
+//các thể loại
+Route::get('/danh-muc/{slug}', [PageController::class, 'getTheloai'])->name('category')->middleware(AuthMiddleware::class);
+Route::get('/the-loai/{slug}', [PageController::class, 'getTheloai'])->name('genre')->middleware(AuthMiddleware::class);
+Route::get('/quocgia/{slug}', [PageController::class, 'getTheloai'])->name('country')->middleware(AuthMiddleware::class);
+Route::get('/theloai/{slug}', [PageController::class, 'getTheloai'])->middleware(AuthMiddleware::class);
+
+
 Route::get('/blog', [PageController::class, 'getBlog'])->middleware(AuthMiddleware::class);
 Route::get('/blog_review', [PageController::class, 'getBlog_review'])->middleware(AuthMiddleware::class);
 

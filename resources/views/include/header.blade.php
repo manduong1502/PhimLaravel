@@ -1,26 +1,38 @@
 <header id="site-header">
     <nav class="navbar navbar-expand-lg" style="background-color:rgba(0, 0, 0, 0.50);">
       <div class="container-fluid">
-        <img class="navbar-brand" src="public/image/logo/logo.png" alt="">
+        <a href="{{route('pages.trangchu')}}"><img class="navbar-brand" src="public/image/logo/logo.png" alt=""></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-ul navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active text-white" aria-current="page" href="#">Home</a>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Mới nhất</a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                @foreach($category as $key =>$cate)
+                  <li ><a title="{{$cate->title}}" class="dropdown-item" href="{{route('category',$cate->slug)}}">{{$cate->title}}</a></li>
+                @endforeach
+              </ul>
             </li>
             <li class="nav-item">
-              <a class="nav-link active text-white" aria-current="page" href="#">Product</a>
+              <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Mới nhất</a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                @foreach($genre as $key =>$gen)
+                  <li ><a title="{{$gen->title}}" class="dropdown-item" href="{{route('genre',$gen->slug)}}">{{$gen->title}}</a></li>
+                @endforeach
+              </ul>
             </li>
             <li class="nav-item">
-              <a class="nav-link active text-white" aria-current="page" href="#">Pricing</a>
+              <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Mới nhất</a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                @foreach($country as $key =>$coun)
+                  <li ><a title="{{$coun->title}}" class="dropdown-item" href="{{route('country',$coun->slug)}}">{{$coun->title}}</a></li>
+                @endforeach
+              </ul>
             </li>
 
-            <li class="nav-item">
-              <a class="nav-link active text-white" aria-current="page" href="#">Contact</a>
-            </li>
           </ul>
           <form class="d-flex" action="" method="GET">
             <div class="d-flex input-group">
