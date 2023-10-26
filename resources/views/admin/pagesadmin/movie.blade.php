@@ -103,9 +103,9 @@
                             <th scope="col">Chỉnh sửa</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="order_position">
                         @foreach ($list as $key => $cate)
-                            <tr>
+                            <tr id="{{$cate->id}}">
                                 <th scope="row">{{ $key }}</th>
                                 <td><img width="70" height="100" src="{{ asset('uploads/movie/' . $cate->image) }}"alt=""></td>
                                 <td>{{ $cate->title }}</td>

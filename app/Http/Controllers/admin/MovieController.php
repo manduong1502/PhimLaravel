@@ -137,4 +137,14 @@ class MovieController extends Controller
         $movie->delete();
         return redirect()->back();
     }
+
+    public function resorting (Request $request) {
+        $data = $request->all();
+
+            foreach($data['array_id'] as $key => $value) {
+                $movie = Movie::find($value);
+                $movie->position = $key;
+                $movie->save();
+        }
+    }
 }

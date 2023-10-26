@@ -21,7 +21,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $list = Category::all();
+        $list = Category::orderBy('position','ASC')->get();
         return  view('admin.pagesadmin.category',compact('list'));
     }
 
@@ -35,6 +35,8 @@ class CategoryController extends Controller
         $category->slug = $request->slug;
         $category->description = $request->description;
         $category->status = $request->status;
+        $nextPosition = Category::max('position') + 1;
+        $category->position = $nextPosition;
         $category->save();
         return redirect()->back();
     }
@@ -53,7 +55,7 @@ class CategoryController extends Controller
     public function edit(string $id)
     {   
         $category = Category::find($id);
-        $list = Category::all();
+        $list = Category::orderBy('position','ASC')->get();
         return  view('admin.pagesadmin.category',compact('list','category'));
     }
 
@@ -78,5 +80,15 @@ class CategoryController extends Controller
     {
         Category::find($id) -> delete();
         return redirect()->back();
+    }
+
+    public function resorting (Request $request) {
+        $data = $request->all();
+
+            foreach($data['array_id'] as $key => $value) {
+                $category = Category::find($value);
+                $category->position = $key;
+                $category->save();
+        }
     }
 }

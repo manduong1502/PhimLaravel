@@ -21,7 +21,7 @@ class GenreController extends Controller
      */
     public function create()
     {
-        $list = Genre::all();
+        $list = Genre::orderBy('position','ASC')->get();
         return  view('admin.pagesadmin.genre',compact('list'));
     }
 
@@ -35,6 +35,8 @@ class GenreController extends Controller
         $genre->slug = $request->slug;
         $genre->description = $request->description;
         $genre->status = $request->status;
+        $nextPosition = Genre::max('position') + 1;
+        $genre->position = $nextPosition;
         $genre->save();
         return redirect()->back();
     }
@@ -53,7 +55,7 @@ class GenreController extends Controller
     public function edit(string $id)
     {   
         $genre = Genre::find($id);
-        $list = Genre::all();
+        $list = Genre::orderBy('position','ASC')->get();
         return  view('admin.pagesadmin.genre',compact('list','genre'));
     }
 
@@ -78,5 +80,15 @@ class GenreController extends Controller
     {
         Genre::find($id) -> delete();
         return redirect()->back();
+    }
+
+    public function resorting (Request $request) {
+        $data = $request->all();
+
+            foreach($data['array_id'] as $key => $value) {
+                $genre = Genre::find($value);
+                $genre->position = $key;
+                $genre->save();
+        }
     }
 }

@@ -3,6 +3,7 @@
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{csrf_token() }}">
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
       integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
@@ -11,6 +12,7 @@
       crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 </head>
 
 <body>
@@ -77,8 +79,8 @@
   <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
   <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
   <script type="text/javascript">
- 
     function ChangeToSlug()
         {
 
@@ -113,6 +115,29 @@
         }
 
     </script>
+
+<script type="text/javascript">
+    $(".order_position" ).sortable({
+      placeholder : 'ui-state-highlight',
+      update: function( event, ui ) {
+        var array_id =[];
+        $(".order_position tr").each(function(){
+          array_id.push($(this).attr('id'));
+        });
+        $.ajax({
+          headers:{
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          },
+          url:"{{route('resorting')}}",
+          method:"POST",
+          data:{array_id:array_id},
+          success:function(data){
+            alert('Sắp xếp thứ tự thành công');
+          }
+        })
+      }
+    });
+</script>
 </body>
 
 </html>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Country;
 use App\Models\Genre;
+use App\Models\Movie;
 
 
 
@@ -19,10 +20,12 @@ class PageController extends Controller
         $category = Category::orderBy('id','DESC') ->get();
         $genre = Genre::orderBy('id','DESC') ->get();
         $country = Country::orderBy('id','DESC') ->get();
+        $category_home = Category::with('movie')->orderBy('id','DESC') ->get();
         return view('pages.trangchu',compact(
             'category',
             'genre',
-            'country'
+            'country',
+            'category_home'
         ));
     }
 
@@ -59,7 +62,8 @@ class PageController extends Controller
         //điền kiện
         $category = Category::orderBy('id','DESC') ->where('status',1)->get();
         $genre = Genre::orderBy('id','DESC') ->get();
-        $country = Genre::orderBy('id','DESC') ->get();
+        $country = Country::orderBy('id','DESC') ->get();
+        
 
         //css
         $customCss = 'css/tong-the-loai.css';

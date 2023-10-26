@@ -29,6 +29,7 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('auth.logout');
 Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard') ->middleware(CheckAdmin::class);
 //route admin
 Route::resource('/admin/category', CategoryController::class)->middleware(CheckAdmin::class);
+Route::post('resorting', [CategoryController::class,'resorting'])->name('resorting')->middleware(CheckAdmin::class);
 Route::resource('/admin/genre', GenreController::class)->middleware(CheckAdmin::class);
 Route::resource('/admin/movie', MovieController::class)->middleware(CheckAdmin::class);
 Route::resource('/admin/country', CountryController::class)->middleware(CheckAdmin::class);

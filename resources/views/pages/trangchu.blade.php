@@ -160,353 +160,36 @@
     </button>
   </div>
 
+  @foreach ($category_home as $key => $cate_home)
+      
   <div class="container contents">
     <div class="content-title">
       <div class="content-title-big">
-        <h2>Cổ trang</h2>
+        <h2>{{$cate_home->title}}</h2>
       </div>
-
     </div>
+
     <div class="row slider">
+      @foreach ($cate_home->movie->take(10) as $key => $mov)
       <div class="slider-card">
         <div class="card cards">
-          <img src="/public/image/image-11.png" alt="">
+          <img src="{{asset('uploads/movie/'.$mov->image)}}" alt="">
           <div class="icon-overlay">
             <i class="fa-solid fa-circle-play"></i>
           </div>
         </div>
 
         <div class="card-text">
-          <p>Anh bước ra từ ánh lửa</p>
+          <p>{{$mov->title}}</p>
         </div>
       </div>
-
-      <div class="slider-card">
-        <div class="card cards">
-          <img src="/public/image/image-11.png" alt="">
-          <div class="icon-overlay">
-            <i class="fa-solid fa-circle-play"></i>
-          </div>
-        </div>
-
-        <div class="card-text">
-          <p>Anh bước ra từ ánh lửa</p>
-        </div>
-      </div>
-
-      <div class="slider-card">
-        <div class="card cards">
-          <img src="/public/image/image-11.png" alt="">
-          <div class="icon-overlay">
-            <i class="fa-solid fa-circle-play"></i>
-          </div>
-        </div>
-
-        <div class="card-text">
-          <p>Anh bước ra từ ánh lửa</p>
-        </div>
-      </div>
-
-      <div class="slider-card">
-        <div class="card cards">
-          <img src="/public/image/image-11.png" alt="">
-          <div class="icon-overlay">
-            <i class="fa-solid fa-circle-play"></i>
-          </div>
-        </div>
-
-        <div class="card-text">
-          <p>Anh bước ra từ ánh lửa</p>
-        </div>
-      </div>
-
-      <div class="slider-card">
-        <div class="card cards">
-          <img src="/public/image/image-11.png" alt="">
-          <div class="icon-overlay">
-            <i class="fa-solid fa-circle-play"></i>
-          </div>
-        </div>
-        <div class="card-text">
-          <p>Anh bước ra từ ánh lửa</p>
-        </div>
-      </div>
-
-      <div class="slider-card">
-        <div class="card cards">
-          <img src="/public/image/image-11.png" alt="">
-          <div class="icon-overlay">
-            <i class="fa-solid fa-circle-play"></i>
-          </div>
-        </div>
-        <div class="card-text">
-          <p>Anh bước ra từ ánh lửa</p>
-        </div>
-      </div>
-
+      @endforeach
     </div>
   </div>
+  @endforeach
 
 
-  <div class="container contents">
-    <div class="content-title">
-      <div class="content-title-big">
-        <h2>Hành động</h2>
-      </div>
-
-    </div>
-    <div class="row slider">
-      <div class="slider-card">
-        <div class="card cards">
-          <img src="/public/image/image-11.png" alt="">
-          <div class="icon-overlay">
-            <i class="fa-solid fa-circle-play"></i>
-          </div>
-        </div>
-
-        <div class="card-text">
-          <p>Anh bước ra từ ánh lửa</p>
-        </div>
-      </div>
-
-      <div class="slider-card">
-        <div class="card cards">
-          <img src="/public/image/image-11.png" alt="">
-          <div class="icon-overlay">
-            <i class="fa-solid fa-circle-play"></i>
-          </div>
-        </div>
-
-        <div class="card-text">
-          <p>Anh bước ra từ ánh lửa</p>
-        </div>
-      </div>
-
-      <div class="slider-card">
-        <div class="card cards">
-          <img src="/public/image/image-11.png" alt="">
-          <div class="icon-overlay">
-            <i class="fa-solid fa-circle-play"></i>
-          </div>
-        </div>
-
-        <div class="card-text">
-          <p>Anh bước ra từ ánh lửa</p>
-        </div>
-      </div>
-
-      <div class="slider-card">
-        <div class="card cards">
-          <img src="/public/image/image-11.png" alt="">
-          <div class="icon-overlay">
-            <i class="fa-solid fa-circle-play"></i>
-          </div>
-        </div>
-
-        <div class="card-text">
-          <p>Anh bước ra từ ánh lửa</p>
-        </div>
-      </div>
-
-      <div class="slider-card">
-        <div class="card cards">
-          <img src="/public/image/image-11.png" alt="">
-          <div class="icon-overlay">
-            <i class="fa-solid fa-circle-play"></i>
-          </div>
-        </div>
-        <div class="card-text">
-          <p>Anh bước ra từ ánh lửa</p>
-        </div>
-      </div>
-
-      <div class="slider-card">
-        <div class="card cards">
-          <img src="/public/image/image-11.png" alt="">
-          <div class="icon-overlay">
-            <i class="fa-solid fa-circle-play"></i>
-          </div>
-        </div>
-        <div class="card-text">
-          <p>Anh bước ra từ ánh lửa</p>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <div class="container contents">
-    <div class="content-title">
-      <div class="content-title-big">
-        <h2>ĐỀ XUẤT HOT</h2>
-      </div>
-
-    </div>
-    <div class="row slider">
-      <div class="slider-card">
-        <div class="card cards">
-          <img src="/public/image/image-11.png" alt="">
-          <div class="icon-overlay">
-            <i class="fa-solid fa-circle-play"></i>
-          </div>
-        </div>
-
-        <div class="card-text">
-          <p>Anh bước ra từ ánh lửa</p>
-        </div>
-      </div>
-
-      <div class="slider-card">
-        <div class="card cards">
-          <img src="/public/image/image-11.png" alt="">
-          <div class="icon-overlay">
-            <i class="fa-solid fa-circle-play"></i>
-          </div>
-        </div>
-
-        <div class="card-text">
-          <p>Anh bước ra từ ánh lửa</p>
-        </div>
-      </div>
-
-      <div class="slider-card">
-        <div class="card cards">
-          <img src="/public/image/image-11.png" alt="">
-          <div class="icon-overlay">
-            <i class="fa-solid fa-circle-play"></i>
-          </div>
-        </div>
-
-        <div class="card-text">
-          <p>Anh bước ra từ ánh lửa</p>
-        </div>
-      </div>
-
-      <div class="slider-card">
-        <div class="card cards">
-          <img src="/public/image/image-11.png" alt="">
-          <div class="icon-overlay">
-            <i class="fa-solid fa-circle-play"></i>
-          </div>
-        </div>
-
-        <div class="card-text">
-          <p>Anh bước ra từ ánh lửa</p>
-        </div>
-      </div>
-
-      <div class="slider-card">
-        <div class="card cards">
-          <img src="/public/image/image-11.png" alt="">
-          <div class="icon-overlay">
-            <i class="fa-solid fa-circle-play"></i>
-          </div>
-        </div>
-        <div class="card-text">
-          <p>Anh bước ra từ ánh lửa</p>
-        </div>
-      </div>
-
-      <div class="slider-card">
-        <div class="card cards card-actor">
-          <img src="/public/image/image-11.png" alt="">
-          
-        </div>
-        <div class="card-text">
-          <p>Anh bước ra từ ánh lửa</p>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <div class="container contents">
-    <div class="content-title">
-      <div class="content-title-big">
-        <h2>ĐỀ XUẤT HOT</h2>
-      </div>
-
-    </div>
-    <div class="row slider">
-      <div class="slider-card">
-        <div class="card cards">
-          <img src="/public/image/image-11.png" alt="">
-          <div class="icon-overlay">
-            <i class="fa-solid fa-circle-play"></i>
-          </div>
-        </div>
-
-        <div class="card-text">
-          <p>Anh bước ra từ ánh lửa</p>
-        </div>
-      </div>
-
-      <div class="slider-card">
-        <div class="card cards">
-          <img src="/public/image/image-11.png" alt="">
-          <div class="icon-overlay">
-            <i class="fa-solid fa-circle-play"></i>
-          </div>
-        </div>
-
-        <div class="card-text">
-          <p>Anh bước ra từ ánh lửa</p>
-        </div>
-      </div>
-
-      <div class="slider-card">
-        <div class="card cards">
-          <img src="/public/image/image-11.png" alt="">
-          <div class="icon-overlay">
-            <i class="fa-solid fa-circle-play"></i>
-          </div>
-        </div>
-
-        <div class="card-text">
-          <p>Anh bước ra từ ánh lửa</p>
-        </div>
-      </div>
-
-      <div class="slider-card">
-        <div class="card cards">
-          <img src="/public/image/image-11.png" alt="">
-          <div class="icon-overlay">
-            <i class="fa-solid fa-circle-play"></i>
-          </div>
-        </div>
-
-        <div class="card-text">
-          <p>Anh bước ra từ ánh lửa</p>
-        </div>
-      </div>
-
-      <div class="slider-card">
-        <div class="card cards">
-          <img src="/public/image/image-11.png" alt="">
-          <div class="icon-overlay">
-            <i class="fa-solid fa-circle-play"></i>
-          </div>
-        </div>
-        <div class="card-text">
-          <p>Anh bước ra từ ánh lửa</p>
-        </div>
-      </div>
-
-      <div class="slider-card">
-        <div class="card cards">
-          <img src="/public/image/image-11.png" alt="">
-          <div class="icon-overlay">
-            <i class="fa-solid fa-circle-play"></i>
-          </div>
-        </div>
-        <div class="card-text">
-          <p>Anh bước ra từ ánh lửa</p>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
+  
   <div class="container contents">
     <div class="content-title">
       <div class="content-title-big">

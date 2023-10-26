@@ -21,7 +21,7 @@ class CountryController extends Controller
      */
     public function create()
     {
-        $list = Country::all();
+        $list = Country::orderBy('position','ASC')->get();
         return  view('admin.pagesadmin.country',compact('list'));
     }
 
@@ -35,6 +35,8 @@ class CountryController extends Controller
         $country->slug = $request->slug;
         $country->description = $request->description;
         $country->status = $request->status;
+        $nextPosition = Country::max('position') + 1;
+        $country->position = $nextPosition;
         $country->save();
         return redirect()->back();
     }
@@ -53,7 +55,7 @@ class CountryController extends Controller
     public function edit(string $id)
     {   
         $country = Country::find($id);
-        $list = Country::all();
+        $list = Country::orderBy('position','ASC')->get();
         return  view('admin.pagesadmin.country',compact('list','country'));
     }
 
@@ -78,5 +80,15 @@ class CountryController extends Controller
     {
         Country::find($id) -> delete();
         return redirect()->back();
+    }
+
+    public function resorting (Request $request) {
+        $data = $request->all();
+
+            foreach($data['array_id'] as $key => $value) {
+                $country = Country::find($value);
+                $country->position = $key;
+                $country->save();
+        }
     }
 }
