@@ -21,6 +21,7 @@ return new class extends Migration
             $table->integer('category_id');
             $table->integer('genre_id');
             $table->integer('country_id');
+            $table->integer('phim_hot');
             $table->string('daodien')->nullable();
             $table->double('gia')->nullable();
             $table->string('video')->nullable();

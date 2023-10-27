@@ -35,6 +35,7 @@ class GenreController extends Controller
         $genre->slug = $request->slug;
         $genre->description = $request->description;
         $genre->status = $request->status;
+        
         $nextPosition = Genre::max('position') + 1;
         $genre->position = $nextPosition;
         $genre->save();

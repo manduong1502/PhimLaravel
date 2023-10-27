@@ -47,7 +47,7 @@ Route::get('/', [PageController::class, 'getGioithieu']);
 Route::get('/index', [PageController::class, 'getTrangchu'])->name('pages.trangchu')->middleware(AuthMiddleware::class);
 
 
-Route::get('/chitiet', [PageController::class, 'getChitiet'])->middleware(AuthMiddleware::class);
+Route::get('/chitiet', [PageController::class, 'getChitiet'])->name('pages.chitiet')->middleware(AuthMiddleware::class);
 Route::get('/xemphim', [PageController::class, 'getXemphim'])->middleware(AuthMiddleware::class);
 
 //các thể loại

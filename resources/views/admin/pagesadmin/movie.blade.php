@@ -18,7 +18,6 @@
                         @else
                             {!! Form::open(['route' => ['movie.update', $movie->id], 'method' => 'PUT', 'enctype' => 'multipart/form-data']) !!}
                         @endif
-
                         <div class="form-group">
                             {!! Form::label('title', 'title', []) !!}
                             {!! Form::text('title', isset($movie) ? $movie->title : '', [
@@ -71,6 +70,18 @@
                         </div>
 
                         <div class="form-group">
+                            {!! Form::label('Active', 'Active', []) !!}
+                            {!! Form::select('status', ['1' => 'Hiển thị', '0' => 'Không hiển thị'], isset($movie) ? $movie->status : '', [
+                                'class' => 'form-control',
+                            ]) !!}
+                        </div><div class="form-group">
+                            {!! Form::label('Phim hot', 'Phim hot', []) !!}
+                            {!! Form::select('phim_hot', ['0' => 'Không hiển thị','1' => 'Hiển thị'], isset($movie) ? $movie->phim_hot : '', [
+                                'class' => 'form-control',
+                            ]) !!}
+                        </div>
+
+                        <div class="form-group">
                             {!! Form::label('Image', 'Image', []) !!}
                             {!! Form::file('image', ['class' => 'form-control-file']) !!}
                             @if(isset($movie))
@@ -97,6 +108,7 @@
                             <th scope="col">Đường dẫn phim</th>
                             <th scope="col">Mô tả</th>
                             <th scope="col">Hiển thị</th>
+                            <th scope="col">Phim hot</th>
                             <th scope="col">Danh mục</th>
                             <th scope="col">Thể loại</th>
                             <th scope="col">Quốc gia</th>
@@ -118,9 +130,17 @@
                                         <span class="badge badge-danger">Không hiển thị</span>
                                     @endif
                                 </td>
+                                <td>
+                                    @if ($cate->phim_hot == 1)
+                                        <span class="badge badge-success">Hiển thị</span>
+                                    @else
+                                        <span class="badge badge-danger">Không hiển thị</span>
+                                    @endif
+                                </td>
                                 <td>{{ $cate->category->title }}</td>
                                 <td>{{ $cate->genre->title }}</td>
                                 <td>{{ $cate->country->title }}</td>
+
                                 <td>
                                     {!! Form::open([
                                         'method' => 'DELETE',

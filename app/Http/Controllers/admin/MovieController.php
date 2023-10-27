@@ -45,6 +45,8 @@ class MovieController extends Controller
         $movie->slug = $request->slug;
         $movie->description = $request->description;
         $movie->status = $request->status;
+        $movie->phim_hot = $request->phim_hot;
+
         $movie->category_id = $request->category_id;
         $movie->genre_id = $request->genre_id;
         $movie->country_id = $request->country_id;
@@ -83,6 +85,9 @@ class MovieController extends Controller
         $genre = Genre::pluck('title','id');
         $list = Movie::with('category','country','genre')->orderBy('id','DESC')->get();
         $movie = Movie::find($id);
+        if (!$movie) {
+            return redirect()->route('movie.create')->with('error', 'Không tìm thấy bộ phim.');
+        }
         return  view('admin.pagesadmin.movie',compact(
             'list',
             'country',
@@ -102,6 +107,7 @@ class MovieController extends Controller
         $movie->slug = $request->slug;
         $movie->description = $request->description;
         $movie->status = $request->status;
+        $movie->phim_hot = $request->phim_hot;
         $movie->category_id = $request->category_id;
         $movie->genre_id = $request->genre_id;
         $movie->country_id = $request->country_id;

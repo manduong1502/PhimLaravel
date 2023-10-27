@@ -17,6 +17,7 @@ class PageController extends Controller
 
     public function getTrangchu()
     {
+        $phimhot = Movie::where('phim_hot',1)->where('status',1)->get();
         $category = Category::orderBy('id','DESC') ->get();
         $genre = Genre::orderBy('id','DESC') ->get();
         $country = Country::orderBy('id','DESC') ->get();
@@ -25,7 +26,8 @@ class PageController extends Controller
             'category',
             'genre',
             'country',
-            'category_home'
+            'category_home',
+            'phimhot'
         ));
     }
 
@@ -72,6 +74,11 @@ class PageController extends Controller
         $cate_slug = Category::where('slug',$slug) ->first();
         $gen_slug = Genre::where('slug',$slug) ->first();
         $coun_slug = Country::where('slug',$slug) ->first();
+
+        //Điều kiện lấy film
+        $movie = Movie::where('category_id',$cate_slug->id)->get();
+        $movie = Movie::where('genre_id',$gen_slug->id)->get();
+        $movie = Movie::where('country_id',$coun_slug->id)->get();
         return view('pages.theloai', compact(
             'customCss',
             'category',
@@ -79,7 +86,8 @@ class PageController extends Controller
             'country',
             'cate_slug',
             'gen_slug',
-            'coun_slug'
+            'coun_slug',
+            'movie'
         ));
     }
 
