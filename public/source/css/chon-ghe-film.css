@@ -1,0 +1,55 @@
+.seating-container {
+    display: grid;
+    grid-template-columns: 50px repeat(8, 50px); /* Có 9 cột, mỗi cột có 50px, và một cột thêm cho chữ cái */
+    grid-gap: 5px; /* Khoảng cách giữa các ghế */
+}
+.row-label {
+    text-align: center;
+    font-weight: bold;
+}
+.seat {
+    width: 50px;
+    height: 50px;
+    border: 1px solid #ccc;
+    text-align: center;
+    cursor: pointer;
+}
+.selected {
+    background-color: #ff5722; /* Màu nền khi ghế được chọn */
+    color: #fff; /* Màu chữ khi ghế được chọn */
+}
+
+.chair-film {
+    background-color: #464646;
+    border-radius: 10px;
+    
+}
+.chair-film-header {
+    background: #2C2C2C;
+    text-align: center;
+    height: 40px;
+    padding-top: 5px;
+    font-size: 20px;
+}
+
+
+.chair-film-content {
+    display: grid;
+    place-items: center; 
+}
+.screen {
+    background-color: #bdbdbd;
+    color: #2C2C2C;
+    width: 300px;
+    margin-top: 20px;
+    margin-bottom: 20px ;
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;    
+}
+
+.corn-water-information-2,
+.information-2-content-price {
+    background: #353535;
+    height: auto;
+}

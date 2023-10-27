@@ -1,0 +1,74 @@
+.film {
+    margin-top: 95px;
+}
+
+.film-btn-support {
+    background-color: #85858518;
+    height: 40px;
+    margin-top: -5px;
+}
+.film-btn-support a {
+    margin-top: 8px;
+    text-decoration: none;
+    margin-left: 20px;
+    font-size: 16px;
+    color: #fff;
+}
+
+.film-btn-support a:hover {
+    color: rgb(35, 227, 35);
+}
+
+.star {
+    color: rgb(35, 227, 35);
+}
+
+.detail-content-top-text {
+    padding: 3px 10px;
+    background-color: rgb(35, 227, 35);
+    border-radius: 2px 0 0 2px;
+}
+
+.detail-content-top-text-1 {
+    padding: 3px 10px;
+    background: rgba(217, 217, 217, 0.80);
+    border-radius: 0 2px 2px 0;
+}
+
+.miscellaneous-content-2 {
+    background-color: #202020;
+    height: auto;
+}
+
+.miscellaneous-content-2-block {
+    background-color: #353535;
+    height: auto;
+    border-radius: 8px;
+    padding: 5px;
+}
+
+.miscellaneous-content-2-header {
+    color: #FFF;
+    font-family: Montserrat;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 28px;
+    /* 175% */
+    letter-spacing: 0.2px;
+    height: 50px;
+    text-align: center;
+    padding-top: 16px ;
+}
+
+.miscellaneous-content-2-block-film-text {
+    margin-left: 10px;
+}
+
+.miscellaneous-content-2-block-film {
+    margin-bottom: 10px ;
+}
+
+.miscellaneous-content-2-block-film-img img {
+    border-radius: 8px;
+}
