@@ -51,10 +51,10 @@ Route::get('/chitiet', [PageController::class, 'getChitiet'])->name('pages.chiti
 Route::get('/xemphim', [PageController::class, 'getXemphim'])->middleware(AuthMiddleware::class);
 
 //các thể loại
-Route::get('/danh-muc/{slug}', [PageController::class, 'getTheloai'])->name('category')->middleware(AuthMiddleware::class);
+Route::get('/danh-muc/{slug}', [PageController::class, 'getDanhmMuc'])->name('category')->middleware(AuthMiddleware::class);
 Route::get('/the-loai/{slug}', [PageController::class, 'getTheloai'])->name('genre')->middleware(AuthMiddleware::class);
-Route::get('/quocgia/{slug}', [PageController::class, 'getTheloai'])->name('country')->middleware(AuthMiddleware::class);
-Route::get('/theloai/{slug}', [PageController::class, 'getTheloai'])->middleware(AuthMiddleware::class);
+Route::get('/quocgia/{slug}', [PageController::class, 'getQuocgia'])->name('country')->middleware(AuthMiddleware::class);
+
 
 
 Route::get('/blog', [PageController::class, 'getBlog'])->middleware(AuthMiddleware::class);

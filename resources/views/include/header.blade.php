@@ -9,7 +9,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-ul navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Mới nhất</a>
+              <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Danh mục</a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                 @foreach($category as $key =>$cate)
                   <li ><a title="{{$cate->title}}" class="dropdown-item" href="{{route('category',$cate->slug)}}">{{$cate->title}}</a></li>
@@ -17,7 +17,7 @@
               </ul>
             </li>
             <li class="nav-item">
-              <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Mới nhất</a>
+              <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Thể Loại</a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                 @foreach($genre as $key =>$gen)
                   <li ><a title="{{$gen->title}}" class="dropdown-item" href="{{route('genre',$gen->slug)}}">{{$gen->title}}</a></li>
@@ -25,7 +25,7 @@
               </ul>
             </li>
             <li class="nav-item">
-              <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Mới nhất</a>
+              <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Quốc gia</a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                 @foreach($country as $key =>$coun)
                   <li ><a title="{{$coun->title}}" class="dropdown-item" href="{{route('country',$coun->slug)}}">{{$coun->title}}</a></li>
