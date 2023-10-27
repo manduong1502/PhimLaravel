@@ -1,0 +1,49 @@
+.film-title {
+    margin-top: 120px;
+    margin-bottom: 20px ;
+}
+
+.film-card {
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+}
+
+.film-card-img  {
+    transition: transform 0.2s;
+}
+
+.film-card-img:hover {
+    transform: scale(1.1);;
+}
+
+.film-card-img {
+    position: relative;
+}
+
+.play-icon {
+    position: absolute;
+    top: 75%;
+    right: 25px;
+    opacity: 0; /* Ẩn biểu tượng play ban đầu */
+    transition: opacity 0.2s; /* Tạo hiệu ứng hiện/ẩn */
+}
+
+.play-icon i {
+    color: rgb(35, 227, 35);
+    font-size: 40px;
+} 
+
+.film-card-img:hover .hover-zoom {
+    transform: scale(1.1); /* Thay đổi tỷ lệ kích thước khi hover (1.1 là tỷ lệ lớn hơn) */
+}
+
+.film-card-img:hover .play-icon {
+    opacity: 1; /* Hiển thị biểu tượng play khi hover */
+}
+.card-total {
+    margin-bottom: 40px ;
+}
+
+.film-text {
+    font-size: 17px;
+}

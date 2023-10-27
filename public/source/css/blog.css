@@ -1,0 +1,55 @@
+.contents {
+    margin-top: 150px;
+}
+
+
+.blog-content {
+    margin-top: 50px;
+    height: auto;
+}
+
+.blog-content-information-text {
+    color: #F00;
+    
+}
+.blog-content-information-text::before,
+.blog-content-information-number::before {
+    content: "|"; /* Ký tự bạn muốn sử dụng cho dấu đứng */
+    margin: 2px 5px;
+    color: #fff; /* Điều chỉnh khoảng cách giữa dấu đứng và chữ */
+}
+
+.background-blog-content {
+    background-color: #686868;
+    width: 100%;
+    height: auto;  
+    border-radius: 5px; 
+    margin-bottom: 10px;
+}
+
+.background-blog-content h5 {
+    padding-left: 5px;
+    padding-top: 5px;
+}
+
+
+.background-blog-content-2-header {
+    background: #353535;
+    height: 40px;
+    text-align: center;
+    top: 50%;
+}
+
+.background-blog-content-2-header p {
+    font-size: 20px;
+}
+
+.background-blog-content-2{
+    background-color: #686868;
+    height: auto;
+}
+
+.blog-content-2-title-block {
+    margin-top: 20px;
+}
+
