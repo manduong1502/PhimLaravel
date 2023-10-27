@@ -16,6 +16,7 @@ return [
     | any other location as required by the application or its packages.
     |
     */
+    'custom_app_url' => 'http://127.0.0.1:8000',
 
     'name' => env('APP_NAME', 'Laravel'),
 

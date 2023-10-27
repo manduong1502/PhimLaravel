@@ -7,11 +7,11 @@
         <div class="carousel-item active">
             <div class="dark-bg-image  ">
                 <div class="dark-bg-image-2">
-                    <img src="public/image/image-11.png" alt="...">
+                    <img src="{{ asset('uploads/movie/' . $movie->image) }}" alt="...">
                 </div>
             </div>
             <div class="carousel-caption d-none d-md-block">
-                <div class="detail-title responsive-text">Anh Bước Từ Ánh Sáng Lửa</div>
+                <div class="detail-title responsive-text">{{$movie->title}}</div>
                 <div class="detail-content-top mt-3 d-flex">
                     <div class="detail-content-top-text">Top 5</div>
                     <div class="detail-content-top-text-1">Top phim thịnh hành</div>
@@ -34,8 +34,7 @@
                 <div class="detail-title-small mt-3 row d-flex" style="text-align: left;">
                     <div class="text-title-name col-2 ">Miêu tả: </div>
                     <div class=" col-10">
-                        <p>Thân Nhãn, sau khi chứng kiến cái chết của mẹ đã bị câm do bị PTSD. Cô mất đi tình yêu
-                            thương của mẹ và phải đối mặt với sự lạnh lùng của cha- người đã đưa tình nh</p>
+                        <p>{{$movie->description}}</p>
                     </div>
                 </div>
 

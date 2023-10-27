@@ -47,13 +47,15 @@ Route::get('/', [PageController::class, 'getGioithieu']);
 Route::get('/index', [PageController::class, 'getTrangchu'])->name('pages.trangchu')->middleware(AuthMiddleware::class);
 
 
-Route::get('/chitiet', [PageController::class, 'getChitiet'])->name('pages.chitiet')->middleware(AuthMiddleware::class);
 Route::get('/xemphim', [PageController::class, 'getXemphim'])->middleware(AuthMiddleware::class);
 
 //các thể loại
 Route::get('/danh-muc/{slug}', [PageController::class, 'getDanhmMuc'])->name('category')->middleware(AuthMiddleware::class);
 Route::get('/the-loai/{slug}', [PageController::class, 'getTheloai'])->name('genre')->middleware(AuthMiddleware::class);
 Route::get('/quocgia/{slug}', [PageController::class, 'getQuocgia'])->name('country')->middleware(AuthMiddleware::class);
+
+//chi tiết phim
+Route::get('/chitiet/{slug}', [PageController::class, 'getChitiet'])->name('pages.chitiet')->middleware(AuthMiddleware::class);
 
 
 

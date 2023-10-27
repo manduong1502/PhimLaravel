@@ -94,7 +94,7 @@
                 </div>
                 <div class="row slider">
                     @foreach ($phimhot as $key => $hot)
-                        <a href="{{route('pages.chitiet')}}">
+                        <a href="{{route('pages.chitiet',$hot->slug)}}">
                             <div class="slider-card">
                                 <div class="card cards">
                                     <img src="{{ asset('uploads/movie/' . $hot->image) }}" alt="">
@@ -104,7 +104,7 @@
                                 </div>
 
                                 <div class="card-text">
-                                    <p>{{ $hot->title }}</p>
+                                    <p>{{$hot->title}}</p>
                                 </div>
                             </div>
                         </a>
@@ -132,7 +132,7 @@
 
             <div class="row slider">
                 @foreach ($cate_home->movie->take(10) as $key => $mov)
-                    <a href="{{route('pages.chitiet')}}">
+                    <a href="{{route('pages.chitiet',$mov->slug)}}">
                         <div class="slider-card">
                             <div class="card cards">
                                 <img src="{{ asset('uploads/movie/' . $mov->image) }}" alt="">

@@ -31,17 +31,19 @@ class PageController extends Controller
         ));
     }
 
-    public function getChitiet()
+    public function getChitiet($slug)
     {
         $category = Category::orderBy('id','DESC') ->get();
         $genre = Genre::orderBy('id','DESC') ->get();
         $country = Country::orderBy('id','DESC') ->get();
         $customCss = 'css/chitiet.css';
+        $movie = Movie::with('country','genre','category')->where('slug',$slug)->first();
         return view('pages.chitiet', compact(
             'customCss',
             'category',
             'genre',
-            'country'
+            'country',
+            'movie'
         ));
     }
 
