@@ -34,13 +34,13 @@ Route::resource('/admin/genre', GenreController::class)->middleware(CheckAdmin::
 Route::resource('/admin/movie', MovieController::class)->middleware(CheckAdmin::class);
 Route::resource('/admin/country', CountryController::class)->middleware(CheckAdmin::class);
 Route::resource('/admin/episode', EpisodeController::class)->middleware(CheckAdmin::class);
-
+Route::get('/update-nam-phim', [MovieController::class,'update_year'])->middleware(CheckAdmin::class);
 
 //Register
 Route::get('/register', [RegisterController::class, 'index'])->name('auth.register.index');
 Route::post('/do_register', [RegisterController::class, 'register'])->name('auth.do_register');
 
-
+Route::get('/tim-kiem', [PageController::class, 'search'])->name('search');
 
 
 Route::get('/', [PageController::class, 'getGioithieu']);

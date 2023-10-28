@@ -17,9 +17,9 @@
                     <div class="detail-content-top-text-1">Top phim thịnh hành</div>
                 </div>
                 <div class="detail-title-small mt-3 d-flex ">
-                    <div class="text-title">Lãng mạn</div>
-                    <div class="text-title">Phiêu lưu</div>
-                    <div class="text-title">Bí ẩn</div>
+                  @foreach($movie->movie_genre as $gen)
+                    <div class="text-title">{{$gen->title}}</div>
+                  @endforeach  
                 </div>
 
                 <div class="detail-title-small   mt-3 d-flex ">
@@ -164,58 +164,23 @@
   <div class="col-md-4 miscellaneous-content-2">
     <div class="miscellaneous-content-2-block ">
       <div class="miscellaneous-content-2-header">
-        Phim đang chiếu
-        
+        Phim liên quan
       </div>
       <hr>
-
+      @foreach ($movie_related as $key =>$mov)
       <div class="miscellaneous-content-2-block-film container d-flex">
         <div class="miscellaneous-content-2-block-film-img">
-          <img src="public/image/image-46.png" alt="">
+          <img width="70" height="100" src="{{asset('uploads/movie/' . $movie->image)}}" alt="">
         </div>
 
         <div class="miscellaneous-content-2-block-film-text">
-          <h6>Kumanthong: Quỷ linh nhi</h6>
+          <h6>{{$movie->title}}</h6>
           <p>Kumarn - Drama, Horror</p>
           <p>Khởi chiếu: 06/10/2023</p>
         </div>
       </div>
-
-      <div class="miscellaneous-content-2-block-film container d-flex">
-        <div class="miscellaneous-content-2-block-film-img">
-          <img src="public/image/image-46.png" alt="">
-        </div>
-
-        <div class="miscellaneous-content-2-block-film-text">
-          <h6>Kumanthong: Quỷ linh nhi</h6>
-          <p>Kumarn - Drama, Horror</p>
-          <p>Khởi chiếu: 06/10/2023</p>
-        </div>
-      </div>
-
-      <div class="miscellaneous-content-2-block-film container d-flex">
-        <div class="miscellaneous-content-2-block-film-img">
-          <img src="public/image/image-46.png" alt="">
-        </div>
-
-        <div class="miscellaneous-content-2-block-film-text">
-          <h6>Kumanthong: Quỷ linh nhi</h6>
-          <p>Kumarn - Drama, Horror</p>
-          <p>Khởi chiếu: 06/10/2023</p>
-        </div>
-      </div>
-
-      <div class="miscellaneous-content-2-block-film container d-flex">
-        <div class="miscellaneous-content-2-block-film-img">
-          <img src="public/image/image-46.png" alt="">
-        </div>
-
-        <div class="miscellaneous-content-2-block-film-text">
-          <h6>Kumanthong: Quỷ linh nhi</h6>
-          <p>Kumarn - Drama, Horror</p>
-          <p>Khởi chiếu: 06/10/2023</p>
-        </div>
-      </div>
+        @endforeach
+      
     </div>
   </div>
 </div>

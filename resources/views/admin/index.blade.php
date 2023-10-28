@@ -14,7 +14,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="//cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" />
-
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 
 <body>
@@ -84,6 +84,23 @@
   <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
   <script type="text/javascript" src="//cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
   <script type="text/javascript">
+    $('.select-year').change(function() {
+        var year = $(this).find(':selected').val();
+        var id_phim = $(this).attr('id');
+        $.ajax({
+            url: "{{ url('/update-year-phim') }}",
+            method: "GET",
+            data: {
+                year: year,
+                id_phim: id_phim
+            },
+            success: function() {
+                alert('Thay đổi phim năm' + year + 'thành công');
+            }
+        });
+    })
+</script>
+  <script type="text/javascript">
   $(document).ready(function() {
     $('#myTable').DataTable();
   } );
@@ -120,7 +137,7 @@
             document.getElementById('convert_slug').value = slug;
         }
 
-    </script>
+      </script>
 
 <script type="text/javascript">
     $(".order_position" ).sortable({
