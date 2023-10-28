@@ -40,7 +40,7 @@
             <button class="btn btn-outline-success">Search</button>
             </div>
           </form>
-          <ul class="list-group" id="result" style="display: none"></ul>
+          
           <ul class="navbar-nav mb-2 mb-lg-0">
             <li class="nav-item mt-3">
               <a class="nav-link active text-white" aria-current="page" href="#"><i class="fa-regular fa-clock"></i> Xem
@@ -70,3 +70,5 @@
       </div>
     </nav>
   </header>
+
+  <ul class="list-group" id="result" style="display: none"></ul>
