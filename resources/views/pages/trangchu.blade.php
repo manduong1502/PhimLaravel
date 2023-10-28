@@ -94,10 +94,10 @@
                 </div>
                 <div class="row slider">
                     @foreach ($phimhot as $key => $hot)
-                        <a href="{{route('pages.chitiet',$hot->slug)}}">
-                            <div class="slider-card">
+                        <a href="{{route('pages.chitiet',$hot->slug)}}" style="text-decoration: none;">
+                            <div class="slider-card" style="width: 180px;">
                                 <div class="card cards">
-                                    <img src="{{ asset('uploads/movie/' . $hot->image) }}" alt="">
+                                    <img src="{{ asset('uploads/movie/' . $hot->image) }}" alt="" style="width: 100%; height: 265px">
                                     <div class="icon-overlay">
                                         <i class="fa-solid fa-circle-play"></i>
                                     </div>

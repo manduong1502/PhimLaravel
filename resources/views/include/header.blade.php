@@ -10,25 +10,25 @@
           <ul class="navbar-ul navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Danh mục</a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color:rgba(0, 0, 0, 0.50);">
                 @foreach($category as $key =>$cate)
-                  <li ><a title="{{$cate->title}}" class="dropdown-item" href="{{route('category',$cate->slug)}}">{{$cate->title}}</a></li>
+                  <li><a title="{{$cate->title}}" class="dropdown-item" href="{{route('category',$cate->slug)}}" style="color: white;">{{$cate->title}}</a></li>
                 @endforeach
               </ul>
             </li>
             <li class="nav-item">
               <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Thể Loại</a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color:rgba(0, 0, 0, 0.50);">
                 @foreach($genre as $key =>$gen)
-                  <li ><a title="{{$gen->title}}" class="dropdown-item" href="{{route('genre',$gen->slug)}}">{{$gen->title}}</a></li>
+                  <li ><a title="{{$gen->title}}" class="dropdown-item" href="{{route('genre',$gen->slug)}}" style="color: white;">{{$gen->title}}</a></li>
                 @endforeach
               </ul>
             </li>
             <li class="nav-item">
               <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Quốc gia</a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color:rgba(0, 0, 0, 0.50);">
                 @foreach($country as $key =>$coun)
-                  <li ><a title="{{$coun->title}}" class="dropdown-item" href="{{route('country',$coun->slug)}}">{{$coun->title}}</a></li>
+                  <li ><a title="{{$coun->title}}" class="dropdown-item" href="{{route('country',$coun->slug)}}" style="color: white;">{{$coun->title}}</a></li>
                 @endforeach
               </ul>
             </li>

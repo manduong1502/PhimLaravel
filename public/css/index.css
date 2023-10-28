@@ -32,7 +32,7 @@ header:before {
 header .navbar-ul li {
     position: relative; 
     list-style: none; 
-    padding:  0 5px;
+    padding:  0 ;
   }
 header .navbar-ul li::after {
     content: ''; 
@@ -55,6 +55,19 @@ header.active:before {
     opacity: 1; 
   }
 
+.dropdown-menu{
+  padding: 0;
+  
+}
+.dropdown-menu li{
+  width: 150px;
+  text-align: center;
+}
+.dropdown-item:hover{
+  background-color: rgba(0, 0, 0, 0.50);
+  
+}
+  
 .carousel-control-prev,
 .carousel-control-next {
     z-index: 1 ;
@@ -217,7 +230,8 @@ header .btn-vip {
 .card-text{
   margin-top: 10px;
   color: #fff;
-  font-size: 20px;
+  font-size: 15px;
+  text-align: center;
 }
 
 .cards img {
@@ -226,6 +240,9 @@ header .btn-vip {
 
 .slider .slider-card {
   margin: 0 10px;
+}
+.slider a{
+  width: 200px;
 }
 
 .slick-arrow {
@@ -285,6 +302,7 @@ header .btn-vip {
 
 .content {
   position:absolute;
+  top: 450px;
   bottom: 3%;
   left: 50%;
   transform: translateX(-50%);

@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
                 'email' => 'tranlevu1962004@mail.com',
                 'password' => bcrypt('vumandat123'),
                 'role' => 'admin',
+                // 'phan_quyen_id' => '1'
             ]);
         } else {
             // Cập nhật quyền admin nếu tài khoản đã tồn tại

@@ -44,6 +44,14 @@
                                 'id' => 'description',
                             ]) !!}
                         </div>
+                        <div class="form-group">
+                            {!! Form::label('daodien', 'Daodien', []) !!}
+                            {!! Form::textarea('daodien', isset($movie) ? $movie->daodien : '', [
+                                'class' => 'form-control',
+                                'placeholder' => 'Nhập vào dữ liệu...',
+                                'id' => 'daodien',
+                            ]) !!}
+                        </div>
 
                         <div class="form-group">
                             {!! Form::label('Active', 'Active', []) !!}
@@ -74,7 +82,8 @@
                             {!! Form::select('status', ['1' => 'Hiển thị', '0' => 'Không hiển thị'], isset($movie) ? $movie->status : '', [
                                 'class' => 'form-control',
                             ]) !!}
-                        </div><div class="form-group">
+                        </div>
+                        <div class="form-group">
                             {!! Form::label('Phim hot', 'Phim hot', []) !!}
                             {!! Form::select('phim_hot', ['0' => 'Không hiển thị','1' => 'Hiển thị'], isset($movie) ? $movie->phim_hot : '', [
                                 'class' => 'form-control',
@@ -107,6 +116,7 @@
                             <th scope="col">Tiêu đề</th>
                             <th scope="col">Đường dẫn phim</th>
                             <th scope="col">Mô tả</th>
+                            <th scope="col">Đao diễn</th>
                             <th scope="col">Hiển thị</th>
                             <th scope="col">Phim hot</th>
                             <th scope="col">Danh mục</th>
@@ -123,6 +133,7 @@
                                 <td>{{ $cate->title }}</td>
                                 <td>{{ $cate->slug }}</td>
                                 <td>{{ $cate->description }}</td>
+                                <td>{{ $cate->daodien }}</td>
                                 <td>
                                     @if ($cate->status == 1)
                                         <span class="badge badge-success">Hiển thị</span>
