@@ -74,17 +74,23 @@
                             {!! Form::select('status', ['1' => 'Hiển thị', '0' => 'Không hiển thị'], isset($movie) ? $movie->status : '', [
                                 'class' => 'form-control',
                             ]) !!}
-                        </div><div class="form-group">
+                        </div>
+                        <div class="form-group">
                             {!! Form::label('Phim hot', 'Phim hot', []) !!}
-                            {!! Form::select('phim_hot', ['0' => 'Không hiển thị','1' => 'Hiển thị'], isset($movie) ? $movie->phim_hot : '', [
-                                'class' => 'form-control',
-                            ]) !!}
+                            {!! Form::select(
+                                'phim_hot',
+                                ['0' => 'Không hiển thị', '1' => 'Hiển thị'],
+                                isset($movie) ? $movie->phim_hot : '',
+                                [
+                                    'class' => 'form-control',
+                                ],
+                            ) !!}
                         </div>
 
                         <div class="form-group">
                             {!! Form::label('Image', 'Image', []) !!}
                             {!! Form::file('image', ['class' => 'form-control-file']) !!}
-                            @if(isset($movie))
+                            @if (isset($movie))
                                 <img width="20%" src="{{ asset('uploads/movie/' . $movie->image) }}"alt="">
                             @endif
                         </div>
@@ -97,63 +103,79 @@
                         @endif
 
                         {!! Form::close() !!}
-                    </div>
-                </div>
-                <table class="table mt-4 table-success table-striped" id="myTable">
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Hình ảnh</th>
-                            <th scope="col">Tiêu đề</th>
-                            <th scope="col">Đường dẫn phim</th>
-                            <th scope="col">Mô tả</th>
-                            <th scope="col">Hiển thị</th>
-                            <th scope="col">Phim hot</th>
-                            <th scope="col">Danh mục</th>
-                            <th scope="col">Thể loại</th>
-                            <th scope="col">Quốc gia</th>
-                            <th scope="col">Chỉnh sửa</th>
-                        </tr>
-                    </thead>
-                    <tbody class="order_position" >
-                        @foreach ($list as $key => $cate)
-                            <tr id="{{$cate->id}}">
-                                <th scope="row">{{ $key }}</th>
-                                <td><img width="70" height="100" src="{{ asset('uploads/movie/' . $cate->image) }}"alt=""></td>
-                                <td>{{ $cate->title }}</td>
-                                <td>{{ $cate->slug }}</td>
-                                <td>{{ $cate->description }}</td>
-                                <td>
-                                    @if ($cate->status == 1)
-                                        <span class="badge badge-success">Hiển thị</span>
-                                    @else
-                                        <span class="badge badge-danger">Không hiển thị</span>
-                                    @endif
-                                </td>
-                                <td>
-                                    @if ($cate->phim_hot == 1)
-                                        <span class="badge badge-success">Hiển thị</span>
-                                    @else
-                                        <span class="badge badge-danger">Không hiển thị</span>
-                                    @endif
-                                </td>
-                                <td>{{ $cate->category->title }}</td>
-                                <td>{{ $cate->genre->title }}</td>
-                                <td>{{ $cate->country->title }}</td>
 
-                                <td>
-                                    {!! Form::open([
-                                        'method' => 'DELETE',
-                                        'route' => ['movie.destroy', $cate->id, 'onsubmit' => 'return confirm("Bạn có muốn xóa hay ko?")'],
-                                    ]) !!}
-                                    {!! Form::submit('Xóa', ['class' => 'btn btn-danger']) !!}
-                                    {!! Form::close() !!}
-                                    <a href="{{ route('movie.edit', $cate->id) }}" class="btn btn-warning">Sửa</a>
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                        
+                    </div>
+                    <a class="btn btn-danger" href="{{route('movie.index')}}">Thêm file Jojn</a>
+                </div>
             </div>
         </div>
+    </div>
+
+    <div class="container-fluid mt-3">
+        <table class="table mt-4 table-success table-striped" id="myTable">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Hình ảnh</th>
+                    <th scope="col">Tiêu đề</th>
+                    <th scope="col">Đường dẫn phim</th>
+                    <th scope="col">Mô tả</th>
+                    <th scope="col">Hiển thị</th>
+                    <th scope="col">Phim hot</th>
+                    <th scope="col">Danh mục</th>
+                    <th scope="col">Thể loại</th>
+                    <th scope="col">Quốc gia</th>
+                    <th scope="col">Ngày tạo</th>
+                    <th scope="col">Ngày Cập Nhập</th>
+                    <th scope="col">Năm phim</th>
+                    <th scope="col">Chỉnh sửa</th>
+                </tr>
+            </thead>
+            <tbody class="order_position">
+                @foreach ($list as $key => $cate)
+                    <tr id="{{ $cate->id }}">
+                        <th scope="row">{{ $key }}</th>
+                        <td><img width="70" height="100"
+                                src="{{ asset('uploads/movie/' . $cate->image) }}"alt=""></td>
+                        <td>{{ $cate->title }}</td>
+                        <td>{{ $cate->slug }}</td>
+                        <td>{{ $cate->description }}</td>
+                        <td>
+                            @if ($cate->status == 1)
+                                <span class="badge badge-success">Hiển thị</span>
+                            @else
+                                <span class="badge badge-danger">Không hiển thị</span>
+                            @endif
+                        </td>
+                        <td>
+                            @if ($cate->phim_hot == 1)
+                                <span class="badge badge-success">Hiển thị</span>
+                            @else
+                                <span class="badge badge-danger">Không hiển thị</span>
+                            @endif
+                        </td>
+                        <td>{{ $cate->category->title }}</td>
+                        <td>{{ $cate->genre->title }}</td>
+                        <td>{{ $cate->country->title }}</td>
+                        <td>{{ $cate->ngay_tao }}</td>
+                        <td>{{ $cate->ngay_cap_nhap }}</td>
+                        <td>
+                            {!! Form::selectYear('year', 2000, 2023,isset($cate->nam_phim) ? : '', ['class' => 'select-year','id' => $cate->id]) !!}
+                        </td>
+
+                        <td>
+                            {!! Form::open([
+                                'method' => 'DELETE',
+                                'route' => ['movie.destroy', $cate->id, 'onsubmit' => 'return confirm("Bạn có muốn xóa hay ko?")'],
+                            ]) !!}
+                            {!! Form::submit('Xóa', ['class' => 'btn btn-danger']) !!}
+                            {!! Form::close() !!}
+                            <a href="{{ route('movie.edit', $cate->id) }}" class="btn btn-warning">Sửa</a>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
     @endsection

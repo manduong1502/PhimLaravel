@@ -5,6 +5,7 @@ use App\Models\Category;
 use App\Models\Country;
 use App\Models\Genre;
 use App\Models\Movie;
+use Illuminate\Support\Facades\DB;
 
 
 
@@ -15,9 +16,35 @@ class PageController extends Controller
         return view('pages.gioithieu');
     }
 
+    public function search()
+    {
+        if(isset($_GET['search'])) {
+            $search = $_GET['search'];
+            //điền kiện
+        $category = Category::orderBy('id','DESC') ->where('status',1)->get();
+        $genre = Genre::orderBy('id','DESC') ->get();
+        $country = Country::orderBy('id','DESC') ->get();
+        //css
+        $customCss = 'css/tong-the-loai.css';
+        //điều kiện slug
+        $movie = Movie::where('title','LIKE','%'.$search.'%')->orderBy('ngay_cap_nhap','DESC')->paginate(40);
+        return view('pages.tim_kiem', compact(
+            'customCss',
+            'category',
+            'genre',
+            'country',
+            'movie',
+            'search'
+        ));
+        }else {
+            return redirect()->route('pages.trangchu');
+        }
+        
+    }
+
     public function getTrangchu()
     {
-        $phimhot = Movie::where('phim_hot',1)->where('status',1)->get();
+        $phimhot = Movie::where('phim_hot',1)->where('status',1)->orderBy('ngay_cap_nhap','DESC')->get();
         $category = Category::orderBy('id','DESC') ->get();
         $genre = Genre::orderBy('id','DESC') ->get();
         $country = Country::orderBy('id','DESC') ->get();
@@ -38,12 +65,14 @@ class PageController extends Controller
         $country = Country::orderBy('id','DESC') ->get();
         $customCss = 'css/chitiet.css';
         $movie = Movie::with('country','genre','category')->where('slug',$slug)->first();
+        $movie_related = Movie::with('country','genre','category')->where('category_id',$movie->category->id)->orderBy(DB::raw('RAND()'))->whereNotIn('slug',[$slug])->get();
         return view('pages.chitiet', compact(
             'customCss',
             'category',
             'genre',
             'country',
-            'movie'
+            'movie',
+            'movie_related'
         ));
     }
 
@@ -71,7 +100,7 @@ class PageController extends Controller
         $customCss = 'css/tong-the-loai.css';
         //điều kiện slug
         $cate_slug = Category::where('slug',$slug) ->first();
-        $movie = Movie::where('category_id', $cate_slug->id)->paginate(40);
+        $movie = Movie::where('category_id', $cate_slug->id)->orderBy('ngay_cap_nhap','DESC')->paginate(40);
         return view('pages.the_loai.danhmuc', compact(
             'customCss',
             'category',
@@ -93,7 +122,7 @@ class PageController extends Controller
         //điều kiện slug  
         $gen_slug = Genre::where('slug',$slug) ->first();
         //Điều kiện lấy film
-        $movie = Movie::where('genre_id', $gen_slug->id)->paginate(40); 
+        $movie = Movie::where('genre_id', $gen_slug->id)->orderBy('ngay_cap_nhap','DES')->paginate(40); 
         return view('pages.the_loai.theloai', compact(
             'customCss',
             'category',
@@ -115,7 +144,7 @@ class PageController extends Controller
         //điều kiện slug
         $coun_slug = Country::where('slug',$slug) ->first();
         //Điều kiện lấy film
-        $movie = Movie::where('country_id', $coun_slug->id)->paginate(40); 
+        $movie = Movie::where('country_id', $coun_slug->id)->orderBy('ngay_cap_nhap','DES')->paginate(40); 
         return view('pages.the_loai.quocgia', compact(
             'customCss',
             'category',

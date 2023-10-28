@@ -34,13 +34,13 @@
             </li>
 
           </ul>
-          <form class="d-flex" action="" method="GET">
+          <form class="d-flex" action="{{route('search')}}" method="GET">
             <div class="d-flex input-group">
-              <input class="form-control me-2" id="timkiem" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
+            <input type="text" name="search" class="form-control me-2" id="timkiem" placeholder="Search" autocomplete="off" >
+            <button class="btn btn-outline-success">Search</button>
             </div>
-            <ul class="list-group " id="result" style="display:none"></ul>
           </form>
+          <ul class="list-group" id="result" style="display: none"></ul>
           <ul class="navbar-nav mb-2 mb-lg-0">
             <li class="nav-item mt-3">
               <a class="nav-link active text-white" aria-current="page" href="#"><i class="fa-regular fa-clock"></i> Xem

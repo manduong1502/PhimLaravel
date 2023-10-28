@@ -8,6 +8,8 @@ use App\Models\Movie;
 use App\Models\Category;
 use App\Models\Country;
 use App\Models\Genre;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\File;
 class MovieController extends Controller
 {
     /**
@@ -15,7 +17,22 @@ class MovieController extends Controller
      */
     public function index()
     {
-        //
+        $list = Movie::with('category','genre','country')->orderBy('id','DESC')->get();
+        $path = public_path()."/json/";
+        if(!is_dir($path)) {
+            mkdir($path,0777,true);
+        }
+        File::put($path. 'movies.json',json_encode($list));
+        return redirect()->route('movie.create');
+    }
+    
+    public function update_year (Request $request) {
+        $movie = new Movie();
+        $data = $request->all();
+        $movie = Movie::find($data['id_phim']);
+        $movie->nam_phim = $data['year'];
+        $movie->save();
+        return redirect()->route('movie.create');
     }
 
     /**
@@ -50,11 +67,11 @@ class MovieController extends Controller
         $movie->category_id = $request->category_id;
         $movie->genre_id = $request->genre_id;
         $movie->country_id = $request->country_id;
+        $movie->ngay_tao = Carbon::now('Asia/Ho_Chi_Minh');
+        $movie->ngay_cap_nhap = Carbon::now('Asia/Ho_Chi_Minh');
 
         //thêm hình ảnh
         $get_image = $request ->file('image');
-       
-
         if($get_image) {
             $get_name_image = $get_image->getClientOriginalName(); //lấy tên hình ảnh vd như hinhanh1.jpg
             $name_image = current(explode('.',$get_name_image)); //tách dấu chấm ra để làm chuõi vd như [0]hinhanh1 . [1]jpg
@@ -111,6 +128,7 @@ class MovieController extends Controller
         $movie->category_id = $request->category_id;
         $movie->genre_id = $request->genre_id;
         $movie->country_id = $request->country_id;
+        $movie->ngay_cap_nhap = Carbon::now('Asia/Ho_Chi_Minh');
 
         //thêm hình ảnh
         $get_image = $request ->file('image');
