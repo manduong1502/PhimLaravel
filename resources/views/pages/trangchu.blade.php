@@ -132,17 +132,17 @@
 
             <div class="row slider">
                 @foreach ($cate_home->movie->take(10) as $key => $mov)
-                    <a href="{{route('pages.chitiet',$mov->slug)}}">
+                    <a href="{{route('pages.chitiet',$mov->slug)}}" style="text-decoration: none">
                         <div class="slider-card">
-                            <div class="card cards">
-                                <img src="{{ asset('uploads/movie/' . $mov->image) }}" alt="">
+                            <div class="card cards" style="position: relative">
+                                <img src="{{ asset('uploads/movie/' . $mov->image) }}" alt="" style="width: 250px; height:330px; border-radius: 5px; position: relative">
                                 <div class="icon-overlay">
                                     <i class="fa-solid fa-circle-play"></i>
                                 </div>
                             </div>
 
                             <div class="card-text">
-                                <p>{{ $mov->title }}</p>
+                                {{ $mov->title }}
                             </div>
                         </div>
                     </a>

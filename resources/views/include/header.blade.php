@@ -39,6 +39,7 @@
             <input type="text" name="search" class="form-control me-2" id="timkiem" placeholder="Search" autocomplete="off" >
             <button class="btn btn-outline-success">Search</button>
             </div>
+            <ul class="list-group" id="result" style="display: none; position: absolute; top: 100%; left: 60.5%; border: 1px solid black; width: 300px; z-index: 999; "></ul>
           </form>
           
           <ul class="navbar-nav mb-2 mb-lg-0">
@@ -71,4 +72,4 @@
     </nav>
   </header>
 
-  <ul class="list-group" id="result" style="display: none"></ul>
+  {{-- <ul class="list-group" id="result" style="display: none; position: absolute; top: 10%; left: 61%; background-color: white; border: 1px solid #ccc; width: 300px; z-index: 999; "></ul> --}}
