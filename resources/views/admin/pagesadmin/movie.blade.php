@@ -19,7 +19,7 @@
                             {!! Form::open(['route' => ['movie.update', $movie->id], 'method' => 'PUT', 'enctype' => 'multipart/form-data']) !!}
                         @endif
                         <div class="form-group">
-                            {!! Form::label('title', 'title', []) !!}
+                            {!! Form::label('title', 'Tên Phim', []) !!}
                             {!! Form::text('title', isset($movie) ? $movie->title : '', [
                                 'class' => 'form-control',
                                 'placeholder' => 'Nhập vào dữ liệu...',
@@ -28,7 +28,7 @@
                             ]) !!}
                         </div>
                         <div class="form-group">
-                            {!! Form::label('slug', 'slug', []) !!}
+                            {!! Form::label('slug', 'Đường link', []) !!}
                             {!! Form::text('slug', isset($movie) ? $movie->slug : '', [
                                 'class' => 'form-control',
                                 'placeholder' => 'Nhập vào dữ liệu...',
@@ -37,7 +37,7 @@
                         </div>
 
                         <div class="form-group">
-                            {!! Form::label('description', 'Description', []) !!}
+                            {!! Form::label('description', 'Mô tả', []) !!}
                             {!! Form::textarea('description', isset($movie) ? $movie->description : '', [
                                 'class' => 'form-control',
                                 'placeholder' => 'Nhập vào dữ liệu...',
@@ -46,35 +46,37 @@
                         </div>
 
                         <div class="form-group">
-                            {!! Form::label('Active', 'Active', []) !!}
+                            {!! Form::label('Active', 'Hiển thị', []) !!}
                             {!! Form::select('status', ['1' => 'Hiển thị', '0' => 'Không hiển thị'], isset($movie) ? $movie->status : '', [
                                 'class' => 'form-control',
                             ]) !!}
                         </div>
 
                         <div class="form-group">
-                            {!! Form::label('Category', 'Category', []) !!}
+                            {!! Form::label('Category', 'Danh mục', []) !!}
                             {!! Form::select('category_id', $category, isset($movie) ? $movie->category_id : '', [
                                 'class' => 'form-control',
                             ]) !!}
                         </div>
 
                         <div class="form-group">
-                            {!! Form::label('Country', 'Country', []) !!}
+                            {!! Form::label('Country', 'Quốc Gia', []) !!}
                             {!! Form::select('country_id', $country, isset($movie) ? $movie->country_id : '', ['class' => 'form-control']) !!}
                         </div>
 
                         <div class="form-group">
-                            {!! Form::label('Genre', 'Genre', []) !!}
-                            {!! Form::select('genre_id', $genre, isset($movie) ? $movie->genre_id : '', ['class' => 'form-control']) !!}
+                            {!! Form::label('Genre', 'Thể Loại', []) !!} <br>
+                            {{-- {!! Form::select('genre_id', $genre, isset($movie) ? $movie->genre_id : '', ['class' => 'form-control']) !!} --}}
+                            @foreach ($list_genre as $key => $list_gen)
+                                @if(isset($movie))  
+                                    {!! Form::checkbox('genre[]', $list_gen->id,isset($movie_genre) && $movie_genre ->contains($list_gen->id)? true: false) !!}
+                                @else
+                                    {!! Form::checkbox('genre[]', $list_gen->id)!!}
+                                @endif
+                                {!! Form::label('genre',$list_gen->title) !!}
+                            @endforeach
                         </div>
 
-                        <div class="form-group">
-                            {!! Form::label('Active', 'Active', []) !!}
-                            {!! Form::select('status', ['1' => 'Hiển thị', '0' => 'Không hiển thị'], isset($movie) ? $movie->status : '', [
-                                'class' => 'form-control',
-                            ]) !!}
-                        </div>
                         <div class="form-group">
                             {!! Form::label('Phim hot', 'Phim hot', []) !!}
                             {!! Form::select(
@@ -106,7 +108,7 @@
 
                         
                     </div>
-                    <a class="btn btn-danger" href="{{route('movie.index')}}">Thêm file Jojn</a>
+                    <a class="btn btn-danger" href="{{route('movie.index')}}">Cập nhập file Jojn</a>
                 </div>
             </div>
         </div>
@@ -156,7 +158,16 @@
                             @endif
                         </td>
                         <td>{{ $cate->category->title }}</td>
-                        <td>{{ $cate->genre->title }}</td>
+                        <td>
+                        @if(isset($movie_genre))
+                        @foreach ($cate->movie_genre as $gen)
+                            <span class="badge bg-dark">{{$gen->title}}</span>
+                        @endforeach
+                        @else
+                        <span class="badge bg-dark">{{$cate->genre->title}}</span>
+                        @endif
+                            
+                        </td>
                         <td>{{ $cate->country->title }}</td>
                         <td>{{ $cate->ngay_tao }}</td>
                         <td>{{ $cate->ngay_cap_nhap }}</td>

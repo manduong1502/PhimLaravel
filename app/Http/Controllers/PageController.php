@@ -5,6 +5,7 @@ use App\Models\Category;
 use App\Models\Country;
 use App\Models\Genre;
 use App\Models\Movie;
+use App\Models\Movie_Genre;
 use Illuminate\Support\Facades\DB;
 
 
@@ -65,7 +66,7 @@ class PageController extends Controller
         $country = Country::orderBy('id','DESC') ->get();
         $customCss = 'css/chitiet.css';
         $movie = Movie::with('country','genre','category')->where('slug',$slug)->first();
-        $movie_related = Movie::with('country','genre','category')->where('category_id',$movie->category->id)->orderBy(DB::raw('RAND()'))->whereNotIn('slug',[$slug])->get();
+        $movie_related = Movie::with('country','genre','category','movie_genre')->where('category_id',$movie->category->id)->orderBy(DB::raw('RAND()'))->whereNotIn('slug',[$slug])->get();
         return view('pages.chitiet', compact(
             'customCss',
             'category',
@@ -121,8 +122,14 @@ class PageController extends Controller
         $customCss = 'css/tong-the-loai.css';
         //điều kiện slug  
         $gen_slug = Genre::where('slug',$slug) ->first();
+        //Nhiều thể loại
+        $movie_genre=  Movie_Genre::where('genre_id',$gen_slug->id)->get();
+        $many_genre = [];
+        foreach($movie_genre as $key => $movi) {
+            $many_genre[] = $movi->movie_id;
+        }
         //Điều kiện lấy film
-        $movie = Movie::where('genre_id', $gen_slug->id)->orderBy('ngay_cap_nhap','DES')->paginate(40); 
+        $movie = Movie::whereIn('id', $many_genre)->orderBy('ngay_cap_nhap','DES')->paginate(40); 
         return view('pages.the_loai.theloai', compact(
             'customCss',
             'category',

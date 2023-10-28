@@ -17,9 +17,9 @@
                     <div class="detail-content-top-text-1">Top phim thịnh hành</div>
                 </div>
                 <div class="detail-title-small mt-3 d-flex ">
-                    <div class="text-title">Lãng mạn</div>
-                    <div class="text-title">Phiêu lưu</div>
-                    <div class="text-title">Bí ẩn</div>
+                  @foreach($movie->movie_genre as $gen)
+                    <div class="text-title">{{$gen->title}}</div>
+                  @endforeach  
                 </div>
 
                 <div class="detail-title-small   mt-3 d-flex ">
