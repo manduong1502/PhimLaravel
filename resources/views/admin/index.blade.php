@@ -103,7 +103,7 @@
         var year = $(this).find(':selected').val();
         var id_phim = $(this).attr('id');
         $.ajax({
-            url: "{{ url('/update-year-phim') }}",
+            url: "{{ route('update-year-phim') }}",
             method: "GET",
             data: {
                 year: year,

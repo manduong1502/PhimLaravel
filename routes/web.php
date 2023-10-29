@@ -34,7 +34,7 @@ Route::resource('/admin/genre', GenreController::class)->middleware(CheckAdmin::
 Route::resource('/admin/movie', MovieController::class)->middleware(CheckAdmin::class);
 Route::resource('/admin/country', CountryController::class)->middleware(CheckAdmin::class);
 Route::resource('/admin/episode', EpisodeController::class)->middleware(CheckAdmin::class);
-Route::get('/update-nam-phim', [MovieController::class,'update_year'])->middleware(CheckAdmin::class);
+Route::get('update-nam-phim', [MovieController::class,'update_year'])->name('update-year-phim');
 Route::get('select-movie', [EpisodeController::class,'selectmovie'])->name('select-movie');
 //Register
 Route::get('/register', [RegisterController::class, 'index'])->name('auth.register.index');

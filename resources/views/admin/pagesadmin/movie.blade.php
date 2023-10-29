@@ -157,6 +157,7 @@
                         <th scope="col">Danh mục</th>
                         <th scope="col">Thể loại</th>
                         <th scope="col">Quốc gia</th>
+                        <th scope="col">Năm phim</th>
                         <th scope="col">Chỉnh sửa</th>
                     </tr>
                 </thead>
@@ -196,7 +197,9 @@
 
                             </td>
                             <td>{{ $cate->country->title }}</td>
-
+                            <td>
+                                {!! Form::selectYear('year', 2000, 2023,isset($cate->nam_phim) ? $cate->nam_phim : '', ['class' => 'select-year','id' => $cate->id]) !!}
+                            </td>
                             <td>
                                 {!! Form::open([
                                     'method' => 'DELETE',
