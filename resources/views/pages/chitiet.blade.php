@@ -39,7 +39,7 @@
                 </div>
 
                 <div class="detail-title-small mt-2 d-flex" style="text-align: left;">
-                    <button class="btn btn-issue"><i class="fa-solid fa-play"></i> Phát ngay</button>
+                    <a href="{{route('watch',$movie->slug)}}" class="btn btn-issue"><i class="fa-solid fa-play"></i> Phát ngay</a>
                     <button class="btn btn-share"><i class="fa-solid fa-share"></i> Chia sẽ</button>
                     <button class="btn btn-share"><i class="fa-solid fa-cloud"></i> Sưu tập</button>
                 </div>
@@ -168,6 +168,7 @@
       </div>
       <hr>
       @foreach ($movie_related as $key =>$mov)
+      <a href="{{route('pages.chitiet',$mov->slug)}}" style="text-decoration: none">
       <div class="miscellaneous-content-2-block-film container d-flex">
         <div class="miscellaneous-content-2-block-film-img">
           <img width="70" height="100" src="{{asset('uploads/movie/' . $movie->image)}}" alt="">
@@ -179,6 +180,7 @@
           <p>Khởi chiếu: 06/10/2023</p>
         </div>
       </div>
+      </a>
         @endforeach
       
     </div>

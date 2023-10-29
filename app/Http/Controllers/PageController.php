@@ -77,17 +77,21 @@ class PageController extends Controller
         ));
     }
 
-    public function getXemphim()
+    public function getXemphim($slug)
     {
         $category = Category::orderBy('id','DESC') ->get();
         $genre = Genre::orderBy('id','DESC') ->get();
         $country = Country::orderBy('id','DESC') ->get();
         $customCss = 'css/xemphim.css';
+        $movie = Movie::with('country','genre','category')->where('slug',$slug)->first();
+        $movie_related = Movie::with('country','genre','category','movie_genre','episode')->where('category_id',$movie->category->id)->orderBy(DB::raw('RAND()'))->whereNotIn('slug',[$slug])->get();
         return view('pages.xemphim', compact(
             'customCss',
             'category',
             'genre',
-            'country'
+            'country',
+            'movie',
+            'movie_related'
         ));
     }
 

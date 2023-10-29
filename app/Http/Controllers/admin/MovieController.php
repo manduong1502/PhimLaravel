@@ -69,6 +69,7 @@ class MovieController extends Controller
         $movie = new Movie();
         $movie->title = $request->title;
         $movie->slug = $request->slug;
+        $movie->so_tap = $request->so_tap;
         $movie->description = $request->description;
         $movie->daodien = $request->daodien;
         $movie->status = $request->status;
@@ -141,6 +142,7 @@ class MovieController extends Controller
         $movie = Movie::find($id);
         $movie->title = $request->title;
         $movie->slug = $request->slug;
+        $movie->so_tap = $request->so_tap;
         $movie->description = $request->description;
         $movie->daodien = $request->daodien;
         $movie->status = $request->status;

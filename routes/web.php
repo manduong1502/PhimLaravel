@@ -35,7 +35,7 @@ Route::resource('/admin/movie', MovieController::class)->middleware(CheckAdmin::
 Route::resource('/admin/country', CountryController::class)->middleware(CheckAdmin::class);
 Route::resource('/admin/episode', EpisodeController::class)->middleware(CheckAdmin::class);
 Route::get('/update-nam-phim', [MovieController::class,'update_year'])->middleware(CheckAdmin::class);
-
+Route::get('select-movie', [EpisodeController::class,'selectmovie'])->name('select-movie');
 //Register
 Route::get('/register', [RegisterController::class, 'index'])->name('auth.register.index');
 Route::post('/do_register', [RegisterController::class, 'register'])->name('auth.do_register');
@@ -47,7 +47,7 @@ Route::get('/', [PageController::class, 'getGioithieu']);
 Route::get('/index', [PageController::class, 'getTrangchu'])->name('pages.trangchu')->middleware(AuthMiddleware::class);
 
 
-Route::get('/xemphim', [PageController::class, 'getXemphim'])->middleware(AuthMiddleware::class);
+Route::get('/xemphim/{slug}', [PageController::class, 'getXemphim'])->name('watch')->middleware(AuthMiddleware::class);
 
 //các thể loại
 Route::get('/danh-muc/{slug}', [PageController::class, 'getDanhmMuc'])->name('category')->middleware(AuthMiddleware::class);
