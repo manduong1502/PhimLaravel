@@ -25,19 +25,16 @@ return new class extends Migration
             $table->string('ngay_tao')->nullable();
             $table->string('ngay_cap_nhap')->nullable();
             $table->string('nam_phim')->nullable();
+            $table->integer('so_tap')->default(1);
             $table->string('daodien')->nullable();
             $table->double('gia')->nullable();
             $table->string('video')->nullable();
             $table->string('thoiluong')->nullable();
-            $table->date('ngaybd')->nullable();
-            $table->date('ngaykt')->nullable();
+
             $table->string('hangphim')->nullable();
             $table->string('phienban')->nullable();
-            $table->string('theloai')->nullable();
-            $table->string('trangthai')->nullable();
+
             $table->timestamps();
-            $table->integer('luotxem')->nullable();
-            $table->integer('danhgia')->nullable();
         });
     }
 

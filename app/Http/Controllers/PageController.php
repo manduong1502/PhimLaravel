@@ -129,7 +129,7 @@ class PageController extends Controller
             $many_genre[] = $movi->movie_id;
         }
         //Điều kiện lấy film
-        $movie = Movie::whereIn('id', $many_genre)->orderBy('ngay_cap_nhap','DES')->paginate(40); 
+        $movie = Movie::whereIn('id', $many_genre)->orderBy('ngay_cap_nhap','DESC')->paginate(40); 
         return view('pages.the_loai.theloai', compact(
             'customCss',
             'category',
@@ -151,7 +151,7 @@ class PageController extends Controller
         //điều kiện slug
         $coun_slug = Country::where('slug',$slug) ->first();
         //Điều kiện lấy film
-        $movie = Movie::where('country_id', $coun_slug->id)->orderBy('ngay_cap_nhap','DES')->paginate(40); 
+        $movie = Movie::where('country_id', $coun_slug->id)->orderBy('ngay_cap_nhap','DESC')->paginate(40); 
         return view('pages.the_loai.quocgia', compact(
             'customCss',
             'category',
