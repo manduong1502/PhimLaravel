@@ -44,6 +44,14 @@
                                 'id' => 'description',
                             ]) !!}
                         </div>
+                        <div class="form-group">
+                            {!! Form::label('daodien', 'Daodien', []) !!}
+                            {!! Form::textarea('daodien', isset($movie) ? $movie->daodien : '', [
+                                'class' => 'form-control',
+                                'placeholder' => 'Nhập vào dữ liệu...',
+                                'id' => 'daodien',
+                            ]) !!}
+                        </div>
 
                         <div class="form-group">
                             {!! Form::label('Active', 'Hiển thị', []) !!}
@@ -78,6 +86,11 @@
                         </div>
 
                         <div class="form-group">
+                            {!! Form::label('Active', 'Active', []) !!}
+                            {!! Form::select('status', ['1' => 'Hiển thị', '0' => 'Không hiển thị'], isset($movie) ? $movie->status : '', [
+                                'class' => 'form-control',
+                            ]) !!}
+                        </div><div class="form-group">
                             {!! Form::label('Phim hot', 'Phim hot', []) !!}
                             {!! Form::select(
                                 'phim_hot',
@@ -110,70 +123,47 @@
                     </div>
                     <a class="btn btn-danger" href="{{route('movie.index')}}">Cập nhập file Jojn</a>
                 </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="container-fluid mt-3">
-        <table class="table mt-4 table-success table-striped" id="myTable">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Hình ảnh</th>
-                    <th scope="col">Tiêu đề</th>
-                    <th scope="col">Đường dẫn phim</th>
-                    <th scope="col">Mô tả</th>
-                    <th scope="col">Hiển thị</th>
-                    <th scope="col">Phim hot</th>
-                    <th scope="col">Danh mục</th>
-                    <th scope="col">Thể loại</th>
-                    <th scope="col">Quốc gia</th>
-                    <th scope="col">Ngày tạo</th>
-                    <th scope="col">Ngày Cập Nhập</th>
-                    <th scope="col">Năm phim</th>
-                    <th scope="col">Chỉnh sửa</th>
-                </tr>
-            </thead>
-            <tbody class="order_position">
-                @foreach ($list as $key => $cate)
-                    <tr id="{{ $cate->id }}">
-                        <th scope="row">{{ $key }}</th>
-                        <td><img width="70" height="100"
-                                src="{{ asset('uploads/movie/' . $cate->image) }}"alt=""></td>
-                        <td>{{ $cate->title }}</td>
-                        <td>{{ $cate->slug }}</td>
-                        <td>{{ $cate->description }}</td>
-                        <td>
-                            @if ($cate->status == 1)
-                                <span class="badge badge-success">Hiển thị</span>
-                            @else
-                                <span class="badge badge-danger">Không hiển thị</span>
-                            @endif
-                        </td>
-                        <td>
-                            @if ($cate->phim_hot == 1)
-                                <span class="badge badge-success">Hiển thị</span>
-                            @else
-                                <span class="badge badge-danger">Không hiển thị</span>
-                            @endif
-                        </td>
-                        <td>{{ $cate->category->title }}</td>
-                        <td>
-                        @if(isset($movie_genre))
-                        @foreach ($cate->movie_genre as $gen)
-                            <span class="badge bg-dark">{{$gen->title}}</span>
-                        @endforeach
-                        @else
-                        <span class="badge bg-dark">{{$cate->genre->title}}</span>
-                        @endif
-                            
-                        </td>
-                        <td>{{ $cate->country->title }}</td>
-                        <td>{{ $cate->ngay_tao }}</td>
-                        <td>{{ $cate->ngay_cap_nhap }}</td>
-                        <td>
-                            {!! Form::selectYear('year', 2000, 2023,isset($cate->nam_phim) ? : '', ['class' => 'select-year','id' => $cate->id]) !!}
-                        </td>
+                <table class="table mt-4 table-success table-striped" id="myTable">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Hình ảnh</th>
+                            <th scope="col">Tiêu đề</th>
+                            <th scope="col">Đường dẫn phim</th>
+                            <th scope="col">Mô tả</th>
+                            <th scope="col">Hiển thị</th>
+                            <th scope="col">Phim hot</th>
+                            <th scope="col">Danh mục</th>
+                            <th scope="col">Thể loại</th>
+                            <th scope="col">Quốc gia</th>
+                            <th scope="col">Chỉnh sửa</th>
+                        </tr>
+                    </thead>
+                    <tbody class="order_position" >
+                        @foreach ($list as $key => $cate)
+                            <tr id="{{$cate->id}}">
+                                <th scope="row">{{ $key }}</th>
+                                <td><img width="70" height="100" src="{{ asset('uploads/movie/' . $cate->image) }}"alt=""></td>
+                                <td>{{ $cate->title }}</td>
+                                <td>{{ $cate->slug }}</td>
+                                <td>{{ $cate->description }}</td>
+                                <td>
+                                    @if ($cate->status == 1)
+                                        <span class="badge badge-success">Hiển thị</span>
+                                    @else
+                                        <span class="badge badge-danger">Không hiển thị</span>
+                                    @endif
+                                </td>
+                                <td>
+                                    @if ($cate->phim_hot == 1)
+                                        <span class="badge badge-success">Hiển thị</span>
+                                    @else
+                                        <span class="badge badge-danger">Không hiển thị</span>
+                                    @endif
+                                </td>
+                                <td>{{ $cate->category->title }}</td>
+                                <td>{{ $cate->genre->title }}</td>
+                                <td>{{ $cate->country->title }}</td>
 
                         <td>
                             {!! Form::open([

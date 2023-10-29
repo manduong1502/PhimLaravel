@@ -21,12 +21,11 @@
                   $.each(data, function(key, value) {
                     if (value.title.search(expression) != -1) {
                       $('#result').css('display','inherit')
-                      $('#result').append('<li style="cursor:pointer; display: flex; max-height: 200px;" class="list-group-item link-class"><img src="uploads/movie/' +
+                      $('#result').append('<li style="cursor:pointer; display: flex; max-height: 200px; background-color: black" class="list-group-item link-class"><img src="uploads/movie/' +
                                   value.image +
-                                  '" width="100" class="" /><div style="flex-direction: column; margin-left: 2px;"><h4 width="100%">' +
+                                  '" width="100" class="" /><div style="flex-direction: column; margin-left: 2px; color: white;"><h4 width="100%">' +
                                   value.title +
-                                  '</h4><span style="display: -webkit-box; max-height: 8.2rem; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis; white-space: normal; -webkit-line-clamp: 5; line-height: 1.6rem;" class="text-muted">| ' +
-                                  value.description + '</span></div></li>')
+                                  '</h4></div></li>') 
                     }
                   })
                 })

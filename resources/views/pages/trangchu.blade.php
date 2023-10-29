@@ -94,10 +94,10 @@
                 </div>
                 <div class="row slider">
                     @foreach ($phimhot as $key => $hot)
-                        <a href="{{route('pages.chitiet',$hot->slug)}}">
-                            <div class="slider-card">
+                        <a href="{{route('pages.chitiet',$hot->slug)}}" style="text-decoration: none;">
+                            <div class="slider-card" style="width: 180px;">
                                 <div class="card cards">
-                                    <img src="{{ asset('uploads/movie/' . $hot->image) }}" alt="">
+                                    <img src="{{ asset('uploads/movie/' . $hot->image) }}" alt="" style="width: 100%; height: 265px">
                                     <div class="icon-overlay">
                                         <i class="fa-solid fa-circle-play"></i>
                                     </div>
@@ -132,17 +132,17 @@
 
             <div class="row slider">
                 @foreach ($cate_home->movie->take(10) as $key => $mov)
-                    <a href="{{route('pages.chitiet',$mov->slug)}}">
+                    <a href="{{route('pages.chitiet',$mov->slug)}}" style="text-decoration: none">
                         <div class="slider-card">
-                            <div class="card cards">
-                                <img src="{{ asset('uploads/movie/' . $mov->image) }}" alt="">
+                            <div class="card cards" style="position: relative">
+                                <img src="{{ asset('uploads/movie/' . $mov->image) }}" alt="" style="width: 250px; height:330px; border-radius: 5px; position: relative">
                                 <div class="icon-overlay">
                                     <i class="fa-solid fa-circle-play"></i>
                                 </div>
                             </div>
 
                             <div class="card-text">
-                                <p>{{ $mov->title }}</p>
+                                {{ $mov->title }}
                             </div>
                         </div>
                     </a>

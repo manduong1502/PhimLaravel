@@ -22,6 +22,7 @@ class RegisterController extends Controller
             'username' => $request->input('username'),
             'email' => $request->input('email'),
             'password' => Hash::make($request->input('password')),
+            'phan_quyen_id' => '2'
         ]);
         if ($user) {
             // Chuyển hướng sau đăng ký thành công và hiển thị thông báo

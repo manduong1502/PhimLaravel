@@ -32,7 +32,7 @@ header:before {
 header .navbar-ul li {
     position: relative; 
     list-style: none; 
-    padding:  0 5px;
+    padding:  0 ;
   }
 header .navbar-ul li::after {
     content: ''; 
@@ -55,9 +55,23 @@ header.active:before {
     opacity: 1; 
   }
 
+.dropdown-menu{
+  padding: 0;
+  
+}
+.dropdown-menu li{
+  width: 150px;
+  text-align: center;
+}
+.dropdown-item:hover{
+  background-color: rgba(0, 0, 0, 0.50);
+  
+}
+  
 .carousel-control-prev,
 .carousel-control-next {
     z-index: 1 ;
+    position: relative;
 }
 
 header form {
@@ -187,7 +201,7 @@ header .btn-vip {
 
 .cards {
   background-color: #202020;
-  position: relative;
+  position:relative;
 }
 
 .icon-overlay {
@@ -217,7 +231,15 @@ header .btn-vip {
 .card-text{
   margin-top: 10px;
   color: #fff;
-  font-size: 20px;
+  font-size: 15px;
+  text-align: center;
+  font-weight: bold;
+  position: absolute;
+  bottom: 0; 
+  left: 2.5px; 
+  right: 0;
+  padding: 5px; 
+  border-radius: 0 0 5px 5px;
 }
 
 .cards img {
@@ -226,6 +248,10 @@ header .btn-vip {
 
 .slider .slider-card {
   margin: 0 10px;
+  position: relative;
+}
+.slider a{
+  width: 200px;
 }
 
 .slick-arrow {
@@ -285,6 +311,7 @@ header .btn-vip {
 
 .content {
   position:absolute;
+  top: 450px;
   bottom: 3%;
   left: 50%;
   transform: translateX(-50%);
