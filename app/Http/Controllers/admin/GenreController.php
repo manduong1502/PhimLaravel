@@ -33,7 +33,6 @@ class GenreController extends Controller
         $genre = new Genre();
         $genre->title = $request->title;
         $genre->slug = $request->slug;
-        $genre->description = $request->description;
         $genre->status = $request->status;
         
         $nextPosition = Genre::max('position') + 1;
@@ -68,7 +67,6 @@ class GenreController extends Controller
         $genre = Genre::find($id);
         $genre->title = $request->title;
         $genre->slug = $request->slug;
-        $genre->description = $request->description;
         $genre->status = $request->status;
         $genre->save();
         return redirect()->route('genre.create');

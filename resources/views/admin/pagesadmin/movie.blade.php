@@ -162,7 +162,16 @@
                                     @endif
                                 </td>
                                 <td>{{ $cate->category->title }}</td>
-                                <td>{{ $cate->genre->title }}</td>
+                                <td>
+                                    @if(isset($movie_genre))
+                                    @foreach ($cate->movie_genre as $gen)
+                                        <div class="badge bg-dark d-block mb-1">{{$gen->title}}</div>
+                                    @endforeach
+                                    @else
+                                    <div class="badge bg-dark d-block mb-1">{{$cate->genre->title}}</div>
+                                    @endif
+            
+                                    </td>
                                 <td>{{ $cate->country->title }}</td>
 
                         <td>

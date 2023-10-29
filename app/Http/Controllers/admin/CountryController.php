@@ -33,7 +33,6 @@ class CountryController extends Controller
         $country = new Country();
         $country->title = $request->title;
         $country->slug = $request->slug;
-        $country->description = $request->description;
         $country->status = $request->status;
         $nextPosition = Country::max('position') + 1;
         $country->position = $nextPosition;
@@ -67,7 +66,6 @@ class CountryController extends Controller
         $country = Country::find($id);
         $country->title = $request->title;
         $country->slug = $request->slug;
-        $country->description = $request->description;
         $country->status = $request->status;
         $country->save();
         return redirect()->route('country.create');

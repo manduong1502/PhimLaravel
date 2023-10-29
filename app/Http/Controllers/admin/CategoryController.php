@@ -33,7 +33,6 @@ class CategoryController extends Controller
         $category = new Category();
         $category->title = $request->title;
         $category->slug = $request->slug;
-        $category->description = $request->description;
         $category->status = $request->status;
         $nextPosition = Category::max('position') + 1;
         $category->position = $nextPosition;
@@ -67,7 +66,6 @@ class CategoryController extends Controller
         $category = Category::find($id);
         $category->title = $request->title;
         $category->slug = $request->slug;
-        $category->description = $request->description;
         $category->status = $request->status;
         $category->save();
         return redirect()->route('category.create');

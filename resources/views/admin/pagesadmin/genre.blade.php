@@ -20,21 +20,16 @@
                             {!! Form::open(['route' => ['genre.update',$genre ->id], 'method' => 'PUT']) !!}
                         @endif
                             <div class="form-group">
-                                {!! Form::label('title', 'title', []) !!}
+                                {!! Form::label('title', 'Tên thể loại', []) !!}
                                 {!! Form::text('title', isset($genre) ? $genre->title : '', ['class' => 'form-control','placeholder' =>'Nhập vào dữ liệu...','id' =>'slug','onkeyup' => 'ChangeToSlug()']) !!}
                             </div>
                             <div class="form-group">
-                                {!! Form::label('slug', 'slug', []) !!}
+                                {!! Form::label('slug', 'Đường link', []) !!}
                                 {!! Form::text('slug', isset($genre) ? $genre->slug : '', ['class' => 'form-control','placeholder' =>'Nhập vào dữ liệu...','id' =>'convert_slug']) !!}
                             </div>
 
                             <div class="form-group">
-                                {!! Form::label('description', 'Description', []) !!}
-                                {!! Form::textarea('description', isset($genre) ? $genre->description : '', ['class' => 'form-control','placeholder' =>'Nhập vào dữ liệu...','id' =>'description']) !!}
-                            </div>
-
-                            <div class="form-group">
-                                {!! Form::label('Active', 'Active', []) !!}
+                                {!! Form::label('Active', 'Hiển Thị', []) !!}
                                 {!! Form::select('status', ['1' =>'Hiển thị','0' =>'Không hiển thị'], isset($genre) ? $genre->status : '', ['class' => 'form-control']) !!}
                             </div>
                             @if (!isset($genre))
@@ -50,11 +45,10 @@
                     <thead>
                       <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Title</th>
-                        <th scope="col">Slug</th>
-                        <th scope="col">Description</th>
-                        <th scope="col">Active</th>
-                        <th scope="col">Manage</th>
+                        <th scope="col">Tên thể loại</th>
+                        <th scope="col">Đường link</th>
+                        <th scope="col">Hiển thị</th>
+                        <th scope="col">Chỉnh sửa</th>
                       </tr>
                     </thead>
                     <tbody class="order_position">
@@ -63,7 +57,6 @@
                             <th scope="row">{{$key}}</th>
                             <td>{{$cate->title}}</td>
                             <td>{{$cate->slug}}</td>
-                            <td>{{$cate->description}}</td>
                             <td>
                                 @if($cate->status == 1)
                                     <span class="badge badge-success">Hiển thị</span>
