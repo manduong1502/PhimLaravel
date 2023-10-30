@@ -46,6 +46,7 @@ class PageController extends Controller
     public function getTrangchu()
     {
         $phimhot = Movie::where('phim_hot',1)->where('status',1)->orderBy('ngay_cap_nhap','DESC')->get();
+        $slide = Movie::with('country','genre','category','movie_genre')->where('slide',1)->where('status',1)->orderBy('ngay_cap_nhap','DESC')->get();
         $category = Category::orderBy('id','DESC') ->get();
         $genre = Genre::orderBy('id','DESC') ->get();
         $country = Country::orderBy('id','DESC') ->get();
@@ -55,7 +56,8 @@ class PageController extends Controller
             'genre',
             'country',
             'category_home',
-            'phimhot'
+            'phimhot',
+            'slide',
         ));
     }
 

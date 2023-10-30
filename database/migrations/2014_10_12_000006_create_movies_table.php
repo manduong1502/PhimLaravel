@@ -18,10 +18,12 @@ return new class extends Migration
             $table->longText('description');
             $table->integer('status');
             $table->string('image');
+            $table->string('image1');
             $table->integer('category_id');
             $table->integer('genre_id');
             $table->integer('country_id');
             $table->integer('phim_hot');
+            $table->integer('slide');
             $table->string('ngay_tao')->nullable();
             $table->string('ngay_cap_nhap')->nullable();
             $table->string('nam_phim')->nullable();

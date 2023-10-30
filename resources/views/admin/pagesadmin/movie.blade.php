@@ -97,14 +97,21 @@
                             @endforeach
                         </div>
 
+                        
                         <div class="form-group">
-                            {!! Form::label('Active', 'Active', []) !!}
-                            {!! Form::select('status', ['1' => 'Hiển thị', '0' => 'Không hiển thị'], isset($movie) ? $movie->status : '', [
-                                'class' => 'form-control',
-                            ]) !!}
+                            {!! Form::label('Phim hot', 'Hiển thị slide', []) !!}
+                            {!! Form::select(
+                                'slide',
+                                ['0' => 'Không hiển thị', '1' => 'Hiển thị'],
+                                isset($movie) ? $movie->slide : '',
+                                [
+                                    'class' => 'form-control',
+                                ],
+                            ) !!}
                         </div>
+                        
                         <div class="form-group">
-                            {!! Form::label('Phim hot', 'Phim hot', []) !!}
+                            {!! Form::label('Phim hot', 'Đề xuất hot', []) !!}
                             {!! Form::select(
                                 'phim_hot',
                                 ['0' => 'Không hiển thị', '1' => 'Hiển thị'],
@@ -116,10 +123,18 @@
                         </div>
 
                         <div class="form-group">
-                            {!! Form::label('Image', 'Image', []) !!}
+                            {!! Form::label('Image', 'Ảnh nhỏ', []) !!}
                             {!! Form::file('image', ['class' => 'form-control-file']) !!}
                             @if (isset($movie))
                                 <img width="20%" src="{{ asset('uploads/movie/' . $movie->image) }}"alt="">
+                            @endif
+                        </div>
+
+                        <div class="form-group">
+                            {!! Form::label('Image', 'Ảnh lớn', []) !!}
+                            {!! Form::file('image1', ['class' => 'form-control-file']) !!}
+                            @if (isset($movie))
+                                <img width="20%" src="{{ asset('uploads/movie/imagebig/' . $movie->image1) }}"alt="">
                             @endif
                         </div>
 
@@ -142,18 +157,20 @@
 
 
 
-        <div class="container-fluid mt-4">
-            <table class="table mt-4 table-success table-striped table-responsive" id="myTable">
+        <div class="container-fluid mt-4 table-responsive">
+            <table class="table mt-4 table-success table-striped " id="myTable">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Hình ảnh</th>
+                        <th scope="col">Hình ảnh nhỏ</th>
+                        <th scope="col">Hình ảnh lớn</th>
                         <th scope="col">Tiêu đề</th>
                         <th scope="col">Đường dẫn phim</th>
                         <th scope="col">Mô tả</th>
                         <th scope="col">Hiển thị</th>
                         <th scope="col">Số tập</th>
-                        <th scope="col">Phim hot</th>
+                        <th scope="col">Hiển thị Đề xuất hot</th>
+                        <th scope="col">Hiển thị slide</th>
                         <th scope="col">Danh mục</th>
                         <th scope="col">Thể loại</th>
                         <th scope="col">Quốc gia</th>
@@ -169,6 +186,8 @@
                             <th scope="row">{{ $key }}</th>
                             <td><img width="70" height="100" src="{{ asset('uploads/movie/' . $cate->image) }}"alt="">
                             </td>
+                            <td><img width="70" height="100" src="{{ asset('uploads/movie/imagebig/' . $cate->image1) }}"alt="">
+                            </td>
                             <td>{{ $cate->title }}</td>
                             <td>{{ $cate->slug }}</td>
                             <td>{{ $cate->description }}</td>
@@ -182,6 +201,13 @@
                             <td>{{ $cate->so_tap }}</td>
                             <td>
                                 @if ($cate->phim_hot == 1)
+                                    <span class="badge badge-success">Hiển thị</span>
+                                @else
+                                    <span class="badge badge-danger">Không hiển thị</span>
+                                @endif
+                            </td>
+                            <td>
+                                @if ($cate->slide == 1)
                                     <span class="badge badge-success">Hiển thị</span>
                                 @else
                                     <span class="badge badge-danger">Không hiển thị</span>

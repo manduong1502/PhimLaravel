@@ -73,6 +73,7 @@ class MovieController extends Controller
         $movie->description = $request->description;
         $movie->daodien = $request->daodien;
         $movie->status = $request->status;
+        $movie->slide = $request->slide;
         $movie->phim_hot = $request->phim_hot;
         $movie->category_id = $request->category_id;
         $movie->country_id = $request->country_id;
@@ -83,7 +84,7 @@ class MovieController extends Controller
             $movie -> genre_id = $gen[0];
         }
 
-        //thêm hình ảnh
+        //thêm hình ảnh nhỏ
         $get_image = $request ->file('image');
         if($get_image) {
             $get_name_image = $get_image->getClientOriginalName(); //lấy tên hình ảnh vd như hinhanh1.jpg
@@ -91,6 +92,16 @@ class MovieController extends Controller
             $new_image =  $name_image.rand(0,9999).'.'.$get_image->getClientOriginalExtension(); //random 4 số khác nhau để tránh bị trùng hình ảnh ví dụ hinhanh1234.jpg
             $get_image->move('uploads/movie',$new_image);
             $movie->image = $new_image;
+        }
+
+        //thêm hình ảnh lớn
+        $get_image1 = $request ->file('image1');
+        if($get_image1) {
+            $get_name_image1 = $get_image1->getClientOriginalName(); //lấy tên hình ảnh vd như hinhanh1.jpg
+            $name_image1 = current(explode('.',$get_name_image1)); //tách dấu chấm ra để làm chuõi vd như [0]hinhanh1 . [1]jpg
+            $new_image1 =  $name_image1.rand(0,9999).'.'.$get_image1->getClientOriginalExtension(); //random 4 số khác nhau để tránh bị trùng hình ảnh ví dụ hinhanh1234.jpg
+            $get_image1->move('uploads/movie/imagebig',$new_image1);
+            $movie->image1 = $new_image1;
         }
 
         $movie->save();
@@ -146,6 +157,7 @@ class MovieController extends Controller
         $movie->description = $request->description;
         $movie->daodien = $request->daodien;
         $movie->status = $request->status;
+        $movie->slide = $request->slide;
         $movie->phim_hot = $request->phim_hot;
         $movie->category_id = $request->category_id;
         $movie->country_id = $request->country_id;
@@ -167,6 +179,19 @@ class MovieController extends Controller
             $get_image->move('uploads/movie',$new_image);
             $movie->image = $new_image;
         }
+
+        //thêm hình ảnh lớn
+        $get_image1 = $request ->file('image1');
+        if($get_image1) {
+            if (!empty ($movie->image1)) {
+                unlink('uploads/movie/imagebig/'.$movie->image1);
+            }
+            $get_name_image1 = $get_image1->getClientOriginalName(); //lấy tên hình ảnh vd như hinhanh1.jpg
+            $name_image1 = current(explode('.',$get_name_image1)); //tách dấu chấm ra để làm chuõi vd như [0]hinhanh1 . [1]jpg
+            $new_image1 =  $name_image1.rand(0,9999).'.'.$get_image1->getClientOriginalExtension(); //random 4 số khác nhau để tránh bị trùng hình ảnh ví dụ hinhanh1234.jpg
+            $get_image1->move('uploads/movie/imagebig',$new_image1);
+            $movie->image1 = $new_image1;
+        }
         $movie->save();
         $movie->movie_genre()->sync($data['genre']);
         return redirect()->route('movie.create');
@@ -180,6 +205,10 @@ class MovieController extends Controller
         $movie = Movie::find($id);
         if (!empty ($movie->image)) {
             unlink('uploads/movie/'.$movie->image);
+        }
+        $movie = Movie::find($id);
+        if (!empty ($movie->image1)) {
+            unlink('uploads/movie/'.$movie->image1);
         }
         //Nhiều thể loại
         //Điều kiện lấy film
