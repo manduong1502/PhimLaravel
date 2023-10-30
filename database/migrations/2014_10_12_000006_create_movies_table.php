@@ -25,6 +25,7 @@ return new class extends Migration
             $table->integer('country_id');
             $table->integer('phim_hot');
             $table->integer('slide');
+            $table->string('actor')->nullable();
             $table->string('ngay_tao')->nullable();
             $table->string('ngay_cap_nhap')->nullable();
             $table->string('nam_phim')->nullable();

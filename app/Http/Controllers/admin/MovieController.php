@@ -73,6 +73,7 @@ class MovieController extends Controller
         $movie->description = $request->description;
         $movie->daodien = $request->daodien;
         $movie->status = $request->status;
+        $movie->actor = $request->actor;
         $movie->slide = $request->slide;
         $movie->trailer = $request->trailer;
         $movie->phim_hot = $request->phim_hot;
@@ -156,6 +157,7 @@ class MovieController extends Controller
         $movie->slug = $request->slug;
         $movie->so_tap = $request->so_tap;
         $movie->description = $request->description;
+        $movie->actor = $request->actor;
         $movie->daodien = $request->daodien;
         $movie->trailer = $request->trailer;
         $movie->status = $request->status;

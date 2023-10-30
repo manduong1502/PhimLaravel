@@ -53,6 +53,13 @@
                             ]) !!}
                         </div>
                         <div class="form-group">
+                            {!! Form::label('title', 'Diễn viên (mỗi diễn viên cách dấu phẩy vd: dv1,dv2)', []) !!}
+                            {!! Form::text('actor', isset($movie) ? $movie->actor : '', [
+                                'class' => 'form-control',
+                                'placeholder' => 'Nhập vào dữ liệu...',
+                            ]) !!}
+                        </div>
+                        <div class="form-group">
                             {!! Form::label('daodien', 'Daodien', []) !!}
                             {!! Form::textarea('daodien', isset($movie) ? $movie->daodien : '', [
                                 'class' => 'form-control',
@@ -179,6 +186,7 @@
                         <th scope="col">Mô tả</th>
                         <th scope="col">Hiển thị</th>
                         <th scope="col">Số tập</th>
+                        <th scope="col">Diễn viên</th>
                         <th scope="col">Hiển thị Đề xuất hot</th>
                         <th scope="col">Hiển thị slide</th>
                         <th scope="col">Danh mục</th>
@@ -198,7 +206,7 @@
                             </td>
                             <td><img width="70" height="100" src="{{ asset('uploads/movie/imagebig/' . $cate->image1) }}"alt="">
                             </td>
-                            <td><iframe width="300" height="200" src="{{'https://www.youtube.com/embed/'. $cate->trailer }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></td>
+                            <td><iframe width="200" height="100" src="{{'https://www.youtube.com/embed/'. $cate->trailer }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></td>
                             <td>{{ $cate->title }}</td>
                             <td>{{ $cate->slug }}</td>
                             <td>{{ $cate->description }}</td>
@@ -210,6 +218,7 @@
                                 @endif
                             </td>
                             <td>{{ $cate->so_tap }}</td>
+                            <td>{{ $cate->actor }}</td>
                             <td>
                                 @if ($cate->phim_hot == 1)
                                     <span class="badge badge-success">Hiển thị</span>
