@@ -14,6 +14,7 @@ use App\Http\Controllers\admin\MovieController;
 use App\Http\Controllers\admin\CountryController;
 use App\Http\Controllers\admin\EpisodeController;
 use App\Http\Controllers\admin\GenreController;
+use App\Http\Controllers\admin\BlogController;
 
 
 
@@ -34,13 +35,20 @@ Route::resource('/admin/genre', GenreController::class)->middleware(CheckAdmin::
 Route::resource('/admin/movie', MovieController::class)->middleware(CheckAdmin::class);
 Route::resource('/admin/country', CountryController::class)->middleware(CheckAdmin::class);
 Route::resource('/admin/episode', EpisodeController::class)->middleware(CheckAdmin::class);
+Route::resource('/admin/blog', BlogController::class)->middleware(CheckAdmin::class);
+
+
 Route::get('update-nam-phim', [MovieController::class,'update_year'])->name('update-year-phim');
 Route::get('select-movie', [EpisodeController::class,'selectmovie'])->name('select-movie');
+Route::get('/tim-kiem', [PageController::class, 'search'])->name('search');
+
+
+
 //Register
 Route::get('/register', [RegisterController::class, 'index'])->name('auth.register.index');
 Route::post('/do_register', [RegisterController::class, 'register'])->name('auth.do_register');
 
-Route::get('/tim-kiem', [PageController::class, 'search'])->name('search');
+
 
 
 Route::get('/', [PageController::class, 'getGioithieu']);

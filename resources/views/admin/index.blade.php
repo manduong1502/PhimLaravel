@@ -44,6 +44,9 @@
                 <li class="nav-item">
                     <a class="nav-link active text-white" aria-current="page" href="{{route('episode.create')}}">Tập phim</a>
                 </li>
+                <li class="nav-item">
+                  <a class="nav-link active text-white" aria-current="page" href="{{route('blog.create')}}">Blog</a>
+              </li>
               </ul>
               <form class="d-flex" action="" method="GET">
                 <div class="d-flex input-group">
