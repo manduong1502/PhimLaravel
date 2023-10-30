@@ -7,7 +7,7 @@
         <div class="carousel-item active">
             <div class="dark-bg-image  ">
                 <div class="dark-bg-image-2">
-                    <img src="{{ asset('uploads/movie/' . $movie->image) }}" alt="...">
+                    <img src="{{ asset('uploads/movie/imagebig/' . $movie->image1) }}" alt="...">
                 </div>
             </div>
             <div class="carousel-caption d-none d-md-block">

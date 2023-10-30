@@ -122,6 +122,7 @@
                             ) !!}
                         </div>
 
+
                         <div class="form-group">
                             {!! Form::label('Image', 'Ảnh nhỏ', []) !!}
                             {!! Form::file('image', ['class' => 'form-control-file']) !!}
@@ -136,6 +137,14 @@
                             @if (isset($movie))
                                 <img width="20%" src="{{ asset('uploads/movie/imagebig/' . $movie->image1) }}"alt="">
                             @endif
+                        </div>
+
+                        <div class="form-group">
+                            {!! Form::label('title', 'Trailer (link cuối đuôi youtube)', []) !!}
+                            {!! Form::text('trailer', isset($movie) ? $movie->trailer : '', [
+                                'class' => 'form-control',
+                                'placeholder' => 'Nhập vào dữ liệu...',
+                            ]) !!}
                         </div>
 
 
@@ -164,6 +173,7 @@
                         <th scope="col">#</th>
                         <th scope="col">Hình ảnh nhỏ</th>
                         <th scope="col">Hình ảnh lớn</th>
+                        <th scope="col">Trailer</th>
                         <th scope="col">Tiêu đề</th>
                         <th scope="col">Đường dẫn phim</th>
                         <th scope="col">Mô tả</th>
@@ -188,6 +198,7 @@
                             </td>
                             <td><img width="70" height="100" src="{{ asset('uploads/movie/imagebig/' . $cate->image1) }}"alt="">
                             </td>
+                            <td><iframe width="300" height="200" src="{{'https://www.youtube.com/embed/'. $cate->trailer }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></td>
                             <td>{{ $cate->title }}</td>
                             <td>{{ $cate->slug }}</td>
                             <td>{{ $cate->description }}</td>

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->integer('status');
             $table->string('image');
             $table->string('image1');
+            $table->string('trailer')->nullable();
             $table->integer('category_id');
             $table->integer('genre_id');
             $table->integer('country_id');
@@ -30,7 +31,6 @@ return new class extends Migration
             $table->integer('so_tap')->default(1);
             $table->string('daodien')->nullable();
             $table->double('gia')->nullable();
-            $table->string('video')->nullable();
             $table->string('thoiluong')->nullable();
 
             $table->string('hangphim')->nullable();
