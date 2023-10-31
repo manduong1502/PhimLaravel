@@ -119,7 +119,7 @@
                     }
                 });
     });
-    </script>
+  </script>
   
   <script type="text/javascript">
     $('.slide_choose').change(function() {
@@ -137,7 +137,7 @@
             }
         });
     })
-</>
+</script>
   <script type="text/javascript">
     $('.phimhot_choose').change(function() {
         var phimhot_val = $(this).val();
