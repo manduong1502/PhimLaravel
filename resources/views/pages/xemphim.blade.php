@@ -2,9 +2,9 @@
 
 @section('content')
     <div class="container film">
-        <iframe width="100%" height="515" src="https://www.youtube.com/embed/Se52HHs1jpk?start=12" frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen></iframe>
+            {{-- hiển thị phim --}}
+            {!!$episode->linkphim!!}
+
         <div class="film-btn-support d-flex">
             <a href=""><i class="fa-solid fa-share"></i>Chia sẻ</a>
             <a href=""><i class="fa-solid fa-cloud"></i>Sư tầm</a>

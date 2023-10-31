@@ -39,14 +39,23 @@
                 </div>
 
                 <div class="detail-title-small mt-3 row d-flex" style="text-align: left;">
+                  <span class="text-title-name col-3 ">Tập mới nhất: </span>
+                  <div class=" col-9">
+                      @foreach($episode as $key => $epi)
+                      <a href="{{route('watch',['slug'=>$epi->movie->slug,'tap-phim'=>$movie_tapdau->episode])}}">Tập {{$epi->episode}}</a>
+                      @endforeach
+                  </div>
+              </div>
+
+                <div class="detail-title-small mt-3 row d-flex" style="text-align: left;">
                     <div class="text-title-name col-2 ">Miêu tả: </div>
                     <div class=" col-10">
-                        <p>{{$movie->description}}</p>
+                        <p>{{str_limit($movie->description, 50) }}</p>
                     </div>
                 </div>
 
                 <div class="detail-title-small mt-2 d-flex" style="text-align: left;">
-                    <a href="{{route('watch',$movie->slug)}}" class="btn btn-issue"><i class="fa-solid fa-play"></i> Phát ngay</a>
+                    <a href="{{route('watch',['slug' => $movie->slug,'tap-phim'=>$movie_tapdau->episode])}}" class="btn btn-issue"><i class="fa-solid fa-play"></i> Phát ngay</a>
                     <button class="btn btn-share"><i class="fa-solid fa-share"></i> Chia sẽ</button>
                     <button class="btn btn-share"><i class="fa-solid fa-cloud"></i> Sưu tập</button>
                 </div>
