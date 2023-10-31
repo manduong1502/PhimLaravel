@@ -238,4 +238,33 @@ class MovieController extends Controller
         $movie->category_id = $data['category_id'];
         $movie->save();
     }
+
+    public function country_choose(Request $request) {
+        $data =$request -> all();
+        $movie = Movie::find($data['movie_id']);
+        $movie->country_id = $data['country_id'];
+        $movie->save();
+    }
+
+    public function trangthai_choose(Request $request) {
+        $data =$request -> all();
+        $movie = Movie::find($data['movie_id']);
+        $movie->status = $data['trangthai_val'];
+        $movie->save();
+    }
+
+    public function phimhot_choose(Request $request) {
+        $data =$request -> all();
+        $movie = Movie::find($data['movie_id']);
+        $movie->phim_hot = $data['phimhot_val'];
+        $movie->save();
+    }
+
+    public function slide_choose(Request $request) {
+        $data =$request -> all();
+        $movie = Movie::find($data['movie_id']);
+        $movie->slide = $data['slide_val'];
+        $movie->save();
+    }
+
 }

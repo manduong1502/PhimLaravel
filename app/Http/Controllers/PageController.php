@@ -51,7 +51,7 @@ class PageController extends Controller
         $category = Category::orderBy('id','DESC') ->get();
         $genre = Genre::orderBy('id','DESC') ->get();
         $country = Country::orderBy('id','DESC') ->get();
-        $category_home = Category::with('movie')->orderBy('id','DESC') ->get();
+        $category_home = Category::with('movie')->where('status',1)->orderBy('id','DESC') ->get();
         return view('pages.trangchu',compact(
             'category',
             'genre',

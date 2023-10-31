@@ -88,6 +88,75 @@
   <script type="text/javascript" src="//cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
   
   <script type="text/javascript">
+    $('.slide_choose').change(function() {
+        var slide_val = $(this).val();
+        var movie_id = $(this).attr('id');
+        $.ajax({
+            url: "{{ route('slide_choose') }}",
+            method: "GET",
+            data: {
+              slide_val:slide_val,
+              movie_id:movie_id,
+            },
+            success:function(data) {
+                alert('Thay đổi thành công');
+            }
+        });
+    })
+</script>
+  <script type="text/javascript">
+    $('.phimhot_choose').change(function() {
+        var phimhot_val = $(this).val();
+        var movie_id = $(this).attr('id');
+        $.ajax({
+            url: "{{ route('phimhot_choose') }}",
+            method: "GET",
+            data: {
+              phimhot_val:phimhot_val,
+              movie_id:movie_id,
+            },
+            success:function(data) {
+                alert('Thay đổi thành công');
+            }
+        });
+    })
+</script>
+  <script type="text/javascript">
+    $('.trangthai_choose').change(function() {
+        var trangthai_val = $(this).val();
+        var movie_id = $(this).attr('id');
+        $.ajax({
+            url: "{{ route('trangthai_choose') }}",
+            method: "GET",
+            data: {
+              trangthai_val:trangthai_val,
+              movie_id:movie_id,
+            },
+            success:function(data) {
+                alert('Thay đổi thành công');
+            }
+        });
+    })
+</script>
+  <script type="text/javascript">
+    $('.country_choose').change(function() {
+        var country_id = $(this).val();
+        var movie_id = $(this).attr('id');
+        $.ajax({
+            url: "{{ route('country_choose') }}",
+            method: "GET",
+            data: {
+              country_id:country_id,
+              movie_id:movie_id,
+            },
+            success:function(data) {
+                alert('Thay đổi thành công');
+            }
+        });
+    })
+</script>
+
+  <script type="text/javascript">
     $('.category_choose').change(function() {
         var category_id = $(this).val();
         var movie_id = $(this).attr('id');

@@ -43,6 +43,11 @@ Route::get('select-movie', [EpisodeController::class,'selectmovie'])->name('sele
 Route::get('/tim-kiem', [PageController::class, 'search'])->name('search');
 Route::get('add-episode/{id}', [EpisodeController::class,'add_episode'])->name('add-episode');
 Route::get('category-choose', [MovieController::class,'category_choose'])->name('category_choose');
+Route::get('country-choose', [MovieController::class,'country_choose'])->name('country_choose');
+Route::get('trangthai-choose', [MovieController::class,'trangthai_choose'])->name('trangthai_choose');
+Route::get('phimhot-choose', [MovieController::class,'phimhot_choose'])->name('phimhot_choose');
+Route::get('slide-choose', [MovieController::class,'slide_choose'])->name('slide_choose');
+
 
 
 //Register
