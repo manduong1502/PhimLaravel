@@ -84,14 +84,14 @@ class PageController extends Controller
         ));
     }
 
-    public function getXemphim($slug)
+    public function getXemphim($slug,$tap)
     {
-        if(isset($_GET['tap-phim'])) {
-            $tapphim = $_GET['tap-phim'];
+        if(isset($tap)) {
+            $tapphim = $tap;
         }else {
             $tapphim =1;
         }
-        $tapphim = substr($tapphim,0,9);
+        $tapphim = substr($tap,4,1);
         $category = Category::orderBy('id','DESC') ->get();
         $genre = Genre::orderBy('id','DESC') ->get();
         $country = Country::orderBy('id','DESC') ->get();
@@ -107,7 +107,8 @@ class PageController extends Controller
             'country',
             'movie',
             'movie_related',
-            'episode'
+            'episode',
+            'tapphim'
         ));
     }
 

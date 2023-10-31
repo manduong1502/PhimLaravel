@@ -55,7 +55,7 @@ Route::get('/', [PageController::class, 'getGioithieu']);
 Route::get('/index', [PageController::class, 'getTrangchu'])->name('pages.trangchu')->middleware(AuthMiddleware::class);
 
 
-Route::get('/xemphim/{slug}', [PageController::class, 'getXemphim'])->name('watch')->middleware(AuthMiddleware::class);
+Route::get('/xemphim/{slug}/{tap}', [PageController::class, 'getXemphim'])->name('watch')->middleware(AuthMiddleware::class);
 
 //các thể loại
 Route::get('/danh-muc/{slug}', [PageController::class, 'getDanhmMuc'])->name('category')->middleware(AuthMiddleware::class);
