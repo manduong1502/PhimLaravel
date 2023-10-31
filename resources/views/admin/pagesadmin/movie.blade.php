@@ -190,7 +190,7 @@
                         <th scope="col">Diễn viên</th>
                         <th scope="col">Hiển thị Đề xuất hot</th>
                         <th scope="col">Hiển thị slide</th>
-                        <th scope="col">Danh mục</th>
+                        <th scope="col-md-3">Danh mục</th>
                         <th scope="col">Thể loại</th>
                         <th scope="col">Quốc gia</th>
                         <th scope="col">Năm phim</th>
@@ -235,7 +235,13 @@
                                     <span class="badge badge-danger">Không hiển thị</span>
                                 @endif
                             </td>
-                            <td>{{ $cate->category->title }}</td>
+                            <td>
+                                {{-- {{ $cate->category->title }} --}}
+                                {!! Form::select('category_id', $category, isset($cate) ? $cate->category->id : '', [
+                                'class' => 'form-control category_choose',
+                                'id' => $cate->id
+                                ]) !!}
+                            </td>
                             <td>
                                 @if (isset($movie_genre))
                                     @foreach ($cate->movie_genre as $gen)

@@ -231,4 +231,11 @@ class MovieController extends Controller
                 $movie->save();
         }
     }
+
+    public function category_choose(Request $request) {
+        $data =$request -> all();
+        $movie = Movie::find($data['movie_id']);
+        $movie->category_id = $data['category_id'];
+        $movie->save();
+    }
 }

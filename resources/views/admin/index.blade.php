@@ -86,6 +86,24 @@
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
   <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
   <script type="text/javascript" src="//cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+  
+  <script type="text/javascript">
+    $('.category_choose').change(function() {
+        var category_id = $(this).val();
+        var movie_id = $(this).attr('id');
+        $.ajax({
+            url: "{{ route('category_choose') }}",
+            method: "GET",
+            data: {
+              category_id:category_id,
+              movie_id:movie_id,
+            },
+            success:function(data) {
+                alert('Thay đổi thành công');
+            }
+        });
+    })
+</script>
   <script type="text/javascript">
     $('.select-movie').change(function() {
         var id = $(this).val();

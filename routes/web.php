@@ -37,12 +37,12 @@ Route::resource('/admin/country', CountryController::class)->middleware(CheckAdm
 Route::resource('/admin/episode', EpisodeController::class)->middleware(CheckAdmin::class);
 Route::resource('/admin/blog', BlogController::class)->middleware(CheckAdmin::class);
 
-
+//Thay đổi dữ liệu trong movie ajax
 Route::get('update-nam-phim', [MovieController::class,'update_year'])->name('update-year-phim');
 Route::get('select-movie', [EpisodeController::class,'selectmovie'])->name('select-movie');
 Route::get('/tim-kiem', [PageController::class, 'search'])->name('search');
 Route::get('add-episode/{id}', [EpisodeController::class,'add_episode'])->name('add-episode');
-
+Route::get('category-choose', [MovieController::class,'category_choose'])->name('category_choose');
 
 
 //Register
