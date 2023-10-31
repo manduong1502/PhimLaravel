@@ -173,8 +173,8 @@
 
 
 
-        <div class="container-fluid mt-4 table-responsive">
-            <table class="table mt-4 table-success table-striped " id="myTable">
+        <div class="container-fluid mt-4 ">
+            <table class="table mt-4 table-success table-striped  table-responsive" id="myTable">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
@@ -182,10 +182,11 @@
                         <th scope="col">Hình ảnh lớn</th>
                         <th scope="col">Trailer</th>
                         <th scope="col">Tiêu đề</th>
+                        <th scope="col">Thêm tập phim</th>
+                        <th scope="col">Số tập</th>
                         <th scope="col">Đường dẫn phim</th>
                         <th scope="col">Mô tả</th>
                         <th scope="col">Hiển thị</th>
-                        <th scope="col">Số tập</th>
                         <th scope="col">Diễn viên</th>
                         <th scope="col">Hiển thị Đề xuất hot</th>
                         <th scope="col">Hiển thị slide</th>
@@ -208,6 +209,8 @@
                             </td>
                             <td><iframe width="200" height="100" src="{{'https://www.youtube.com/embed/'. $cate->trailer }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></td>
                             <td>{{ $cate->title }}</td>
+                            <td><a href="{{route('add-episode',[$cate->id])}}" class="btn btn-danger btn-sm">Thêm tập phim</a></td>
+                            <td> {{$cate->episode_count}}/{{ $cate->so_tap }} tập</td>
                             <td>{{ $cate->slug }}</td>
                             <td>{{ $cate->description }}</td>
                             <td>
@@ -217,7 +220,6 @@
                                     <span class="badge badge-danger">Không hiển thị</span>
                                 @endif
                             </td>
-                            <td>{{ $cate->so_tap }}</td>
                             <td>{{ $cate->actor }}</td>
                             <td>
                                 @if ($cate->phim_hot == 1)

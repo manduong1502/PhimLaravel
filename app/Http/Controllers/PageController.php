@@ -86,12 +86,7 @@ class PageController extends Controller
 
     public function getXemphim($slug,$tap)
     {
-        if(isset($tap)) {
-            $tapphim = $tap;
-        }else {
-            $tapphim =1;
-        }
-        $tapphim = substr($tap,4,1);
+
         $category = Category::orderBy('id','DESC') ->get();
         $genre = Genre::orderBy('id','DESC') ->get();
         $country = Country::orderBy('id','DESC') ->get();
@@ -99,7 +94,14 @@ class PageController extends Controller
         $movie = Movie::with('country','genre','category')->where('slug',$slug)->first();
         $movie_related = Movie::with('country','genre','category','movie_genre','episode')->where('category_id',$movie->category->id)->orderBy(DB::raw('RAND()'))->whereNotIn('slug',[$slug])->get();
 
-        $episode = Episode::where('movie_id',$movie->id)->where('episode',$tapphim)->first();
+        if(isset($tap)) {
+            $tapphim = $tap;
+            $tapphim = substr($tap,4,1);
+            $episode = Episode::where('movie_id',$movie->id)->where('episode',$tapphim)->first();
+        }else {
+            $tapphim =1;
+            $episode = Episode::where('movie_id',$movie->id)->where('episode',$tapphim)->first();
+        }
         return view('pages.xemphim', compact(
             'customCss',
             'category',

@@ -41,6 +41,7 @@ Route::resource('/admin/blog', BlogController::class)->middleware(CheckAdmin::cl
 Route::get('update-nam-phim', [MovieController::class,'update_year'])->name('update-year-phim');
 Route::get('select-movie', [EpisodeController::class,'selectmovie'])->name('select-movie');
 Route::get('/tim-kiem', [PageController::class, 'search'])->name('search');
+Route::get('add-episode/{id}', [EpisodeController::class,'add_episode'])->name('add-episode');
 
 
 
