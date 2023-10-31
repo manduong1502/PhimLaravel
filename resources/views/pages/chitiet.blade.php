@@ -58,7 +58,7 @@
         <li><a href="#info3">Tin tức</a></li>
       </ul>
       <hr>
-    </div>
+    </div> 
 
     <div class="mb-3 container">
       <div id="info1" class="info">
