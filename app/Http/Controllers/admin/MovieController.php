@@ -45,7 +45,7 @@ class MovieController extends Controller
     $country = Country::pluck('title', 'id');
     $genre = Genre::pluck('title', 'id');
     $list_genre = Genre::all();
-    $list = Movie::with('category', 'country', 'genre', 'movie_genre')->orderBy('id', 'DESC')->get();
+    $list = Movie::with('category', 'country', 'genre', 'movie_genre')->withCount('episode')->orderBy('id', 'DESC')->get();
     
     // Đảm bảo biến movie_genre đã được định nghĩa và cung cấp nó trong mảng compact
     $movie_genre = Genre::pluck('title', 'id');
@@ -73,6 +73,9 @@ class MovieController extends Controller
         $movie->description = $request->description;
         $movie->daodien = $request->daodien;
         $movie->status = $request->status;
+        $movie->actor = $request->actor;
+        $movie->slide = $request->slide;
+        $movie->trailer = $request->trailer;
         $movie->phim_hot = $request->phim_hot;
         $movie->category_id = $request->category_id;
         $movie->country_id = $request->country_id;
@@ -83,7 +86,7 @@ class MovieController extends Controller
             $movie -> genre_id = $gen[0];
         }
 
-        //thêm hình ảnh
+        //thêm hình ảnh nhỏ
         $get_image = $request ->file('image');
         if($get_image) {
             $get_name_image = $get_image->getClientOriginalName(); //lấy tên hình ảnh vd như hinhanh1.jpg
@@ -91,6 +94,16 @@ class MovieController extends Controller
             $new_image =  $name_image.rand(0,9999).'.'.$get_image->getClientOriginalExtension(); //random 4 số khác nhau để tránh bị trùng hình ảnh ví dụ hinhanh1234.jpg
             $get_image->move('uploads/movie',$new_image);
             $movie->image = $new_image;
+        }
+
+        //thêm hình ảnh lớn
+        $get_image1 = $request ->file('image1');
+        if($get_image1) {
+            $get_name_image1 = $get_image1->getClientOriginalName(); //lấy tên hình ảnh vd như hinhanh1.jpg
+            $name_image1 = current(explode('.',$get_name_image1)); //tách dấu chấm ra để làm chuõi vd như [0]hinhanh1 . [1]jpg
+            $new_image1 =  $name_image1.rand(0,9999).'.'.$get_image1->getClientOriginalExtension(); //random 4 số khác nhau để tránh bị trùng hình ảnh ví dụ hinhanh1234.jpg
+            $get_image1->move('uploads/movie/imagebig',$new_image1);
+            $movie->image1 = $new_image1;
         }
 
         $movie->save();
@@ -144,8 +157,11 @@ class MovieController extends Controller
         $movie->slug = $request->slug;
         $movie->so_tap = $request->so_tap;
         $movie->description = $request->description;
+        $movie->actor = $request->actor;
         $movie->daodien = $request->daodien;
+        $movie->trailer = $request->trailer;
         $movie->status = $request->status;
+        $movie->slide = $request->slide;
         $movie->phim_hot = $request->phim_hot;
         $movie->category_id = $request->category_id;
         $movie->country_id = $request->country_id;
@@ -167,6 +183,19 @@ class MovieController extends Controller
             $get_image->move('uploads/movie',$new_image);
             $movie->image = $new_image;
         }
+
+        //thêm hình ảnh lớn
+        $get_image1 = $request ->file('image1');
+        if($get_image1) {
+            if (!empty ($movie->image1)) {
+                unlink('uploads/movie/imagebig/'.$movie->image1);
+            }
+            $get_name_image1 = $get_image1->getClientOriginalName(); //lấy tên hình ảnh vd như hinhanh1.jpg
+            $name_image1 = current(explode('.',$get_name_image1)); //tách dấu chấm ra để làm chuõi vd như [0]hinhanh1 . [1]jpg
+            $new_image1 =  $name_image1.rand(0,9999).'.'.$get_image1->getClientOriginalExtension(); //random 4 số khác nhau để tránh bị trùng hình ảnh ví dụ hinhanh1234.jpg
+            $get_image1->move('uploads/movie/imagebig',$new_image1);
+            $movie->image1 = $new_image1;
+        }
         $movie->save();
         $movie->movie_genre()->sync($data['genre']);
         return redirect()->route('movie.create');
@@ -180,6 +209,10 @@ class MovieController extends Controller
         $movie = Movie::find($id);
         if (!empty ($movie->image)) {
             unlink('uploads/movie/'.$movie->image);
+        }
+        $movie = Movie::find($id);
+        if (!empty ($movie->image1)) {
+            unlink('uploads/movie/'.$movie->image1);
         }
         //Nhiều thể loại
         //Điều kiện lấy film
@@ -198,4 +231,56 @@ class MovieController extends Controller
                 $movie->save();
         }
     }
+
+    public function category_choose(Request $request) {
+        $data =$request -> all();
+        $movie = Movie::find($data['movie_id']);
+        $movie->category_id = $data['category_id'];
+        $movie->save();
+    }
+
+    public function country_choose(Request $request) {
+        $data =$request -> all();
+        $movie = Movie::find($data['movie_id']);
+        $movie->country_id = $data['country_id'];
+        $movie->save();
+    }
+
+    public function trangthai_choose(Request $request) {
+        $data =$request -> all();
+        $movie = Movie::find($data['movie_id']);
+        $movie->status = $data['trangthai_val'];
+        $movie->save();
+    }
+
+    public function phimhot_choose(Request $request) {
+        $data =$request -> all();
+        $movie = Movie::find($data['movie_id']);
+        $movie->phim_hot = $data['phimhot_val'];
+        $movie->save();
+    }
+
+    public function slide_choose(Request $request) {
+        $data =$request -> all();
+        $movie = Movie::find($data['movie_id']);
+        $movie->slide = $data['slide_val'];
+        $movie->save();
+    }
+
+    public function update_image_movie_ajax (Request $request) {
+        $get_image =$request->file('file');
+        $movie_id = $request->movie_id;
+
+        if($get_image) {
+            $movie = Movie::find($movie_id);
+            unlink('uploads/movie/'.$movie->image);
+            $get_name_image = $get_image->getClientOriginalName(); //lấy tên hình ảnh vd như hinhanh1.jpg
+            $name_image = current(explode('.',$get_name_image)); //tách dấu chấm ra để làm chuõi vd như [0]hinhanh1 . [1]jpg
+            $new_image =  $name_image.rand(0,9999).'.'.$get_image->getClientOriginalExtension(); //random 4 số khác nhau để tránh bị trùng hình ảnh ví dụ hinhanh1234.jpg
+            $get_image->move('uploads/movie',$new_image);
+            $movie->image = $new_image;
+            $movie->save();
+        }
+    }
+    
 }

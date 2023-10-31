@@ -2,9 +2,17 @@
 
 @section('content')
     <div class="container film">
-        <iframe width="100%" height="515" src="https://www.youtube.com/embed/Se52HHs1jpk?start=12" frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen></iframe>
+        <style type="text/css">
+            .iframe-phim iframe {
+                width: 100%;
+                height: 600px;
+            }
+        </style>
+        {{-- hiển thị phim --}}
+        <div class="iframe-phim">
+            {!! $episode->linkphim !!}
+        </div>
+
         <div class="film-btn-support d-flex">
             <a href=""><i class="fa-solid fa-share"></i>Chia sẻ</a>
             <a href=""><i class="fa-solid fa-cloud"></i>Sư tầm</a>
@@ -22,6 +30,27 @@
                     <div class="detail-content-top-text-1">Top phim thịnh hành</div>
                 </div>
                 <hr>
+
+                <div class="tab-content">
+                    <div class="tab-pane active server-1">
+                        <div class="halim-server">
+                            <ul class="halim-list-eps">
+                                @foreach ($movie->episode as $key => $sotap)
+                                    <a href="{{ url('xemphim/' . $movie->slug . '/tap-' . $sotap->episode) }}">
+                                        <li class="halim-episode">
+                                            <span
+                                                class="halim-btn hanlim-btn-2 {{ $tapphim == $sotap->episode ? 'active' : '' }} halim-info-1-1 box-shadow"
+                                                data-post-id="37976" data-server ="1" data-episode ="1"
+                                                data-position="first" data-embed ="0"
+                                                data-title="Xem phim {{ $movie->title }} - Tập {{ $sotap->episode }} -Vietsub -Thuyết Minh"
+                                                data-h1="{{ $movie->title }} - tập {{ $sotap->episode }}">{{ $sotap->episode }}</span>
+                                        </li>
+                                    </a>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
+                </div>
 
                 <div class="mt-5">
                     <div class="content-title">

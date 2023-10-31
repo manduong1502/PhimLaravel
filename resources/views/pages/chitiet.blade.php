@@ -7,7 +7,7 @@
         <div class="carousel-item active">
             <div class="dark-bg-image  ">
                 <div class="dark-bg-image-2">
-                    <img src="{{ asset('uploads/movie/' . $movie->image) }}" alt="...">
+                    <img src="{{ asset('uploads/movie/imagebig/' . $movie->image1) }}" alt="...">
                 </div>
             </div>
             <div class="carousel-caption d-none d-md-block">
@@ -17,6 +17,7 @@
                     <div class="detail-content-top-text-1">Top phim thịnh hành</div>
                 </div>
                 <div class="detail-title-small mt-3 d-flex ">
+                  <span>Thể loại: </span>
                   @foreach($movie->movie_genre as $gen)
                     <div class="text-title">{{$gen->title}}</div>
                   @endforeach  
@@ -25,21 +26,36 @@
                 <div class="detail-title-small   mt-3 d-flex ">
                     <div class="text-title-name ">Diễn viên chính: </div>
                     <div class="d-flex">
-                        <div class="text-title">Jisoo</div>
-                        <div class="text-title">Lee Kyu-ho</div>
-                        <div class="text-title">Park Jung-Min</div>
+                        @if($movie->actor!=NULL)
+                        @php
+                          $actor = array();
+                          $actor = explode(',',$movie->actor)   
+                        @endphp
+                          @foreach($actor as $key => $act)
+                            <a href="">{{$act}}</a>
+                          @endforeach
+                        @endif
                     </div>
                 </div>
 
                 <div class="detail-title-small mt-3 row d-flex" style="text-align: left;">
+                  <span class="text-title-name col-3 ">Tập mới nhất: </span>
+                  <div class=" col-9">
+                      @foreach($episode as $key => $epi)
+                      <a href="{{url('xemphim/'.$epi->movie->slug.'/tap-'.$epi->episode)}}">Tập {{$epi->episode}}</a>
+                      @endforeach
+                  </div>
+              </div>
+
+                <div class="detail-title-small mt-3 row d-flex" style="text-align: left;">
                     <div class="text-title-name col-2 ">Miêu tả: </div>
                     <div class=" col-10">
-                        <p>{{$movie->description}}</p>
+                        <p>{{substr($movie->description,0, 50)}}</p>
                     </div>
                 </div>
 
                 <div class="detail-title-small mt-2 d-flex" style="text-align: left;">
-                    <a href="{{route('watch',$movie->slug)}}" class="btn btn-issue"><i class="fa-solid fa-play"></i> Phát ngay</a>
+                    <a href="{{url('xemphim/'.$movie->slug.'/tap-'.$movie_tapdau->episode)}}" class="btn btn-issue"><i class="fa-solid fa-play"></i> Phát ngay</a>
                     <button class="btn btn-share"><i class="fa-solid fa-share"></i> Chia sẽ</button>
                     <button class="btn btn-share"><i class="fa-solid fa-cloud"></i> Sưu tập</button>
                 </div>
@@ -62,7 +78,7 @@
 
     <div class="mb-3 container">
       <div id="info1" class="info">
-        <iframe width="100%" height="515"src="https://www.youtube.com/embed/Se52HHs1jpk?start=12" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="border-radius: 10px;"></iframe>
+        <iframe width="100%" height="515"src="{{asset('https://www.youtube.com/embed/'. $movie->trailer)}}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="border-radius: 10px;"></iframe>
 
       </div>
    
@@ -72,37 +88,10 @@
         <div class="container info3-assess-header">
             Bình luận
         </div>
-
-        <div class="container info3-assess-block-comments">
-          <div class="info3-assess-comments row">
-            <div class="col-1 info3-assess-comment-img">
-              <img src="public/image/image-13.png" width="50px" height="50px"  alt="">
-            </div>
-            <div class="col-11 info3-assess-comment-contents">
-              <div class="info3-assess-comment-content-name">
-                Vu tran
-              </div>
-              <div class="info3-assess-comment-content">
-                Flim hay quá
-              </div>
-            </div>
-
-            <div class="container info3-assess-comments-form row">
-              <div class="info3-assess-comments-form-img col-1">
-                <img src="public/image/image-13.png" style="margin-top: 33px;" width="50px" height="50px"  alt="">
-              </div>
-              <div class="info3-assess-comments-form-content col-11">
-                <form action="">
-                  <div class="mb-3">
-                    <label for="exampleFormControlTextarea1" class="form-label text-black">Bình luận</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                  </div>
-                  <button type="submit" class="btn btn-primary">Bình luận</button>
-                </form>
-              </div>
-            </div>
-          </div>
-      </div>
+        @php
+         $current_url = Request::url();
+        @endphp
+        <div style="background-color: aliceblue" class="fb-comments" data-href="{{$current_url}}" data-width="100%" data-numposts="10"></div>
       </div>
 <!-- end info3-->
 

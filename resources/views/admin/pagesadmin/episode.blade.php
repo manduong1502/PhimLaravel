@@ -33,7 +33,7 @@
 
                         <div class="form-group">
                             {!! Form::label('link', 'Link phim', []) !!}
-                            {!! Form::text('linkphim', isset($episode) ? $episode->linkphim : '', [
+                            {!! Form::textarea('linkphim', isset($episode) ? $episode->linkphim : '', [
                                 'class' => 'form-control',
                                 'placeholder' => 'Nhập vào dữ liệu...',
                             ]) !!}
@@ -76,7 +76,7 @@
                                 <th scope="row">{{$key}}</th>
                                 <td>{{$episode->movie->title}}</td>
                                 <td>{{$episode->episode}}</td>
-                                <td>{{$episode->linkphim}}</td>
+                                <td>{!!$episode->linkphim!!}</td>
                                 {{-- <td>
                                     @if($cate->status == 1)
                                         <span class="badge badge-success">Hiển thị</span>

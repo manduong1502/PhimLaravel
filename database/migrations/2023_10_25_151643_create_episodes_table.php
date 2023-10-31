@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('episodes', function (Blueprint $table) {
             $table->id();
             $table->integer('movie_id');
-            $table->string('linkphim');
+            $table->longText('linkphim');
             $table->integer('episode');
             $table->timestamps();
         });

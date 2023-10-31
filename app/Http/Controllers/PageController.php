@@ -6,6 +6,7 @@ use App\Models\Country;
 use App\Models\Genre;
 use App\Models\Movie;
 use App\Models\Movie_Genre;
+use App\Models\Episode;
 use Illuminate\Support\Facades\DB;
 
 
@@ -46,16 +47,18 @@ class PageController extends Controller
     public function getTrangchu()
     {
         $phimhot = Movie::where('phim_hot',1)->where('status',1)->orderBy('ngay_cap_nhap','DESC')->get();
+        $slide = Movie::with('country','genre','category','movie_genre')->where('slide',1)->where('status',1)->orderBy('ngay_cap_nhap','DESC')->get();
         $category = Category::orderBy('id','DESC') ->get();
         $genre = Genre::orderBy('id','DESC') ->get();
         $country = Country::orderBy('id','DESC') ->get();
-        $category_home = Category::with('movie')->orderBy('id','DESC') ->get();
+        $category_home = Category::with('movie')->where('status',1)->orderBy('id','DESC') ->get();
         return view('pages.trangchu',compact(
             'category',
             'genre',
             'country',
             'category_home',
-            'phimhot'
+            'phimhot',
+            'slide',
         ));
     }
 
@@ -67,31 +70,47 @@ class PageController extends Controller
         $customCss = 'css/chitiet.css';
         $movie = Movie::with('country','genre','category')->where('slug',$slug)->first();
         $movie_related = Movie::with('country','genre','category','movie_genre')->where('category_id',$movie->category->id)->orderBy(DB::raw('RAND()'))->whereNotIn('slug',[$slug])->get();
+        $movie_tapdau = Episode::with('movie')->where('movie_id',$movie->id)->orderBy('episode','ASC')->take(1)->first();
+        $episode = Episode::with('movie')->where('movie_id',$movie->id)->orderBy('id','DESC')->take(3)->get();
         return view('pages.chitiet', compact(
             'customCss',
             'category',
             'genre',
             'country',
             'movie',
-            'movie_related'
+            'movie_related',
+            'episode',
+            'movie_tapdau'
         ));
     }
 
-    public function getXemphim($slug)
+    public function getXemphim($slug,$tap)
     {
+
         $category = Category::orderBy('id','DESC') ->get();
         $genre = Genre::orderBy('id','DESC') ->get();
         $country = Country::orderBy('id','DESC') ->get();
         $customCss = 'css/xemphim.css';
         $movie = Movie::with('country','genre','category')->where('slug',$slug)->first();
         $movie_related = Movie::with('country','genre','category','movie_genre','episode')->where('category_id',$movie->category->id)->orderBy(DB::raw('RAND()'))->whereNotIn('slug',[$slug])->get();
+
+        if(isset($tap)) {
+            $tapphim = $tap;
+            $tapphim = substr($tap,4,1);
+            $episode = Episode::where('movie_id',$movie->id)->where('episode',$tapphim)->first();
+        }else {
+            $tapphim =1;
+            $episode = Episode::where('movie_id',$movie->id)->where('episode',$tapphim)->first();
+        }
         return view('pages.xemphim', compact(
             'customCss',
             'category',
             'genre',
             'country',
             'movie',
-            'movie_related'
+            'movie_related',
+            'episode',
+            'tapphim'
         ));
     }
 

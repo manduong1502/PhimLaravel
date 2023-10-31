@@ -44,6 +44,9 @@
                 <li class="nav-item">
                     <a class="nav-link active text-white" aria-current="page" href="{{route('episode.create')}}">Tập phim</a>
                 </li>
+                <li class="nav-item">
+                  <a class="nav-link active text-white" aria-current="page" href="{{route('blog.create')}}">Blog</a>
+              </li>
               </ul>
               <form class="d-flex" action="" method="GET">
                 <div class="d-flex input-group">
@@ -83,6 +86,127 @@
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
   <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
   <script type="text/javascript" src="//cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+  <script type="text/javascript">
+       
+    $(document).on('change','.file_image',function(){
+
+        var movie_id = $(this).data('movie_id');
+        var files = $("#file-"+movie_id)[0].files;
+        
+        //console.log(files);
+        var image = document.getElementById("file-"+movie_id).files[0];
+        
+
+        var form_data = new FormData();
+
+        form_data.append("file", document.getElementById("file-"+movie_id).files[0]);
+        form_data.append("movie_id",movie_id);
+                $.ajax({
+                    url:"{{route('update-image-movie-ajax')}}",
+                    method:"POST",
+                    headers:{
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    data:form_data,
+
+                    contentType:false,
+                    cache:false,
+                    processData:false,
+
+                    success:function(data){
+                        location.reload();
+                        $('#success_image').html('<span class="text-success">Cập nhật hình ảnh thành công</span>');
+                    }
+                });
+    });
+    </script>
+  
+  <script type="text/javascript">
+    $('.slide_choose').change(function() {
+        var slide_val = $(this).val();
+        var movie_id = $(this).attr('id');
+        $.ajax({
+            url: "{{ route('slide_choose') }}",
+            method: "GET",
+            data: {
+              slide_val:slide_val,
+              movie_id:movie_id,
+            },
+            success:function(data) {
+                alert('Thay đổi thành công');
+            }
+        });
+    })
+</>
+  <script type="text/javascript">
+    $('.phimhot_choose').change(function() {
+        var phimhot_val = $(this).val();
+        var movie_id = $(this).attr('id');
+        $.ajax({
+            url: "{{ route('phimhot_choose') }}",
+            method: "GET",
+            data: {
+              phimhot_val:phimhot_val,
+              movie_id:movie_id,
+            },
+            success:function(data) {
+                alert('Thay đổi thành công');
+            }
+        });
+    })
+</script>
+  <script type="text/javascript">
+    $('.trangthai_choose').change(function() {
+        var trangthai_val = $(this).val();
+        var movie_id = $(this).attr('id');
+        $.ajax({
+            url: "{{ route('trangthai_choose') }}",
+            method: "GET",
+            data: {
+              trangthai_val:trangthai_val,
+              movie_id:movie_id,
+            },
+            success:function(data) {
+                alert('Thay đổi thành công');
+            }
+        });
+    })
+</script>
+  <script type="text/javascript">
+    $('.country_choose').change(function() {
+        var country_id = $(this).val();
+        var movie_id = $(this).attr('id');
+        $.ajax({
+            url: "{{ route('country_choose') }}",
+            method: "GET",
+            data: {
+              country_id:country_id,
+              movie_id:movie_id,
+            },
+            success:function(data) {
+                alert('Thay đổi thành công');
+            }
+        });
+    })
+</script>
+
+  <script type="text/javascript">
+    $('.category_choose').change(function() {
+        var category_id = $(this).val();
+        var movie_id = $(this).attr('id');
+        $.ajax({
+            url: "{{ route('category_choose') }}",
+            method: "GET",
+            data: {
+              category_id:category_id,
+              movie_id:movie_id,
+            },
+            success:function(data) {
+                alert('Thay đổi thành công');
+            }
+        });
+    })
+</script>
   <script type="text/javascript">
     $('.select-movie').change(function() {
         var id = $(this).val();

@@ -1,5 +1,5 @@
 <header id="site-header">
-    <nav class="navbar navbar-expand-lg" style="background-color:rgba(0, 0, 0, 0.50);">
+    <nav class="navbar navbar-expand-lg" style="background-color:rgba(0, 0, 0, 0.048);">
       <div class="container-fluid">
         <a href="{{route('pages.trangchu')}}"><img class="navbar-brand" src="public/image/logo/logo.png" alt=""></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
