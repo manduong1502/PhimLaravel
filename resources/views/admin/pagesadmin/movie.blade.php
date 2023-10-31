@@ -198,16 +198,22 @@
                 @foreach ($list as $key => $cate)
                     <tr id="{{ $cate->id }}">
                         <th scope="row">{{ $key }}</th>
-                        <td><img width="70" height="100" src="{{ asset('uploads/movie/' . $cate->image) }}"alt="">
+                        <td>
+                            <img width="70" height="100" src="{{ asset('uploads/movie/' . $cate->image) }}"alt="">
+                            <input type="file" data-movie_id="{{$cate->id}}" id="file-{{$cate->id}}" class="form-control-file file_image" accept="image/*">
+                            <div id="success_image"></div>
                         </td>
-                        <td><img width="70" height="100"
+                        <td>
+                            <img width="70" height="100"
                                 src="{{ asset('uploads/movie/imagebig/' . $cate->image1) }}"alt="">
                         </td>
                         <td><iframe width="200" height="100"
                                 src="{{ 'https://www.youtube.com/embed/' . $cate->trailer }}" title="YouTube video player"
                                 frameborder="0"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                allowfullscreen></iframe></td>
+                                allowfullscreen>
+                            </iframe>
+                        </td>
                         <td>{{ $cate->title }}</td>
                         <td><a href="{{ route('add-episode', [$cate->id]) }}" class="btn btn-danger btn-sm">Thêm tập
                                 phim</a></td>

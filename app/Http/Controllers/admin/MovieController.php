@@ -267,4 +267,20 @@ class MovieController extends Controller
         $movie->save();
     }
 
+    public function update_image_movie_ajax (Request $request) {
+        $get_image =$request->file('file');
+        $movie_id = $request->movie_id;
+
+        if($get_image) {
+            $movie = Movie::find($movie_id);
+            unlink('uploads/movie/'.$movie->image);
+            $get_name_image = $get_image->getClientOriginalName(); //lấy tên hình ảnh vd như hinhanh1.jpg
+            $name_image = current(explode('.',$get_name_image)); //tách dấu chấm ra để làm chuõi vd như [0]hinhanh1 . [1]jpg
+            $new_image =  $name_image.rand(0,9999).'.'.$get_image->getClientOriginalExtension(); //random 4 số khác nhau để tránh bị trùng hình ảnh ví dụ hinhanh1234.jpg
+            $get_image->move('uploads/movie',$new_image);
+            $movie->image = $new_image;
+            $movie->save();
+        }
+    }
+    
 }

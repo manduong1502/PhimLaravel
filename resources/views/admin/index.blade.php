@@ -86,6 +86,40 @@
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
   <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
   <script type="text/javascript" src="//cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+  <script type="text/javascript">
+       
+    $(document).on('change','.file_image',function(){
+
+        var movie_id = $(this).data('movie_id');
+        var files = $("#file-"+movie_id)[0].files;
+        
+        //console.log(files);
+        var image = document.getElementById("file-"+movie_id).files[0];
+        
+
+        var form_data = new FormData();
+
+        form_data.append("file", document.getElementById("file-"+movie_id).files[0]);
+        form_data.append("movie_id",movie_id);
+                $.ajax({
+                    url:"{{route('update-image-movie-ajax')}}",
+                    method:"POST",
+                    headers:{
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    data:form_data,
+
+                    contentType:false,
+                    cache:false,
+                    processData:false,
+
+                    success:function(data){
+                        location.reload();
+                        $('#success_image').html('<span class="text-success">Cập nhật hình ảnh thành công</span>');
+                    }
+                });
+    });
+    </script>
   
   <script type="text/javascript">
     $('.slide_choose').change(function() {
@@ -103,7 +137,7 @@
             }
         });
     })
-</script>
+</>
   <script type="text/javascript">
     $('.phimhot_choose').change(function() {
         var phimhot_val = $(this).val();
