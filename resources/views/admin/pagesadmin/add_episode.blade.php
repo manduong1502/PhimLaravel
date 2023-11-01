@@ -34,6 +34,9 @@
                                 'class' => 'form-control',
                                 'placeholder' => 'Nhập vào dữ liệu...',
                             ]) !!}
+                            @if($errors->has('linkphim'))
+                            <span class="errors-message">{{$errors->first('linkphim')}}</span>
+                        @endif
                         </div>
                         @if (isset($episode))
                             <div class="form-group">
@@ -43,6 +46,9 @@
                                     'placeholder' => 'Nhập vào dữ liệu...',
                                     isset($episode) ? 'readonly' : '',
                                 ]) !!}
+                                @if($errors->has('episode'))
+                                <span class="errors-message">{{$errors->first('episode')}}</span>
+                            @endif
                             </div>
                         @else
                             <div class="form-group">

@@ -26,6 +26,9 @@
                                 'id' => 'slug',
                                 'onkeyup' => 'ChangeToSlug()',
                             ]) !!}
+                            @if($errors->has('title'))
+                            <span class="errors-message">{{$errors->first('title')}}</span>
+                          @endif
                         </div>
                         <div class="form-group">
                             {!! Form::label('slug', 'Đường link', []) !!}
@@ -34,6 +37,9 @@
                                 'placeholder' => 'Nhập vào dữ liệu...',
                                 'id' => 'convert_slug',
                             ]) !!}
+                            @if($errors->has('slug'))
+                            <span class="errors-message">{{$errors->first('slug')}}</span>
+                          @endif
                         </div>
 
                         <div class="form-group">
@@ -43,6 +49,9 @@
                                 'placeholder' => 'Nhập vào dữ liệu...',
                                 'id' => 'description',
                             ]) !!}
+                            @if($errors->has('description'))
+                            <span class="errors-message">{{$errors->first('description')}}</span>
+                          @endif
                         </div>
                         <div class="form-group">
                             {!! Form::label('so_tap', 'Số Tập', []) !!}
@@ -51,6 +60,9 @@
                                 'placeholder' => 'Nhập vào dữ liệu...',
                                 'id' => 'slug',
                             ]) !!}
+                            @if($errors->has('so_tap'))
+                            <span class="errors-message">{{$errors->first('so_tap')}}</span>
+                          @endif
                         </div>
                         <div class="form-group">
                             {!! Form::label('title', 'Diễn viên (mỗi diễn viên cách dấu phẩy vd: dv1,dv2)', []) !!}
@@ -58,6 +70,9 @@
                                 'class' => 'form-control',
                                 'placeholder' => 'Nhập vào dữ liệu...',
                             ]) !!}
+                            @if($errors->has('actor'))
+                            <span class="errors-message">{{$errors->first('actor')}}</span>
+                          @endif
                         </div>
                         <div class="form-group">
                             {!! Form::label('daodien', 'Daodien', []) !!}
@@ -73,6 +88,9 @@
                             {!! Form::select('status', ['1' => 'Hiển thị', '0' => 'Không hiển thị'], isset($movie) ? $movie->status : '', [
                                 'class' => 'form-control',
                             ]) !!}
+                            @if($errors->has('status'))
+                            <span class="errors-message">{{$errors->first('status')}}</span>
+                          @endif
                         </div>
 
                         <div class="form-group">
@@ -80,11 +98,17 @@
                             {!! Form::select('category_id', $category, isset($movie) ? $movie->category_id : '', [
                                 'class' => 'form-control',
                             ]) !!}
+                            @if($errors->has('category_id'))
+                            <span class="errors-message">{{$errors->first('category_id')}}</span>
+                          @endif
                         </div>
 
                         <div class="form-group">
                             {!! Form::label('Country', 'Quốc Gia', []) !!}
                             {!! Form::select('country_id', $country, isset($movie) ? $movie->country_id : '', ['class' => 'form-control']) !!}
+                            @if($errors->has('country_id'))
+                                <span class="errors-message">{{$errors->first('country_id')}}</span>
+                            @endif
                         </div>
 
                         <div class="form-group">
@@ -122,6 +146,9 @@
                                     'class' => 'form-control',
                                 ],
                             ) !!}
+                            @if($errors->has('phim_hot'))
+                                <span class="errors-message">{{$errors->first('phim_hot')}}</span>
+                            @endif
                         </div>
 
 

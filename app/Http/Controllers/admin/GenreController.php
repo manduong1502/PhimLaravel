@@ -5,7 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Genre;
-
+use App\Http\Requests\GenreRequest;
 class GenreController extends Controller
 {
     /**
@@ -28,7 +28,7 @@ class GenreController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(GenreRequest $request)
     {
         $genre = new Genre();
         $genre->title = $request->title;

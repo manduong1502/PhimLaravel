@@ -15,6 +15,15 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="//cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <style>
+      .errors-message {
+        color: red;
+        font-size: 14px;
+        font-weight: 600;
+        margin-top: 10px;
+        margin-bottom: 10px;
+      }
+    </style>
 </head>
 
 <body>

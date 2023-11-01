@@ -11,6 +11,7 @@ use App\Models\Genre;
 use App\Models\Movie_Genre;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\File;
+use App\Http\Requests\MovieRequest;
 class MovieController extends Controller
 {
     /**
@@ -63,7 +64,7 @@ class MovieController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(MovieRequest $request)
     {
         $data =$request->all();
         $movie = new Movie();

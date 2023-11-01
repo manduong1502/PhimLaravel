@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Movie;
 use App\Models\Episode;
+use App\Http\Requests\EpisodeRequest;
 class EpisodeController extends Controller
 {
     /**
@@ -32,7 +33,7 @@ class EpisodeController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(EpisodeRequest $request)
     {
         $episode = new Episode();
         $episode->movie_id = $request->movie_id;
