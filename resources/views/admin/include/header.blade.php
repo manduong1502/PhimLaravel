@@ -22,7 +22,7 @@
                     @endphp
                     <li class="treeview {{($segment == 'category') ? 'active' : ''}}">
                         <a href="#">
-                            <i class="fa fa-laptop"></i>
+                            <i class="fa fa-file"></i>
                             <span>Danh mục</span>
                             <i class="fa fa-angle-left pull-right"></i>
                         </a>
@@ -34,7 +34,7 @@
 
                     <li class="treeview {{($segment == 'genre') ? 'active' : ''}}">
                         <a href="#">
-                            <i class="fa fa-laptop"></i>
+                            <i class="fa fa-child"></i>
                             <span>Thể loại</span>
                             <i class="fa fa-angle-left pull-right"></i>
                         </a>
@@ -46,7 +46,7 @@
 
                     <li class="treeview {{($segment == 'country') ? 'active' : ''}}">
                         <a href="#">
-                            <i class="fa fa-laptop"></i>
+                            <i class="fa fa-globe"></i>
                             <span>Quốc gia</span>
                             <i class="fa fa-angle-left pull-right"></i>
                         </a>
@@ -58,7 +58,7 @@
 
                     <li class="treeview {{($segment == 'movie') ? 'active' : ''}}">
                         <a href="#">
-                            <i class="fa fa-laptop"></i>
+                            <i class="fa fa-film"></i>
                             <span>Phim</span>
                             <i class="fa fa-angle-left pull-right"></i>
                         </a>
@@ -70,7 +70,7 @@
 
                     <li class="treeview {{($segment == 'episode') ? 'active' : ''}}">
                         <a href="#">
-                            <i class="fa fa-laptop"></i>
+                            <i class="fa fa-clapperboard"></i>
                             <span>Tập phim</span>
                             <i class="fa fa-angle-left pull-right"></i>
                         </a>
@@ -82,7 +82,7 @@
 
                     <li class="treeview {{($segment == 'blog') ? 'active' : ''}}">
                         <a href="#">
-                            <i class="fa fa-laptop"></i>
+                            <i class="fa fa-users"></i>
                             <span>Bài viết blog</span>
                             <i class="fa fa-angle-left pull-right"></i>
                         </a>
