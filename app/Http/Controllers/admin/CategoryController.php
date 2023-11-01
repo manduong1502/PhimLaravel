@@ -13,7 +13,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $list = Category::orderBy('id','ASC')->get();
+        return  view('admin.pagesadmin.category.form',compact('list'));
     }
 
     /**
@@ -21,8 +22,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $list = Category::orderBy('position','ASC')->get();
-        return  view('admin.pagesadmin.category',compact('list'));
+        return  view('admin.pagesadmin.category.index');
     }
 
     /**
@@ -54,8 +54,8 @@ class CategoryController extends Controller
     public function edit(string $id)
     {   
         $category = Category::find($id);
-        $list = Category::orderBy('position','ASC')->get();
-        return  view('admin.pagesadmin.category',compact('list','category'));
+        $list = Category::orderBy('id','ASC')->get();
+        return  view('admin.pagesadmin.category.index',compact('list','category'));
     }
 
     /**
@@ -68,7 +68,7 @@ class CategoryController extends Controller
         $category->slug = $request->slug;
         $category->status = $request->status;
         $category->save();
-        return redirect()->route('category.create');
+        return redirect()->route('category.index');
     }
 
     /**

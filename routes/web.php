@@ -29,7 +29,7 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('auth.logout');
 // login admin
 Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard') ->middleware(CheckAdmin::class);
 //route admin
-Route::resource('/admin/category', CategoryController::class)->middleware(CheckAdmin::class);
+Route::resource('/admin/category', CategoryController::class);
 Route::post('resorting', [CategoryController::class,'resorting'])->name('resorting')->middleware(CheckAdmin::class);
 Route::resource('/admin/genre', GenreController::class)->middleware(CheckAdmin::class);
 Route::resource('/admin/movie', MovieController::class)->middleware(CheckAdmin::class);
@@ -81,3 +81,9 @@ Route::get('/datghe', [PageController::class, 'getchoghe'])->middleware(AuthMidd
 Route::get('/datbapnuoc', [PageController::class, 'getdatbapnuoc'])->middleware(AuthMiddleware::class);
 Route::get('/thanhtoan', [PageController::class, 'getthanhtoan'])->middleware(AuthMiddleware::class);
 Route::get('/thongtinve', [PageController::class, 'getthongtinve'])->middleware(AuthMiddleware::class);
+
+
+
+
+
+

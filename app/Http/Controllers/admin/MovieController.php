@@ -19,13 +19,28 @@ class MovieController extends Controller
      */
     public function index()
     {
-        $list = Movie::with('category','genre','country')->orderBy('id','DESC')->get();
+        $category = Category::pluck('title', 'id');
+    $country = Country::pluck('title', 'id');
+    $genre = Genre::pluck('title', 'id');
+    $list_genre = Genre::all();
+    $list = Movie::with('category', 'country', 'genre', 'movie_genre')->withCount('episode')->orderBy('id', 'DESC')->get();
+    
+    // Đảm bảo biến movie_genre đã được định nghĩa và cung cấp nó trong mảng compact
+    $movie_genre = Genre::pluck('title', 'id');
+
         $path = public_path()."/json/";
         if(!is_dir($path)) {
             mkdir($path,0777,true);
         }
         File::put($path. 'movies.json',json_encode($list));
-        return redirect()->route('movie.create');
+        return view('admin.pagesadmin.movie.form',compact(
+            'list',
+        'country',
+        'genre',
+        'category',
+        'list_genre',
+        'movie_genre'
+        ));
     }
     
     public function update_year (Request $request) {
@@ -51,7 +66,7 @@ class MovieController extends Controller
     // Đảm bảo biến movie_genre đã được định nghĩa và cung cấp nó trong mảng compact
     $movie_genre = Genre::pluck('title', 'id');
     
-    return view('admin.pagesadmin.movie', compact(
+    return view('admin.pagesadmin.movie.index', compact(
         'list',
         'country',
         'genre',
@@ -136,7 +151,7 @@ class MovieController extends Controller
         if (!$movie) {
             return redirect()->route('movie.create')->with('error', 'Không tìm thấy bộ phim.');
         }
-        return  view('admin.pagesadmin.movie',compact(
+        return  view('admin.pagesadmin.movie.index',compact(
             'list',
             'country',
             'genre',
@@ -199,7 +214,7 @@ class MovieController extends Controller
         }
         $movie->save();
         $movie->movie_genre()->sync($data['genre']);
-        return redirect()->route('movie.create');
+        return redirect()->route('movie.index');
     }
 
     /**

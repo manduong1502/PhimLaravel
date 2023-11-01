@@ -15,7 +15,15 @@ class BlogController extends Controller
      */
     public function index()
     {
-        //
+        $list = Blog::with('genre')->orderBy('id', 'DESC')->get();
+        $list_genre = Genre::all();
+        $genre = Genre::pluck('title', 'id');
+        // Đảm bảo biến blog_genre đã được định nghĩa và cung cấp nó trong mảng compact
+        return  view('admin.pagesadmin.blog.form',compact(
+            'list',
+            'list_genre',
+            'genre'
+        ));
     }
 
     /**
@@ -27,7 +35,7 @@ class BlogController extends Controller
         $list_genre = Genre::all();
         $genre = Genre::pluck('title', 'id');
         // Đảm bảo biến blog_genre đã được định nghĩa và cung cấp nó trong mảng compact
-        return  view('admin.pagesadmin.blog',compact(
+        return  view('admin.pagesadmin.blog.index',compact(
             'list',
             'list_genre',
             'genre'
@@ -107,7 +115,7 @@ class BlogController extends Controller
             $blog->video = $new_video;
         }
         $blog->save();
-        return redirect()->route('blog.create');
+        return redirect()->route('blog.index');
     }
 
     /**
