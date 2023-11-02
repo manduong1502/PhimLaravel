@@ -29,7 +29,7 @@
 
  <!--scrolling js-->
  <script src="{{ asset('backend/js/jquery.nicescroll.js') }}"></script>
- <script src="{{ asset('backend/js/scripts.js') }}"></script>
+
  <!--//scrolling js-->
 
  <!-- Bootstrap Core JavaScript -->
@@ -256,4 +256,29 @@
         })
       }
     });
+</script>
+
+<script type="text/javascript">
+    $('.show_video').click(function() {
+        var movie_id = $(this).data('movie_video_id');
+        var episode_id = $(this).data('video_episode');
+        $.ajax({
+            url: "{{ route('watch-video') }}",
+            method: "POST",
+            dataType:"JSON",
+            headers:{
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            data: {
+              movie_id: movie_id,
+              episode_id: episode_id
+            },
+            success: function(data) {
+              $('#video_title').html(data.video_title);
+              $('#video_link').html(data.video_link);
+              $('#video_desc').html(data.video_desc);
+              $('#videoModal').modal('show');
+            }
+        });
+    })
 </script>

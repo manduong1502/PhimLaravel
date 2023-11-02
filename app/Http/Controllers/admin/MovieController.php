@@ -8,6 +8,7 @@ use App\Models\Movie;
 use App\Models\Category;
 use App\Models\Country;
 use App\Models\Genre;
+use App\Models\Episode;
 use App\Models\Movie_Genre;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\File;
@@ -297,6 +298,16 @@ class MovieController extends Controller
             $movie->image = $new_image;
             $movie->save();
         }
+    }
+
+    public function watch_video (Request $request) {
+        $data = $request->all();
+        $movie = Movie::find($data['movie_id']);
+        $video = Episode::where('movie_id',$data['movie_id'])->where('episode',$data['episode_id'])->first();
+        $output['video_title'] = $movie->title.'- tập '.$video->episode;
+        $output['video_desc'] = $movie->description;
+        $output['video_link'] = $movie->linkphim;
+        echo json_encode($output);
     }
     
 }

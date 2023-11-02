@@ -48,6 +48,8 @@ Route::get('trangthai-choose', [MovieController::class,'trangthai_choose'])->nam
 Route::get('phimhot-choose', [MovieController::class,'phimhot_choose'])->name('phimhot_choose');
 Route::get('slide-choose', [MovieController::class,'slide_choose'])->name('slide_choose');
 Route::post('update-image-movie-ajax', [MovieController::class,'update_image_movie_ajax'])->name('update-image-movie-ajax');
+Route::post('show-video', [MovieController::class,'watch_video'])->name('watch-video');
+
 
 //Register
 Route::get('/register', [RegisterController::class, 'index'])->name('auth.register.index');

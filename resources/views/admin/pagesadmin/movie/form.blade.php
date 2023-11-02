@@ -1,6 +1,25 @@
 @extends('admin.index')
 
 @section('admin.content')
+
+  <!-- Modal -->
+  <div class="modal" id="videoModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel"><span id="video_title"></span></h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <p id="video_desc"></p>
+            <p id="video_link"></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#category">
     Thêm nhanh
@@ -207,8 +226,7 @@
                             <th scope="col">Hình ảnh lớn</th>
                             <th scope="col">Trailer</th>
                             <th scope="col">Tiêu đề</th>
-                            <th scope="col">Thêm tập phim</th>
-                            <th scope="col">Số tập</th>
+                            <th scope="col">Tập phim</th>
                             <th scope="col">Đường dẫn phim</th>
                             <th scope="col">Mô tả</th>
                             <th scope="col">Hiển thị</th>
@@ -224,7 +242,7 @@
                             <th scope="col">Chỉnh sửa</th>
                         </tr>
                     </thead>
-                    <tbody class="order_position">
+                    <tbody>
                         @foreach ($list as $key => $cate)
                             <tr id="{{ $cate->id }}">
                                 <th scope="row">{{ $key }}</th>
@@ -237,22 +255,31 @@
                                     <img width="70" height="100"
                                         src="{{ asset('uploads/movie/imagebig/' . $cate->image1) }}"alt="">
                                 </td>
-                                <td><iframe width="200" height="100"
+                                <td>
+                                    {{-- <iframe width="200" height="100"
                                         src="{{ 'https://www.youtube.com/embed/' . $cate->trailer }}" title="YouTube video player"
                                         frameborder="0"
                                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                         allowfullscreen>
-                                    </iframe>
+                                    </iframe> --}}
                                 </td>
                                 <td>{{ $cate->title }}</td>
                                 <td>
                                     <a href="{{ route('add-episode', [$cate->id]) }}" class="btn btn-danger btn-sm">Thêm tập
                                         phim</a>
-                                    
+                                    <div>{{ $cate->episode_count }}/{{ $cate->so_tap }} tập</div>    
+                                    @foreach ($cate->episode as $key => $epis)      
+                                    <a
+                                        class="show_video"
+                                        data-movie_video_id="{{$epis->movie_id}}"
+                                        data-video_episode="{{$epis->episode}}"
+                                        style="color:#fff;cursor: pointer">
+                                        <span class="badge text-bg-dark" >{{$epis->episode}}</span>
+                                    </a>
+                                    @endforeach
                                     </td>
-                                <td> {{ $cate->episode_count }}/{{ $cate->so_tap }} tập</td>
                                 <td>{{ $cate->slug }}</td>
-                                <td>{{ $cate->description }}</td>
+                                <td><p style="width: 300px">{{ $cate->description }}</p></td>
                                 <td>
                                     {{-- @if ($cate->status == 1)
                                         <span class="badge badge-success">Hiển thị</span>
