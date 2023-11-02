@@ -224,17 +224,16 @@ class MovieController extends Controller
     public function destroy(string $id)
     {
         $movie = Movie::find($id);
-        if (!empty ($movie->image)) {
+        if(file_exists('uploads/movie/'.$movie->image)){
             unlink('uploads/movie/'.$movie->image);
         }
-        $movie = Movie::find($id);
-        if (!empty ($movie->image1)) {
+        if(file_exists('uploads/movie/'.$movie->image1)){
             unlink('uploads/movie/'.$movie->image1);
-        }
+        } 
         //Nhiều thể loại
         //Điều kiện lấy film
         Movie_Genre::whereIn('movie_id', [$movie->id])->delete(); 
-       
+        Episode::whereIn('movie_id', [$movie->id])->delete(); 
         $movie->delete();
         return redirect()->back();
     }

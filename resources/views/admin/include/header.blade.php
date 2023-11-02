@@ -65,6 +65,7 @@
                         <ul class="treeview-menu">
                             <li><a href="{{route('movie.create')}}"><i class="fa fa-angle-right"></i> Thêm phim</a></li>
                             <li><a href="{{route('movie.index')}}"><i class="fa fa-angle-right"></i> Liệt kê phim</a></li>
+                            <li><a href="{{route('leech_movie')}}"><i class="fa fa-angle-right"></i> API Phim</a></li>
                         </ul>
                     </li>
 
@@ -77,7 +78,6 @@
                         <ul class="treeview-menu">
                             <li><a href="{{route('episode.create')}}"><i class="fa fa-angle-right"></i> Thêm tập phim</a></li>
                             <li><a href="{{route('episode.index')}}"><i class="fa fa-angle-right"></i> Liệt kê tập phim</a></li>
-                        </ul>
                     </li>
 
                     <li class="treeview {{($segment == 'blog') ? 'active' : ''}}">

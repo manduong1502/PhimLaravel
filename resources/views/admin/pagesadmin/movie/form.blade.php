@@ -247,13 +247,28 @@
                             <tr id="{{ $cate->id }}">
                                 <th scope="row">{{ $key }}</th>
                                 <td>
-                                    <img width="70" height="100" src="{{ asset('uploads/movie/' . $cate->image) }}"alt="">
+                                    @php
+                                        $image_check =substr($cate->image,0,5);
+                                    @endphp
+                                    @if($image_check  =='https')
+                                        <img width="70" height="100" src="{{$cate->image}}"alt="">
+                                    @else
+                                        <img width="70" height="100" src="{{ asset('uploads/movie/' . $cate->image) }}"alt="">
+                                    @endif
                                     <input type="file" data-movie_id="{{$cate->id}}" id="file-{{$cate->id}}" class="form-control-file file_image" accept="image/*">
                                     <div id="success_image"></div>
                                 </td>
                                 <td>
+                                    @php
+                                        $image_check =substr($cate->image,0,5);
+                                    @endphp
+                                    @if($image_check  =='https')
+                                    <img width="70" height="100" src="{{$cate->image1}}"alt="">
+                                    @else
                                     <img width="70" height="100"
-                                        src="{{ asset('uploads/movie/imagebig/' . $cate->image1) }}"alt="">
+                                    src="{{ asset('uploads/movie/imagebig/' . $cate->image1) }}"alt="">
+                                    @endif
+            
                                 </td>
                                 <td>
                                     {{-- <iframe width="200" height="100"
