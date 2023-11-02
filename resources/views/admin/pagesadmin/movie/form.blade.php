@@ -1,9 +1,204 @@
 @extends('admin.index')
 
 @section('admin.content')
-    <div class="container mt-5">
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#category">
+    Thêm nhanh
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal" id="category" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header"> 
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Thêm phim</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="card">
+              <div class="card-header">Quản lý phim</div>
+              <div class="card-body container">
+                  @if (session('status'))
+                      <div class="alert alert-success" role="alert">
+                          {{ session('status') }}
+                      </div>
+                  @endif
+                      {!! Form::open(['route' => 'movie.store', 'method' => 'POST']) !!}
+                      
+                      <div class="form-group">
+                        {!! Form::label('title', 'Tên Phim', []) !!}
+                        {!! Form::text('title', isset($movie) ? $movie->title : '', [
+                            'class' => 'form-control',
+                            'placeholder' => 'Nhập vào dữ liệu...',
+                            'id' => 'slug',
+                            'onkeyup' => 'ChangeToSlug()',
+                        ]) !!}
+                        @if($errors->has('title'))
+                        <span class="errors-message">{{$errors->first('title')}}</span>
+                      @endif
+                    </div>
+                    <div class="form-group">
+                        {!! Form::label('slug', 'Đường link', []) !!}
+                        {!! Form::text('slug', isset($movie) ? $movie->slug : '', [
+                            'class' => 'form-control',
+                            'placeholder' => 'Nhập vào dữ liệu...',
+                            'id' => 'convert_slug',
+                        ]) !!}
+                        @if($errors->has('slug'))
+                        <span class="errors-message">{{$errors->first('slug')}}</span>
+                      @endif
+                    </div>
+
+                    <div class="form-group">
+                        {!! Form::label('description', 'Mô tả', []) !!}
+                        {!! Form::textarea('description', isset($movie) ? $movie->description : '', [
+                            'class' => 'form-control',
+                            'placeholder' => 'Nhập vào dữ liệu...',
+                            'id' => 'description',
+                        ]) !!}
+                        @if($errors->has('description'))
+                        <span class="errors-message">{{$errors->first('description')}}</span>
+                      @endif
+                    </div>
+                    <div class="form-group">
+                        {!! Form::label('so_tap', 'Số Tập', []) !!}
+                        {!! Form::text('so_tap', isset($movie) ? $movie->so_tap : '', [
+                            'class' => 'form-control',
+                            'placeholder' => 'Nhập vào dữ liệu...',
+                            'id' => 'slug',
+                        ]) !!}
+                        @if($errors->has('so_tap'))
+                        <span class="errors-message">{{$errors->first('so_tap')}}</span>
+                      @endif
+                    </div>
+                    <div class="form-group">
+                        {!! Form::label('title', 'Diễn viên (mỗi diễn viên cách dấu phẩy vd: dv1,dv2)', []) !!}
+                        {!! Form::text('actor', isset($movie) ? $movie->actor : '', [
+                            'class' => 'form-control',
+                            'placeholder' => 'Nhập vào dữ liệu...',
+                        ]) !!}
+                        @if($errors->has('actor'))
+                        <span class="errors-message">{{$errors->first('actor')}}</span>
+                      @endif
+                    </div>
+                    <div class="form-group">
+                        {!! Form::label('daodien', 'Daodien', []) !!}
+                        {!! Form::textarea('daodien', isset($movie) ? $movie->daodien : '', [
+                            'class' => 'form-control',
+                            'placeholder' => 'Nhập vào dữ liệu...',
+                            'id' => 'daodien',
+                        ]) !!}
+                    </div>
+
+                    <div class="form-group">
+                        {!! Form::label('Active', 'Hiển thị', []) !!}
+                        {!! Form::select('status', ['1' => 'Hiển thị', '0' => 'Không hiển thị'], isset($movie) ? $movie->status : '', [
+                            'class' => 'form-control',
+                        ]) !!}
+                        @if($errors->has('status'))
+                        <span class="errors-message">{{$errors->first('status')}}</span>
+                      @endif
+                    </div>
+
+                    <div class="form-group">
+                        {!! Form::label('Category', 'Danh mục', []) !!}
+                        {!! Form::select('category_id', $category, isset($movie) ? $movie->category_id : '', [
+                            'class' => 'form-control',
+                        ]) !!}
+                        @if($errors->has('category_id'))
+                        <span class="errors-message">{{$errors->first('category_id')}}</span>
+                      @endif
+                    </div>
+
+                    <div class="form-group">
+                        {!! Form::label('Country', 'Quốc Gia', []) !!}
+                        {!! Form::select('country_id', $country, isset($movie) ? $movie->country_id : '', ['class' => 'form-control']) !!}
+                        @if($errors->has('country_id'))
+                            <span class="errors-message">{{$errors->first('country_id')}}</span>
+                        @endif
+                    </div>
+
+                    <div class="form-group">
+                        {!! Form::label('Genre', 'Thể Loại', []) !!} <br>
+                        {{-- {!! Form::select('genre_id', $genre, isset($movie) ? $movie->genre_id : '', ['class' => 'form-control']) !!} --}}
+                        @foreach ($list_genre as $key => $list_gen)
+                            @if (isset($movie))
+                                {!! Form::checkbox(
+                                    'genre[]',
+                                    $list_gen->id,
+                                    isset($movie_genre) && $movie_genre->contains($list_gen->id) ? true : false,
+                                ) !!}
+                            @else
+                                {!! Form::checkbox('genre[]', $list_gen->id) !!}
+                            @endif
+                            {!! Form::label('genre', $list_gen->title) !!}
+                        @endforeach
+                    </div>
+
+
+                    <div class="form-group">
+                        {!! Form::label('Phim hot', 'Hiển thị slide', []) !!}
+                        {!! Form::select('slide', ['0' => 'Không hiển thị', '1' => 'Hiển thị'], isset($movie) ? $movie->slide : '', [
+                            'class' => 'form-control',
+                        ]) !!}
+                    </div>
+
+                    <div class="form-group">
+                        {!! Form::label('Phim hot', 'Đề xuất hot', []) !!}
+                        {!! Form::select(
+                            'phim_hot',
+                            ['0' => 'Không hiển thị', '1' => 'Hiển thị'],
+                            isset($movie) ? $movie->phim_hot : '',
+                            [
+                                'class' => 'form-control',
+                            ],
+                        ) !!}
+                        @if($errors->has('phim_hot'))
+                            <span class="errors-message">{{$errors->first('phim_hot')}}</span>
+                        @endif
+                    </div>
+
+
+                    <div class="form-group">
+                        {!! Form::label('Image', 'Ảnh nhỏ', []) !!}
+                        {!! Form::file('image', ['class' => 'form-control-file']) !!}
+                        @if (isset($movie))
+                            <img width="20%" src="{{ asset('uploads/movie/' . $movie->image) }}"alt="">
+                        @endif
+                    </div>
+
+                    <div class="form-group">
+                        {!! Form::label('Image', 'Ảnh lớn', []) !!}
+                        {!! Form::file('image1', ['class' => 'form-control-file']) !!}
+                        @if (isset($movie))
+                            <img width="20%" src="{{ asset('uploads/movie/imagebig/' . $movie->image1) }}"alt="">
+                        @endif
+                    </div>
+
+                    <div class="form-group">
+                        {!! Form::label('title', 'Trailer (link cuối đuôi youtube)', []) !!}
+                        {!! Form::text('trailer', isset($movie) ? $movie->trailer : '', [
+                            'class' => 'form-control',
+                            'placeholder' => 'Nhập vào dữ liệu...',
+                        ]) !!}
+                    </div>
+
+
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Thoát</button>
+                      {!! Form::submit('Thêm dữ liêu', ['class' => 'btn btn-primary mt-2']) !!}
+                    </div>
+  
+                  {!! Form::close() !!}
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+    <div class="container mt-5 table-responsive">
         <div class="row justify-content-center">
-            <div class="col-md-12 table-responsive">
+            <div class="col-md-12 ">
                 <table class="table mt-4 table-success table-striped" id="myTable">
                     <thead>
                         <tr>
@@ -50,8 +245,11 @@
                                     </iframe>
                                 </td>
                                 <td>{{ $cate->title }}</td>
-                                <td><a href="{{ route('add-episode', [$cate->id]) }}" class="btn btn-danger btn-sm">Thêm tập
-                                        phim</a></td>
+                                <td>
+                                    <a href="{{ route('add-episode', [$cate->id]) }}" class="btn btn-danger btn-sm">Thêm tập
+                                        phim</a>
+                                    
+                                    </td>
                                 <td> {{ $cate->episode_count }}/{{ $cate->so_tap }} tập</td>
                                 <td>{{ $cate->slug }}</td>
                                 <td>{{ $cate->description }}</td>

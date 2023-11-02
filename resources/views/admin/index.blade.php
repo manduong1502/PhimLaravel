@@ -75,7 +75,7 @@
                     </div>
 
                     <div class="bs-example5 widget-shadow container" data-example-id="default-media">
-                        <div class="mt-3">
+
                             <h1>
                                 @if (session()->has('index_content'))
                                     {{ session('index_content') }}
@@ -86,7 +86,6 @@
                             <main>
                                 @yield('admin.content')
                             </main>
-                        </div>
                     </div>
 
                 </div>

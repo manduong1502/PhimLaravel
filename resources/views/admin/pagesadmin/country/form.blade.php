@@ -1,6 +1,78 @@
 @extends('admin.index')
 
 @section('admin.content')
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#country">
+    Thêm nhanh
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal" id="country" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header"> 
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Thêm danh Quốc gia</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="card">
+              <div class="card-header">Quản lý quốc gia</div>
+              <div class="card-body container">
+                  @if (session('status'))
+                      <div class="alert alert-success" role="alert">
+                          {{ session('status') }}
+                      </div>
+                  @endif
+                      {!! Form::open(['route' => 'country.store', 'method' => 'POST']) !!}
+                      <div class="form-group">
+                        {!! Form::label('title', 'Tên Quốc gia', []) !!}
+                        {!! Form::text('title', isset($country) ? $country->title : '', [
+                            'class' => 'form-control',
+                            'placeholder' => 'Nhập vào dữ liệu...',
+                            'id' => 'slug',
+                            'onkeyup' => 'ChangeToSlug()',
+                        ]) !!}
+                        @if ($errors->has('title'))
+                            <span class="errors-message">{{ $errors->first('title') }}</span>
+                        @endif
+                    </div>
+                    <div class="form-group">
+                        {!! Form::label('slug', 'Đường Link', []) !!}
+                        {!! Form::text('slug', isset($country) ? $country->slug : '', [
+                            'class' => 'form-control',
+                            'placeholder' => 'Nhập vào dữ liệu...',
+                            'id' => 'convert_slug',
+                        ]) !!}
+                        @if ($errors->has('slug'))
+                            <span class="errors-message">{{ $errors->first('slug') }}</span>
+                        @endif
+                    </div>
+
+                    <div class="form-group">
+                        {!! Form::label('Active', 'Hiển thị', []) !!}
+                        {!! Form::select(
+                            'status',
+                            ['1' => 'Hiển thị', '0' => 'Không hiển thị'],
+                            isset($country) ? $country->status : '',
+                            ['class' => 'form-control'],
+                        ) !!}
+                        @if ($errors->has('status'))
+                            <span class="errors-message">{{ $errors->first('status') }}</span>
+                        @endif
+                    </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Thoát</button>
+                      {!! Form::submit('Thêm dữ liêu', ['class' => 'btn btn-primary mt-2']) !!}
+                    </div>
+  
+                  {!! Form::close() !!}
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
     <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-md-12">
