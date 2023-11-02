@@ -32,6 +32,7 @@
                                 <td>{{ $res['year'] }}</td>
                                 <td>
                                     <a href="{{route('leech-detaiil',$res['slug'])}}" class="btn btn-primary">Chi tiết phim</a>
+                                    <a href="{{route('leech_episode',$res['slug'])}}" class="btn btn-secondary">Xem số tập phim</a>
                                     @php
                                         $movie = App\Models\Movie::where('slug',$res['slug'])->first();
                                     @endphp
