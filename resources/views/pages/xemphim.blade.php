@@ -34,16 +34,18 @@
                 <div class="tab-content">
                     <div class="tab-pane active server-1">
                         <div class="halim-server">
-                            <ul class="halim-list-eps">
+                            <p>#VIETSUB</p>
+                            <ul class="halim-list-eps" style="padding: 0; display:flex">
                                 @foreach ($movie->episode as $key => $sotap)
-                                    <a href="{{ url('xemphim/' . $movie->slug . '/tap-' . $sotap->episode) }}">
+                                    <a href="{{ url('xemphim/' . $movie->slug . '/tap-' . $sotap->episode) }}" style="text-decoration: none; list-style: none; padding-right: 10px">
                                         <li class="halim-episode">
                                             <span
                                                 class="halim-btn hanlim-btn-2 {{ $tapphim == $sotap->episode ? 'active' : '' }} halim-info-1-1 box-shadow"
                                                 data-post-id="37976" data-server ="1" data-episode ="1"
                                                 data-position="first" data-embed ="0"
                                                 data-title="Xem phim {{ $movie->title }} - Tập {{ $sotap->episode }} -Vietsub -Thuyết Minh"
-                                                data-h1="{{ $movie->title }} - tập {{ $sotap->episode }}">{{ $sotap->episode }}</span>
+                                                data-h1="{{ $movie->title }} - tập {{ $sotap->episode }}" ><div>{{ $sotap->episode }}</div>
+                                            </span>
                                         </li>
                                     </a>
                                 @endforeach

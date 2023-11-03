@@ -39,4 +39,16 @@
               $('#result').html('');
           })
       })
+      function showDropdown(element) {
+        const dropdown = element.querySelector('.dropdown-menu');
+        dropdown.style.display = 'block';
+      }
+
+      function hideDropdown(element) {
+        const dropdown = element.querySelector('.dropdown-menu');
+        dropdown.style.display = 'none';
+      }
+
+
+
   </script>
