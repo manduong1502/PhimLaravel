@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('linkmovie', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->string('description');
+            $table->integer('status');
             $table->timestamps();
         });
     }

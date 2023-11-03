@@ -16,7 +16,7 @@ use App\Http\Controllers\admin\EpisodeController;
 use App\Http\Controllers\admin\GenreController;
 use App\Http\Controllers\admin\BlogController;
 use App\Http\Controllers\admin\LeechMovieController;
-
+use App\Http\Controllers\admin\LinkMovieController;
 
 
 
@@ -36,6 +36,7 @@ Route::resource('/admin/movie', MovieController::class)->middleware(CheckAdmin::
 Route::resource('/admin/country', CountryController::class)->middleware(CheckAdmin::class);
 Route::resource('/admin/episode', EpisodeController::class)->middleware(CheckAdmin::class);
 Route::resource('/admin/blog', BlogController::class)->middleware(CheckAdmin::class);
+Route::resource('/admin/linkmovie', LinkMovieController::class)->middleware(CheckAdmin::class);
 
 //Thay đổi dữ liệu trong movie ajax
 Route::get('update-nam-phim', [MovieController::class,'update_year'])->name('update-year-phim');

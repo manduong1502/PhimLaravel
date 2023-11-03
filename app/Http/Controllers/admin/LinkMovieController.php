@@ -4,15 +4,16 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
-class LinkMovieController extends Controller
+use App\Models\linkMovie;
+class linkMovieController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $list = linkMovie::orderBy('id','ASC')->get();
+        return  view('admin.pagesadmin.link.form',compact('list'));
     }
 
     /**
@@ -20,7 +21,7 @@ class LinkMovieController extends Controller
      */
     public function create()
     {
-        //
+        return  view('admin.pagesadmin.link.index');
     }
 
     /**
@@ -28,7 +29,12 @@ class LinkMovieController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $linkMovie = new linkMovie();
+        $linkMovie->title = $request->title;
+        $linkMovie->description = $request->description;
+        $linkMovie->status = $request->status;
+        $linkMovie->save();    
+        return redirect()->back()->with('success','Bạn đã thêm thành công');
     }
 
     /**
@@ -44,7 +50,9 @@ class LinkMovieController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $linkmovie = linkMovie::find($id);
+        $list = linkMovie::orderBy('id','ASC')->get();
+        return  view('admin.pagesadmin.category.index',compact('list','linkmovie'));
     }
 
     /**
@@ -52,7 +60,12 @@ class LinkMovieController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $linkMovie = linkMovie::find($id);
+        $linkMovie->title = $request->title;
+        $linkMovie->description = $request->description;
+        $linkMovie->status = $request->status;
+        $linkMovie->save();
+        return redirect()->route('linkmovie.index');
     }
 
     /**
@@ -60,6 +73,7 @@ class LinkMovieController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        linkMovie::find($id) -> delete();
+        return redirect()->back();
     }
 }
