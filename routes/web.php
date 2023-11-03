@@ -91,3 +91,4 @@ Route::get('/leech-movie', [LeechMovieController::class, 'leech_movie'])->name('
 Route::get('/leech-detail/{slug}', [LeechMovieController::class, 'leech_detaiil'])->name('leech-detaiil')->middleware(CheckAdmin::class);
 Route::post('/leech-store/{slug}', [LeechMovieController::class, 'leech_store'])->name('leech-store')->middleware(CheckAdmin::class);
 Route::get('/leech-episode/{slug}', [LeechMovieController::class, 'leech_episode'])->name('leech_episode')->middleware(CheckAdmin::class);
+Route::post('/leech-episode-store/{slug}', [LeechMovieController::class, 'leech_episode_store'])->name('leech-episode-store')->middleware(CheckAdmin::class);

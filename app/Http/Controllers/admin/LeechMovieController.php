@@ -9,11 +9,27 @@ use App\Models\Movie;
 use App\Models\Category;
 use App\Models\Country;
 use App\Models\Genre;
+use App\Models\Episode;
 use Carbon\Carbon;
 
 class LeechMovieController extends Controller
 {
     
+    public function leech_episode_store (Request $request, $slug) {
+        $movie = Movie::where('slug',$slug)->first();
+        $resp =Http::get("https://ophim1.com/phim/".$slug)->json();
+        foreach ($resp['episodes'] as $key => $res) {
+            foreach ($res['server_data'] as $key => $ser_data) {
+                $episode = new Episode();
+                $episode->movie_id = $movie->id;
+                $episode-> linkphim = "<p><iframe width='560' height='315' src='".$ser_data['link_embed']."' allowfullscreen></iframe></p>";
+                $episode->episode = $ser_data['name'];
+                $episode->save();
+            }
+        }
+        return redirect()->back();
+    }   
+
     public function leech_movie() {
         $resp =Http::get("https://ophim1.com/danh-sach/phim-moi-cap-nhat?page=1")->json();
 
