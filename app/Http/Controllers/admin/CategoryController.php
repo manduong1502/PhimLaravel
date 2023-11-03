@@ -5,7 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
-
+use App\Http\Requests\CategoryRequest;
 class CategoryController extends Controller
 {
     /**
@@ -13,7 +13,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $list = Category::orderBy('id','ASC')->get();
+        return  view('admin.pagesadmin.category.form',compact('list'));
     }
 
     /**
@@ -21,14 +22,13 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $list = Category::orderBy('position','ASC')->get();
-        return  view('admin.pagesadmin.category',compact('list'));
+        return  view('admin.pagesadmin.category.index');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CategoryRequest $request)
     {
         $category = new Category();
         $category->title = $request->title;
@@ -54,8 +54,8 @@ class CategoryController extends Controller
     public function edit(string $id)
     {   
         $category = Category::find($id);
-        $list = Category::orderBy('position','ASC')->get();
-        return  view('admin.pagesadmin.category',compact('list','category'));
+        $list = Category::orderBy('id','ASC')->get();
+        return  view('admin.pagesadmin.category.index',compact('list','category'));
     }
 
     /**
@@ -68,7 +68,7 @@ class CategoryController extends Controller
         $category->slug = $request->slug;
         $category->status = $request->status;
         $category->save();
-        return redirect()->route('category.create');
+        return redirect()->route('category.index');
     }
 
     /**

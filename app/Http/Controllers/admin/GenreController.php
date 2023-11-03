@@ -5,7 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Genre;
-
+use App\Http\Requests\GenreRequest;
 class GenreController extends Controller
 {
     /**
@@ -13,7 +13,8 @@ class GenreController extends Controller
      */
     public function index()
     {
-        //
+        $list = Genre::orderBy('id','ASC')->get();
+        return  view('admin.pagesadmin.genre.form',compact('list'));
     }
 
     /**
@@ -21,14 +22,13 @@ class GenreController extends Controller
      */
     public function create()
     {
-        $list = Genre::orderBy('position','ASC')->get();
-        return  view('admin.pagesadmin.genre',compact('list'));
+        return  view('admin.pagesadmin.genre.index');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(GenreRequest $request)
     {
         $genre = new Genre();
         $genre->title = $request->title;
@@ -56,7 +56,7 @@ class GenreController extends Controller
     {   
         $genre = Genre::find($id);
         $list = Genre::orderBy('position','ASC')->get();
-        return  view('admin.pagesadmin.genre',compact('list','genre'));
+        return  view('admin.pagesadmin.genre.index',compact('list','genre'));
     }
 
     /**
@@ -69,7 +69,7 @@ class GenreController extends Controller
         $genre->slug = $request->slug;
         $genre->status = $request->status;
         $genre->save();
-        return redirect()->route('genre.create');
+        return redirect()->route('genre.index');
     }
 
     /**

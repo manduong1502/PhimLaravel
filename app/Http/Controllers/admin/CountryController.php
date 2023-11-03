@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Country;
+use App\Http\Requests\CountryRequest;
 
 class CountryController extends Controller
 {
@@ -13,7 +14,8 @@ class CountryController extends Controller
      */
     public function index()
     {
-        //
+        $list = Country::orderBy('position','ASC')->get();
+        return  view('admin.pagesadmin.country.form',compact('list'));
     }
 
     /**
@@ -21,14 +23,13 @@ class CountryController extends Controller
      */
     public function create()
     {
-        $list = Country::orderBy('position','ASC')->get();
-        return  view('admin.pagesadmin.country',compact('list'));
+        return  view('admin.pagesadmin.country.index');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CountryRequest $request)
     {
         $country = new Country();
         $country->title = $request->title;
@@ -55,7 +56,7 @@ class CountryController extends Controller
     {   
         $country = Country::find($id);
         $list = Country::orderBy('position','ASC')->get();
-        return  view('admin.pagesadmin.country',compact('list','country'));
+        return  view('admin.pagesadmin.country.index',compact('list','country'));
     }
 
     /**
@@ -68,7 +69,7 @@ class CountryController extends Controller
         $country->slug = $request->slug;
         $country->status = $request->status;
         $country->save();
-        return redirect()->route('country.create');
+        return redirect()->route('country.index');
     }
 
     /**

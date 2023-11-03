@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Movie;
 use App\Models\Episode;
+use App\Http\Requests\EpisodeRequest;
 class EpisodeController extends Controller
 {
     /**
@@ -13,7 +14,12 @@ class EpisodeController extends Controller
      */
     public function index()
     {
-        //
+        $list_movie = Movie::orderBy('id','DESC')->pluck('title','id');
+        $list_episode = Episode::with('movie')->orderBy('movie_id','DESC')->get();
+        return  view('admin.pagesadmin.episode.form',compact(
+            'list_movie',
+            'list_episode'
+        ));
     }
 
     /**
@@ -23,7 +29,7 @@ class EpisodeController extends Controller
     {
         $list_movie = Movie::orderBy('id','DESC')->pluck('title','id');
         $list_episode = Episode::with('movie')->orderBy('movie_id','DESC')->get();
-        return  view('admin.pagesadmin.episode',compact(
+        return  view('admin.pagesadmin.episode.index',compact(
             'list_movie',
             'list_episode'
         ));
@@ -32,7 +38,7 @@ class EpisodeController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(EpisodeRequest $request)
     {
         $episode = new Episode();
         $episode->movie_id = $request->movie_id;
@@ -46,7 +52,7 @@ class EpisodeController extends Controller
         $list_movie = Movie::orderBy('id','DESC')->pluck('title','id');
         $list_episode = Episode::with('movie')->where('movie_id',$id)->orderBy('episode','DESC')->get();
         $movie = Movie::find($id);
-        return  view('admin.pagesadmin.add_episode',compact(
+        return  view('admin.pagesadmin.episode.add_episode',compact(
             'list_movie',
             'list_episode',
             'movie'
@@ -68,7 +74,7 @@ class EpisodeController extends Controller
     {
         $episode = Episode::find($id);
         $list_episode = Episode::with('movie')->orderBy('movie_id','DESC')->get();
-        return  view('admin.pagesadmin.episode',compact('episode','list_episode'));
+        return  view('admin.pagesadmin.episode.index',compact('episode','list_episode'));
     }
 
     /**
@@ -81,7 +87,7 @@ class EpisodeController extends Controller
         $episode->linkphim = $request->linkphim;
         $episode->episode = $request->episode;
         $episode->save();
-        return redirect()->route('genre.create');
+        return redirect()->route('genre.index');
     }
 
     /**

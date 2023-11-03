@@ -15,8 +15,8 @@ use App\Http\Controllers\admin\CountryController;
 use App\Http\Controllers\admin\EpisodeController;
 use App\Http\Controllers\admin\GenreController;
 use App\Http\Controllers\admin\BlogController;
-
-
+use App\Http\Controllers\admin\LeechMovieController;
+use App\Http\Controllers\admin\LinkMovieController;
 
 
 
@@ -29,13 +29,14 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('auth.logout');
 // login admin
 Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard') ->middleware(CheckAdmin::class);
 //route admin
-Route::resource('/admin/category', CategoryController::class)->middleware(CheckAdmin::class);
+Route::resource('/admin/category', CategoryController::class);
 Route::post('resorting', [CategoryController::class,'resorting'])->name('resorting')->middleware(CheckAdmin::class);
 Route::resource('/admin/genre', GenreController::class)->middleware(CheckAdmin::class);
 Route::resource('/admin/movie', MovieController::class)->middleware(CheckAdmin::class);
 Route::resource('/admin/country', CountryController::class)->middleware(CheckAdmin::class);
 Route::resource('/admin/episode', EpisodeController::class)->middleware(CheckAdmin::class);
 Route::resource('/admin/blog', BlogController::class)->middleware(CheckAdmin::class);
+Route::resource('/admin/linkmovie', LinkMovieController::class)->middleware(CheckAdmin::class);
 
 //Thay đổi dữ liệu trong movie ajax
 Route::get('update-nam-phim', [MovieController::class,'update_year'])->name('update-year-phim');
@@ -48,6 +49,8 @@ Route::get('trangthai-choose', [MovieController::class,'trangthai_choose'])->nam
 Route::get('phimhot-choose', [MovieController::class,'phimhot_choose'])->name('phimhot_choose');
 Route::get('slide-choose', [MovieController::class,'slide_choose'])->name('slide_choose');
 Route::post('update-image-movie-ajax', [MovieController::class,'update_image_movie_ajax'])->name('update-image-movie-ajax');
+Route::post('show-video', [MovieController::class,'watch_video'])->name('watch-video');
+
 
 //Register
 Route::get('/register', [RegisterController::class, 'index'])->name('auth.register.index');
@@ -81,3 +84,12 @@ Route::get('/datghe', [PageController::class, 'getchoghe'])->middleware(AuthMidd
 Route::get('/datbapnuoc', [PageController::class, 'getdatbapnuoc'])->middleware(AuthMiddleware::class);
 Route::get('/thanhtoan', [PageController::class, 'getthanhtoan'])->middleware(AuthMiddleware::class);
 Route::get('/thongtinve', [PageController::class, 'getthongtinve'])->middleware(AuthMiddleware::class);
+
+
+
+//route leech movie 
+Route::get('/leech-movie', [LeechMovieController::class, 'leech_movie'])->name('leech_movie')->middleware(CheckAdmin::class);
+Route::get('/leech-detail/{slug}', [LeechMovieController::class, 'leech_detaiil'])->name('leech-detaiil')->middleware(CheckAdmin::class);
+Route::post('/leech-store/{slug}', [LeechMovieController::class, 'leech_store'])->name('leech-store')->middleware(CheckAdmin::class);
+Route::get('/leech-episode/{slug}', [LeechMovieController::class, 'leech_episode'])->name('leech_episode')->middleware(CheckAdmin::class);
+Route::post('/leech-episode-store/{slug}', [LeechMovieController::class, 'leech_episode_store'])->name('leech-episode-store')->middleware(CheckAdmin::class);
