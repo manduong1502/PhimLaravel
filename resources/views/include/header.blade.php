@@ -8,30 +8,37 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-ul navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Danh mục</a>
+            <li class="nav-item dropdown" onmouseover="showDropdown(this)" onmouseout="hideDropdown(this)">
+              <a class="nav-link text-white" href="#" id="navbarDropdown" role="button">Danh mục</a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color:rgba(0, 0, 0, 0.50);">
-                @foreach($category as $key =>$cate)
-                  <li><a title="{{$cate->title}}" class="dropdown-item" href="{{route('category',$cate->slug)}}" style="color: white;">{{$cate->title}}</a></li>
-                @endforeach
+                  @foreach($category as $key => $cate)
+                      <li class="nav-item">
+                          <a title="{{$cate->title}}" class="nav-link" href="{{route('category',$cate->slug)}}" style="color: white;">{{$cate->title}}</a>
+                      </li>
+                  @endforeach
               </ul>
             </li>
-            <li class="nav-item">
-              <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Thể Loại</a>
+            <li class="nav-item" onmouseover="showDropdown(this)" onmouseout="hideDropdown(this)">
+              <a class="nav-link text-white" href="#" id="navbarDropdown" role="button">Thể Loại</a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color:rgba(0, 0, 0, 0.50);">
-                @foreach($genre as $key =>$gen)
-                  <li ><a title="{{$gen->title}}" class="dropdown-item" href="{{route('genre',$gen->slug)}}" style="color: white;">{{$gen->title}}</a></li>
-                @endforeach
+                  @foreach($genre as $key => $gen)
+                      <li class="nav-item">
+                          <a title="{{$gen->title}}" class="nav-link " href="{{route('genre',$gen->slug)}}" data-bs-toggle="dropdown" style="color: white;">{{$gen->title}}</a>
+                      </li>
+                  @endforeach
               </ul>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Quốc gia</a>
+            </li>          
+            <li class="nav-item" onmouseover="showDropdown(this)" onmouseout="hideDropdown(this)">
+              <a class="nav-link text-white" href="#" id="navbarDropdown" role="button">Quốc gia</a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color:rgba(0, 0, 0, 0.50);">
-                @foreach($country as $key =>$coun)
-                  <li ><a title="{{$coun->title}}" class="dropdown-item" href="{{route('country',$coun->slug)}}" style="color: white;">{{$coun->title}}</a></li>
-                @endforeach
+                  @foreach($country as $key => $coun)
+                      <li class="nav-item">
+                          <a title="{{$coun->title}}" class="nav-link " href="{{route('country',$coun->slug)}}" data-bs-toggle="dropdown" style="color: white;">{{$coun->title}}</a>
+                      </li>
+                  @endforeach
               </ul>
-            </li>
+          </li>
+          
 
           </ul>
           <form class="d-flex" action="{{route('search')}}" method="GET">

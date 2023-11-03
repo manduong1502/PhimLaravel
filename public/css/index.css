@@ -382,6 +382,17 @@ header .btn-vip {
   height: auto;
 }
 
+/* //tập phim */
+.halim-episode span div{
+  background-color: #373737;
+  width: 70px;
+  height: 30px;
+  text-align:center;
+  justify-content: center;
+  border-radius: 5px;
+  color: white;
+}
+
 
 
   
