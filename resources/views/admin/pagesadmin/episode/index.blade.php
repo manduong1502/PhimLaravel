@@ -57,6 +57,13 @@
                             ]) !!} --}}
                         </div>
 
+                        <div class="form-group">
+                            {!! Form::label('linkmovie', 'Server phim', []) !!}
+                            {!! Form::select('linkserver',$linkmovie, $episode->server, [
+                                'class' => 'form-control',
+                            ]) !!}
+                        </div>
+
                         @if (!isset($episode))
                             {!! Form::submit('Thêm Tập Phim', ['class' => 'btn btn-success mt-2']) !!}
                         @else

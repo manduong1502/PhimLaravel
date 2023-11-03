@@ -6,6 +6,7 @@ use App\Models\Country;
 use App\Models\Genre;
 use App\Models\Movie;
 use App\Models\Movie_Genre;
+use App\Models\LinkMovie;
 use App\Models\Episode;
 use Illuminate\Support\Facades\DB;
 
@@ -102,6 +103,8 @@ class PageController extends Controller
             $tapphim =1;
             $episode = Episode::where('movie_id',$movie->id)->where('episode',$tapphim)->first();
         }
+
+        $server =LinkMovie::orderBy('id','DESC')->get();
         return view('pages.xemphim', compact(
             'customCss',
             'category',
@@ -110,7 +113,8 @@ class PageController extends Controller
             'movie',
             'movie_related',
             'episode',
-            'tapphim'
+            'tapphim',
+            'server'
         ));
     }
 
@@ -132,6 +136,7 @@ class PageController extends Controller
             'country',
             'cate_slug',
             'movie',
+            'server'
         ));
     }
 

@@ -1,7 +1,7 @@
 @extends('admin.index')
 
 @section('admin.content')
-    <div class="container mt-5">
+    <div class="container mt-5 table-responsive">
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
@@ -64,6 +64,13 @@
                             </div>
                         @endif
 
+                        <div class="form-group">
+                            {!! Form::label('linkmovie', 'Server phim', []) !!}
+                            {!! Form::select('linkserver',$linkmovie, '', [
+                                'class' => 'form-control',
+                            ]) !!}
+                        </div>
+
                         @if (!isset($episode))
                             {!! Form::submit('Thêm Tập Phim', ['class' => 'btn btn-success mt-2']) !!}
                         @else
@@ -80,6 +87,7 @@
                                 <th scope="col">Tên Phim</th>
                                 <th scope="col">Tập phim</th>
                                 <th scope="col">Link phim</th>
+                                <th scope="col">Server phim</th>
                                 <th scope="col">Chỉnh sửa</th>
                             </tr>
                         </thead>
@@ -97,6 +105,13 @@
                                         <span class="badge badge-danger">Không hiển thị</span>
                                     @endif
                                 </td> --}}
+                                <td>
+                                    @foreach($list_server as $key => $server_link)
+                                        @if($episode->server  == $server_link->id)
+                                            {{$server_link->title}}
+                                        @endif
+                                    @endforeach
+                                </td>
                                     <td>
                                         {!! Form::open([
                                             'method' => 'DELETE',

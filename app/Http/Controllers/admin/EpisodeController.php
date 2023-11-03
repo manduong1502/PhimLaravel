@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Movie;
 use App\Models\Episode;
+use App\Models\linkMovie;
 use App\Http\Requests\EpisodeRequest;
 class EpisodeController extends Controller
 {
@@ -43,19 +44,24 @@ class EpisodeController extends Controller
         $episode = new Episode();
         $episode->movie_id = $request->movie_id;
         $episode->linkphim = $request->linkphim;
+        $episode->server = $request->linkserver;
         $episode->episode = $request->episode;
         $episode->save();
         return redirect()->back();
     }
 
     public function add_episode ($id) {
+        $linkmovie = linkMovie::orderBy('id','DESC')->pluck('title','id');
+        $list_server = linkMovie::orderBy('id','DESC')->get();
         $list_movie = Movie::orderBy('id','DESC')->pluck('title','id');
         $list_episode = Episode::with('movie')->where('movie_id',$id)->orderBy('episode','DESC')->get();
         $movie = Movie::find($id);
         return  view('admin.pagesadmin.episode.add_episode',compact(
             'list_movie',
             'list_episode',
-            'movie'
+            'movie',
+            'linkmovie',
+            'list_server'
         ));
     }
 
@@ -72,9 +78,10 @@ class EpisodeController extends Controller
      */
     public function edit(string $id)
     {
+        $linkmovie = linkMovie::orderBy('id','DESC')->pluck('title','id');
         $episode = Episode::find($id);
         $list_episode = Episode::with('movie')->orderBy('movie_id','DESC')->get();
-        return  view('admin.pagesadmin.episode.index',compact('episode','list_episode'));
+        return  view('admin.pagesadmin.episode.index',compact('episode','list_episode','linkmovie'));
     }
 
     /**
@@ -85,6 +92,7 @@ class EpisodeController extends Controller
         $episode = new Episode();
         $episode->movie_id = $request->movie_id;
         $episode->linkphim = $request->linkphim;
+        $episode->server = $request->linkserver;
         $episode->episode = $request->episode;
         $episode->save();
         return redirect()->route('genre.index');
