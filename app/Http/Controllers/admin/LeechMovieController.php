@@ -154,4 +154,52 @@ class LeechMovieController extends Controller
     {
         //
     }
+
+    public function watch_leech_detail(Request $request){ 
+        $slug = $request->slug;
+
+        $resp = Http::get('https://ophim1.com/phim/'.$slug)->json();
+        $resp_array[] = $resp['movie'];
+
+        $output['content_title'] = '<h3 style="text-align: center;text-transform: uppercase;">'.$resp['movie']['name'].'</h3>';
+
+    	$output['content_detail'] = '
+            <div class="row">
+                <div class="col-md-5"><img src="'.$resp['movie']['thumb_url'].'" width="100%"></div>
+                <div class="col-md-7">
+                    <h5><b>Tên phim :</b>'.$resp['movie']['name'].'</h5>
+                    <p><b>Tên tiếng anh:'.$resp['movie']['origin_name'].'</b></p>
+                    <p><b>Trạng thái :</b> '.$resp['movie']['episode_current'].'</p>
+                    <p><b>Số tập :</b> '.$resp['movie']['episode_total'].'</p>
+                    <p><b>Thời lượng : </b>'.$resp['movie']['time'].'</p>
+                    <p><b>Năm phát hành : </b>'.$resp['movie']['year'].'</p>
+                    <p><b>Chất lượng : </b>'.$resp['movie']['quality'].'</p>
+                    <p><b>Ngôn ngữ : </b>'.$resp['movie']['lang'].'</p>';
+                    foreach($resp['movie']['director'] as $dir){
+                        $output['content_detail'].='Đạo diễn: <span class="badge badge-pill badge-info">'.$dir.'</span><br>';
+                    }
+                    $output['content_detail'].='<b>Thể loại :</b>';
+
+                    foreach($resp['movie']['category'] as $cate){
+                        $output['content_detail'].='
+                        <p><span class="badge badge-pill badge-info">'.$cate['name'].'</span></p>';
+                    }
+                    $output['content_detail'].='<b>Diễn viên :</b>';
+                    foreach($resp['movie']['actor'] as $act){
+                        $output['content_detail'].='
+                        <p><span class="badge badge-pill badge-info">'.$act.'</span></p>';
+                    }
+                    $output['content_detail'].='<b>Quốc gia :</b>';
+                    foreach($resp['movie']['country'] as $country){
+                        $output['content_detail'].='
+                        <p><span class="badge badge-pill badge-info">'.$country['name'].'</span></p>';
+                    }
+                    $output['content_detail'].='
+
+                </div>
+            </div>
+        ';
+          
+    	echo json_encode($output);
+    }
 }

@@ -93,3 +93,5 @@ Route::get('/leech-detail/{slug}', [LeechMovieController::class, 'leech_detaiil'
 Route::post('/leech-store/{slug}', [LeechMovieController::class, 'leech_store'])->name('leech-store')->middleware(CheckAdmin::class);
 Route::get('/leech-episode/{slug}', [LeechMovieController::class, 'leech_episode'])->name('leech_episode')->middleware(CheckAdmin::class);
 Route::post('/leech-episode-store/{slug}', [LeechMovieController::class, 'leech_episode_store'])->name('leech-episode-store')->middleware(CheckAdmin::class);
+//ajax chi tiet phim
+Route::post('/watch-leech-detail', [LeechMovieController::class, 'watch_leech_detail'])->name('watch-leech-detail');

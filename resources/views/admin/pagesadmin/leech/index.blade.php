@@ -1,7 +1,24 @@
 @extends('admin.index')
 
 @section('admin.content')
-
+<!-- Modal -->
+<div class="modal " id="chitietphim" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel"><span id="content-title"></span></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <span id="content-detail"></span>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
     <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-md-12">
@@ -31,6 +48,10 @@
                                 <td>{{ $res['_id'] }}</td>
                                 <td>{{ $res['year'] }}</td>
                                 <td>
+
+                                    {{-- <button type="button" data-movie_slug="{{$res['slug']}}" class="btn btn-primary btn-sm leech_details" data-bs-toggle="modal" data-bs-target="#chitietphim">
+                                        Chi tiết phim
+                                      </button> --}}
                                     <a href="{{route('leech-detaiil',$res['slug'])}}" class="btn btn-primary">Chi tiết phim</a>
                                     <a href="{{route('leech_episode',$res['slug'])}}" class="btn btn-secondary">Xem số tập phim</a>
                                     @php
