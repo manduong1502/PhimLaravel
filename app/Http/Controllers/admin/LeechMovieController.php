@@ -10,6 +10,7 @@ use App\Models\Category;
 use App\Models\Country;
 use App\Models\Genre;
 use App\Models\Episode;
+use App\Models\LinkMovie;
 use Carbon\Carbon;
 
 class LeechMovieController extends Controller
@@ -19,11 +20,20 @@ class LeechMovieController extends Controller
         $movie = Movie::where('slug',$slug)->first();
         $resp =Http::get("https://ophim1.com/phim/".$slug)->json();
         foreach ($resp['episodes'] as $key => $res) {
-            foreach ($res['server_data'] as $key => $ser_data) {
+            foreach ($res['server_data'] as $key_data => $ser_data) {
                 $episode = new Episode();
                 $episode->movie_id = $movie->id;
                 $episode-> linkphim = "<p><iframe width='560' height='315' src='".$ser_data['link_embed']."' allowfullscreen></iframe></p>";
                 $episode->episode = $ser_data['name'];
+                if($key_data ==0) {
+                    $linkmovie =LinkMovie::orderBy('id','DESC')->first();
+                    $episode->server = $linkmovie->id;
+                }else{
+                    $linkmovie =LinkMovie::orderBy('id','ASC')->first();
+                    $episode->server = $linkmovie->id;
+                }
+                $movie->created_at = Carbon::now('Asia/Ho_Chi_Minh');
+                $movie->updated_at = Carbon::now('Asia/Ho_Chi_Minh');
                 $episode->save();
             }
         }

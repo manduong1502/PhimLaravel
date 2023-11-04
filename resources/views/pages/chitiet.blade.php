@@ -55,7 +55,7 @@
                 </div>
 
                 <div class="detail-title-small mt-2 d-flex" style="text-align: left;">
-                    <a href="{{url('xemphim/'.$movie->slug.'/tap-'.$movie_tapdau->episode)}}" class="btn btn-issue"><i class="fa-solid fa-play"></i> Phát ngay</a>
+                    <a href="{{url('xemphim/'.$movie->slug.'/tap-'.$movie_tapdau->episode .'/server-'. $movie_tapdau->server)}}" class="btn btn-issue"><i class="fa-solid fa-play"></i> Phát ngay</a>
                     <button class="btn btn-share"><i class="fa-solid fa-share"></i> Chia sẽ</button>
                     <button class="btn btn-share"><i class="fa-solid fa-cloud"></i> Sưu tập</button>
                 </div>

@@ -34,20 +34,36 @@
                 <div class="tab-content">
                     <div class="tab-pane active server-1">
                         <div class="halim-server">
-                            <p>#VIETSUB</p>
                             <ul class="halim-list-eps" style="padding: 0; display:flex">
-                                @foreach ($movie->episode as $key => $sotap)
-                                    <a href="{{ url('xemphim/' . $movie->slug . '/tap-' . $sotap->episode) }}" style="text-decoration: none; list-style: none; padding-right: 10px">
+                                @foreach ($server as $key => $ser)
+                                @foreach($episode_movie as $key =>   $epi_mov)
+                                @if($epi_mov->server ==  $ser->id)
+                        
+                                <a href="" style="text-decoration: none; list-style: none; padding:10px;">
                                         <li class="halim-episode">
                                             <span
-                                                class="halim-btn hanlim-btn-2 {{ $tapphim == $sotap->episode ? 'active' : '' }} halim-info-1-1 box-shadow"
-                                                data-post-id="37976" data-server ="1" data-episode ="1"
-                                                data-position="first" data-embed ="0"
-                                                data-title="Xem phim {{ $movie->title }} - Tập {{ $sotap->episode }} -Vietsub -Thuyết Minh"
-                                                data-h1="{{ $movie->title }} - tập {{ $sotap->episode }}" ><div>{{ $sotap->episode }}</div>
+                                                class="halim-btn hanlim-btn-2 halim-info-1-1 box-shadow"
+                                                 ><div>{{ $ser->title }}</div>
                                             </span>
                                         </li>
-                                    </a>
+                                </a>
+
+                                <ul class="halim-list-eps" style="padding: 0; display:flex">
+                                        @foreach($episode_list as $key => $epi)
+                                            @if($epi->server == $ser->id)
+                                        <a href="{{ url('xemphim/' . $movie->slug . '/tap-' . $epi->episode .'/server-'. $epi->server) }}" style="text-decoration: none; list-style: none; padding-right: 10px">
+                                            <li class="halim-episode">
+                                                <span
+                                                    class="halim-btn hanlim-btn-2 {{ $tapphim == $epi->episode && $server_active =='server-' .$ser->id ? 'active' : '' }} halim-info-1-1 box-shadow"
+                                                    ><div>{{ $epi->episode }}</div>
+                                                </span>
+                                            </li>
+                                        </a>
+                                        @endif
+                                        @endforeach
+                                </ul>
+                                @endif
+                                @endforeach        
                                 @endforeach
                             </ul>
                         </div>

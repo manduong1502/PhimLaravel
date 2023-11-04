@@ -85,7 +85,7 @@ class PageController extends Controller
         ));
     }
 
-    public function getXemphim($slug,$tap)
+    public function getXemphim($slug,$tap,$server_active)
     {
 
         $category = Category::orderBy('id','DESC') ->get();
@@ -104,7 +104,9 @@ class PageController extends Controller
             $episode = Episode::where('movie_id',$movie->id)->where('episode',$tapphim)->first();
         }
 
-        $server =LinkMovie::orderBy('id','DESC')->get();
+        $server =LinkMovie::orderBy('id','ASC')->get();
+        $episode_movie =Episode::where('movie_id',$movie->id)->get()->unique('server');
+        $episode_list =Episode::where('movie_id',$movie->id)->orderBy('episode','ASC')->get();
         return view('pages.xemphim', compact(
             'customCss',
             'category',
@@ -114,7 +116,10 @@ class PageController extends Controller
             'movie_related',
             'episode',
             'tapphim',
-            'server'
+            'server',
+            'episode_movie',
+            'episode_list',
+            'server_active'
         ));
     }
 
@@ -136,7 +141,6 @@ class PageController extends Controller
             'country',
             'cate_slug',
             'movie',
-            'server'
         ));
     }
 

@@ -21,14 +21,14 @@
 
                         <div class="form-group">
                             {!! Form::label('movie', 'Chọn phim', []) !!}
-                            {!! Form::select(
-                                'movie_id',
-                                ['0' => 'Chọn phim', 'Phim' => $list_movie],
-                                isset($episode) ? $episode->movie_id : '',
-                                [
-                                    'class' => 'form-control select-movie',
-                                ],
-                            ) !!}
+                            <select name="movie_id" class="form-control select-movie">
+                                <option value="">Chọn phim</option>
+                                @foreach($list_movie as $movie)
+                                    <option value="{{ $movie->id }}" {{ (isset($episode) && $episode->movie_id == $movie->id) ? 'selected' : '' }}>
+                                        {{ $movie->title }}
+                                    </option>
+                                @endforeach
+                            </select>
                         </div>
 
                         <div class="form-group">
@@ -43,12 +43,23 @@
                         </div>
 
                         <div class="form-group">
+                            @if(!isset($episode))
                             {!! Form::label('episode', 'Tập phim', []) !!}
                             <select name="episode" class="form-control" id="show_movie">
 
                             </select>
                             @if ($errors->has('episode'))
                                 <span class="errors-message">{{ $errors->first('episode') }}</span>
+                            @endif
+                            @else 
+                            {!! Form::label('episode', 'Chọn tập phim', []) !!}
+                            <select name="episode" class="form-control">
+                                @foreach ($list_episodes as $episodeId => $episodeName)
+                                    <option value="{{ $episodeId }}" {{ isset($episode) && $episode->episode_id == $episodeId ? 'selected' : '' }}>
+                                        {{ $episodeName }}
+                                    </option>
+                                @endforeach
+                            </select>
                             @endif
                             {{-- {!! Form::text('episote', isset($episode) ? $episode->episode : '', [
                                 'class' => 'form-control',

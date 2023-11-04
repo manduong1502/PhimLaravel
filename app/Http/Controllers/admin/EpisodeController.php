@@ -76,13 +76,23 @@ class EpisodeController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
-    {
-        $linkmovie = linkMovie::orderBy('id','DESC')->pluck('title','id');
-        $episode = Episode::find($id);
-        $list_episode = Episode::with('movie')->orderBy('movie_id','DESC')->get();
-        return  view('admin.pagesadmin.episode.index',compact('episode','list_episode','linkmovie'));
-    }
+        public function edit(string $id)
+        {
+            $linkmovie = linkMovie::orderBy('id','DESC')->pluck('title','id');
+            $episode = Episode::find($id);
+            $list_movie = Movie::all(); //
+            $list_episode = Episode::with('movie')->orderBy('movie_id','DESC')->get();
+
+            $list_episodes = [];
+
+            if ($episode) {
+                // Nếu có tập phim được chọn, lấy danh sách tập phim của phim đó
+                $list_episodes = Episode::where('movie_id', $episode->movie_id)
+                    ->pluck('episode', 'id')
+                    ->toArray();
+            }
+            return  view('admin.pagesadmin.episode.index',compact('episode','list_episode','linkmovie','list_movie','list_episodes'));
+        }
 
     /**
      * Update the specified resource in storage.
@@ -95,7 +105,7 @@ class EpisodeController extends Controller
         $episode->server = $request->linkserver;
         $episode->episode = $request->episode;
         $episode->save();
-        return redirect()->route('genre.index');
+        return redirect()->route('episode.index');
     }
 
     /**
