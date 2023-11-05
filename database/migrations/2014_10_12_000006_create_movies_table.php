@@ -36,6 +36,7 @@ return new class extends Migration
 
             $table->string('hangphim')->nullable();
             $table->string('phienban')->nullable();
+            $table->integer('server')->default(1);
 
             $table->timestamps();
         });

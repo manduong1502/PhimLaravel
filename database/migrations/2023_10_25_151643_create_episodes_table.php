@@ -16,6 +16,7 @@ return new class extends Migration
             $table->integer('movie_id');
             $table->longText('linkphim');
             $table->integer('episode');
+            $table->integer('server');
             $table->timestamps();
         });
     }

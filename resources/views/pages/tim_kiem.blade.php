@@ -9,7 +9,14 @@
             @foreach ($movie as $key => $mov)
                 <a href="{{ route('pages.chitiet', $mov->slug) }}">
                     <div class="film-card-img">
+                        @php
+                            $image_check = substr($movie->image1, 0, 5);
+                        @endphp
+                        @if ($image_check == 'https')
+                        <img src="{{$mov->image }}" alt="">
+                        @else
                         <img src="{{ asset('uploads/movie/' . $mov->image) }}" alt="">
+                        @endif
                         <div class="play-icon">
                             <i class="fa-solid fa-circle-play"></i>
                         </div>

@@ -1,7 +1,7 @@
 <header id="site-header">
     <nav class="navbar navbar-expand-lg" style="background-color:rgba(0, 0, 0, 0.048);">
       <div class="container-fluid">
-        <a href="{{route('pages.trangchu')}}"><img class="navbar-brand" src="public/image/logo/logo.png" alt=""></a>
+        <a href="{{route('pages.trangchu')}}"><img class="navbar-brand" src="{{asset('public/image/logo/logo.png')}}" alt=""></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -23,7 +23,7 @@
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color:rgba(0, 0, 0, 0.50);">
                   @foreach($genre as $key => $gen)
                       <li class="nav-item">
-                          <a title="{{$gen->title}}" class="nav-link " href="{{route('genre',$gen->slug)}}" data-bs-toggle="dropdown" style="color: white;">{{$gen->title}}</a>
+                          <a title="{{$gen->title}}" class="nav-link " href="{{route('genre',$gen->slug)}}"  style="color: white;">{{$gen->title}}</a>
                       </li>
                   @endforeach
               </ul>
@@ -33,7 +33,7 @@
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color:rgba(0, 0, 0, 0.50);">
                   @foreach($country as $key => $coun)
                       <li class="nav-item">
-                          <a title="{{$coun->title}}" class="nav-link " href="{{route('country',$coun->slug)}}" data-bs-toggle="dropdown" style="color: white;">{{$coun->title}}</a>
+                          <a title="{{$coun->title}}" class="nav-link " href="{{route('country',$coun->slug)}}"  style="color: white;">{{$coun->title}}</a>
                       </li>
                   @endforeach
               </ul>
@@ -57,7 +57,7 @@
             </li>
             <li class="nav-item dropdown ">
               <a href="#" class="nav-link" role="button" data-bs-toggle="dropdown" aria-expanded="false"><img
-                  class="navbar-brand" src="public/image/image-13.png" alt=""></a>
+                  class="navbar-brand" src="{{asset('public/image/image-13.png')}}" alt=""></a>
               <ul class="dropdown-menu">
                 @auth
                     <li>Xin chào, {{ Auth::user()->username }}</li>
