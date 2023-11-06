@@ -55,10 +55,42 @@
                         </div>
                     </div>
 
+                        {{-- <ul class="list-inline rating d-flex " style="margin: 0; padding: 0;"  title="Average Rating">
+
+                            @for($count=1; $count<=5; $count++)
+
+                              @php
+
+                                if($count<=$rating){ 
+                                  $color = 'color:#ffcc00;'; //mau vang
+                                }
+                                else {
+                                  $color = 'color:#ccc;'; //mau xam
+                                }
+                              
+                              @endphp
+                            
+                              <li title="star_rating" 
+
+                              id="{{$movie->id}}-{{$count}}" 
+                              
+                              data-index="{{$count}}"  
+                              data-movie_id="{{$movie->id}}" 
+
+                              data-rating="{{$rating}}" 
+                              class="rating" 
+                              style="cursor:pointer; {{$color}} 
+
+                              font-size:30px;">&#9733;</li>
+
+                            @endfor
+
+                  </ul>  --}}
+
                     <div class="detail-title-small mt-3 row d-flex" style="text-align: left;">
                         <div class="text-title-name col-2 ">Miêu tả: </div>
                         <div class=" col-10">
-                            <p>{{ substr($movie->description, 0, 50) }}</p>
+                            <p>{{ substr($movie->description, 0, 50) }}....</p>
                         </div>
                     </div>
 

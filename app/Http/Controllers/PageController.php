@@ -8,7 +8,9 @@ use App\Models\Movie;
 use App\Models\Movie_Genre;
 use App\Models\LinkMovie;
 use App\Models\Episode;
+use App\Models\Rating;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 
 
 
@@ -73,6 +75,11 @@ class PageController extends Controller
         $movie_related = Movie::with('country','genre','category','movie_genre')->where('category_id',$movie->category->id)->orderBy(DB::raw('RAND()'))->whereNotIn('slug',[$slug])->get();
         $movie_tapdau = Episode::with('movie')->where('movie_id',$movie->id)->orderBy('episode','ASC')->take(1)->first();
         $episode = Episode::with('movie')->where('movie_id',$movie->id)->orderBy('id','DESC')->take(3)->get();
+
+        $rating = Rating::where('movie_id',$movie->id)->avg('rating');
+        $rating = round($rating);
+        
+        $count_total = Rating::where('movie_id',$movie->id)->count();
         return view('pages.chitiet', compact(
             'customCss',
             'category',
@@ -81,9 +88,26 @@ class PageController extends Controller
             'movie',
             'movie_related',
             'episode',
-            'movie_tapdau'
+            'movie_tapdau',
+            'rating',
+            'count_total'
         ));
     }
+    public function add_rating (Request $request) {
+        $data = $request->all();
+        $ip_address = $request->ip();
+        $rating_count= Rating::where('movie_id',$data['movie_id'])->where('ip_address',$ip_address)->count();
+        if($rating_count > 0) {
+            echo 'exit';
+        }else {
+            $rating = new Rating();
+            $rating->rating = $data['index'];
+            $rating->movie_id = $data['movie_id'];
+            $rating->ip_address = $ip_address;
+            $rating->save();
+            echo'done';
+        }
+    }       
 
     public function getXemphim($slug,$tap,$server_active)
     {

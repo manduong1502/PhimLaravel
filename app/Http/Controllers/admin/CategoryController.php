@@ -37,7 +37,7 @@ class CategoryController extends Controller
         $nextPosition = Category::max('position') + 1;
         $category->position = $nextPosition;
         $category->save();
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Bạn đã thêm thành công');
     }
 
     /**
@@ -55,7 +55,7 @@ class CategoryController extends Controller
     {   
         $category = Category::find($id);
         $list = Category::orderBy('id','ASC')->get();
-        return  view('admin.pagesadmin.category.index',compact('list','category'));
+        return  view('admin.pagesadmin.category.index',compact('list','category'))->with('success', 'Bạn đã thêm thành công');;
     }
 
     /**
@@ -68,7 +68,7 @@ class CategoryController extends Controller
         $category->slug = $request->slug;
         $category->status = $request->status;
         $category->save();
-        return redirect()->route('category.index');
+        return redirect()->route('category.index')->with('success', 'Bạn đã cập nhập thành công');;
     }
 
     /**
@@ -77,7 +77,7 @@ class CategoryController extends Controller
     public function destroy(string $id)
     {
         Category::find($id) -> delete();
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Bạn đã xóa thành công');;
     }
 
     public function resorting (Request $request) {

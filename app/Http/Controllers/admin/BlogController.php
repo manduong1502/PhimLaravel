@@ -65,7 +65,7 @@ class BlogController extends Controller
             $blog->video = $new_video;
         }
         $blog->save();
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Bạn đã thêm thành công');;
     }
 
     /**
@@ -84,7 +84,7 @@ class BlogController extends Controller
         $list = Blog::with('genre')->orderBy('id', 'DESC')->get();
         $list_genre = Genre::all();
         $genre = Genre::pluck('title', 'id');
-        return  view('admin.pagesadmin.blog',compact('list','list_genre','genre'));
+        return  view('admin.pagesadmin.blog',compact('list','list_genre','genre'))->with('success', 'Bạn đã cập nhập thành công');;
     }
 
     /**
@@ -115,7 +115,7 @@ class BlogController extends Controller
             $blog->video = $new_video;
         }
         $blog->save();
-        return redirect()->route('blog.index');
+        return redirect()->route('blog.index')->with('success', 'Bạn đã cập nhập thành công');;
     }
 
     /**
@@ -124,7 +124,7 @@ class BlogController extends Controller
     public function destroy(string $id)
     {
         Blog::find($id) -> delete();
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Bạn đã xóa thành công');;
     }
 
     public function resorting (Request $request) {

@@ -52,7 +52,7 @@ class linkMovieController extends Controller
     {
         $linkmovie = linkMovie::find($id);
         $list = linkMovie::orderBy('id','ASC')->get();
-        return  view('admin.pagesadmin.category.index',compact('list','linkmovie'));
+        return  view('admin.pagesadmin.category.index',compact('list','linkmovie'))->with('success', 'Bạn đã cập nhập thành công');;
     }
 
     /**
@@ -65,7 +65,7 @@ class linkMovieController extends Controller
         $linkMovie->description = $request->description;
         $linkMovie->status = $request->status;
         $linkMovie->save();
-        return redirect()->route('linkmovie.index');
+        return redirect()->route('linkmovie.index')->with('success', 'Bạn đã cập nhập thành công');;
     }
 
     /**
@@ -73,7 +73,7 @@ class linkMovieController extends Controller
      */
     public function destroy(string $id)
     {
-        linkMovie::find($id) -> delete();
+        linkMovie::find($id) -> delete()->with('success', 'Bạn đã xóa thành công');;
         return redirect()->back();
     }
 }

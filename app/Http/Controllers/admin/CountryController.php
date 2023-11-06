@@ -38,7 +38,7 @@ class CountryController extends Controller
         $nextPosition = Country::max('position') + 1;
         $country->position = $nextPosition;
         $country->save();
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Bạn đã thêm thành công');;
     }
 
     /**
@@ -56,7 +56,7 @@ class CountryController extends Controller
     {   
         $country = Country::find($id);
         $list = Country::orderBy('position','ASC')->get();
-        return  view('admin.pagesadmin.country.index',compact('list','country'));
+        return  view('admin.pagesadmin.country.index',compact('list','country'))->with('success', 'Bạn đã cập nhập thành công');;
     }
 
     /**
@@ -69,7 +69,7 @@ class CountryController extends Controller
         $country->slug = $request->slug;
         $country->status = $request->status;
         $country->save();
-        return redirect()->route('country.index');
+        return redirect()->route('country.index')->with('success', 'Bạn đã cập nhập thành công');
     }
 
     /**
@@ -78,7 +78,7 @@ class CountryController extends Controller
     public function destroy(string $id)
     {
         Country::find($id) -> delete();
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Bạn đã xóa thành công');;
     }
 
     public function resorting (Request $request) {

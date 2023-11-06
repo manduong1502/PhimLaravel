@@ -37,7 +37,7 @@ class LeechMovieController extends Controller
                 $episode->save();
             }
         }
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Bạn đã thêm thành công');;
     }   
 
     public function leech_movie() {

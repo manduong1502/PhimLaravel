@@ -38,7 +38,7 @@ class GenreController extends Controller
         $nextPosition = Genre::max('position') + 1;
         $genre->position = $nextPosition;
         $genre->save();
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Bạn đã thêm thành công');;
     }
 
     /**
@@ -56,7 +56,7 @@ class GenreController extends Controller
     {   
         $genre = Genre::find($id);
         $list = Genre::orderBy('position','ASC')->get();
-        return  view('admin.pagesadmin.genre.index',compact('list','genre'));
+        return  view('admin.pagesadmin.genre.index',compact('list','genre'))->with('success', 'Bạn đã cập nhập thành công');;
     }
 
     /**
@@ -69,7 +69,7 @@ class GenreController extends Controller
         $genre->slug = $request->slug;
         $genre->status = $request->status;
         $genre->save();
-        return redirect()->route('genre.index');
+        return redirect()->route('genre.index')->with('success', 'Bạn đã cập nhập thành công');;
     }
 
     /**
@@ -78,7 +78,7 @@ class GenreController extends Controller
     public function destroy(string $id)
     {
         Genre::find($id) -> delete();
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Bạn đã xóa thành công');;
     }
 
     public function resorting (Request $request) {

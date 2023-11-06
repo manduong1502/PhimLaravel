@@ -72,7 +72,7 @@ Route::get('/quocgia/{slug}', [PageController::class, 'getQuocgia'])->name('coun
 
 //chi tiết phim
 Route::get('/chitiet/{slug}', [PageController::class, 'getChitiet'])->name('pages.chitiet')->middleware(AuthMiddleware::class);
-
+Route::post('add-rating', [PageController::class, 'add_rating'])->name('add-rating');
 
 
 Route::get('/blog', [PageController::class, 'getBlog'])->middleware(AuthMiddleware::class);
