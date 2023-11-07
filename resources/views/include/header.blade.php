@@ -38,6 +38,10 @@
                   @endforeach
               </ul>
           </li>
+
+          <li class="nav-item" >
+            <a class="nav-link text-white" href="{{route('blog')}}" id="navbarDropdown" role="button">Bài viết</a>
+        </li>
           
 
           </ul>

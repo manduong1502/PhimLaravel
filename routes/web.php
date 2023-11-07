@@ -75,8 +75,8 @@ Route::get('/chitiet/{slug}', [PageController::class, 'getChitiet'])->name('page
 Route::post('add-rating', [PageController::class, 'add_rating'])->name('add-rating');
 
 
-Route::get('/blog', [PageController::class, 'getBlog'])->middleware(AuthMiddleware::class);
-Route::get('/blog_review', [PageController::class, 'getBlog_review'])->middleware(AuthMiddleware::class);
+Route::get('/blog', [PageController::class, 'getBlog'])->name('blog')->middleware(AuthMiddleware::class);
+Route::get('/blog_review/{slug}', [PageController::class, 'getBlog_review'])->name('blog-view')->middleware(AuthMiddleware::class);
 
 
 //Đặt vé

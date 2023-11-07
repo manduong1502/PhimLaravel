@@ -118,7 +118,7 @@
                             <div class="miscellaneous-content-2-block-film container d-flex">
                                 <div class="miscellaneous-content-2-block-film-img">
                                     @php
-                                        $image_check = substr($mov->image1, 0, 5);
+                                        $image_check = substr($mov->image, 0, 5);
                                     @endphp
                                     @if ($image_check == 'https')
                                         <img width="100" height="120" src="{{ $mov->image }}" alt="">

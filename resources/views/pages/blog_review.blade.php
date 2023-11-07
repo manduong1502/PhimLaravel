@@ -5,10 +5,10 @@
     <div class="row d-flex">
         <div class="col-md-7">
             <div class="blog-review-content-1">
-                <h3>Quỷ Ám Tín Đồ - Thương hiệu kinh dị 50 năm tuổi này có gì đặc biệt?</h3>
+                <h3>{{$blog->title}}</h3>
 
                 <div class="blog-content-information d-flex">
-                    <p class="blog-content-information-text">Phim kinh dị</p>
+                    <p class="blog-content-information-text">{{$blog->genre->title}}</p>
                     <p class="blog-content-information-text">Đánh giá phim</p>
                     <p class="blog-content-information-text">levu2004</p>
                     <p class="blog-content-information-number">14 giờ trước</p>

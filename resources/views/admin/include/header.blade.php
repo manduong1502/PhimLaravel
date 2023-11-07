@@ -10,7 +10,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <h1><a class="navbar-brand"  style="margin-right: 50px" href="index.html"><span class="fa fa-area-chart"></span> COSMIC<span
+                <h1><a class="navbar-brand"  style="margin-right: 50px" href="{{route('admin.dashboard')}}"><span class="fa fa-area-chart"></span> COSMIC<span
                             class="dashboard_text">Cinema</span></a></h1>
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">

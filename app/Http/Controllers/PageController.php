@@ -9,6 +9,7 @@ use App\Models\Movie_Genre;
 use App\Models\LinkMovie;
 use App\Models\Episode;
 use App\Models\Rating;
+use App\Models\Blog;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
@@ -218,33 +219,43 @@ class PageController extends Controller
         ));
     }
 
-    // public function getBlog()
-    // {
-    //     $category = Category::orderBy('id','DESC') ->get();
-    //     $genre = Genre::orderBy('id','DESC') ->get();
-    //     $country = Country::orderBy('id','DESC') ->get();
-    //     $customCss = 'css/blog.css';
-    //     return view('pages.blog',compact(
-    //         'customCss',
-    //         'category',
-    //         'genre',
-    //         'country'
-    //     ));
-    // }
+    public function getBlog()
+    {
+        $category = Category::orderBy('id','DESC') ->where('status',1)->get();
+        $genre = Genre::orderBy('id','DESC')->where('status',1) ->get();
+        $country = Country::orderBy('id','DESC')->where('status',1) ->get();
+        $movie_related = Movie::with('country','genre','category','movie_genre','episode')->orderBy(DB::raw('RAND()'))->get();
+        $blog = Blog::orderBy('ngay_cap_nhap','DESC')->where('status',1) ->first();
+        $list_blog = Blog::orderBy('id','DESC')->where('status',1)->get();
+        $blog_news = Blog::orderBy('ngay_cap_nhap','DESC')->where('status',1)->get();
+        $customCss = 'css/blog.css';
+        return view('pages.blog',compact(
+            'customCss',
+            'category',
+            'genre',
+            'country',
+            'movie_related',
+            'blog',
+            'list_blog',
+            'blog_news'
+        ));
+    }
 
-    // public function getBlog_review()
-    // {
-    //     $category = Category::orderBy('id','DESC') ->get();
-    //     $genre = Genre::orderBy('id','DESC') ->get();
-    //     $country = Country::orderBy('id','DESC') ->get();
-    //     $customCss = 'css/blog-review.css';
-    //     return view('pages.blog_review',compact(
-    //         'customCss',
-    //         'category',
-    //         'genre',
-    //         'country'
-    //     ));
-    // }
+    public function getBlog_review($slug)
+    {
+        $category = Category::orderBy('id','DESC') ->get();
+        $genre = Genre::orderBy('id','DESC') ->get();
+        $country = Country::orderBy('id','DESC') ->get();
+        $blog = Blog::with('genre')->where('slug',$slug)->first();
+        $customCss = 'css/blog-review.css';
+        return view('pages.blog_review',compact(
+            'customCss',
+            'category',
+            'genre',
+            'country',
+            'blog',
+        ));
+    }
 
 
     // public function getchoghe()

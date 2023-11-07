@@ -9,7 +9,7 @@
                     <thead>
                       <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Video</th>
+                        <th scope="col">Hình ảnh</th>
                         <th scope="col">Tên Blog</th>
                         <th scope="col">Đường link</th>
                         <th scope="col">Nội dung</th>
