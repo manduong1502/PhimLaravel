@@ -40,11 +40,12 @@ class LeechMovieController extends Controller
         return redirect()->back()->with('success', 'Bạn đã thêm thành công');;
     }   
 
-    public function leech_movie() {
-        $resp =Http::get("https://ophim1.com/danh-sach/phim-moi-cap-nhat?page=1")->json();
-
-        return view('admin.pagesadmin.leech.index',compact('resp'));
+    public function leech_movie(Request $request) {
+        $selectedPage = $request->input('page', 1);
+        $resp =Http::get("https://ophim1.com/danh-sach/phim-moi-cap-nhat?page=".$selectedPage)->json();
+        return view('admin.pagesadmin.leech.index',compact('resp','selectedPage'));
     }
+
     public function leech_detaiil ($slug) {
         $resp =Http::get("https://ophim1.com/phim/".$slug)->json();
         $resp_movie[] = $resp['movie'];

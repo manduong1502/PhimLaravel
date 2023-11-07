@@ -10,12 +10,12 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <h1><a class="navbar-brand" href="index.html"><span class="fa fa-area-chart"></span> Glance<span
-                            class="dashboard_text">Design dashboard</span></a></h1>
+                <h1><a class="navbar-brand"  style="margin-right: 50px" href="index.html"><span class="fa fa-area-chart"></span> COSMIC<span
+                            class="dashboard_text">Cinema</span></a></h1>
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="sidebar-menu">
-                    <li class="header">MAIN NAVIGATION</li>
+                    <li class="header">Điều hướng chính</li>
 
                     @php
                         $segment= Request::segment(1);   

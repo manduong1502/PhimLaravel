@@ -83,12 +83,12 @@
                                 <div class="slider-card">
                                     <div class="card">
                                         @php
-                                            $image_check = substr($movie->image1, 0, 5);
+                                            $image_check = substr($mov->image1, 0, 5);
                                         @endphp
                                         @if ($image_check == 'https')
-                                            <img src="{{ $movie->image }}" alt="">
+                                            <img src="{{ $mov->image }}" alt="">
                                         @else
-                                            <img src="{{ asset('uploads/movie/' . $movie->image) }}" alt="">
+                                            <img src="{{ asset('uploads/movie/' . $mov->image) }}" alt="">
                                         @endif
                                         <div class="icon-overlay">
                                             <i class="fa-solid fa-circle-play"></i>
@@ -96,7 +96,7 @@
                                     </div>
 
                                     <div class="card-text">
-                                        <p>{{ $movie->title }}</p>
+                                        <p>{{ $mov->title }}</p>
                                     </div>
                                 </div>
                             </a>
@@ -118,18 +118,18 @@
                             <div class="miscellaneous-content-2-block-film container d-flex">
                                 <div class="miscellaneous-content-2-block-film-img">
                                     @php
-                                        $image_check = substr($movie->image1, 0, 5);
+                                        $image_check = substr($mov->image1, 0, 5);
                                     @endphp
                                     @if ($image_check == 'https')
-                                        <img width="100" height="120" src="{{ $movie->image }}" alt="">
+                                        <img width="100" height="120" src="{{ $mov->image }}" alt="">
                                     @else
                                         <img width="100" height="120"
-                                            src="{{ asset('uploads/movie/' . $movie->image) }}" alt="">
+                                            src="{{ asset('uploads/movie/' . $mov->image) }}" alt="">
                                     @endif
                                 </div>
 
                                 <div class="miscellaneous-content-2-block-film-text">
-                                    <h6>{{ $movie->title }}</h6>
+                                    <h6>{{ $mov->title }}</h6>
                                     <p>Kumarn - Drama, Horror</p>
                                     <p>Khởi chiếu: 06/10/2023</p>
                                 </div>

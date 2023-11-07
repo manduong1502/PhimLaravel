@@ -205,23 +205,23 @@
                         Phim liên quan
                     </div>
                     <hr>
-                    @foreach ($movie_related as $key => $mov)
+                    @foreach ($movie_related->take(5) as $key => $mov)
                         <a href="{{ route('pages.chitiet', $mov->slug) }}" style="text-decoration: none">
                             <div class="miscellaneous-content-2-block-film container d-flex">
                                 <div class="miscellaneous-content-2-block-film-img">
                                     @php
-                                        $image_check = substr($movie->image1, 0, 5);
+                                        $image_check = substr($mov->image1, 0, 5);
                                     @endphp
                                     @if ($image_check == 'https')
-                                        <img width="70" height="100" src="{{ $movie->image }}" alt="">
+                                        <img width="70" height="100" src="{{ $mov->image }}" alt="">
                                     @else
                                         <img width="70" height="100"
-                                            src="{{ asset('uploads/movie/' . $movie->image) }}" alt="">
+                                            src="{{ asset('uploads/movie/' . $mov->image) }}" alt="">
                                     @endif
                                 </div>
 
                                 <div class="miscellaneous-content-2-block-film-text" style="text-decoration: none; color: white; font-weight: bold">
-                                    <h6>{{ $movie->title }}</h6>
+                                    <h6>{{ $mov->title }}</h6>
                                     <p>Kumarn - Drama, Horror</p>
                                     <p>Khởi chiếu: 06/10/2023</p>
                                 </div>

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Country;
 use App\Http\Requests\CountryRequest;
+use COM;
 
 class CountryController extends Controller
 {
@@ -76,10 +77,27 @@ class CountryController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
-    {
-        Country::find($id) -> delete();
-        return redirect()->back()->with('success', 'Bạn đã xóa thành công');;
+{
+    $country = Country::find($id);
+    if ($country) {
+        $country->delete();
+
+        // Lấy danh sách các bản ghi còn lại theo ID tăng dần
+        $categories = country::orderBy('id', 'asc')->get();
+        $newId = 1;
+
+        // Cập nhật lại giá trị ID cho từng bản ghi
+        foreach ($categories as $country) {
+            $country->id = $newId;
+            $country->save();
+            $newId++;
+        }
+
+        return redirect()->back()->with('success', 'Bạn đã xóa và cập nhật ID thành công');
+    } else {
+        return redirect()->back()->with('error', 'Không tìm thấy bản ghi');
     }
+}
 
     public function resorting (Request $request) {
         $data = $request->all();
