@@ -225,9 +225,9 @@ class PageController extends Controller
         $genre = Genre::orderBy('id','DESC')->where('status',1) ->get();
         $country = Country::orderBy('id','DESC')->where('status',1) ->get();
         $movie_related = Movie::with('country','genre','category','movie_genre','episode')->orderBy(DB::raw('RAND()'))->get();
-        $blog = Blog::orderBy('ngay_cap_nhap','DESC')->where('status',1) ->first();
+        $blog = Blog::orderBy('ngay_cap_nhat','DESC')->where('status',1) ->first();
         $list_blog = Blog::orderBy('id','DESC')->where('status',1)->get();
-        $blog_news = Blog::orderBy('ngay_cap_nhap','DESC')->where('status',1)->get();
+        $blog_news = Blog::orderBy('ngay_cap_nhat','DESC')->where('status',1)->get();
         $customCss = 'css/blog.css';
         return view('pages.blog',compact(
             'customCss',

@@ -90,7 +90,7 @@
                     <div class="detail-title-small mt-3 row d-flex" style="text-align: left;">
                         <div class="text-title-name col-2 ">Miêu tả: </div>
                         <div class=" col-10">
-                            <p>{{ substr($movie->description, 0, 50) }}....</p>
+                            <p>{{ substr($movie->description, 3, 50) }}....</p>
                         </div>
                     </div>
 

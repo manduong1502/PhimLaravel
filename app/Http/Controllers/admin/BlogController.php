@@ -54,7 +54,7 @@ class BlogController extends Controller
         $blog->description = $request->description;
         $blog->genre_id = $request->genre_id;
         $blog->ngay_tao = Carbon::now('Asia/Ho_Chi_Minh');
-        $blog->ngay_cap_nhap = Carbon::now('Asia/Ho_Chi_Minh');
+        $blog->ngay_cap_nhat = Carbon::now('Asia/Ho_Chi_Minh');
 
         $get_video = $request ->file('video');
         if($get_video) {
@@ -99,7 +99,7 @@ class BlogController extends Controller
         $blog->status = $request->status;
         $blog->description = $request->description;
         $blog->genre_id = $request->genre_id;
-        $blog->ngay_cap_nhap = Carbon::now('Asia/Ho_Chi_Minh');
+        $blog->ngay_cap_nhat = Carbon::now('Asia/Ho_Chi_Minh');
 
 
         //thêm hình ảnh

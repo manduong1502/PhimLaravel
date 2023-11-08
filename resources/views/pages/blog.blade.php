@@ -9,34 +9,35 @@
         </div>
         <div class="row slider">
             @foreach ($movie_related as $key => $mov)
-                <div class="slider-card">
-                    <div class="card">
-                        @php
-                            $image_check = substr($mov->image, 0, 5);
-                        @endphp
-                        @if ($image_check == 'https')
-                            <img  src="{{ $mov->image }}" alt="">
-                        @else
-                            <img  src="{{ asset('uploads/movie/' . $mov->image) }}"
-                                alt="">
-                        @endif
-                        <div class="icon-overlay">
-                            <i class="fa-solid fa-circle-play"></i>
+                <a href="{{ route('pages.chitiet', $mov->slug) }}" style="text-decoration: none;">
+                    <div class="slider-card">
+                        <div class="card"style="border-radius: 15px; border: 2px solid black">
+                            @php
+                                $image_check = substr($mov->image1, 0, 5);
+                            @endphp
+                            @if ($image_check == 'https')
+                                <img src="{{ $mov->image }}" alt="" style="height: 300px;border-radius: 10px;">
+                            @else
+                                <img src="{{ asset('uploads/movie/' . $mov->image) }}" alt="" style="height: 300px;border-radius: 10px;">
+                            @endif
+                            <div class="icon-overlay">
+                                <i class="fa-solid fa-circle-play"></i>
+                            </div>
                         </div>
-                    </div>  
 
-                    <div class="card-text">
-                        <p>{{$mov->title}}</p>
+                        <div class="card-text" style="background: linear-gradient(to bottom, rgba(0, 0, 0, 0.42), #151515); left:0.5px; border-radius: 0 0 14px 14px;">
+                            <p>{{ $mov->title }}</p>
+                        </div>
                     </div>
-                </div>
+                </a>
             @endforeach
         </div>
     </div>
     
     <div class="blog-content container">
-        <div class="row d-flex">
+        <div class="row d-flex" >
             <div class="col-md-7">
-                <a href="{{route('blog-view',$blog->slug)}}">
+                <a href="{{route('blog-view',$blog->slug)}}" style="text-decoration: none; color: white">
                 <img src="{{asset('uploads/video/trailer/'.$blog->video)}}" width="100%" alt="">
                 <h4>{{$blog->title}}</h4>
                 <div class="blog-content-information d-flex">
@@ -48,7 +49,7 @@
             </div>
             <div class="col-md-5">
               @foreach($list_blog->take(4) as $key => $blog)
-              <a href="{{route('blog-view',$blog->slug)}}">
+              <a href="{{route('blog-view',$blog->slug)}}" style="text-decoration: none;">
                 <div class="background-blog-content">
                     <h5>{{$blog->title}}</h5>
                     <div class="blog-content-information d-flex">

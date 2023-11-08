@@ -15,7 +15,7 @@
 
         <div class="film-btn-support d-flex">
             <a href=""><i class="fa-solid fa-share"></i>Chia sẻ</a>
-            <a href=""><i class="fa-solid fa-cloud"></i>Sư tầm</a>
+            <a href=""><i class="fa-solid fa-cloud"></i>Sưu tầm</a>
         </div>
 
         <div class="row mt-3">
@@ -34,24 +34,24 @@
                 <div class="tab-content">
                     <div class="tab-pane active server-1">
                         <div class="halim-server">
-                            <ul class="halim-list-eps" style="padding: 0; display:flex">
+                            <ul class="halim-list-eps" style="padding: 0">
                                 @foreach ($server as $key => $ser)
                                     @foreach ($episode_movie as $key => $epi_mov)
                                         @if ($epi_mov->server == $ser->id)
                                             <a href=""
                                                 style="text-decoration: none; list-style: none; padding:10px;">
-                                                <li class="halim-episode">
+                                                <li class="halim-episode-ser">
                                                     <span class="halim-btn hanlim-btn-2 halim-info-1-1 box-shadow">
-                                                        <div>{{ $ser->title }}</div>
+                                                        <div> #{{ $ser->title }}</div>
                                                     </span>
                                                 </li>
                                             </a>
 
-                                            <ul class="halim-list-eps" style="padding: 0; display:flex">
+                                            <ul class="halim-list-eps" style="padding: 0; display: grid; grid-template-columns: repeat(10, 1fr)">
                                                 @foreach ($episode_list as $key => $epi)
                                                     @if ($epi->server == $ser->id)
                                                         <a href="{{ url('xemphim/' . $movie->slug . '/tap-' . $epi->episode . '/server-' . $epi->server) }}"
-                                                            style="text-decoration: none; list-style: none; padding-right: 10px">
+                                                            style="text-decoration: none; list-style: none; padding-right: 10px; margin-bottom: 10px">
                                                             <li class="halim-episode">
                                                                 <span
                                                                     class="halim-btn hanlim-btn-2 {{ $tapphim == $epi->episode && $server_active == 'server-' . $ser->id ? 'active' : '' }} halim-info-1-1 box-shadow">
@@ -79,23 +79,23 @@
                     </div>
                     <div class="row slider">
                         @foreach ($movie_related as $key => $mov)
-                            <a href="{{ route('pages.chitiet', $mov->slug) }}" style="text-decoration: none">
+                            <a href="{{ route('pages.chitiet', $mov->slug) }}" style="text-decoration: none;">
                                 <div class="slider-card">
-                                    <div class="card">
+                                    <div class="card"style="border-radius: 15px; border: 2px solid black">
                                         @php
                                             $image_check = substr($mov->image1, 0, 5);
                                         @endphp
                                         @if ($image_check == 'https')
-                                            <img src="{{ $mov->image }}" alt="">
+                                            <img src="{{ $mov->image }}" alt="" style="height: 240px;border-radius: 10px;">
                                         @else
-                                            <img src="{{ asset('uploads/movie/' . $mov->image) }}" alt="">
+                                            <img src="{{ asset('uploads/movie/' . $mov->image) }}" alt="" style="height: 240px;border-radius: 10px;">
                                         @endif
                                         <div class="icon-overlay">
                                             <i class="fa-solid fa-circle-play"></i>
                                         </div>
                                     </div>
 
-                                    <div class="card-text">
+                                    <div class="card-text" style="background: linear-gradient(to bottom, rgba(0, 0, 0, 0.42), #151515); left:0.5px; border-radius: 0 0 14px 14px;">
                                         <p>{{ $mov->title }}</p>
                                     </div>
                                 </div>
@@ -114,7 +114,7 @@
                     </div>
                     <hr>
                     @foreach ($movie_related->take(5) as $key => $mov)
-                        <a href="{{ route('pages.chitiet', $mov->slug) }}" style="text-decoration: none">
+                        <a href="{{ route('pages.chitiet', $mov->slug) }}" style="text-decoration: none; color: white;">
                             <div class="miscellaneous-content-2-block-film container d-flex">
                                 <div class="miscellaneous-content-2-block-film-img">
                                     @php
