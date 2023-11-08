@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use App\Models\ChildBlog;
 class Blog extends Model
 {
     use HasFactory;
@@ -13,4 +13,9 @@ class Blog extends Model
     public function genre () {
         return $this->belongsTo(Genre::class,'genre_id');
     }
+
+    public function childBlogs()
+{
+    return $this->hasMany(ChildBlog::class, 'blog_id');
+}
 }

@@ -15,14 +15,14 @@ class BlogController extends Controller
      */
     public function index()
     {
-        $list = Blog::with('genre')->orderBy('id', 'DESC')->get();
+        $list = Blog::with('genre','childBlogs')->orderBy('id', 'DESC')->get();
         $list_genre = Genre::all();
         $genre = Genre::pluck('title', 'id');
         // Đảm bảo biến blog_genre đã được định nghĩa và cung cấp nó trong mảng compact
         return  view('admin.pagesadmin.blog.form',compact(
             'list',
             'list_genre',
-            'genre'
+            'genre',
         ));
     }
 
@@ -65,7 +65,7 @@ class BlogController extends Controller
             $blog->video = $new_video;
         }
         $blog->save();
-        return redirect()->back()->with('success', 'Bạn đã thêm thành công');;
+        return redirect()->back()->with('success', 'Bạn đã thêm thành công');
     }
 
     /**
@@ -83,8 +83,9 @@ class BlogController extends Controller
     {   
         $list = Blog::with('genre')->orderBy('id', 'DESC')->get();
         $list_genre = Genre::all();
+        $blog = Blog::find($id);
         $genre = Genre::pluck('title', 'id');
-        return  view('admin.pagesadmin.blog',compact('list','list_genre','genre'))->with('success', 'Bạn đã cập nhập thành công');;
+        return  view('admin.pagesadmin.blog.index',compact('list','list_genre','genre','blog'))->with('success', 'Bạn đã cập nhập thành công');
     }
 
     /**

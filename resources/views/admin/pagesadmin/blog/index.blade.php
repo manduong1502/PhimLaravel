@@ -15,9 +15,9 @@
                             </div>
                         @endif
                         @if (!isset($blog))
-                            {!! Form::open(['route' => 'blog.store', 'method' => 'POST','enctype' => 'multipart/form-data']) !!}
+                            {!! Form::open(['route' => 'blog.store', 'method' => 'POST','enctype' => 'multipart/form-data','id'=> 'mainForm']) !!}
                         @else
-                            {!! Form::open(['route' => ['blog.update',$blog ->id], 'method' => 'PUT','enctype' => 'multipart/form-data']) !!}
+                            {!! Form::open(['route' => ['blog.update',$blog ->id], 'method' => 'PUT','enctype' => 'multipart/form-data','id'=> 'mainForm']) !!}
                         @endif
                             <div class="form-group">
                                 {!! Form::label('title', 'Tên Blog', []) !!}
@@ -28,7 +28,11 @@
                                 {!! Form::text('slug', isset($blog) ? $blog->slug : '', ['class' => 'form-control','placeholder' =>'Nhập vào dữ liệu...','id' =>'convert_slug']) !!}
                             </div>
 
+            
+
                             <div class="form-group">
+                                {!! Form::label('title', 'Tiêu đề nhỏ', []) !!}
+                                {!! Form::text('title_smail', '', ['class' => 'form-control','placeholder' =>'Nhập vào dữ liệu...']) !!}
                                 {!! Form::label('description', 'Mô tả', []) !!}
                                 {!! Form::textarea('description', isset($blog) ? $blog->description : '', [
                                     'class' => 'form-control',
