@@ -303,3 +303,44 @@
       });
   })
 </script> --}}
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+      // Lấy ra phần tử cha và nút "Thêm Tiêu đề con"
+      const mainForm = document.getElementById('mainForm');
+      const childForms = document.getElementById('childForms');
+      const addButton = document.getElementById('addButton');
+
+      // Số lượng form con
+      let childFormCount = 0;
+
+      // Hàm tạo form con
+      function createChildForm(title) {
+          childFormCount++;
+
+          const childForm = document.createElement('div');
+          childForm.className = 'form-group';
+          childForm.innerHTML = `
+              <label for="childTitle${childFormCount}">Tiêu đề con ${childFormCount}</label>
+              <input type="text" name="title_small" class="form-control" placeholder="Nhập tiêu đề con..." id="childTitle${childFormCount}" value="${title || ''}">
+              <label for="childDescription${childFormCount}">Mô tả con${childFormCount}</label>
+              <textarea name="description_small" class="form-control" placeholder="Nhập vào dữ liệu con..." id="childDescription${childFormCount}"></textarea>
+              <button type="button" class="removeButton btn btn-danger">Xóa</button>
+          `;
+          childForms.appendChild(childForm);
+
+          // Xử lý sự kiện xóa form con
+          const removeButton = childForm.querySelector('.removeButton');
+          removeButton.addEventListener('click', function() {
+              childForms.removeChild(childForm);
+          });
+      }
+
+      // Xử lý sự kiện bấm nút "Thêm Tiêu đề con"
+      addButton.addEventListener('click', function() {
+          const title = prompt('Nhập tiêu đề con:');
+          if (title) {
+              createChildForm(title);
+          }
+      });
+  });
+</script>
