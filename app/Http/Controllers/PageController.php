@@ -223,26 +223,26 @@ class PageController extends Controller
     // }
 
 
-    // public function getchoghe()
-    // {
-    //     $category = Category::orderBy('id','DESC') ->get();
-    //     $genre = Genre::orderBy('id','DESC') ->get();
-    //     $country = Country::orderBy('id','DESC') ->get();
-    //     $customCssArr = [
-    //         '/css/datve.css',
-    //         '/css/chon-ghe-film.css',
-    //     ];
-    //     $customJsArr = [
-    //         '/js/chair.js'
-    //     ];
-    //     return view('datve.datghe',compact(
-    //         'customCssArr',
-    //         'customJsArr',
-    //         'category',
-    //         'genre',
-    //         'country'
-    //     ));
-    // }
+    public function getchoghe()
+    {
+        $category = Category::orderBy('id','DESC') ->get();
+        $genre = Genre::orderBy('id','DESC') ->get();
+        $country = Country::orderBy('id','DESC') ->get();
+        $customCssArr = [
+            '/css/datve.css',
+            '/css/chon-ghe-film.css',
+        ];
+        $customJsArr = [
+            '/js/chair.js'
+        ];
+        return view('datve.datghe',compact(
+            'customCssArr',
+            'customJsArr',
+            'category',
+            'genre',
+            'country'
+        ));
+    }
 
     // public function getdatbapnuoc(){
     //     $category = Category::orderBy('id','DESC') ->get();
@@ -296,4 +296,58 @@ class PageController extends Controller
     //         'country'
     //     ));
     // }
+
+    public function getrapphim()
+    {
+        $phimhot = Movie::where('phim_hot',1)->where('status',1)->orderBy('ngay_cap_nhap','DESC')->get();
+        $slide = Movie::with('country','genre','category','movie_genre')->where('slide',1)->where('status',1)->orderBy('ngay_cap_nhap','DESC')->get();
+        $category = Category::orderBy('id','DESC') ->get();
+        $genre = Genre::orderBy('id','DESC') ->get();
+        $country = Country::orderBy('id','DESC') ->get();
+        $category_home = Category::with('movie')->where('status',1)->orderBy('id','DESC') ->get();
+        $customCssArr = [
+            '/css/datve.css',
+            '/css/chon-ghe-film.css',
+        ];
+        $customJsArr = [
+            '/js/chair.js'
+        ];
+        return view('datve.rapphim',compact(
+            'customCssArr',
+            'customJsArr',
+            'category',
+            'genre',
+            'country',
+            'phimhot',
+            'category_home',
+            'slide',
+        ));
+    }
+
+public function getGioithieu1()
+    {
+        $phimhot = Movie::where('phim_hot',1)->where('status',1)->orderBy('ngay_cap_nhap','DESC')->get();
+        $slide = Movie::with('country','genre','category','movie_genre')->where('slide',1)->where('status',1)->orderBy('ngay_cap_nhap','DESC')->get();
+        $category = Category::orderBy('id','DESC') ->get();
+        $genre = Genre::orderBy('id','DESC') ->get();
+        $country = Country::orderBy('id','DESC') ->get();
+        $category_home = Category::with('movie')->where('status',1)->orderBy('id','DESC') ->get();
+        $customCssArr = [
+            '/css/datve.css',
+            '/css/chon-ghe-film.css',
+        ];
+        $customJsArr = [
+            '/js/chair.js'
+        ];
+        return view('datve.gioithieu1',compact(
+            'customCssArr',
+            'customJsArr',
+            'category',
+            'genre',
+            'country',
+            'phimhot',
+            'category_home',
+            'slide',
+        ));
+    }
 }

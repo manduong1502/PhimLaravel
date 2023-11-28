@@ -84,7 +84,8 @@ Route::get('/datghe', [PageController::class, 'getchoghe'])->middleware(AuthMidd
 Route::get('/datbapnuoc', [PageController::class, 'getdatbapnuoc'])->middleware(AuthMiddleware::class);
 Route::get('/thanhtoan', [PageController::class, 'getthanhtoan'])->middleware(AuthMiddleware::class);
 Route::get('/thongtinve', [PageController::class, 'getthongtinve'])->middleware(AuthMiddleware::class);
-
+Route::get('/rapphim', [PageController::class, 'getrapphim'])->middleware(AuthMiddleware::class);
+Route::get('/gioithieu1', [PageController::class, 'getGioithieu1'])->middleware(AuthMiddleware::class);
 
 
 //route leech movie 
@@ -93,3 +94,5 @@ Route::get('/leech-detail/{slug}', [LeechMovieController::class, 'leech_detaiil'
 Route::post('/leech-store/{slug}', [LeechMovieController::class, 'leech_store'])->name('leech-store')->middleware(CheckAdmin::class);
 Route::get('/leech-episode/{slug}', [LeechMovieController::class, 'leech_episode'])->name('leech_episode')->middleware(CheckAdmin::class);
 Route::post('/leech-episode-store/{slug}', [LeechMovieController::class, 'leech_episode_store'])->name('leech-episode-store')->middleware(CheckAdmin::class);
+
+
