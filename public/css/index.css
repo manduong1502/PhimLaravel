@@ -67,11 +67,18 @@ header.active:before {
   background-color: rgba(0, 0, 0, 0.50);
   
 }
-  
-.carousel-control-prev,
+
+.carousel-control-prev{
+    position: absolute;
+    top: 500px;
+    left: -40px;
+    
+}
 .carousel-control-next {
-    z-index: 1 ;
-    position: relative;
+    position: absolute;
+    top: 500px;
+    right: -10px;
+    
 }
 
 header form {
@@ -110,10 +117,11 @@ header .btn-vip {
   color: #e5e5e5;
   text-align: left;
   font-family: Molle;
-  font-size: 60px;
+  font-size: 50px;
   font-style: normal;
   font-weight: 400;
-  line-height: 28px;
+  font-weight: bold;
+  line-height: 40px;
   letter-spacing: 0.2px;
   width: 400px;
 }
@@ -369,6 +377,7 @@ header .btn-vip {
 .dark-bg-image::before {
   content: "";
   position: absolute;
+  width: 100%;
   top: 40%;
   left: 0;
   right: 0;
