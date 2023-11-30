@@ -73,6 +73,7 @@
                             <th scope="col">Đường link</th>
                             <th scope="col">Nội dung</th>
                             <th scope="col">Hiển thị</th>
+                            <th scope="col">Hiển thị review</th>
                             <th scope="col">Thể Loại</th>
                             <th scope="col">Ngày tạo</th>
                             <th scope="col">Ngày cập nhập</th>
@@ -91,6 +92,13 @@
                                 <td>{!! $cate->description !!}</td>
                                 <td>
                                     @if ($cate->status == 1)
+                                        <span class="badge badge-success">Hiển thị</span>
+                                    @else
+                                        <span class="badge badge-danger">Không hiển thị</span>
+                                    @endif
+                                </td>
+                                <td>
+                                    @if ($cate->review == 1)
                                         <span class="badge badge-success">Hiển thị</span>
                                     @else
                                         <span class="badge badge-danger">Không hiển thị</span>

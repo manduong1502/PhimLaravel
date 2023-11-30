@@ -48,12 +48,17 @@
                                 {!! Form::label('Active', 'Hiển thị', []) !!}
                                 {!! Form::select('status', ['1' =>'Hiển thị','0' =>'Không hiển thị'], isset($blog) ? $blog->status : '', ['class' => 'form-control']) !!}
                             </div>
-
+                            <div class="form-group">
+                                {!! Form::label('Phim hot', 'Hiển thị review', []) !!}
+                                {!! Form::select('review', ['0' => 'Không hiển thị', '1' => 'Hiển thị'], isset($blog) ? $blog->review : '', [
+                                    'class' => 'form-control',
+                                ]) !!}
+                            </div>
                             <div class="form-group">
                                 {!! Form::label('video', 'Ảnh logo', []) !!}
                                 {!! Form::file('video', ['class' => 'form-control-file']) !!}
                                 @if (isset($blog))
-                                    <img width="20%" src="{{ asset('uploads/movie/trailer/' . $blog->video) }}"alt="">
+                                    <img width="20%" src="{{ asset('uploads/video/trailer/' . $blog->video) }}"alt="">
                                 @endif
                             </div>
 

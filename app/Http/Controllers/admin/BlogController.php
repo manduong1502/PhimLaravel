@@ -52,6 +52,7 @@ class BlogController extends Controller
         $blog->slug = $request->slug;
         $blog->status = $request->status;
         $blog->description = $request->description;
+        $blog->review = $request->review;
         $blog->genre_id = $request->genre_id;
         $blog->ngay_tao = Carbon::now('Asia/Ho_Chi_Minh');
         $blog->ngay_cap_nhat = Carbon::now('Asia/Ho_Chi_Minh');
@@ -100,6 +101,7 @@ class BlogController extends Controller
         $blog->status = $request->status;
         $blog->description = $request->description;
         $blog->genre_id = $request->genre_id;
+        $blog->review = $request->review;
         $blog->ngay_cap_nhat = Carbon::now('Asia/Ho_Chi_Minh');
 
 

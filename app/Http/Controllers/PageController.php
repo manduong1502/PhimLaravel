@@ -228,6 +228,7 @@ class PageController extends Controller
         $blog = Blog::orderBy('ngay_cap_nhat','DESC')->where('status',1) ->first();
         $list_blog = Blog::orderBy('id','DESC')->where('status',1)->get();
         $blog_news = Blog::orderBy('ngay_cap_nhat','DESC')->where('status',1)->get();
+        $review = Blog::orderBy('ngay_cap_nhat','DESC')->where('status',1)->where('review',1)->get();
         $customCss = 'css/blog.css';
         return view('pages.blog',compact(
             'customCss',
@@ -237,7 +238,8 @@ class PageController extends Controller
             'movie_related',
             'blog',
             'list_blog',
-            'blog_news'
+            'blog_news',
+            'review'
         ));
     }
 
