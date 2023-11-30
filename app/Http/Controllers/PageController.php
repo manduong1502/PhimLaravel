@@ -247,6 +247,7 @@ class PageController extends Controller
         $genre = Genre::orderBy('id','DESC') ->get();
         $country = Country::orderBy('id','DESC') ->get();
         $blog = Blog::with('genre')->where('slug',$slug)->first();
+        $blog_related = Blog::with('genre')->where('genre_id',$blog->genre->id)->orderBy(DB::raw('RAND()'))->whereNotIn('slug',[$slug])->get();
         $customCss = 'css/blog-review.css';
         return view('pages.blog_review',compact(
             'customCss',
@@ -254,6 +255,7 @@ class PageController extends Controller
             'genre',
             'country',
             'blog',
+            'blog_related'
         ));
     }
 

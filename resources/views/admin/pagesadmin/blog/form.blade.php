@@ -88,7 +88,7 @@
                                 </td>
                                 <td>{{ $cate->title }}</td>
                                 <td>{{ $cate->slug }}</td>
-                                <td>{{ $cate->description }}</td>
+                                <td>{!! $cate->description !!}</td>
                                 <td>
                                     @if ($cate->status == 1)
                                         <span class="badge badge-success">Hiển thị</span>
@@ -109,10 +109,7 @@
                                     {!! Form::submit('Xóa', ['class' => 'btn btn-danger']) !!}
                                     {!! Form::close() !!}
                                     <a href="{{ route('blog.edit', $cate->id) }}" class="btn btn-warning">Sửa</a>
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                        data-bs-target="#blog">
-                                        Thêm tiêu đề con
-                                    </button>
+
                                 </td>
                             </tr>
                         @endforeach

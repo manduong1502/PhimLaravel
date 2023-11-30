@@ -14,8 +14,5 @@ class Blog extends Model
         return $this->belongsTo(Genre::class,'genre_id');
     }
 
-    public function childBlogs()
-{
-    return $this->hasMany(ChildBlog::class, 'blog_id');
-}
+    
 }

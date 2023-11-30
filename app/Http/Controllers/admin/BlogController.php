@@ -15,7 +15,7 @@ class BlogController extends Controller
      */
     public function index()
     {
-        $list = Blog::with('genre','childBlogs')->orderBy('id', 'DESC')->get();
+        $list = Blog::orderBy('id', 'DESC')->get();
         $list_genre = Genre::all();
         $genre = Genre::pluck('title', 'id');
         // Đảm bảo biến blog_genre đã được định nghĩa và cung cấp nó trong mảng compact
