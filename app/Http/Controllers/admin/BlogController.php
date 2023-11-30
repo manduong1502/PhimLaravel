@@ -98,7 +98,6 @@ class BlogController extends Controller
         $blog->title = $request->title;
         $blog->slug = $request->slug;
         $blog->status = $request->status;
-        $blog->status = $request->status;
         $blog->description = $request->description;
         $blog->genre_id = $request->genre_id;
         $blog->review = $request->review;

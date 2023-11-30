@@ -105,6 +105,7 @@
                     <div class="background-blog-content-2-title container">
 
                         @foreach ($review->take(5) as $key => $rev)
+                        <a href="{{route('blog-view',$blog->slug)}}">
                         <div class="blog-content-2-title row d-flex pt-4">
                             <div class="blog-content-2-title-img col-md-3">
                                 <img src="{{asset('uploads/video/trailer/'.$new->video)}}" width="90" height="110" alt="">
@@ -118,6 +119,7 @@
                                 </div>
                             </div>
                         </div>
+                    </a>
                         @endforeach
                     </div>
                 </div>
