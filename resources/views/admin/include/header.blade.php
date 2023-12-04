@@ -114,6 +114,7 @@
                             <i class="fa fa-angle-left pull-right"></i>
                         </a>
                         <ul class="treeview-menu">
+                            <li><a href="{{route('user.create')}}"><i class="fa fa-angle-right"></i> Thêm user</a></li>
                             <li><a href="{{route('user.index')}}"><i class="fa fa-angle-right"></i> Liệt kê user</a></li>
                         </ul>
                     </li>
