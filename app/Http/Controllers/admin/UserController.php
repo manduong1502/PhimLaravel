@@ -69,7 +69,10 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $users = User::with('roles','permissions')->orderBy('id','asc')->get();
+        $user = user::find($id);
+        
+        return  view('admin.pagesadmin.user.index',compact('users','user'));
     }
 
     /**
@@ -77,7 +80,12 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $user = User::find($id);
+        $user -> username = $request->username;
+        $user -> email = $request->email;
+        $user -> password = bcrypt($request->password);
+        $user->save();
+        return redirect()->back()->with('success','Bạn đã sửa thành công');
     }
 
     /**
@@ -85,7 +93,8 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        User::find($id) -> delete();
+        return redirect()->back()->with('success', 'Bạn đã xóa thành công');
     }
 
     public function phan_vaitro(string $id)
