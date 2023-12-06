@@ -22,6 +22,33 @@ class PageController extends Controller
         return view('pages.gioithieu');
     }
 
+    public function getGoiphim()
+    {
+        $category = Category::orderBy('id','DESC') ->where('status',1)->get();
+        $genre = Genre::orderBy('id','DESC')->where('status',1) ->get();
+        $country = Country::orderBy('id','DESC')->where('status',1) ->get();
+        $customCss = 'css/goiphim.css';
+        return view('pages.goiphim', compact(
+            'customCss',
+            'category',
+            'country',
+            'genre'
+        ));
+    }
+    public function getGoiphim_thanhtoan()
+    {
+        $category = Category::orderBy('id','DESC') ->where('status',1)->get();
+        $genre = Genre::orderBy('id','DESC')->where('status',1) ->get();
+        $country = Country::orderBy('id','DESC')->where('status',1) ->get();
+        $customCss = 'css/goiphim_thanhtoan.css';
+        return view('pages.goiphim_thanhtoan', compact(
+            'customCss',
+            'category',
+            'country',
+            'genre'
+        ));
+    }
+
     public function search()
     {
         if(isset($_GET['search'])) {

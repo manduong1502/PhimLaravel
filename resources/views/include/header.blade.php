@@ -75,7 +75,7 @@
               </ul>
             </li>
             <li class="nav-item mt-3 btn-vip">
-              <button class="btn btn-outline-success" type="submit"><i class="fa-solid fa-star"></i>VIP</button>
+              <a class="btn btn-outline-success" href="{{ route('goiphim') }}"><i class="fa-solid fa-star"></i>VIP</a>
             </li>
           </ul>
         </div>

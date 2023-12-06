@@ -1,0 +1,35 @@
+.logo{
+    margin: 100px 0 50px 0;
+}
+
+.Free, .Coban, .Tieuchuan, .Caocap{
+    border: 2px solid black;
+    background: #464646;
+    border-radius: 15px;
+    padding: 15px;
+    text-align: center;
+    height: 500px;
+}
+.line{
+    border-top: 2px solid black;
+}
+
+.price{
+    margin: 20px 0 20px 0;
+}
+.price h5{
+    color: #bdbdbd;
+}
+.service{
+    text-align: left;
+    margin-top: 20px;
+}
+.service div{
+    margin: 5px 0 5px 0;
+    display: flex;
+    font-size: 20px;
+}
+.service div i{
+    padding-top: 13px;
+    margin-right: 5px;
+}
