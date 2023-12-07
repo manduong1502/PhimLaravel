@@ -17,7 +17,7 @@ use App\Http\Controllers\admin\GenreController;
 use App\Http\Controllers\admin\BlogController;
 use App\Http\Controllers\admin\LeechMovieController;
 use App\Http\Controllers\admin\LinkMovieController;
-
+use App\Http\Controllers\CheckoutController;
 
 
 //login
@@ -82,7 +82,7 @@ Route::get('/chitiet/{slug}', [PageController::class, 'getChitiet'])->name('page
 Route::post('add-rating', [PageController::class, 'add_rating'])->name('add-rating');
 
 //gói phim
-Route::get('/goiphim', [PageController::class, 'getGoiphim'])->middleware(AuthMiddleware::class)->name('goiphim');
+Route::get('/goiphim/{id}', [PageController::class, 'getGoiphim'])->middleware(AuthMiddleware::class)->name('goiphim_page');
 Route::get('/goiphim_thanhtoan', [PageController::class, 'getGoiphim_thanhtoan'])->middleware(AuthMiddleware::class)->name('goiphim');
 
 Route::get('/blog', [PageController::class, 'getBlog'])->name('blog')->middleware(AuthMiddleware::class);

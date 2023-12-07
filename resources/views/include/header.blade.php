@@ -4,11 +4,11 @@
             @role('uservip')
                 <a href="{{ route('pages.trangchu') }}"><img class="navbar-brand"
                         src="{{ asset('public/image/logo/anhvip.png') }}" alt=""
-                        style="height: 100px; width: 220px;"></a>
+                        style="height: 80px; width: 220px;"></a>
             @else
                 <a href="{{ route('pages.trangchu') }}"><img class="navbar-brand"
                         src="{{ asset('public/image/logo/logo.png') }}" alt=""
-                        style="height: 100px; width: 220px;"></a>
+                        style="height: 80px; width: 220px;"></a>
             @endrole
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -63,42 +63,48 @@
                     </li>
 
 
-          </ul>
-          <form class="d-flex" action="{{route('search')}}" method="GET">
-            <div class="d-flex input-group">
-            <input type="text" name="search" class="form-control me-2" id="timkiem" placeholder="Search" autocomplete="off" >
-            <button class="btn btn-outline-success">Search</button>
+                </ul>
+                <form class="d-flex" action="{{ route('search') }}" method="GET">
+                    <div class="d-flex input-group">
+                        <input type="text" name="search" class="form-control me-2" id="timkiem"
+                            placeholder="Search" autocomplete="off">
+                        <button class="btn btn-outline-success">Search</button>
+                    </div>
+                    <ul class="list-group" id="result"
+                        style="display: none; position: absolute; top: 100%; left: 60.5%; border: 1px solid black; width: 300px; z-index: 999; ">
+                    </ul>
+                </form>
+
+                <ul class="navbar-nav mb-2 mb-lg-0">
+                    <li class="nav-item mt-3">
+                        <a class="nav-link active text-white" aria-current="page" href="#"><i
+                                class="fa-regular fa-clock"></i> Xem
+                            lịch
+                            sử</a>
+                    </li>
+                    <li class="nav-item dropdown ">
+                        <a href="#" class="nav-link" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false"><img class="navbar-brand"
+                                src="{{ asset('public/image/image-13.png') }}" alt=""></a>
+                        <ul class="dropdown-menu">
+                            @auth
+                                <li>Xin chào, {{ Auth::user()->username }}</li>
+                            @endauth
+                            <li><a class="dropdown-item" href="#">Thông tin</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="{{ route('auth.logout') }}">Đăng xuất</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item mt-3 btn-vip">
+                        <a class="btn btn-outline-success" href="{{ route('goiphim') }}"><i
+                                class="fa-solid fa-star"></i>VIP</a>
+                    </li>
+                </ul>
             </div>
-            <ul class="list-group" id="result" style="display: none; position: absolute; top: 100%; left: 60.5%; border: 1px solid black; width: 300px; z-index: 999; "></ul>
-          </form>
-          
-          <ul class="navbar-nav mb-2 mb-lg-0">
-            <li class="nav-item mt-3">
-              <a class="nav-link active text-white" aria-current="page" href="#"><i class="fa-regular fa-clock"></i> Xem
-                lịch
-                sử</a>
-            </li>
-            <li class="nav-item dropdown ">
-              <a href="#" class="nav-link" role="button" data-bs-toggle="dropdown" aria-expanded="false"><img
-                  class="navbar-brand" src="{{asset('public/image/image-13.png')}}" alt=""></a>
-              <ul class="dropdown-menu">
-                @auth
-                    <li>Xin chào, {{ Auth::user()->username }}</li>
-                @endauth
-                <li><a class="dropdown-item" href="#">Thông tin</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li>
-                  <hr class="dropdown-divider">
-                </li>
-                <li><a class="dropdown-item" href="{{route('auth.logout')}}">Đăng xuất</a></li>
-              </ul>
-            </li>
-            <li class="nav-item mt-3 btn-vip">
-              <button class="btn btn-outline-success" type="submit"><i class="fa-solid fa-star"></i>VIP</button>
-            </li>
-          </ul>
         </div>
-      </div>
     </nav>
 </header>
 

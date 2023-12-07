@@ -12,6 +12,10 @@ use App\Models\Rating;
 use App\Models\Blog;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Config;
+use App\Models\vnpay;
+use App\Models\User;
+use Carbon\Carbon;
 
 
 
@@ -22,12 +26,27 @@ class PageController extends Controller
         return view('pages.gioithieu');
     }
 
-    public function getGoiphim()
+    public function getGoiphim($id)
     {
         $category = Category::orderBy('id','DESC') ->where('status',1)->get();
         $genre = Genre::orderBy('id','DESC')->where('status',1) ->get();
         $country = Country::orderBy('id','DESC')->where('status',1) ->get();
-        $customCss = 'css/goiphim.css';
+        $customCss = 'css/goiphim_thanhtoan.css';
+
+
+        $user = User::find($id);
+
+    if ($user) {
+        $user->removeRole('userfree'); // Xóa vai trò cũ
+        $user->assignRole('uservip'); // Gán vai trò mới
+
+        // Kiểm tra thời gian hết hạn hiện tại và thêm 3 tháng
+        $currentEndDate = $user->vip_end_date;
+        $newEndDate = $currentEndDate ? Carbon::parse($currentEndDate)->addMonths(3) : now()->addMonths(3);
+
+        $user->vip_end_date = $newEndDate; // Cập nhật thời gian hết hạn VIP
+        $user->save(); // Lưu thông tin người dùng
+    }
         return view('pages.goiphim', compact(
             'customCss',
             'category',
@@ -41,6 +60,23 @@ class PageController extends Controller
         $genre = Genre::orderBy('id','DESC')->where('status',1) ->get();
         $country = Country::orderBy('id','DESC')->where('status',1) ->get();
         $customCss = 'css/goiphim_thanhtoan.css';
+
+        Config::set('vnp_Amount', 'thank toán thành công');
+
+        if (isset($_GET['vnp_Amount'])) {
+            $data_vnpay = new vnpay();
+            $data_vnpay->vnp_Amount = $_GET['vnp_Amount'];
+            $data_vnpay->vnp_BankCode = $_GET['vnp_BankCode'];
+            $data_vnpay->vnp_BankTranNo = $_GET['vnp_BankTranNo'];
+            $data_vnpay->vnp_CardType = $_GET['vnp_CardType'];
+            $data_vnpay->vnp_PayDate = $_GET['vnp_PayDate'];
+            $data_vnpay->vnp_ResponseCode = $_GET['vnp_ResponseCode'];
+            $data_vnpay->vnp_TransactionNo = $_GET['vnp_TransactionNo'];
+            $data_vnpay->vnp_TransactionStatus = $_GET['vnp_TransactionStatus'];
+            $data_vnpay->vnp_TxnRef = $_GET['vnp_TxnRef'];
+            $data_vnpay->vnp_SecureHash = $_GET['vnp_SecureHash'];
+            $data_vnpay ->save();
+        }
         return view('pages.goiphim_thanhtoan', compact(
             'customCss',
             'category',

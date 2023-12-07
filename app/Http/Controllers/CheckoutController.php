@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class CheckoutController extends Controller
 {
@@ -35,7 +37,7 @@ class CheckoutController extends Controller
         $amount = "10000";
         $orderId = time() ."";
         $redirectUrl = "http://127.0.0.1:8000/goiphim_thanhtoan"; //trang trả về
-        $ipnUrl = "http://127.0.0.1:8000/goiphim_thanhtoan";
+        $ipnUrl = "http://127.0.0.1:8000/goiphim";
         $extraData = "";
 
         $partnerCode = $_POST["partnerCode"];
@@ -78,11 +80,14 @@ class CheckoutController extends Controller
         date_default_timezone_set('Asia/Ho_Chi_Minh');
 
         $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
-        $vnp_Returnurl = "http://127.0.0.1:8000/goiphim_thanhtoan";
+        
+        $user = Auth::user();
+        $id = $user->id; // Lấy ID của người dùng
+        $vnp_Returnurl = route('goiphim_page', ['id' => $id]);
         $vnp_TmnCode = "YBWDWYGH";//Mã website tại VNPAY 
         $vnp_HashSecret = "NUBYSUJQMGCHUNJAYAHGATDVSGMQTFFC"; //Chuỗi bí mật
         
-        $vnp_TxnRef = 100000; //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang VNPAY
+        $vnp_TxnRef = rand(00,9999); //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang VNPAY
         $vnp_OrderInfo = "thanh toán hóa đơn";
         $vnp_OrderType = "Cosmic Vip";
         $vnp_Amount = 20000 * 100;
