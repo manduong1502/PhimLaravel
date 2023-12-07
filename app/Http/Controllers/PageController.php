@@ -42,7 +42,7 @@ class PageController extends Controller
 
         // Kiểm tra thời gian hết hạn hiện tại và thêm 3 tháng
         $currentEndDate = $user->vip_end_date;
-        $newEndDate = $currentEndDate ? Carbon::parse($currentEndDate)->addMonths(3) : now()->addMonths(3);
+        $newEndDate = $currentEndDate ? Carbon::parse($currentEndDate)->addMonths(3) : Carbon::now()->addMonths(3);
 
         $user->vip_end_date = $newEndDate; // Cập nhật thời gian hết hạn VIP
         $user->save(); // Lưu thông tin người dùng
