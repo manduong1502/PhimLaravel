@@ -17,7 +17,7 @@ use App\Http\Controllers\admin\GenreController;
 use App\Http\Controllers\admin\BlogController;
 use App\Http\Controllers\admin\LeechMovieController;
 use App\Http\Controllers\admin\LinkMovieController;
-
+use App\Http\Controllers\CheckoutController;
 
 
 //login
@@ -37,6 +37,13 @@ Route::resource('/admin/country', CountryController::class)->middleware(CheckAdm
 Route::resource('/admin/episode', EpisodeController::class)->middleware(CheckAdmin::class);
 Route::resource('/admin/blog', BlogController::class)->middleware(CheckAdmin::class);
 Route::resource('/admin/linkmovie', LinkMovieController::class)->middleware(CheckAdmin::class);
+Route::resource('/admin/user', UserController::class)->middleware(CheckAdmin::class);
+Route::get('admin/user/phan-vai-tro/{id}', [UserController::class,'phan_vaitro'])->middleware(CheckAdmin::class)->name('phan_vaitro');
+Route::post('admin/user/insert-roles/{id}', [UserController::class,'insert_roles'])->middleware(CheckAdmin::class)->name('insert_roles');
+Route::get('admin/user/phan-quyen/{id}', [UserController::class,'phan_quyen'])->middleware(CheckAdmin::class)->name('phan_quyen');
+Route::post('admin/user/insert-quyen/{id}', [UserController::class,'insert_quyen'])->middleware(CheckAdmin::class)->name('insert_quyen');
+Route::post('admin/user/add-permission', [UserController::class,'add_permissions'])->middleware(CheckAdmin::class)->name('add_permissions');
+Route::post('admin/user/add-roles', [UserController::class,'add_roles'])->middleware(CheckAdmin::class)->name('add_roles');
 
 //Thay đổi dữ liệu trong movie ajax
 Route::get('update-nam-phim', [MovieController::class,'update_year'])->name('update-year-phim');
@@ -74,6 +81,9 @@ Route::get('/quocgia/{slug}', [PageController::class, 'getQuocgia'])->name('coun
 Route::get('/chitiet/{slug}', [PageController::class, 'getChitiet'])->name('pages.chitiet')->middleware(AuthMiddleware::class);
 Route::post('add-rating', [PageController::class, 'add_rating'])->name('add-rating');
 
+//gói phim
+Route::get('/goiphim/{id}', [PageController::class, 'getGoiphim'])->middleware(AuthMiddleware::class)->name('goiphim_page');
+Route::get('/goiphim_thanhtoan', [PageController::class, 'getGoiphim_thanhtoan'])->middleware(AuthMiddleware::class)->name('goiphim');
 
 Route::get('/blog', [PageController::class, 'getBlog'])->name('blog')->middleware(AuthMiddleware::class);
 Route::get('/blog_review/{slug}', [PageController::class, 'getBlog_review'])->name('blog-view')->middleware(AuthMiddleware::class);
@@ -94,3 +104,5 @@ Route::get('/leech-detail/{slug}', [LeechMovieController::class, 'leech_detaiil'
 Route::post('/leech-store/{slug}', [LeechMovieController::class, 'leech_store'])->name('leech-store')->middleware(CheckAdmin::class);
 Route::get('/leech-episode/{slug}', [LeechMovieController::class, 'leech_episode'])->name('leech_episode')->middleware(CheckAdmin::class);
 Route::post('/leech-episode-store/{slug}', [LeechMovieController::class, 'leech_episode_store'])->name('leech-episode-store')->middleware(CheckAdmin::class);
+//ajax chi tiet phim
+Route::post('/watch-leech-detail', [LeechMovieController::class, 'watch_leech_detail'])->name('watch-leech-detail');

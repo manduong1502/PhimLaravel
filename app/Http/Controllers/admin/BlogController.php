@@ -15,7 +15,7 @@ class BlogController extends Controller
      */
     public function index()
     {
-        $list = Blog::with('genre','childBlogs')->orderBy('id', 'DESC')->get();
+        $list = Blog::orderBy('id', 'DESC')->get();
         $list_genre = Genre::all();
         $genre = Genre::pluck('title', 'id');
         // Đảm bảo biến blog_genre đã được định nghĩa và cung cấp nó trong mảng compact
@@ -52,6 +52,7 @@ class BlogController extends Controller
         $blog->slug = $request->slug;
         $blog->status = $request->status;
         $blog->description = $request->description;
+        $blog->review = $request->review;
         $blog->genre_id = $request->genre_id;
         $blog->ngay_tao = Carbon::now('Asia/Ho_Chi_Minh');
         $blog->ngay_cap_nhat = Carbon::now('Asia/Ho_Chi_Minh');
@@ -97,9 +98,9 @@ class BlogController extends Controller
         $blog->title = $request->title;
         $blog->slug = $request->slug;
         $blog->status = $request->status;
-        $blog->status = $request->status;
         $blog->description = $request->description;
         $blog->genre_id = $request->genre_id;
+        $blog->review = $request->review;
         $blog->ngay_cap_nhat = Carbon::now('Asia/Ho_Chi_Minh');
 
 

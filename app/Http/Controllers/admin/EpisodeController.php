@@ -114,7 +114,7 @@ class EpisodeController extends Controller
     public function destroy(string $id)
     {
         Episode::find($id) -> delete();
-        return redirect()->back()->with('success', 'Bạn đã xóa thành công');;
+        return redirect()->back()->with('success', 'Bạn đã xóa thành công');
     }
 
     public function selectmovie () {

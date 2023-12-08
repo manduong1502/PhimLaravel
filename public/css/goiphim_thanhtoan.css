@@ -1,0 +1,148 @@
+.muagoiphim{
+    margin-top: 100px;
+}
+.container .card{
+    background: #ffffff;
+    border-radius: 15px;
+    border: 2px solid black;
+}
+
+.card-header{
+    padding: 10px;
+    border-bottom: 2px solid black ;
+    background: #464646;
+}
+.card-header img{
+    height: 75px;
+    margin-right: 20px;
+}
+.card-header p{
+    color: white;
+    font-size: 20px;
+    margin: 5px 0 0 0;
+}
+.card-header button{
+    padding: 5px;
+    margin: 20px 20px 0 0;
+    border-radius: 15px;
+    background: #464646;
+    border: 2px solid rgb(255, 255, 255);
+    width: 200px;
+}
+.card-header button p{
+    margin: 0;
+}
+
+.card-body{
+    display: block;
+    height: auto;
+    color: black;
+}
+.card-body .goiphim{
+    padding: 0 10px 0 20px;
+    width: 100%;
+}
+.card-body .goiphim button{
+    border: 2px solid black;
+    border-radius: 15px;
+    margin-right: 10px;
+    background-color: #f2f2f2;
+}
+
+.card-body .goiphim button:hover{
+    background-color: #f2f2f2;
+    border: 2px solid yellow;
+}
+.content-btn .active{
+    background-color: #fcf2e6;
+}
+.card-body .detail{
+    padding: 10px 0 0 20px;
+    font-size: 17px;
+    font-weight: bold;
+}
+.card-body .detail h4{
+    margin-top: 20px;
+}
+.detail .detail_goi  {
+    justify-content: space-around;
+    margin-top: 20px;
+    padding-left: 20px;
+}
+.detail .detail_goidetail  p {
+    margin: 0;
+}
+
+.card-body .phuongthuc{
+    margin: 20px 20px 0 20px;
+}
+
+.card-body .phuongthuc button{
+    background: #fcf2e6;
+    border: 2px solid black;
+    color: black;
+    border-radius: 15px;
+    padding: 10px;
+    align-items: center;
+}
+.card-body .phuongthuc button:hover{
+    background: #848383;
+}
+.phuongthuc button i{
+    padding: 0 10px 0 10px;
+}
+.phuongthuc button div{
+    line-height: 15px;
+    text-align: left;
+}
+.phuongthuc button div p, .phuongthuc button div h6{
+    margin: 0;
+}
+
+.thetindung{
+    background-color: #f2f2f2;
+    margin: 20px 20px 0 0;
+    border-radius: 15px;
+    border: 2px solid black;
+}
+.form-check{
+    margin: 10px 0 0 20px;
+}
+.form-check span{
+    text-decoration: underline;
+}
+.form-check-input:checked {
+    background-color: black;
+    border-color: black;
+}
+
+.thanhtoan{
+    border: 2px solid black;
+    border-radius: 15px;
+    margin: 20px 20px 0 20px;
+    display: flex;
+    font-size: 20px;
+    text-align: center;
+    height: 50px;
+    align-items: center;
+}
+.thanhtoan .gia{
+    border-right: 2px solid black;
+    border-radius: 15px 0 0 15px;
+    width: 350px;
+    line-height: 50px;
+    background: black;
+    color: white;
+}
+.thanhtoan .gianhap{
+    width: 100%;
+}
+.thanhtoan .gianhap button{
+    width: 100%;
+    border-radius: 0 15px 15px 0;
+    border: none;
+    line-height: 45px;
+    height: auto;
+    background-color: #f2bf83;
+}
+

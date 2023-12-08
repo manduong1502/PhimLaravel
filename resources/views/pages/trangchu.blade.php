@@ -42,7 +42,7 @@
 
 
 
-            <div class="container content">
+            <div class="container content" style="margin-top: 50px">
                 <div class="content-title">
                     <div class="content-title-big">
                         <h2>ĐỀ XUẤT HOT</h2>
