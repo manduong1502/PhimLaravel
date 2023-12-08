@@ -92,7 +92,7 @@ header .btn-vip {
   top : 20%;
   left: 60%;
   display: none;
-  animation: slide-up 1s ease-in-out forwards; 
+  animation: slide-up 1s ease-in-out forwards;
 }
 
 @keyframes slide-up {
@@ -392,6 +392,18 @@ header .btn-vip {
   border-radius: 5px;
   color: white;
 }
+.halim-episode-ser span div{
+  width: 120px;
+  height: 30px;
+  text-align:center;
+  justify-content: center;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+
+}
+
+
 
 
 

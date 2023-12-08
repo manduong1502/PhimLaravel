@@ -47,7 +47,7 @@ class EpisodeController extends Controller
         $episode->server = $request->linkserver;
         $episode->episode = $request->episode;
         $episode->save();
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Bạn đã thêm thành công');;
     }
 
     public function add_episode ($id) {
@@ -91,7 +91,7 @@ class EpisodeController extends Controller
                     ->pluck('episode', 'id')
                     ->toArray();
             }
-            return  view('admin.pagesadmin.episode.index',compact('episode','list_episode','linkmovie','list_movie','list_episodes'));
+            return  view('admin.pagesadmin.episode.index',compact('episode','list_episode','linkmovie','list_movie','list_episodes'))->with('success', 'Bạn đã cập nhập thành công');;
         }
 
     /**
@@ -105,7 +105,7 @@ class EpisodeController extends Controller
         $episode->server = $request->linkserver;
         $episode->episode = $request->episode;
         $episode->save();
-        return redirect()->route('episode.index');
+        return redirect()->route('episode.index')->with('success', 'Bạn đã cập nhập thành công');;
     }
 
     /**
@@ -114,7 +114,7 @@ class EpisodeController extends Controller
     public function destroy(string $id)
     {
         Episode::find($id) -> delete();
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Bạn đã xóa thành công');;
     }
 
     public function selectmovie () {

@@ -37,7 +37,7 @@ class CategoryController extends Controller
         $nextPosition = Category::max('position') + 1;
         $category->position = $nextPosition;
         $category->save();
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Bạn đã thêm thành công');
     }
 
     /**
@@ -55,7 +55,7 @@ class CategoryController extends Controller
     {   
         $category = Category::find($id);
         $list = Category::orderBy('id','ASC')->get();
-        return  view('admin.pagesadmin.category.index',compact('list','category'));
+        return  view('admin.pagesadmin.category.index',compact('list','category'))->with('success', 'Bạn đã thêm thành công');;
     }
 
     /**
@@ -68,17 +68,34 @@ class CategoryController extends Controller
         $category->slug = $request->slug;
         $category->status = $request->status;
         $category->save();
-        return redirect()->route('category.index');
+        return redirect()->route('category.index')->with('success', 'Bạn đã cập nhập thành công');;
     }
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
-    {
-        Category::find($id) -> delete();
-        return redirect()->back();
+{
+    $category = Category::find($id);
+    if ($category) {
+        $category->delete();
+
+        // Lấy danh sách các bản ghi còn lại theo ID tăng dần
+        $categories = Category::orderBy('id', 'asc')->get();
+        $newId = 1;
+
+        // Cập nhật lại giá trị ID cho từng bản ghi
+        foreach ($categories as $category) {
+            $category->id = $newId;
+            $category->save();
+            $newId++;
+        }
+
+        return redirect()->back()->with('success', 'Bạn đã xóa và cập nhật ID thành công');
+    } else {
+        return redirect()->back()->with('error', 'Không tìm thấy bản ghi');
     }
+}
 
     public function resorting (Request $request) {
         $data = $request->all();

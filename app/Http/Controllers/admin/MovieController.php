@@ -126,7 +126,7 @@ class MovieController extends Controller
         $movie->save();
         //Thêm nhiêu thể loại cho phim
         $movie->movie_genre()->attach($data['genre']);
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Bạn đã thêm thành công');;
     }
 
     /**
@@ -160,7 +160,7 @@ class MovieController extends Controller
             'movie',
             'list_genre',
             'movie_genre'
-        ));
+        ))->with('success', 'Bạn đã cập nhập thành công');
     }
 
     /**
@@ -215,7 +215,7 @@ class MovieController extends Controller
         }
         $movie->save();
         $movie->movie_genre()->sync($data['genre']);
-        return redirect()->route('movie.index');
+        return redirect()->route('movie.index')->with('success', 'Bạn đã cập nhập thành công');;
     }
 
     /**
@@ -235,7 +235,7 @@ class MovieController extends Controller
         Movie_Genre::whereIn('movie_id', [$movie->id])->delete(); 
         Episode::whereIn('movie_id', [$movie->id])->delete(); 
         $movie->delete();
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Bạn đã xóa thành công');;
     }
 
     public function resorting (Request $request) {

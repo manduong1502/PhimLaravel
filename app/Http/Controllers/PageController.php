@@ -8,7 +8,10 @@ use App\Models\Movie;
 use App\Models\Movie_Genre;
 use App\Models\LinkMovie;
 use App\Models\Episode;
+use App\Models\Rating;
+use App\Models\Blog;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 
 
 
@@ -24,9 +27,9 @@ class PageController extends Controller
         if(isset($_GET['search'])) {
             $search = $_GET['search'];
             //điền kiện
-        $category = Category::orderBy('id','DESC') ->where('status',1)->get();
-        $genre = Genre::orderBy('id','DESC') ->get();
-        $country = Country::orderBy('id','DESC') ->get();
+            $category = Category::orderBy('id','DESC') ->where('status',1)->get();
+            $genre = Genre::orderBy('id','DESC')->where('status',1) ->get();
+            $country = Country::orderBy('id','DESC')->where('status',1) ->get();
         //css
         $customCss = 'css/tong-the-loai.css';
         //điều kiện slug
@@ -49,9 +52,9 @@ class PageController extends Controller
     {
         $phimhot = Movie::where('phim_hot',1)->where('status',1)->orderBy('ngay_cap_nhap','DESC')->get();
         $slide = Movie::with('country','genre','category','movie_genre')->where('slide',1)->where('status',1)->orderBy('ngay_cap_nhap','DESC')->get();
-        $category = Category::orderBy('id','DESC') ->get();
-        $genre = Genre::orderBy('id','DESC') ->get();
-        $country = Country::orderBy('id','DESC') ->get();
+        $category = Category::orderBy('id','DESC') ->where('status',1)->get();
+        $genre = Genre::orderBy('id','DESC')->where('status',1) ->get();
+        $country = Country::orderBy('id','DESC')->where('status',1) ->get();
         $category_home = Category::with('movie')->where('status',1)->orderBy('id','DESC') ->get();
         return view('pages.trangchu',compact(
             'category',
@@ -65,14 +68,19 @@ class PageController extends Controller
 
     public function getChitiet($slug)
     {
-        $category = Category::orderBy('id','DESC') ->get();
-        $genre = Genre::orderBy('id','DESC') ->get();
-        $country = Country::orderBy('id','DESC') ->get();
+        $category = Category::orderBy('id','DESC') ->where('status',1)->get();
+        $genre = Genre::orderBy('id','DESC')->where('status',1) ->get();
+        $country = Country::orderBy('id','DESC')->where('status',1) ->get();
         $customCss = 'css/chitiet.css';
         $movie = Movie::with('country','genre','category')->where('slug',$slug)->first();
         $movie_related = Movie::with('country','genre','category','movie_genre')->where('category_id',$movie->category->id)->orderBy(DB::raw('RAND()'))->whereNotIn('slug',[$slug])->get();
         $movie_tapdau = Episode::with('movie')->where('movie_id',$movie->id)->orderBy('episode','ASC')->take(1)->first();
         $episode = Episode::with('movie')->where('movie_id',$movie->id)->orderBy('id','DESC')->take(3)->get();
+
+        $rating = Rating::where('movie_id',$movie->id)->avg('rating');
+        $rating = round($rating);
+        
+        $count_total = Rating::where('movie_id',$movie->id)->count();
         return view('pages.chitiet', compact(
             'customCss',
             'category',
@@ -81,16 +89,33 @@ class PageController extends Controller
             'movie',
             'movie_related',
             'episode',
-            'movie_tapdau'
+            'movie_tapdau',
+            'rating',
+            'count_total'
         ));
     }
+    public function add_rating (Request $request) {
+        $data = $request->all();
+        $ip_address = $request->ip();
+        $rating_count= Rating::where('movie_id',$data['movie_id'])->where('ip_address',$ip_address)->count();
+        if($rating_count > 0) {
+            echo 'exit';
+        }else {
+            $rating = new Rating();
+            $rating->rating = $data['index'];
+            $rating->movie_id = $data['movie_id'];
+            $rating->ip_address = $ip_address;
+            $rating->save();
+            echo'done';
+        }
+    }       
 
     public function getXemphim($slug,$tap,$server_active)
     {
 
-        $category = Category::orderBy('id','DESC') ->get();
-        $genre = Genre::orderBy('id','DESC') ->get();
-        $country = Country::orderBy('id','DESC') ->get();
+        $category = Category::orderBy('id','DESC') ->where('status',1)->get();
+        $genre = Genre::orderBy('id','DESC')->where('status',1) ->get();
+        $country = Country::orderBy('id','DESC')->where('status',1) ->get();
         $customCss = 'css/xemphim.css';
         $movie = Movie::with('country','genre','category')->where('slug',$slug)->first();
         $movie_related = Movie::with('country','genre','category','movie_genre','episode')->where('category_id',$movie->category->id)->orderBy(DB::raw('RAND()'))->whereNotIn('slug',[$slug])->get();
@@ -127,8 +152,8 @@ class PageController extends Controller
     {
         //điền kiện
         $category = Category::orderBy('id','DESC') ->where('status',1)->get();
-        $genre = Genre::orderBy('id','DESC') ->get();
-        $country = Country::orderBy('id','DESC') ->get();
+        $genre = Genre::orderBy('id','DESC')->where('status',1) ->get();
+        $country = Country::orderBy('id','DESC')->where('status',1) ->get();
         //css
         $customCss = 'css/tong-the-loai.css';
         //điều kiện slug
@@ -148,8 +173,8 @@ class PageController extends Controller
     {
         //điền kiện
         $category = Category::orderBy('id','DESC') ->where('status',1)->get();
-        $genre = Genre::orderBy('id','DESC') ->get();
-        $country = Country::orderBy('id','DESC') ->get();
+        $genre = Genre::orderBy('id','DESC')->where('status',1) ->get();
+        $country = Country::orderBy('id','DESC')->where('status',1) ->get();
         //css
         $customCss = 'css/tong-the-loai.css';
         //điều kiện slug  
@@ -176,8 +201,8 @@ class PageController extends Controller
     {
         //điền kiện
         $category = Category::orderBy('id','DESC') ->where('status',1)->get();
-        $genre = Genre::orderBy('id','DESC') ->get();
-        $country = Country::orderBy('id','DESC') ->get();
+        $genre = Genre::orderBy('id','DESC')->where('status',1) ->get();
+        $country = Country::orderBy('id','DESC')->where('status',1) ->get();
         //css
         $customCss = 'css/tong-the-loai.css';
         //điều kiện slug
@@ -194,33 +219,43 @@ class PageController extends Controller
         ));
     }
 
-    // public function getBlog()
-    // {
-    //     $category = Category::orderBy('id','DESC') ->get();
-    //     $genre = Genre::orderBy('id','DESC') ->get();
-    //     $country = Country::orderBy('id','DESC') ->get();
-    //     $customCss = 'css/blog.css';
-    //     return view('pages.blog',compact(
-    //         'customCss',
-    //         'category',
-    //         'genre',
-    //         'country'
-    //     ));
-    // }
+    public function getBlog()
+    {
+        $category = Category::orderBy('id','DESC') ->where('status',1)->get();
+        $genre = Genre::orderBy('id','DESC')->where('status',1) ->get();
+        $country = Country::orderBy('id','DESC')->where('status',1) ->get();
+        $movie_related = Movie::with('country','genre','category','movie_genre','episode')->orderBy(DB::raw('RAND()'))->get();
+        $blog = Blog::orderBy('ngay_cap_nhat','DESC')->where('status',1) ->first();
+        $list_blog = Blog::orderBy('id','DESC')->where('status',1)->get();
+        $blog_news = Blog::orderBy('ngay_cap_nhat','DESC')->where('status',1)->get();
+        $customCss = 'css/blog.css';
+        return view('pages.blog',compact(
+            'customCss',
+            'category',
+            'genre',
+            'country',
+            'movie_related',
+            'blog',
+            'list_blog',
+            'blog_news'
+        ));
+    }
 
-    // public function getBlog_review()
-    // {
-    //     $category = Category::orderBy('id','DESC') ->get();
-    //     $genre = Genre::orderBy('id','DESC') ->get();
-    //     $country = Country::orderBy('id','DESC') ->get();
-    //     $customCss = 'css/blog-review.css';
-    //     return view('pages.blog_review',compact(
-    //         'customCss',
-    //         'category',
-    //         'genre',
-    //         'country'
-    //     ));
-    // }
+    public function getBlog_review($slug)
+    {
+        $category = Category::orderBy('id','DESC') ->get();
+        $genre = Genre::orderBy('id','DESC') ->get();
+        $country = Country::orderBy('id','DESC') ->get();
+        $blog = Blog::with('genre')->where('slug',$slug)->first();
+        $customCss = 'css/blog-review.css';
+        return view('pages.blog_review',compact(
+            'customCss',
+            'category',
+            'genre',
+            'country',
+            'blog',
+        ));
+    }
 
 
     public function getchoghe()

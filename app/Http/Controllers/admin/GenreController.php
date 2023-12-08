@@ -38,7 +38,7 @@ class GenreController extends Controller
         $nextPosition = Genre::max('position') + 1;
         $genre->position = $nextPosition;
         $genre->save();
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Bạn đã thêm thành công');;
     }
 
     /**
@@ -56,7 +56,7 @@ class GenreController extends Controller
     {   
         $genre = Genre::find($id);
         $list = Genre::orderBy('position','ASC')->get();
-        return  view('admin.pagesadmin.genre.index',compact('list','genre'));
+        return  view('admin.pagesadmin.genre.index',compact('list','genre'))->with('success', 'Bạn đã cập nhập thành công');;
     }
 
     /**
@@ -69,17 +69,34 @@ class GenreController extends Controller
         $genre->slug = $request->slug;
         $genre->status = $request->status;
         $genre->save();
-        return redirect()->route('genre.index');
+        return redirect()->route('genre.index')->with('success', 'Bạn đã cập nhập thành công');;
     }
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
-    {
-        Genre::find($id) -> delete();
-        return redirect()->back();
+{
+    $genre = Genre::find($id);
+    if ($genre) {
+        $genre->delete();
+
+        // Lấy danh sách các bản ghi còn lại theo ID tăng dần
+        $categories = genre::orderBy('id', 'asc')->get();
+        $newId = 1;
+
+        // Cập nhật lại giá trị ID cho từng bản ghi
+        foreach ($categories as $genre) {
+            $genre->id = $newId;
+            $genre->save();
+            $newId++;
+        }
+
+        return redirect()->back()->with('success', 'Bạn đã xóa và cập nhật ID thành công');
+    } else {
+        return redirect()->back()->with('error', 'Không tìm thấy bản ghi');
     }
+}
 
     public function resorting (Request $request) {
         $data = $request->all();

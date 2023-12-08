@@ -17,7 +17,7 @@
     content: "";
     position: absolute;
     top: 0;
-    left: 55%;
+    left: 70%;
     right: 0;
     bottom: 0;
     background: linear-gradient(to right, #1c1c1c77 10%, #202020 80%);
@@ -91,20 +91,6 @@
 
 .info.active {
     display: block;
-}
-
-.miscellaneous-content-1-header-ul a {
-    color: #FFF;
-    font-family: Montserrat;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 28px;
-    /* 175% */
-    letter-spacing: 0.2px;
-    text-decoration: none;
-    margin-right: 20px;
-    padding: 0;
 }
 
 .miscellaneous-content-1-header-ul a {

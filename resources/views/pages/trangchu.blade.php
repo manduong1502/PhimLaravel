@@ -1,5 +1,4 @@
 @extends('index')
-
 @section('content')
     <div id="carouselExampleCaptions" class="carousel slide">
 
@@ -7,7 +6,14 @@
             @foreach ($slide as $key => $sli) 
             <div class="carousel-item active">
                 <div class="dark-bg-image">
-                    <img src="{{ asset('uploads/movie/imagebig/' . $sli->image1) }}" class="d-block " width="100" alt="...">
+                    @php
+                        $image_check =substr($sli->image1,0,5);
+                    @endphp
+                    @if($image_check  =='https')
+                        <img src="{{$sli->image1}}" class="d-block " width="100" alt="...">
+                    @else
+                        <img src="{{ asset('uploads/movie/imagebig/' . $sli->image1) }}" class="d-block " width="100" alt="...">
+                    @endif    
                 </div>
                 <div class="carousel-caption d-none d-md-block">
                     <div class="title-carousel-caption responsive-text">{{$sli->title}}</div>
@@ -47,7 +53,14 @@
                         <a href="{{route('pages.chitiet',$hot->slug)}}" style="text-decoration: none;">
                             <div class="slider-card" style="width: 180px;">
                                 <div class="card cards">
-                                    <img src="{{ asset('uploads/movie/' . $hot->image) }}" alt="" style="width: 100%; height: 265px">
+                                    @php
+                                        $image_check =substr($hot->image,0,5);
+                                    @endphp
+                                    @if($image_check  =='https')
+                                        <img src="{{$hot->image}}" alt="" style="width: 100%; height: 265px">
+                                    @else
+                                        <img src="{{ asset('uploads/movie/' . $hot->image) }}" alt="" style="width: 100%; height: 265px">
+                                    @endif
                                     <div class="icon-overlay">
                                         <i class="fa-solid fa-circle-play"></i>
                                     </div>
@@ -85,7 +98,14 @@
                     <a href="{{route('pages.chitiet',$mov->slug)}}" style="text-decoration: none">
                         <div class="slider-card">
                             <div class="card cards" style="position: relative">
+                                @php
+                                    $image_check =substr($mov->image,0,5);
+                                @endphp
+                                @if($image_check == 'https')
+                                <img src="{{$mov->image}}" alt="" style="width: 250px; height:330px; border-radius: 5px; position: relative">
+                                @else 
                                 <img src="{{ asset('uploads/movie/' . $mov->image) }}" alt="" style="width: 250px; height:330px; border-radius: 5px; position: relative">
+                                @endif
                                 <div class="icon-overlay">
                                     <i class="fa-solid fa-circle-play"></i>
                                 </div>

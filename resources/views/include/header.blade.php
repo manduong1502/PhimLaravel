@@ -23,7 +23,7 @@
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color:rgba(0, 0, 0, 0.50);">
                   @foreach($genre as $key => $gen)
                       <li class="nav-item">
-                          <a title="{{$gen->title}}" class="nav-link " href="{{route('genre',$gen->slug)}}" data-bs-toggle="dropdown" style="color: white;">{{$gen->title}}</a>
+                          <a title="{{$gen->title}}" class="nav-link " href="{{route('genre',$gen->slug)}}"  style="color: white;">{{$gen->title}}</a>
                       </li>
                   @endforeach
               </ul>
@@ -33,11 +33,15 @@
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color:rgba(0, 0, 0, 0.50);">
                   @foreach($country as $key => $coun)
                       <li class="nav-item">
-                          <a title="{{$coun->title}}" class="nav-link " href="{{route('country',$coun->slug)}}" data-bs-toggle="dropdown" style="color: white;">{{$coun->title}}</a>
+                          <a title="{{$coun->title}}" class="nav-link " href="{{route('country',$coun->slug)}}"  style="color: white;">{{$coun->title}}</a>
                       </li>
                   @endforeach
               </ul>
           </li>
+
+          <li class="nav-item" >
+            <a class="nav-link text-white" href="{{route('blog')}}" id="navbarDropdown" role="button">Bài viết</a>
+        </li>
           
 
           </ul>
@@ -57,7 +61,7 @@
             </li>
             <li class="nav-item dropdown ">
               <a href="#" class="nav-link" role="button" data-bs-toggle="dropdown" aria-expanded="false"><img
-                  class="navbar-brand" src="public/image/image-13.png" alt=""></a>
+                  class="navbar-brand" src="{{asset('public/image/image-13.png')}}" alt=""></a>
               <ul class="dropdown-menu">
                 @auth
                     <li>Xin chào, {{ Auth::user()->username }}</li>

@@ -72,11 +72,11 @@ Route::get('/quocgia/{slug}', [PageController::class, 'getQuocgia'])->name('coun
 
 //chi tiết phim
 Route::get('/chitiet/{slug}', [PageController::class, 'getChitiet'])->name('pages.chitiet')->middleware(AuthMiddleware::class);
+Route::post('add-rating', [PageController::class, 'add_rating'])->name('add-rating');
 
 
-
-Route::get('/blog', [PageController::class, 'getBlog'])->middleware(AuthMiddleware::class);
-Route::get('/blog_review', [PageController::class, 'getBlog_review'])->middleware(AuthMiddleware::class);
+Route::get('/blog', [PageController::class, 'getBlog'])->name('blog')->middleware(AuthMiddleware::class);
+Route::get('/blog_review/{slug}', [PageController::class, 'getBlog_review'])->name('blog-view')->middleware(AuthMiddleware::class);
 
 
 //Đặt vé
@@ -94,5 +94,3 @@ Route::get('/leech-detail/{slug}', [LeechMovieController::class, 'leech_detaiil'
 Route::post('/leech-store/{slug}', [LeechMovieController::class, 'leech_store'])->name('leech-store')->middleware(CheckAdmin::class);
 Route::get('/leech-episode/{slug}', [LeechMovieController::class, 'leech_episode'])->name('leech_episode')->middleware(CheckAdmin::class);
 Route::post('/leech-episode-store/{slug}', [LeechMovieController::class, 'leech_episode_store'])->name('leech-episode-store')->middleware(CheckAdmin::class);
-
-

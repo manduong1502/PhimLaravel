@@ -15,14 +15,14 @@ class BlogController extends Controller
      */
     public function index()
     {
-        $list = Blog::with('genre')->orderBy('id', 'DESC')->get();
+        $list = Blog::with('genre','childBlogs')->orderBy('id', 'DESC')->get();
         $list_genre = Genre::all();
         $genre = Genre::pluck('title', 'id');
         // Đảm bảo biến blog_genre đã được định nghĩa và cung cấp nó trong mảng compact
         return  view('admin.pagesadmin.blog.form',compact(
             'list',
             'list_genre',
-            'genre'
+            'genre',
         ));
     }
 
@@ -54,7 +54,7 @@ class BlogController extends Controller
         $blog->description = $request->description;
         $blog->genre_id = $request->genre_id;
         $blog->ngay_tao = Carbon::now('Asia/Ho_Chi_Minh');
-        $blog->ngay_cap_nhap = Carbon::now('Asia/Ho_Chi_Minh');
+        $blog->ngay_cap_nhat = Carbon::now('Asia/Ho_Chi_Minh');
 
         $get_video = $request ->file('video');
         if($get_video) {
@@ -65,7 +65,7 @@ class BlogController extends Controller
             $blog->video = $new_video;
         }
         $blog->save();
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Bạn đã thêm thành công');
     }
 
     /**
@@ -83,8 +83,9 @@ class BlogController extends Controller
     {   
         $list = Blog::with('genre')->orderBy('id', 'DESC')->get();
         $list_genre = Genre::all();
+        $blog = Blog::find($id);
         $genre = Genre::pluck('title', 'id');
-        return  view('admin.pagesadmin.blog',compact('list','list_genre','genre'));
+        return  view('admin.pagesadmin.blog.index',compact('list','list_genre','genre','blog'))->with('success', 'Bạn đã cập nhập thành công');
     }
 
     /**
@@ -99,7 +100,7 @@ class BlogController extends Controller
         $blog->status = $request->status;
         $blog->description = $request->description;
         $blog->genre_id = $request->genre_id;
-        $blog->ngay_cap_nhap = Carbon::now('Asia/Ho_Chi_Minh');
+        $blog->ngay_cap_nhat = Carbon::now('Asia/Ho_Chi_Minh');
 
 
         //thêm hình ảnh
@@ -115,7 +116,7 @@ class BlogController extends Controller
             $blog->video = $new_video;
         }
         $blog->save();
-        return redirect()->route('blog.index');
+        return redirect()->route('blog.index')->with('success', 'Bạn đã cập nhập thành công');;
     }
 
     /**
@@ -124,7 +125,7 @@ class BlogController extends Controller
     public function destroy(string $id)
     {
         Blog::find($id) -> delete();
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Bạn đã xóa thành công');;
     }
 
     public function resorting (Request $request) {
