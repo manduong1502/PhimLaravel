@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class CheckoutController extends Controller
 {
-    function execPostRequest($url, $data)
+    public function execPostRequest($url, $data)
     {
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
@@ -26,14 +26,12 @@ class CheckoutController extends Controller
     }
     public function momo_payment(){
         $endpoint = "https://test-payment.momo.vn/v2/gateway/api/create";
-
-
         $partnerCode = 'MOMOBKUN20180529';
         $accessKey = 'klm05TvNBzhg7h7j';
         $secretKey = 'at67qH6mk8w5Y1nAyMoYKMWACiEi2bsa';
         $orderInfo = "Thanh toán qua MoMo";
         $amount = "10000";
-        $orderId = time() ."";
+        $orderId = rand(00,9999);
         $redirectUrl = "http://127.0.0.1:8000/goiphim_thanhtoan"; //trang trả về
         $ipnUrl = "http://127.0.0.1:8000/goiphim_thanhtoan";
         $extraData = "";
@@ -50,7 +48,7 @@ class CheckoutController extends Controller
 
             $requestId = time() . "";
             $requestType = "payWithATM";
-            // $extraData = ($_POST["extraData"] ? $_POST["extraData"] : "");
+            $extraData = ($_POST["extraData"] ? $_POST["extraData"] : "");
             //before sign HMAC SHA256 signature
             $rawHash = "accessKey=" . $accessKey . "&amount=" . $amount . "&extraData=" . $extraData . "&ipnUrl=" . $ipnUrl . "&orderId=" . $orderId . "&orderInfo=" . $orderInfo . "&partnerCode=" . $partnerCode . "&redirectUrl=" . $redirectUrl . "&requestId=" . $requestId . "&requestType=" . $requestType;
             $signature = hash_hmac("sha256", $rawHash, $serectkey);
@@ -72,7 +70,7 @@ class CheckoutController extends Controller
 
             //Just a example, please check more in there
 
-            header('Location: ' . $jsonResult['payUrl']);
+            header('Location: ' . $jsonResult['redirect']);
     }
     public function vnpay_payment(){
         date_default_timezone_set('Asia/Ho_Chi_Minh');

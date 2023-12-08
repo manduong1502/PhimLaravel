@@ -72,7 +72,7 @@
                                 <a class="btn btn-default phuongthuc" name="redirect" href="{{ url('/vnpay_payment') }}" style="margin: 0">Thanh toán VNPAY</a>
                             </button> --}}
                             <form action="{{route('momo_payment')}}" method="post">
-                                <button class="btn btn-default phuongthuc" name="payUrl" type="submit" style="margin: 0"><img src="{{ asset('public/image/logo/vnpay.png') }}" alt="" style="width: 27px">Thanh toán Momo</button>
+                                <button class="btn btn-default phuongthuc" name="redirect" type="submit" style="margin: 0"><img src="{{ asset('public/image/logo/vnpay.png') }}" alt="" style="width: 27px">Thanh toán Momo</button>
                             </form>
                             <form action="{{route('vnpay_payment')}}" method="POST">
                                 @csrf 
