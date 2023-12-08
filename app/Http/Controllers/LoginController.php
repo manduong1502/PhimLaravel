@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\AuthRequest;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class LoginController extends Controller
 {
@@ -14,7 +15,7 @@ class LoginController extends Controller
             // Kiểm tra xem người dùng đã đăng nhập hay chưa
             $user = Auth::user();
             
-            if ($user && $user->role === 'admin') {
+            if ($user->hasRole('admin')) {
                 // Kiểm tra quyền admin
                 return redirect()->route('admin.dashboard'); // Điều hướng đến trang quản trị
             } else {
@@ -34,7 +35,7 @@ class LoginController extends Controller
             // Đăng nhập thành công
             $user = Auth::user();
     
-            if ($user->role === 'admin') {
+            if ($user->hasRole('admin')) {
                 // Nếu người dùng có quyền admin, điều hướng đến trang quản trị
                 return redirect()->route('admin.dashboard')->with('success', 'Bạn đã đăng nhập thành công');
             } else {

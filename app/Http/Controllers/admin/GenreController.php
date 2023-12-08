@@ -56,7 +56,7 @@ class GenreController extends Controller
     {   
         $genre = Genre::find($id);
         $list = Genre::orderBy('position','ASC')->get();
-        return  view('admin.pagesadmin.genre.index',compact('list','genre'))->with('success', 'Bạn đã cập nhập thành công');;
+        return  view('admin.pagesadmin.genre.index',compact('list','genre'))->with('success', 'Bạn đã cập nhập thành công');
     }
 
     /**

@@ -103,26 +103,15 @@
                 </div>
                 <div class="background-blog-content-2">
                     <div class="background-blog-content-2-title container">
-                        <div class="blog-content-2-title row d-flex pt-4">
-                            <div class="blog-content-2-title-img col-md-3">
-                                <img src="public/image/image-11.png" width="90" height="110" alt="">
-                            </div>
-                            <div class="blog-content-2-title-text col-md-9">
-                                <h5>Quỷ Ám Tín Đồ - Thương hiệu kinh dị 50 năm tuổi này có gì đặc biệt?</h5>
-                                <div class="blog-content-information d-flex">
-                                    <p class="blog-content-information-text">Đánh giá phim</p>
-                                    <p class="blog-content-information-text">levu2004</p>
-                                    <p class="blog-content-information-number">14 giờ trước</p>
-                                </div>
-                            </div>
-                        </div>
 
+                        @foreach ($review->take(5) as $key => $rev)
+                        <a href="{{route('blog-view',$blog->slug)}}">
                         <div class="blog-content-2-title row d-flex pt-4">
                             <div class="blog-content-2-title-img col-md-3">
-                                <img src="public/image/image-11.png" width="90" height="110" alt="">
+                                <img src="{{asset('uploads/video/trailer/'.$new->video)}}" width="90" height="110" alt="">
                             </div>
                             <div class="blog-content-2-title-text col-md-9">
-                                <h5>Quỷ Ám Tín Đồ - Thương hiệu kinh dị 50 năm tuổi này có gì đặc biệt?</h5>
+                                <h5>{{$rev->title}}</h5>
                                 <div class="blog-content-information d-flex">
                                     <p class="blog-content-information-text">Đánh giá phim</p>
                                     <p class="blog-content-information-text">levu2004</p>
@@ -130,20 +119,8 @@
                                 </div>
                             </div>
                         </div>
-
-                        <div class="blog-content-2-title row d-flex pt-4">
-                            <div class="blog-content-2-title-img col-md-3">
-                                <img src="public/image/image-11.png" width="90" height="110" alt="">
-                            </div>
-                            <div class="blog-content-2-title-text col-md-9">
-                                <h5>Quỷ Ám Tín Đồ - Thương hiệu kinh dị 50 năm tuổi này có gì đặc biệt?</h5>
-                                <div class="blog-content-information d-flex">
-                                    <p class="blog-content-information-text">Đánh giá phim</p>
-                                    <p class="blog-content-information-text">levu2004</p>
-                                    <p class="blog-content-information-number">14 giờ trước</p>
-                                </div>
-                            </div>
-                        </div>
+                    </a>
+                        @endforeach
                     </div>
                 </div>
             </div>

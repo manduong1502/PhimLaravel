@@ -313,7 +313,7 @@
                                     @else
                                         <span class="badge badge-danger">Không hiển thị</span>
                                     @endif --}}
-                                    <select id="{{$cate->id}}" class="trangthai_choose">
+                                    <select id="{{$cate->id}}" class="trangthai_choose form-control" style="width:150px ; color:#fff;text-align: center; {{$cate->status == 1 ? 'background-color:rgb(143, 43, 43);' : 'background-color:darkgray;'}};">
                                         <option value="1" {{$cate->status == 1 ? 'selected' : ''}}>Hiển thị</option>
                                         <option value="0" {{$cate->status == 0 ? 'selected' : ''}}>Không hiển thị</option>
                                     </select>
@@ -325,7 +325,7 @@
                                     @else
                                         <span class="badge badge-danger">Không hiển thị</span>
                                     @endif --}}
-                                    <select id="{{$cate->id}}" class="phimhot_choose">
+                                    <select id="{{$cate->id}}" class="phimhot_choose form-control" style="width:150px ; color:#fff;text-align: center; {{$cate->phim_hot == 1 ? 'background-color:rgb(143, 43, 43);' : 'background-color:darkgray;'}};">
                                         <option value="1" {{$cate->phim_hot == 1 ? 'selected' : ''}}>Hiển thị</option>
                                         <option value="0" {{$cate->phim_hot == 0 ? 'selected' : ''}}>Không hiển thị</option>
                                     </select>
@@ -336,7 +336,7 @@
                                     @else
                                         <span class="badge badge-danger">Không hiển thị</span>
                                     @endif --}}
-                                    <select id="{{$cate->id}}" class="slide_choose">
+                                    <select id="{{$cate->id}}" class="slide_choose form-control" style="width:150px ; color:#fff;text-align: center; {{$cate->slide == 1 ? 'background-color:rgb(143, 43, 43);' : 'background-color:darkgray;'}};">
                                         <option value="1" {{$cate->slide == 1 ? 'selected' : ''}}>Hiển thị</option>
                                         <option value="0" {{$cate->slide == 0 ? 'selected' : ''}}>Không hiển thị</option>
                                     </select>

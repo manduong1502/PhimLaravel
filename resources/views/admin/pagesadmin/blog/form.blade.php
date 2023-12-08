@@ -73,6 +73,7 @@
                             <th scope="col">Đường link</th>
                             <th scope="col">Nội dung</th>
                             <th scope="col">Hiển thị</th>
+                            <th scope="col">Hiển thị review</th>
                             <th scope="col">Thể Loại</th>
                             <th scope="col">Ngày tạo</th>
                             <th scope="col">Ngày cập nhập</th>
@@ -88,9 +89,16 @@
                                 </td>
                                 <td>{{ $cate->title }}</td>
                                 <td>{{ $cate->slug }}</td>
-                                <td>{{ $cate->description }}</td>
+                                <td>{!! $cate->description !!}</td>
                                 <td>
                                     @if ($cate->status == 1)
+                                        <span class="badge badge-success">Hiển thị</span>
+                                    @else
+                                        <span class="badge badge-danger">Không hiển thị</span>
+                                    @endif
+                                </td>
+                                <td>
+                                    @if ($cate->review == 1)
                                         <span class="badge badge-success">Hiển thị</span>
                                     @else
                                         <span class="badge badge-danger">Không hiển thị</span>
@@ -109,10 +117,7 @@
                                     {!! Form::submit('Xóa', ['class' => 'btn btn-danger']) !!}
                                     {!! Form::close() !!}
                                     <a href="{{ route('blog.edit', $cate->id) }}" class="btn btn-warning">Sửa</a>
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                        data-bs-target="#blog">
-                                        Thêm tiêu đề con
-                                    </button>
+
                                 </td>
                             </tr>
                         @endforeach

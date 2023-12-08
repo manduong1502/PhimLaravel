@@ -43,6 +43,16 @@
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
   <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
   <script type="text/javascript" src="//cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+
+       $("#description").summernote({
+            height: 150,
+        });
+  })
+  </script>
   <script type="text/javascript">
        
     $(document).on('change','.file_image',function(){
