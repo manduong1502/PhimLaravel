@@ -61,7 +61,7 @@
         </div>
 
         <div class="form bg-light border border-light rounded text-dark m-3 p-3">
-            <div class="list-group-vertical p-2">
+            <div class="row">
                 <div class="btn-group btn-group-sm p-1">
                     <div class="col-auto">
                         <label class="form-label" for="vitri">Vị trí</label>
@@ -124,9 +124,88 @@
                 </div>
             </div>
         </div>
+    </div>
 
-
-       
+    <div class="container contents">
+        <div class="content-title">
+            <div class="content-title-big d-flex mx-auto">
+                <button type="button" class="btn btn-danger btn-lg">LỊCH CHIẾU PHIM</button>
+            </div>
+        </div>
+        <form class="row g-3 bg-light text-dark p-3" action="">
+            <div class="row">
+                <div class="col-auto">
+                    <p>Vị trí</p>
+                </div>
+                <div class="col-auto">
+                    <select class="form-select border border-danger text-danger" aria-label="Default select example">
+                        <option value="1">Đà Nẵng</option>
+                        <option value="2">Hà Nội</option>
+                        <option value="3">Tp. HCM</option>
+                    </select>
+                </div>
+                <div class="col-auto">
+                    <select class="form-select border border-danger text-danger" aria-label="Default select example">
+                        <option selected>Đà Nẵng</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="card border-0 bg-transparent text-dark py-0" style="width: 70px; height: 100px">
+                    <img src="public/image/logo/vnpay.jpg" class="card-img-top img-fluid" style="width: 50px; height:50px;" alt="...">
+                    <div class="card-body">
+                      <p class="card-text text-truncate text-dark">dassdfsdfsd</p>
+                    </div>
+                </div>
+                <div class="card border-0 bg-transparent text-dark py-0" style="width: 70px; height: 100px">
+                    <img src="public/image/logo/vnpay.jpg" class="card-img-top img-fluid" style="width: 50px; height:50px;" alt="...">
+                    <div class="card-body">
+                      <p class="card-text text-truncate text-dark">j bvzjbcvkzxjcbz</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row border-bottom border-dark">
+                <div class="col-4 border-end border-dark">
+                    <div class="row ">
+                        <div class="d-flex input-group">
+                            <input type="text" name="search" class="form-control me-2" id="timkiem" placeholder="Tìm tên theo rạp" autocomplete="off" >
+                            <button class="btn btn-outline-danger">Search</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-8">
+                    <div class="row">
+                        <div class="card border-0 bg-transparent">
+                            <div class="row ">
+                              <div class="col-md-4 my-auto">
+                                <img src="public/image/logo/vnpay.jpg" class="img-fluid rounded border border-secondary" style="width:40px; height:40px" alt="...">
+                              </div>
+                              <div class="col-md-8 my-auto">
+                                <div class="card-body my-auto">
+                                    <div class="row" style=" height: 30px;">
+                                        <h5 class="card-title text-start text-xs">Card title</h5>
+                                        <p class="card-text text-dark text-xs fw-light">This is a wider card with supportin This content is a little bit longer.</p>
+                                    </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row ">
+                <div class="col-4 border-end border-dark">
+                    <select class="form-select border-0" multiple aria-label="multiple select example">
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                      </select>
+                </div>
+                <div class="col-8">
+                    jhgui
+                </div>
+            </div>
+        </form>
     </div>
 
 @endsection

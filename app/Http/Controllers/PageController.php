@@ -372,7 +372,8 @@ public function getGioithieu1()
             '/css/chon-ghe-film.css',
         ];
         $customJsArr = [
-            '/js/chair.js'
+            '/js/chair.js',
+            '/js/gioithieu1.js'
         ];
         return view('datve.gioithieu1',compact(
             'customCssArr',
