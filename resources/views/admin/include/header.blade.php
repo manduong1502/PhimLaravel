@@ -119,6 +119,19 @@
                         </ul>
                     </li>
 
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-users"></i>
+                            <span>Phim Bản Quyền</span>
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="{{route('movievip.create')}}"><i class="fa fa-angle-right"></i> Thêm phim bản quyền</a></li>
+                            <li><a href="{{route('movievip.index')}}"><i class="fa fa-angle-right"></i> Liệt kê phim bản quyền </a></li>
+                            <li><a href="{{route('showapi')}}"><i class="fa fa-angle-right"></i> Xem dữ liệu api film bản quyền</a></li>
+                        </ul>
+                    </li>
+
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

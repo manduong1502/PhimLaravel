@@ -25,6 +25,7 @@
                             <p>Gói gia hạn tháng</p>
                             <h5>19,000đ</h5>
                             <p><del>49,000đ</del></p>
+                            <input type="hidden" name="vnp_Amount" id="vnp_Amount_input" value="49,0000" />
                         </button>
                         <button class="col-4 content-btn" id="btn2" onclick="showContent(2)">
                             <p>Cơ bản</p>
@@ -71,9 +72,6 @@
                                 <img src="{{ asset('public/image/logo/vnpay.png') }}" alt="" style="width: 27px">
                                 <a class="btn btn-default phuongthuc" name="redirect" href="{{ url('/vnpay_payment') }}" style="margin: 0">Thanh toán VNPAY</a>
                             </button> --}}
-                            <form action="{{route('momo_payment')}}" method="post">
-                                <button class="btn btn-default phuongthuc" name="payUrl" type="submit" style="margin: 0"><img src="{{ asset('public/image/logo/vnpay.png') }}" alt="" style="width: 27px">Thanh toán Momo</button>
-                            </form>
                             <form action="{{route('vnpay_payment')}}" method="POST">
                                 @csrf 
                                 <button class="btn btn-default phuongthuc" name="redirect" type="submit" style="margin: 0"><img src="{{ asset('public/image/logo/vnpay.png') }}" alt="" style="width: 27px">Thanh toán VNPAY</button>
@@ -153,17 +151,21 @@
     // Gán sự kiện click cho từng button
     btn1.addEventListener('click', function() {
     contentDiv.textContent = "19,000đ";
-    btn1.classList.add('clicked');
-    });
+    document.getElementById('vnp_Amount_input').value = "19000"; // Cập nhật giá trị cho vnp_Amount_input
+    document.getElementById('submitButton').click(); // Tự động gửi form khi nút được nhấn
+});
 
-    btn2.addEventListener('click', function() {
+btn2.addEventListener('click', function() {
     contentDiv.textContent = "29,000đ";
-    btn2.classList.add('clicked');
-    });
+    document.getElementById('vnp_Amount_input').value = "29000"; // Cập nhật giá trị cho vnp_Amount_input
+    document.getElementById('submitButton').click(); // Tự động gửi form khi nút được nhấn
+});
 
-    btn3.addEventListener('click', function() {
+btn3.addEventListener('click', function() {
     contentDiv.textContent = "39,000đ";
-    btn3.classList.add('clicked');
-    });
+    document.getElementById('vnp_Amount_input').value = "39000"; // Cập nhật giá trị cho vnp_Amount_input
+    document.getElementById('submitButton').click(); // Tự động gửi form khi nút được nhấn
+});
+
 </script>
 @endsection
