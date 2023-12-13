@@ -306,7 +306,7 @@
                                     @endforeach
                                     </td>
                                 <td>{{ $cate->slug }}</td>
-                                <td><p style="width: 300px">{{ $cate->description }}</p></td>
+                                <td><p style="width: 300px">{!!$cate->description!!}</p></td>
                                 <td>
                                     {{-- @if ($cate->status == 1)
                                         <span class="badge badge-success">Hiển thị</span>

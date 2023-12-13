@@ -73,7 +73,7 @@
                         </div>
 
                         <div class="col-md-3 widget">
-                            <a href="{{ route('episodemovievip.index') }}">
+                            <a href="{{ route('movievip.index') }}">
                                 <div class="r3_counter_box">
                                     <i class="pull-left fa fa-users dollar2 icon-rounded"></i>
                                     <div class="stats">
