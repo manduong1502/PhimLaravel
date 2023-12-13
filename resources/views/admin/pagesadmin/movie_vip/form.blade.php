@@ -273,8 +273,8 @@
                                     @endif
                                 </td>
                                 <td>{{ $cate->title }}</td>
-                                {{-- <td>
-                                    <a href="{{ route('add-episode', [$cate->id]) }}" class="btn btn-danger btn-sm">Thêm tập
+                                <td>
+                                    <a href="{{ route('episodemovievip', [$cate->id]) }}" class="btn btn-danger btn-sm">Thêm tập
                                         phim</a>
                                     <div>{{ $cate->episode_count }}/{{ $cate->so_tap }} tập</div>    
                                     @foreach ($cate->episode as $key => $epis)      
@@ -286,7 +286,7 @@
                                         <span class="badge text-bg-dark" >{{$epis->episode}}</span>
                                     </a>
                                     @endforeach
-                                    </td> --}}
+                                    </td>
                                 <td>{{ $cate->slug }}</td>
                                 <td><p style="width: 300px">{{ $cate->description }}</p></td>
                                 <td>

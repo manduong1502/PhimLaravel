@@ -26,7 +26,7 @@ class MovieVipController extends Controller
         $country = Country::pluck('title', 'id');
         $genre = Genre::pluck('title', 'id');
         $list_genre = Genre::all();
-        $list = movie_vip::with('category', 'country', 'genre', 'movie_genre')->orderBy('id', 'DESC')->get();
+        $list = movie_vip::with('category', 'country', 'genre', 'movie_genre')->withCount('episode')->orderBy('id', 'DESC')->get();
         
         // Đảm bảo biến movie_genre đã được định nghĩa và cung cấp nó trong mảng compact
         $movie_genre = Genre::pluck('title', 'id');
@@ -55,7 +55,7 @@ class MovieVipController extends Controller
     $country = Country::pluck('title', 'id');
     $genre = Genre::pluck('title', 'id');
     $list_genre = Genre::all();
-    $list = movie_vip::with('category', 'country', 'genre', 'movie_genre')->orderBy('id', 'DESC')->get();
+    $list = movie_vip::with('category', 'country', 'genre', 'movie_genre')->withCount('episode')->orderBy('id', 'DESC')->get();
     
     // Đảm bảo biến movie_genre đã được định nghĩa và cung cấp nó trong mảng compact
     $movie_vip_genre = Genre::pluck('title', 'id');
@@ -143,7 +143,7 @@ class MovieVipController extends Controller
         $category = Category::pluck('title','id');
         $country = Country::pluck('title','id');
         $genre = Genre::pluck('title','id');
-        $list = movie_vip::with('category','country','genre')->orderBy('id','DESC')->get();
+        $list = movie_vip::with('category','country','genre')->withCount('episode')->orderBy('id','DESC')->get();
         $list_genre = Genre::all();
         $movie_vip = movie_vip::find($id);
         $movie_genre = $movie_vip->movie_genre;

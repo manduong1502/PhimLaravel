@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin\MovieVipController;
 use App\Http\Middleware\LoginMiddleware;
 use App\Http\Middleware\CheckAdmin;
+use App\Http\Controllers\admin\EpisodeMoiveVipController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,4 +24,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::resource('/admin/movievip', MovieVipController::class);
+Route::resource('/admin/episodemovievip', EpisodeMoiveVipController::class);
+Route::get('/admin/episodemovievip_add/{id}',[EpisodeMoiveVipController::class,'add_episode_vip'])->name('episodemovievip');
+
 Route::get('/movievip/showapi', [MovieVipController::class,'showapi'])->name('showapi');
+
