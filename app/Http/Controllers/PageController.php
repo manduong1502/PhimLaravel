@@ -223,21 +223,21 @@ class PageController extends Controller
             'server_active'
         ));
     }
-    public function add_rating (Request $request) {
-        $data = $request->all();
-        $ip_address = $request->ip();
-        $rating_count= Rating::where('movie_id',$data['movie_id'])->where('ip_address',$ip_address)->count();
-        if($rating_count > 0) {
-            echo 'exit';
-        }else {
-            $rating = new Rating();
-            $rating->rating = $data['index'];
-            $rating->movie_id = $data['movie_id'];
-            $rating->ip_address = $ip_address;
-            $rating->save();
-            echo'done';
-        }
-    }       
+    // public function add_rating (Request $request) {
+    //     $data = $request->all();
+    //     $ip_address = $request->ip();
+    //     $rating_count= Rating::where('movie_id',$data['movie_id'])->where('ip_address',$ip_address)->count();
+    //     if($rating_count > 0) {
+    //         echo 'exit';
+    //     }else {
+    //         $rating = new Rating();
+    //         $rating->rating = $data['index'];
+    //         $rating->movie_id = $data['movie_id'];
+    //         $rating->ip_address = $ip_address;
+    //         $rating->save();
+    //         echo'done';
+    //     }
+    // }       
 
     public function getXemphim($slug,$tap,$server_active)
     {
