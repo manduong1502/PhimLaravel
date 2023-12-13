@@ -9,9 +9,17 @@
             }
         </style>
         {{-- hiển thị phim --}}
+        @role('uservip')
+            <div class="iframe-phim">
+                {!! $episode->linkphim !!}
+            </div>
+        @else
         <div class="iframe-phim">
-            {!! $episode->linkphim !!}
+            <iframe width="100%" src="{{ asset('https://www.youtube.com/embed/' . $movie->trailer) }}" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+            </iframe>
         </div>
+        @endrole
 
         <div class="film-btn-support d-flex">
             <a href=""><i class="fa-solid fa-share"></i>Chia sẻ</a>
