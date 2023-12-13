@@ -235,4 +235,25 @@ class MovieVipController extends Controller
         $movie_vip->delete();
         return redirect()->back()->with('success', 'Bạn đã xóa thành công');;
     }
+
+    public function trangthai_choose_vip (Request $request) {
+        $data =$request -> all();
+        $movie_vip = movie_vip::find($data['movie_vip_id']);
+        $movie_vip->status = $data['trangthai_val_vip'];
+        $movie_vip->save();
+    }
+
+    public function category_choose_vip (Request $request) {
+        $data =$request -> all();
+        $movie_vip = movie_vip::find($data['movie_vip_id']);
+        $movie_vip->category_id = $data['category_id_vip'];
+        $movie_vip->save();
+    }
+
+    public function country_choose_vip (Request $request) {
+        $data =$request -> all();
+        $movie_vip = movie_vip::find($data['movie_vip_id']);
+        $movie_vip->country_id = $data['country_id_vip'];
+        $movie_vip->save();
+    }
 }
