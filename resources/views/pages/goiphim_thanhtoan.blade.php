@@ -20,22 +20,22 @@
                 </div>
                 <div class="card-body">
                     <div class="goiphim d-flex justify-content-around">
-                        <button class="col-4 content-btn" id="btn1" onclick="showContent(1)">
+                        <button class="col-4 content-btn" id="btn1" data-price="19000" onclick="showContent(1)">
                             <p>Cơ bản</p>
                             <p>Gói gia hạn tháng</p>
-                            <h5>19,000đ</h5>
+                            <h5>19000</h5>
                             <p><del>49,000đ</del></p>
                         </button>
-                        <button class="col-4 content-btn" id="btn2" onclick="showContent(2)">
+                        <button class="col-4 content-btn" id="btn2" data-price="29000" onclick="showContent(2)">
                             <p>Cơ bản</p>
                             <p>Gói gia hạn tháng</p>
-                            <h5>29,000đ</h5>
+                            <h5>29000</h5>
                             <p><del>49,000đ</del></p>
                         </button>
-                        <button class="col-4 content-btn" id="btn3" onclick="showContent(3)">
+                        <button class="col-4 content-btn" id="btn3" data-price="39000" onclick="showContent(3)">
                             <p>Cơ bản</p>
                             <p>Gói gia hạn tháng</p>
-                            <h5>39,000đ</h5>
+                            <h5>39000</h5>
                             <p><del>49,000đ</del></p>
                         </button>
                     </div>
@@ -71,11 +71,12 @@
                                 <img src="{{ asset('public/image/logo/vnpay.png') }}" alt="" style="width: 27px">
                                 <a class="btn btn-default phuongthuc" name="redirect" href="{{ url('/vnpay_payment') }}" style="margin: 0">Thanh toán VNPAY</a>
                             </button> --}}
-                            <form action="{{route('momo_payment')}}" method="post">
-                                <button class="btn btn-default phuongthuc" name="redirect" type="submit" style="margin: 0"><img src="{{ asset('public/image/logo/vnpay.png') }}" alt="" style="width: 27px">Thanh toán Momo</button>
+                            <form action="{{route('momo_payment')}}" method="POST">
+                                <button class="btn btn-default phuongthuc" name="payUrl" type="submit" style="margin: 0"><img src="{{ asset('public/image/logo/vnpay.png') }}" alt="" style="width: 27px">Thanh toán Momo</button>
                             </form>
                             <form action="{{route('vnpay_payment')}}" method="POST">
                                 @csrf 
+                                <input type="text" name="amount" style="display: none">
                                 <button class="btn btn-default phuongthuc" name="redirect" type="submit" style="margin: 0"><img src="{{ asset('public/image/logo/vnpay.png') }}" alt="" style="width: 27px">Thanh toán VNPAY</button>
                             </form>
                         </div>
@@ -118,7 +119,7 @@
 </div>
 
 <script>
-    function showContent(contentNumber, btnId) {
+    function showContent(contentNumber) {
     var contents = document.getElementsByClassName("detail_goi");
     for (var i = 0; i < contents.length; i++) {
         contents[i].style.display = 'none';
@@ -127,19 +128,31 @@
     var contentToShow = document.getElementById("content" + contentNumber);
     contentToShow.style.display = 'block';
 
-    //đổi màu button
-    const buttons = document.querySelectorAll('.content-btn');
+    var buttons = document.querySelectorAll('.content-btn');
 
-    // Lặp qua từng button để xử lý
     buttons.forEach(button => {
-        // Kiểm tra nếu button được bấm trùng với ID được truyền vào
-        if (button.id === `btn${btnId}`) {
-            button.classList.add('active'); // Thêm class 'active' để thay đổi màu sắc
-        } else {
-            button.classList.remove('active'); // Loại bỏ class 'active' của các button khác
-        }
+        button.classList.remove('active');
+        button.style.backgroundColor = ""; // reset color of all buttons
     });
+
+    var clickedButton = document.getElementById("btn" + contentNumber);
+    clickedButton.classList.add('active');
+    clickedButton.style.backgroundColor = "#fcf2e6"; // change color of clicked button
+
+    var price = clickedButton.getAttribute('data-price');
+    var amountInput = document.querySelector('input[name="amount"]');
+    if (amountInput) {
+        amountInput.value = price;
+    } else {
+        console.error('Input not found');
     }
+}
+
+
+
+
+
+
     
     //hiển thị giá ở dưới
     const contentDiv = document.getElementById('gia');
@@ -165,5 +178,6 @@
     contentDiv.textContent = "39,000đ";
     btn3.classList.add('clicked');
     });
+    
 </script>
 @endsection
