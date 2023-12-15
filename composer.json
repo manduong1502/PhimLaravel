@@ -12,7 +12,7 @@
         "laravel/socialite": "^5.9",
         "laravel/tinker": "^2.8",
         "laravelcollective/html": "^6.4.1",
-        "spatie/laravel-permission": "^6.1",
+        "spatie/laravel-permission": "^6.2",
         "yoeunes/toastr": "^2.3"
     },
     "require-dev": {
