@@ -115,3 +115,7 @@ Route::post('/watch-leech-detail', [LeechMovieController::class, 'watch_leech_de
 //cổng thanh toán
 Route::post('/momo_payment', [CheckoutController::class, 'momo_payment'])->name('momo_payment');
 Route::post('/vnpay_payment', [CheckoutController::class, 'vnpay_payment'])->name('vnpay_payment');
+
+
+//Lọc phim
+Route::get('loc-phim', [PageController::class, 'loc_phim'])->name('loc_phim')->middleware(AuthMiddleware::class);

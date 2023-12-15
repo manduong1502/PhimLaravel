@@ -50,7 +50,7 @@
                                             <ul class="halim-list-eps" style="padding: 0; display: grid; grid-template-columns: repeat(10, 1fr)">
                                                 @foreach ($episode_list as $key => $epi)
                                                     @if ($epi->server == $ser->id)
-                                                        <a href="{{ url('xemphim/' . $movie->slug . '/tap-' . $epi->episode . '/server-' . $epi->server) }}"
+                                                        <a href="{{ url('xem-phim/' . $movie->slug . '/tap-' . $epi->episode . '/server-' . $epi->server) }}"
                                                             style="text-decoration: none; list-style: none; padding-right: 10px; margin-bottom: 10px">
                                                             <li class="halim-episode">
                                                                 <span
