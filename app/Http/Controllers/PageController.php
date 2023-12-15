@@ -208,7 +208,7 @@ class PageController extends Controller
         $server =LinkMovie::orderBy('id','ASC')->get();
         $episode_movie =Episode_vip::where('movie_vip_id',$movie->id)->get()->unique('server');
         $episode_list =Episode_vip::where('movie_vip_id',$movie->id)->orderBy('episode','ASC')->get();
-        return view('pages.xemphim', compact(
+        return view('pages.xemphim_vip', compact(
             'customCss',
             'category',
             'genre',
@@ -391,77 +391,25 @@ class PageController extends Controller
     }
 
 
-    // public function getchoghe()
-    // {
-    //     $category = Category::orderBy('id','DESC') ->get();
-    //     $genre = Genre::orderBy('id','DESC') ->get();
-    //     $country = Country::orderBy('id','DESC') ->get();
-    //     $customCssArr = [
-    //         '/css/datve.css',
-    //         '/css/chon-ghe-film.css',
-    //     ];
-    //     $customJsArr = [
-    //         '/js/chair.js'
-    //     ];
-    //     return view('datve.datghe',compact(
-    //         'customCssArr',
-    //         'customJsArr',
-    //         'category',
-    //         'genre',
-    //         'country'
-    //     ));
-    // }
-
-    // public function getdatbapnuoc(){
-    //     $category = Category::orderBy('id','DESC') ->get();
-    //     $genre = Genre::orderBy('id','DESC') ->get();
-    //     $country = Country::orderBy('id','DESC') ->get();
-    //     $customCssArr = [
-    //         '/css/datve.css',
-    //         '/css/datve-bap-nuoc.css',
-            
-    //     ];
-    //     $customJsArr = [
-    //         '/js/datve.js'
-    //     ];
-    //     return view('datve.datbapnuoc',compact(
-    //         'customCssArr',
-    //         'customJsArr'
-    //     ));
-    // }
-
-    // public function getthanhtoan()
-    // {   
-    //     $category = Category::orderBy('id','DESC') ->get();
-    //     $genre = Genre::orderBy('id','DESC') ->get();
-    //     $country = Country::orderBy('id','DESC') ->get();
-    //     $customCssArr = [
-    //         '/css/datve.css',
-    //         '/css/datve-thanhtoan.css'
-    //     ];
-    //     return view('datve.thanhtoan',compact(
-    //         'customCssArr',
-    //         'category',
-    //         'genre',
-    //         'country'
-    //     ));
-    // }
+public function loc_phim() {
+    $category = Category::orderBy('id','DESC') ->get();
+        $genre = Genre::orderBy('id','DESC') ->get();
+        $country = Country::orderBy('id','DESC') ->get();
 
 
-    // public function getthongtinve()
-    // {
-    //     $category = Category::orderBy('id','DESC') ->get();
-    //     $genre = Genre::orderBy('id','DESC') ->get();
-    //     $country = Country::orderBy('id','DESC') ->get();
-    //     $customCssArr = [
-    //         '/css/datve.css',
-    //         '/css/thong-tin-ve.css'
-    //     ];
-    //     return view('datve.thongtinve',compact(
-    //         'customCssArr',
-    //         'category',
-    //         'genre',
-    //         'country'
-    //     ));
-    // }
+    $sapxep = $_GET['order'];
+    $genre = $_GET['genre'];
+    $country = $_GET['country'];
+    $year = $_GET['year'];
+
+    if($sapxep== '' && $genre=='' && $country=='' && $year=='' ) {
+        // $country_slug = country::where('slug',$slug) ->first();
+        // $movie = Movie::where('country_id', $country_slug->id )->orderBy('ngaycapnhat','DESC')->paginate(40);
+        return redirect()->back();
+    }else {
+        $movie = Movie::where('category_id','=',$category)->where('genre_id','=',$genre)->where('country_id','=',$country)->orderBy('ngay_cap_nhap','DESC')->paginate(40);
+    }
+
+    
+}
 }

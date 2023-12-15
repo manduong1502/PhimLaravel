@@ -20,6 +20,8 @@
             </iframe>
         </div>
         @endrole
+
+
         <div class="film-btn-support d-flex">
             <a href=""><i class="fa-solid fa-share"></i>Chia sẻ</a>
             <a href=""><i class="fa-solid fa-cloud"></i>Sưu tầm</a>
@@ -151,4 +153,5 @@
             </div>
         </div>
     </div>
+
 @endsection
