@@ -42,7 +42,7 @@ class EpisodeController extends Controller
     public function store(EpisodeRequest $request)
     {
         $episode = new Episode();
-        $episode->movie_id = $request->movie_id;
+        $episode->movie_vip_id = $request->movie_vip_id;
         $episode->linkphim = $request->linkphim;
         $episode->server = $request->linkserver;
         $episode->episode = $request->episode;

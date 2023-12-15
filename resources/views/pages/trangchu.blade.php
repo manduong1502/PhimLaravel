@@ -84,7 +84,37 @@
             <span class="visually-hidden">Next</span>
         </button>
     </div>
+    
 
+    <div class="container contents">
+        <div class="content-title">
+            <div class="content-title-big">
+                <h2>Phim độc quyền tại Cosmic</h2>
+            </div>
+        </div>
+
+        <div class="row slider">
+            @foreach ($movie_vip->take(10) as $key => $mov_vip)
+                <a href="{{route('pages.chitetvip',$mov_vip->slug)}}" style="text-decoration: none">
+                    <div class="slider-card">
+                        <div class="card cards" style="position: relative">
+
+                            <img src="{{ asset('uploads/movie/' . $mov_vip->image) }}" alt="" style="width: 250px; height:330px; border-radius: 5px; position: relative">
+                            <div class="icon-overlay">
+                                <i class="fa-solid fa-circle-play"></i>
+                            </div>
+                        </div>
+
+                        <div class="card-text">
+                            {{ $mov_vip->title }}
+                        </div>
+                    </div>
+                </a>
+            @endforeach
+        </div>
+    </div>
+
+    
     @foreach ($category_home as $key => $cate_home)
         <div class="container contents">
             <div class="content-title">
@@ -121,80 +151,8 @@
         </div>
     @endforeach
 
+    
 
-
-    <div class="container contents">
-        <div class="content-title">
-            <div class="content-title-big">
-                <h2>ĐỀ XUẤT HOT</h2>
-            </div>
-
-        </div>
-        <div class="row slider">
-            <div class="slider-card">
-                <div class="card card-actor">
-                    <img src="/public/image/image-11.png" alt="">
-
-                </div>
-
-                <div class="card-text">
-                    <p>Anh bước ra từ ánh lửa</p>
-                </div>
-            </div>
-
-            <div class="slider-card">
-                <div class="card card-actor">
-                    <img src="/public/image/image-11.png" alt="">
-
-                </div>
-
-                <div class="card-text">
-                    <p>Anh bước ra từ ánh lửa</p>
-                </div>
-            </div>
-
-            <div class="slider-card">
-                <div class="card card-actor">
-                    <img src="/public/image/image-11.png" alt="">
-
-                </div>
-
-                <div class="card-text">
-                    <p>Anh bước ra từ ánh lửa</p>
-                </div>
-            </div>
-
-            <div class="slider-card">
-                <div class="card card-actor">
-                    <img src="/public/image/image-11.png" alt="">
-
-                </div>
-
-                <div class="card-text">
-                    <p>Anh bước ra từ ánh lửa</p>
-                </div>
-            </div>
-
-            <div class="slider-card">
-                <div class="card card-actor">
-                    <img src="/public/image/image-11.png" alt="">
-
-                </div>
-                <div class="card-text">
-                    <p>Anh bước ra từ ánh lửa</p>
-                </div>
-            </div>
-
-            <div class="slider-card">
-                <div class="card card-actor">
-                    <img src="/public/image/image-11.png" alt="">
-
-                </div>
-                <div class="card-text">
-                    <p>Anh bước ra từ ánh lửa</p>
-                </div>
-            </div>
-
-        </div>
-    </div>
+    
+    
 @endsection

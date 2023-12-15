@@ -18,6 +18,7 @@ use App\Http\Controllers\admin\BlogController;
 use App\Http\Controllers\admin\LeechMovieController;
 use App\Http\Controllers\admin\LinkMovieController;
 use App\Http\Controllers\CheckoutController;
+use App\HTTp\Controllers\admin\UserController;
 
 
 //login
@@ -70,7 +71,7 @@ Route::get('/', [PageController::class, 'getGioithieu']);
 Route::get('/index', [PageController::class, 'getTrangchu'])->name('pages.trangchu')->middleware(AuthMiddleware::class);
 
 
-Route::get('/xemphim/{slug}/{tap}/{server_active}', [PageController::class, 'getXemphim'])->name('watch')->middleware(AuthMiddleware::class);
+
 
 //các thể loại
 Route::get('/danh-muc/{slug}', [PageController::class, 'getDanhmMuc'])->name('category')->middleware(AuthMiddleware::class);
@@ -80,6 +81,11 @@ Route::get('/quocgia/{slug}', [PageController::class, 'getQuocgia'])->name('coun
 //chi tiết phim
 Route::get('/chitiet/{slug}', [PageController::class, 'getChitiet'])->name('pages.chitiet')->middleware(AuthMiddleware::class);
 Route::post('add-rating', [PageController::class, 'add_rating'])->name('add-rating');
+Route::get('/xem-phim/{slug}/{tap}/{server_active}', [PageController::class, 'getXemphim'])->name('watch_vip')->middleware(AuthMiddleware::class);
+
+//chi tiết phim vip
+Route::get('/chi-tiet-vip/{slug}', [PageController::class, 'getChitiet_vip'])->name('pages.chitetvip')->middleware(AuthMiddleware::class);
+Route::get('/xem-phim-vip/{slug}/{tap}/{server_active}', [PageController::class, 'getXemphim_vip'])->name('watch_vip')->middleware(AuthMiddleware::class);
 
 //gói phim
 Route::get('/goiphim/{id}', [PageController::class, 'getGoiphim'])->middleware(AuthMiddleware::class)->name('goiphim_page');

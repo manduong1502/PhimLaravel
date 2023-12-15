@@ -20,7 +20,7 @@
   <header id="site-header">
     <nav class="navbar navbar-expand-lg mt-3">
       <div class="container header">
-        <img class="navbar-brand" src="public/image/logo/logo.png" alt="">
+        <img class="navbar-brand" src="public/image/logo/logo.png" width="300" height="100" alt="">
         <ul class="navbar-nav">
           <li class="nav-item">
             <a href="{{route('auth.index')}}">

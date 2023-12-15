@@ -82,7 +82,7 @@
                         </ul>
                     </li>
 
-                    <li class="treeview {{($segment == 'episode') ? 'active' : ''}}">
+                    {{-- <li class="treeview {{($segment == 'episode') ? 'active' : ''}}">
                         <a href="#">
                             <i class="fa fa-clapperboard"></i>
                             <span>Tập phim</span>
@@ -92,7 +92,7 @@
                             <li><a href="{{route('episode.create')}}"><i class="fa fa-angle-right"></i> Thêm tập phim</a></li>
                             <li><a href="{{route('episode.index')}}"><i class="fa fa-angle-right"></i> Liệt kê tập phim</a></li>
                         </ul>    
-                    </li>
+                    </li> --}}
 
                     
                     <li class="treeview {{($segment == 'blog') ? 'active' : ''}}">
@@ -117,6 +117,33 @@
                             <li><a href="{{route('user.create')}}"><i class="fa fa-angle-right"></i> Thêm user</a></li>
                             <li><a href="{{route('user.index')}}"><i class="fa fa-angle-right"></i> Liệt kê user</a></li>
                         </ul>
+                    </li>
+
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-users"></i>
+                            <span>Phim Bản Quyền</span>
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="{{route('movievip.create')}}"><i class="fa fa-angle-right"></i> Thêm phim bản quyền</a></li>
+                            <li><a href="{{route('movievip.index')}}"><i class="fa fa-angle-right"></i> Liệt kê phim bản quyền </a></li>
+                            <li><a href="{{route('showapi')}}"><i class="fa fa-angle-right"></i> Xem dữ liệu api film bản quyền</a></li>
+                        </ul>
+                        
+
+                        {{-- UL bên phần thêm tập phim của movie vip --}}
+                        {{-- <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-users"></i>
+                                <span>Tập phim bản quyền</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="{{route('episodemovievip.create')}}"><i class="fa fa-angle-right"></i> Thêm phim tập phim bản quyền</a></li>
+                                <li><a href="{{route('episodemovievip.index')}}"><i class="fa fa-angle-right"></i> Liệt kê phim bản quyền</a></li>
+                            </ul>
+                        </li> --}}
                     </li>
 
                 </ul>
