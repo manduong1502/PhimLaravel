@@ -252,14 +252,15 @@ class PageController extends Controller
         $movie_related = Movie::with('country','genre','category','movie_genre','episode')->where('category_id',$movie->category->id)->orderBy(DB::raw('RAND()'))->whereNotIn('slug',[$slug])->get();
 
         
-        if ($tap === 'tap-"Full"') {
+        if ($tap === 'tap-Full') {
             $tapphim = 1;
             $episode = Episode::where('movie_id', $movie->id)
                 ->where('episode', '"Full"')
                 ->first();
 
-        } else {
-            $tapphim = substr($tap, 4, 1);
+        }
+         else {
+            $tapphim = substr($tap, strrpos($tap, '-') + 1);
             $episode = Episode::where('movie_id', $movie->id)
                 ->where('episode', $tapphim)
                 ->first();
