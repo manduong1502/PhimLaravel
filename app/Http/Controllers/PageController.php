@@ -146,8 +146,9 @@ class PageController extends Controller
 
         $rating = Rating::where('movie_id',$movie->id)->avg('rating');
         $rating = round($rating);
-        
         $count_total = Rating::where('movie_id',$movie->id)->count();
+
+        $movie_full = Episode::with('movie')->where('movie_id', $movie->id)->where('episode', 'Full')->take(1)->first();
         return view('pages.chitiet', compact(
             'customCss',
             'category',
@@ -158,7 +159,8 @@ class PageController extends Controller
             'episode',
             'movie_tapdau',
             'rating',
-            'count_total'
+            'count_total',
+            'movie_full'
         ));
     }
 
@@ -249,18 +251,23 @@ class PageController extends Controller
         $movie = Movie::with('country','genre','category')->where('slug',$slug)->first();
         $movie_related = Movie::with('country','genre','category','movie_genre','episode')->where('category_id',$movie->category->id)->orderBy(DB::raw('RAND()'))->whereNotIn('slug',[$slug])->get();
 
-        if(isset($tap)) {
-            $tapphim = $tap;
-            $tapphim = substr($tap,4,1);
-            $episode = Episode::where('movie_id',$movie->id)->where('episode',$tapphim)->first();
-        }else {
-            $tapphim =1;
-            $episode = Episode::where('movie_id',$movie->id)->where('episode',$tapphim)->first();
+        
+        if ($tap === 'tap-"Full"') {
+            $tapphim = 1;
+            $episode = Episode::where('movie_id', $movie->id)
+                ->where('episode', '"Full"')
+                ->first();
+
+        } else {
+            $tapphim = substr($tap, 4, 1);
+            $episode = Episode::where('movie_id', $movie->id)
+                ->where('episode', $tapphim)
+                ->first();
         }
 
         $server =LinkMovie::orderBy('id','ASC')->get();
         $episode_movie =Episode::where('movie_id',$movie->id)->get()->unique('server');
-        $episode_list =Episode::where('movie_id',$movie->id)->orderBy('episode','ASC')->get();
+        $episode_list =Episode::where('movie_id',$movie->id)->orderBy('id','ASC')->get();
         return view('pages.xemphim', compact(
             'customCss',
             'category',

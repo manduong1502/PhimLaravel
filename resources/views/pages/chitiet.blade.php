@@ -13,7 +13,8 @@
                         @if ($image_check == 'https')
                             <img src="{{ $movie->image1 }}" alt="...">
                         @else
-                            <img src="{{ asset('uploads/movie/imagebig/' . $movie->image1) }}" alt="..." style="width: 100%;">
+                            <img src="{{ asset('uploads/movie/imagebig/' . $movie->image1) }}" alt="..."
+                                style="width: 100%;">
                         @endif
                     </div>
                 </div>
@@ -26,7 +27,8 @@
                     <div class="detail-title-small mt-3 d-flex ">
                         <span>Thể loại: </span>
                         @foreach ($movie->movie_genre as $gen)
-                            <div class="text-title" style="margin-left: 5px; color: black; padding: 0 5px 0 5px;">{{ $gen->title }}</div>
+                            <div class="text-title" style="margin-left: 5px; color: black; padding: 0 5px 0 5px;">
+                                {{ $gen->title }}</div>
                         @endforeach
                     </div>
 
@@ -39,7 +41,8 @@
                                     $actor = explode(',', $movie->actor);
                                 @endphp
                                 @foreach ($actor as $key => $act)
-                                    <a href="" style="text-decoration: none; color: white; margin-left: 5px; font-weight: bold">{{ $act }}</a>
+                                    <a href=""
+                                        style="text-decoration: none; color: white; margin-left: 5px; font-weight: bold">{{ $act }}</a>
                                 @endforeach
                             @endif
                         </div>
@@ -49,15 +52,16 @@
                         <span class="text-title-name col-3 ">Tập mới nhất: </span>
                         <div class=" col-9">
                             @foreach ($episode as $key => $epi)
-                                <a href="{{ url('xem-phim/' . $epi->movie->slug . '/tap-' . $epi->episode) }}" style="text-decoration: none; color: white; margin-left: 5px; font-weight: bold"> Tập
+                                <a href="{{ url('xem-phim/' . $epi->movie->slug . '/tap-' . $epi->episode) }}"
+                                    style="text-decoration: none; color: white; margin-left: 5px; font-weight: bold"> Tập
                                     {{ $epi->episode }}</a>
                             @endforeach
                         </div>
                     </div>
 
-                        {{-- <ul class="list-inline rating d-flex " style="margin: 0; padding: 0;"  title="Average Rating">
+                    {{-- <ul class="list-inline rating d-flex " style="margin: 0; padding: 0;"  title="Average Rating">
 
-                            @for($count=1; $count<=5; $count++)
+                            @for ($count = 1; $count <= 5; $count++)
 
                               @php
 
@@ -95,8 +99,17 @@
                     </div>
 
                     <div class="detail-title-small mt-2 d-flex" style="text-align: left;">
+                        @if($movie_tapdau && $movie_tapdau->episode && $movie_tapdau->episode !== 'Full')
                         <a href="{{ url('xem-phim/' . $movie->slug . '/tap-' . $movie_tapdau->episode . '/server-' . $movie_tapdau->server) }}"
-                            class="btn btn-issue"><i class="fa-solid fa-play"></i> Phát ngay</a>
+                            class="btn btn-issue">
+                            <i class="fa-solid fa-play"></i> Phát ngay
+                        </a>
+                    @elseif($movie_tapdau && $movie_tapdau->episode && $movie_tapdau->episode === 'Full')
+                        <a href="{{ url('xem-phim/' . $movie->slug . '/tap-Full/server-' . $movie_tapdau->server) }}"
+                            class="btn btn-issue">
+                            <i class="fa-solid fa-play"></i> Phát ngay
+                        </a>
+                    @endif
                         <button class="btn btn-share"><i class="fa-solid fa-share"></i> Chia sẽ</button>
                         <button class="btn btn-share"><i class="fa-solid fa-cloud"></i> Sưu tập</button>
                     </div>
@@ -109,7 +122,8 @@
         <div class="row  miscellaneous-content">
             <div class="col-md-8 miscellaneous-content-1 ">
                 <div class=" miscellaneous-content-1-header">
-                    <ul class="d-flex miscellaneous-content-1-header-ul container-fluid custom-list" style="margin-bottom: 10px;">
+                    <ul class="d-flex miscellaneous-content-1-header-ul container-fluid custom-list"
+                        style="margin-bottom: 10px;">
                         <li><a href="#info1">Trailer</a></li>
                         <li><a href="#info2">Đánh giá</a></li>
                         <li><a href="#info3">Tin tức</a></li>
@@ -220,7 +234,8 @@
                                     @endif
                                 </div>
 
-                                <div class="miscellaneous-content-2-block-film-text" style="text-decoration: none; color: white; font-weight: bold">
+                                <div class="miscellaneous-content-2-block-film-text"
+                                    style="text-decoration: none; color: white; font-weight: bold">
                                     <h6>{{ $mov->title }}</h6>
                                     <p>Kumarn - Drama, Horror</p>
                                     <p>Khởi chiếu: 06/10/2023</p>
