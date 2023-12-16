@@ -18,6 +18,9 @@ use Illuminate\Support\Facades\Config;
 use App\Models\vnpay;
 use App\Models\User;
 use Carbon\Carbon;
+use App\Models\History_movie;
+use Illuminate\Support\Facades\Auth;
+
 
 
 
@@ -210,6 +213,32 @@ class PageController extends Controller
         $server =LinkMovie::orderBy('id','ASC')->get();
         $episode_movie =Episode_vip::where('movie_vip_id',$movie->id)->get()->unique('server');
         $episode_list =Episode_vip::where('movie_vip_id',$movie->id)->orderBy('episode','ASC')->get();
+
+
+        // Lưu lịch sử film
+        if (Auth::check()) {
+            $user = Auth::user();
+            if($user->hasRole('uservip')) {
+                $userId = Auth::id();
+                $movieId = $movie->id;
+                $episodeId =  $episode->id;
+                $watchedAt = Carbon::now('Asia/Ho_Chi_Minh'); // Thời gian xem
+                $existingHistory = History_movie::where('user_id', $userId)
+                ->where('episode_id', $episodeId)
+                ->exists();
+                if($existingHistory) {
+                History_movie::create([
+                    'user_id' => $userId,
+                    'movie_id' => $movieId,
+                    'episode_id' => $episodeId,
+                    'ngay_tao' => $watchedAt,
+                    'ngay_cap_nhat' => $watchedAt,
+                ]);
+            }
+            }
+        }
+
+        
         return view('pages.xemphim_vip', compact(
             'customCss',
             'category',
@@ -266,9 +295,32 @@ class PageController extends Controller
                 ->first();
         }
 
+
         $server =LinkMovie::orderBy('id','ASC')->get();
         $episode_movie =Episode::where('movie_id',$movie->id)->get()->unique('server');
         $episode_list =Episode::where('movie_id',$movie->id)->orderBy('id','ASC')->get();
+
+        // Lưu lịch sử film
+        if (Auth::check()) {
+            $userId = Auth::id();
+            $movieId = $movie->id;
+            $episodeId =  $episode->id;
+            $watchedAt = Carbon::now('Asia/Ho_Chi_Minh'); // Thời gian xem
+            $existingHistory = History_movie::where('user_id', $userId)
+            ->where('episode_id', $episodeId)
+            ->exists();
+
+            if( !$existingHistory ) {
+            History_movie::create([
+                'user_id' => $userId,
+                'movie_id' => $movieId,
+                'episode_id' => $episodeId,
+                'ngay_tao' => $watchedAt,
+                'ngay_cap_nhat' => $watchedAt,
+            ]);
+        }
+        }
+
         return view('pages.xemphim', compact(
             'customCss',
             'category',
