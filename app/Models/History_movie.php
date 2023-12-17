@@ -31,4 +31,8 @@ class History_movie extends Model
         return $this->belongsTo(Movie_vip::class);
     }
 
+    public function episode_total() {
+        return $this->hasMany(Episode::class);
+    }
+
 }

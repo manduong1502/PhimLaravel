@@ -118,13 +118,22 @@ class PageController extends Controller
 
     public function getTrangchu()
     {
-        $phimhot = Movie::where('phim_hot',1)->where('status',1)->orderBy('ngay_cap_nhap','DESC')->get();
-        $slide = Movie::with('country','genre','category','movie_genre')->where('slide',1)->where('status',1)->orderBy('ngay_cap_nhap','DESC')->get();
+        $phimhot = Movie::withCount('episode')->where('phim_hot',1)->where('status',1)->orderBy('ngay_cap_nhap','DESC')->get();
+        $slide = Movie::withCount('episode')->with('country','genre','category','movie_genre')->where('slide',1)->where('status',1)->orderBy('ngay_cap_nhap','DESC')->get();
         $category = Category::orderBy('id','DESC') ->where('status',1)->get();
         $genre = Genre::orderBy('id','DESC')->where('status',1) ->get();
         $country = Country::orderBy('id','DESC')->where('status',1) ->get();
-        $category_home = Category::with('movie')->where('status',1)->orderBy('id','DESC') ->get();
-        $movie_vip = Movie_vip::with('country','genre','category')->where('status',1)->orderBy('id','DESC')->get();
+        $category_home = Category::with(['movie'=> function($q) {$q->withCount('episode');}])->where('status',1)->orderBy('id','DESC') ->get();
+        $movie_vip = Movie_vip::withCount('episode')->with('country','genre','category')->where('status',1)->orderBy('id','DESC')->get();
+
+
+        $user_id = Auth::id();
+        $history_movie = History_movie::with('Movie', 'Movie_vip', 'episode')->where('user_id', $user_id)
+        ->orderBy('id', 'DESC')
+        ->select('movie_id', 'episode_id') // Chỉ chọn trường movie_id
+        ->distinct() // Loại bỏ các bản ghi trùng lặp
+        ->get();
+   
         return view('pages.trangchu',compact(
             'category',
             'genre',
@@ -132,7 +141,8 @@ class PageController extends Controller
             'category_home',
             'phimhot',
             'slide',
-            'movie_vip'
+            'movie_vip',
+            'history_movie',
         ));
     }
 
@@ -142,7 +152,7 @@ class PageController extends Controller
         $genre = Genre::orderBy('id','DESC')->where('status',1) ->get();
         $country = Country::orderBy('id','DESC')->where('status',1) ->get();
         $customCss = 'css/chitiet.css';
-        $movie = Movie::with('country','genre','category')->where('slug',$slug)->first();
+        $movie = Movie::with('country','genre','category')->withCount('episode')->where('slug',$slug)->first();
         $movie_related = Movie::with('country','genre','category','movie_genre')->where('category_id',$movie->category->id)->orderBy(DB::raw('RAND()'))->whereNotIn('slug',[$slug])->get();
         $movie_tapdau = Episode::with('movie')->where('movie_id',$movie->id)->orderBy('episode','ASC')->take(1)->first();
         $episode = Episode::with('movie')->where('movie_id',$movie->id)->orderBy('id','DESC')->take(3)->get();
@@ -291,7 +301,7 @@ class PageController extends Controller
          else {
             $tapphim = substr($tap, strrpos($tap, '-') + 1);
             $episode = Episode::where('movie_id', $movie->id)
-                ->where('episode', $tapphim)
+                ->whereJsonContains('episode', $tapphim)
                 ->first();
         }
 
@@ -301,7 +311,7 @@ class PageController extends Controller
         $episode_list =Episode::where('movie_id',$movie->id)->orderBy('id','ASC')->get();
 
         // Lưu lịch sử film
-        if (Auth::check()) {
+        if (Auth::check() && $episode) {
             $userId = Auth::id();
             $movieId = $movie->id;
             $episodeId =  $episode->id;
@@ -309,7 +319,10 @@ class PageController extends Controller
             $existingHistory = History_movie::where('user_id', $userId)
             ->where('episode_id', $episodeId)
             ->exists();
-
+            History_movie::where('user_id', $userId)
+            ->where('movie_id', $movieId)
+            ->delete();
+            
             if( !$existingHistory ) {
             History_movie::create([
                 'user_id' => $userId,
@@ -347,7 +360,7 @@ class PageController extends Controller
         $customCss = 'css/tong-the-loai.css';
         //điều kiện slug
         $cate_slug = Category::where('slug',$slug) ->first();
-        $movie = Movie::where('category_id', $cate_slug->id)->orderBy('ngay_cap_nhap','DESC')->paginate(40);
+        $movie = Movie::where('category_id', $cate_slug->id)->withCount('episode')->orderBy('ngay_cap_nhap','DESC')->paginate(40);
         return view('pages.the_loai.danhmuc', compact(
             'customCss',
             'category',
@@ -375,7 +388,7 @@ class PageController extends Controller
             $many_genre[] = $movi->movie_id;
         }
         //Điều kiện lấy film
-        $movie = Movie::whereIn('id', $many_genre)->orderBy('ngay_cap_nhap','DESC')->paginate(40); 
+        $movie = Movie::whereIn('id', $many_genre)->withCount('episode')->orderBy('ngay_cap_nhap','DESC')->paginate(40); 
         return view('pages.the_loai.theloai', compact(
             'customCss',
             'category',
@@ -397,7 +410,7 @@ class PageController extends Controller
         //điều kiện slug
         $coun_slug = Country::where('slug',$slug) ->first();
         //Điều kiện lấy film
-        $movie = Movie::where('country_id', $coun_slug->id)->orderBy('ngay_cap_nhap','DESC')->paginate(40); 
+        $movie = Movie::where('country_id', $coun_slug->id)->withCount('episode')->orderBy('ngay_cap_nhap','DESC')->paginate(40); 
         return view('pages.the_loai.quocgia', compact(
             'customCss',
             'category',

@@ -20,11 +20,7 @@
                 </div>
                 <div class="carousel-caption d-none d-md-block">
                     <div class="detail-title responsive-text">{{ $movie->title }}</div>
-                    <div class="detail-content-top mt-3 d-flex">
-                        <div class="detail-content-top-text">Top 5</div>
-                        <div class="detail-content-top-text-1">Top phim thịnh hành</div>
-                    </div>
-                    <div class="detail-title-small mt-3 d-flex ">
+                    <div class="detail-title-small mt-2 d-flex ">
                         <span>Thể loại: </span>
                         @foreach ($movie->movie_genre as $gen)
                             <div class="text-title" style="margin-left: 5px; color: black; padding: 0 5px 0 5px;">
@@ -32,7 +28,7 @@
                         @endforeach
                     </div>
 
-                    <div class="detail-title-small   mt-3 d-flex ">
+                    <div class="detail-title-small   mt-2 d-flex ">
                         <div class="text-title-name ">Diễn viên chính: </div>
                         <div class="d-flex">
                             @if ($movie->actor != null)
@@ -47,54 +43,61 @@
                             @endif
                         </div>
                     </div>
+                    <div class="detail-title-small mt-2 d-flex ">
+                        <span>Thời Lượng: </span>
 
-                    <div class="detail-title-small mt-3 row d-flex" style="text-align: left;">
+                            <div class="" style="margin-left: 5px; color: rgb(255, 255, 255);">
+                                {{ $movie->time }}
+                            </div>
+  
+                    </div>
+
+                    <div class="detail-title-small mt-2 d-flex ">
+                        <span>Tập: </span>
+
+                            <div class="" style="margin-left: 5px; color: rgb(255, 255, 255);">
+                                {{$movie->episode_count}}/{{ $movie->so_tap }}
+                                @if($movie->episode_count == $movie->so_tap)
+                                <span>(Hoàn thành)</span>
+                                @endif
+                            </div>
+  
+                    </div>
+
+                    <div class="detail-title-small mt-2 d-flex ">
+                        <span>Năm: </span>
+
+                            <div class="" style="margin-left: 5px; color: rgb(255, 255, 255);">
+                                {{ $movie->nam_phim }}
+                            </div>
+  
+                    </div>
+                    
+                    <div class="detail-title-small mt-2 d-flex ">
+                        <span>Chất lượng: </span>
+
+                            <div class="" style="margin-left: 5px; color: rgb(255, 255, 255);">
+                                {{ $movie->quality }}
+                            </div>
+  
+                    </div>
+
+                    <div class="detail-title-small mt-2  d-flex" style="text-align: left;">
                         <span class="text-title-name col-3 ">Tập mới nhất: </span>
                         <div class=" col-9">
                             @foreach ($episode as $key => $epi)
-                                <a href="{{ url('xem-phim/' . $epi->movie->slug . '/tap-' . $epi->episode) }}"
+                                <a href="{{ url('xem-phim/' . $epi->movie->slug . '/tap-' . $epi->episode. '/server-' . $epi->server) }}"
                                     style="text-decoration: none; color: white; margin-left: 5px; font-weight: bold"> Tập
                                     {{ $epi->episode }}</a>
                             @endforeach
                         </div>
                     </div>
 
-                    {{-- <ul class="list-inline rating d-flex " style="margin: 0; padding: 0;"  title="Average Rating">
-
-                            @for ($count = 1; $count <= 5; $count++)
-
-                              @php
-
-                                if($count<=$rating){ 
-                                  $color = 'color:#ffcc00;'; //mau vang
-                                }
-                                else {
-                                  $color = 'color:#ccc;'; //mau xam
-                                }
-                              
-                              @endphp
-                            
-                              <li title="star_rating" 
-
-                              id="{{$movie->id}}-{{$count}}" 
-                              
-                              data-index="{{$count}}"  
-                              data-movie_id="{{$movie->id}}" 
-
-                              data-rating="{{$rating}}" 
-                              class="rating" 
-                              style="cursor:pointer; {{$color}} 
-
-                              font-size:30px;">&#9733;</li>
-
-                            @endfor
-
-                  </ul>  --}}
-
-                    <div class="detail-title-small mt-3 row d-flex" style="text-align: left;">
+                
+                    <div class="detail-title-small mt-2  d-flex" style="text-align: left;">
                         <div class="text-title-name col-2 ">Miêu tả: </div>
                         <div class=" col-10">
-                            <p>{!! substr($movie->description, 0, 50) !!}....</p>
+                            {!! substr($movie->description, 0, 50) !!}
                         </div>
                     </div>
 
@@ -140,8 +143,6 @@
                             allowfullscreen style="border-radius: 10px;"></iframe>
 
                     </div>
-
-
                     <!-- begin info3-->
                     <div id="info2" class="info">
                         <div class="container info3-assess-header">
