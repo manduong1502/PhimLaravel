@@ -237,8 +237,11 @@
                             <th scope="col">Thể loại</th>
                             <th scope="col">Quốc gia</th>
                             <th scope="col">Năm phim</th>
-                            <th scope="col">Ngày Cập Nhập</th>
-                            <th scope="col">Năm phim</th>
+                            <th scope="col">Thời lượng/Tập</th>
+                            <th scope="col">quality</th>
+                            <th scope="col">lang</th>
+                            <th scope="col">Ngày tạo</th>
+                            <th scope="col">Ngày cập nhập</th>
                             <th scope="col">Chỉnh sửa</th>
                         </tr>
                     </thead>
@@ -369,6 +372,9 @@
                                         'id' => $cate->id,
                                     ]) !!}
                                 </td>
+                                <td>{{ $cate->time }}</td>
+                                <td>{{ $cate->quality }}</td>
+                                <td>{{ $cate->lang}}</td>
                                 <td>{{ $cate->ngay_tao }}</td>
                                 <td>{{ $cate->ngay_cap_nhap }}</td>
                                 <td>

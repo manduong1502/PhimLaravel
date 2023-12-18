@@ -18,13 +18,24 @@ use App\Http\Controllers\admin\BlogController;
 use App\Http\Controllers\admin\LeechMovieController;
 use App\Http\Controllers\admin\LinkMovieController;
 use App\Http\Controllers\CheckoutController;
-use App\HTTp\Controllers\admin\UserController;
-
+use App\Http\Controllers\admin\UserController;
+use App\Http\Controllers\LoginGoogleController;
+use App\Http\Controllers\LoginFacebookController;
 
 //login
 Route::get('/login', [LoginController::class, 'index'])->name('auth.index')->middleware(LoginMiddleware::class);
 Route::post('/do_login', [LoginController::class, 'login'])->name('auth.do_login');
 Route::get('/logout', [LoginController::class, 'logout'])->name('auth.logout');
+
+//login google
+Route::controller(LoginGoogleController::class)->group(function(){
+    Route::get('auth/google', 'redirectToGoogle')->name('auth.google');
+    Route::get('auth/google/callback', 'handleGoogleCallback');
+});
+
+//login facebook
+Route::get('auth/facebook', [LoginFacebookController::class, 'redirectToFacebook'])->name('auth.facebook');
+Route::get('auth/facebook/callback', [LoginFacebookController::class, 'handleFacebookCallback']);
 
 
 // login admin

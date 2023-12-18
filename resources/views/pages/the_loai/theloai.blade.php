@@ -19,7 +19,10 @@
                     <div class="play-icon">
                         <i class="fa-solid fa-circle-play"></i>
                     </div>
-                    <div class="film-text" style="width: 250px;font-weight: bold; color: white; position: absolute; bottom: 0; left: 2.5px; right: 0;color: white; padding: 5px; text-align: center; border-radius: 0 0 5px 5px">{{ $mov->title }}</div>
+                    <div class="film-text" style="width: 250px;font-weight: bold; color: white; position: absolute; bottom: 0; left: 2.5px; right: 0;color: white; padding: 5px; text-align: center; border-radius: 0 0 5px 5px">
+                        {{ $mov->title }}
+                        {{$mov->episode_count}}/{{ $mov->so_tap }}
+                    </div>
                 </div>
             </a>
         @endforeach
