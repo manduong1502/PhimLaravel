@@ -5,12 +5,12 @@
         <div class="carousel-inner">
             @foreach ($slide as $key => $sli)
                 <div class="carousel-item active">
-                    <div class="dark-bg-image">
+                    <div class="dark-bg-image" style="width: 100%; height: 100%">
                         @php
                             $image_check = substr($sli->image1, 0, 5);
                         @endphp
                         @if ($image_check == 'https')
-                            <img src="{{ $sli->image1 }}" class="d-block " width="100" alt="...">
+                            <img src="{{ $sli->image1 }}" class="d-block " width="100" alt="..." style="height: 850px">
                         @else
                             <img src="{{ asset('uploads/movie/imagebig/' . $sli->image1) }}" class="d-block " width="100"
                                 alt="...">
