@@ -93,15 +93,8 @@
                         </div>
                     </div>
 
-                
-                    <div class="detail-title-small mt-2  d-flex" style="text-align: left;">
-                        <div class="text-title-name col-2 ">Miêu tả: </div>
-                        <div class=" col-10">
-                            {!! substr($movie->description, 0, 50) !!}
-                        </div>
-                    </div>
-
-                    <div class="detail-title-small mt-2 d-flex" style="text-align: left;">
+            
+                    <div class="detail-title-small mt-3 d-flex" style="text-align: left;">
                         @if($movie_tapdau && $movie_tapdau->episode && $movie_tapdau->episode !== 'Full')
                         <a href="{{ url('xem-phim/' . $movie->slug . '/tap-' . $movie_tapdau->episode . '/server-' . $movie_tapdau->server) }}"
                             class="btn btn-issue">
@@ -127,7 +120,7 @@
                 <div class=" miscellaneous-content-1-header">
                     <ul class="d-flex miscellaneous-content-1-header-ul container-fluid custom-list"
                         style="margin-bottom: 10px;">
-                        <li><a href="#info1">Trailer</a></li>
+                        <li><a href="#info1">Thông tin</a></li>
                         <li><a href="#info2">Đánh giá</a></li>
                         <li><a href="#info3">Tin tức</a></li>
                     </ul>
@@ -136,11 +129,18 @@
 
                 <div class="mb-3 container">
                     <div id="info1" class="info">
-                        <iframe width="100%"
+                        <div class="container-fluid">
+                            <h3>Tóm tắt</h3>
+                            {!!$movie ->description!!}
+                            <h3>Trailer</h3>
+                            <iframe width="100%"
                             height="515"src="{{ asset('https://www.youtube.com/embed/' . $movie->trailer) }}"
                             frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen style="border-radius: 10px;"></iframe>
+                        </div>
+                        
+                        
 
                     </div>
                     <!-- begin info3-->
