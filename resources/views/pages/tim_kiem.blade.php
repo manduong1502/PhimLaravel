@@ -13,7 +13,7 @@
                 <a href="{{ route('pages.chitiet', $mov->slug) }}">
                     <div class="film-card-img">
                         @php
-                            $image_check = substr($movie->image1, 0, 5);
+                            $image_check = substr($mov->image, 0, 5);
                         @endphp
                         @if ($image_check == 'https')
                         <img src="{{$mov->image }}" alt="">

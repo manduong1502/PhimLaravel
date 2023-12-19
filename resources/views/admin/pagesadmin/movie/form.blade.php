@@ -240,6 +240,7 @@
                             <th scope="col">Thời lượng/Tập</th>
                             <th scope="col">quality</th>
                             <th scope="col">lang</th>
+                            <th scope="col">View</th>
                             <th scope="col">Ngày tạo</th>
                             <th scope="col">Ngày cập nhập</th>
                             <th scope="col">Chỉnh sửa</th>
@@ -375,6 +376,7 @@
                                 <td>{{ $cate->time }}</td>
                                 <td>{{ $cate->quality }}</td>
                                 <td>{{ $cate->lang}}</td>
+                                <td>{{ $cate->view}}K view</td>
                                 <td>{{ $cate->ngay_tao }}</td>
                                 <td>{{ $cate->ngay_cap_nhap }}</td>
                                 <td>

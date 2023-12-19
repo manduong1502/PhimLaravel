@@ -24,7 +24,7 @@
                   $.each(data, function(key, value) {
                     if (value.title.search(expression) != -1) {
                       $('#result').css('display','inherit')
-                      $('#result').append('<li style="cursor:pointer; display: flex; max-height: 200px; background-color: black" class="list-group-item link-class"><img src="uploads/movie/' +
+                      $('#result').append('<li style="cursor:pointer; display: flex; max-height: 200px; background-color: black" class="list-group-item link-class"><img src="' +
                                   value.image +
                                   '" width="100" class="" /><div style="flex-direction: column; margin-left: 2px; color: white;"><h4 width="100%">' +
                                   value.title +
