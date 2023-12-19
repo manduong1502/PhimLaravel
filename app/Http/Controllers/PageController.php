@@ -360,7 +360,7 @@ class PageController extends Controller
         $customCss = 'css/tong-the-loai.css';
         //điều kiện slug
         $cate_slug = Category::where('slug',$slug) ->first();
-        $movie = Movie::where('category_id', $cate_slug->id)->withCount('episode')->orderBy('ngay_cap_nhap','DESC')->paginate(40);
+        $movie = Movie::where('category_id', $cate_slug->id)->withCount('episode')->orderBy('ngay_cap_nhap','DESC')->paginate(10);
         return view('pages.the_loai.danhmuc', compact(
             'customCss',
             'category',
