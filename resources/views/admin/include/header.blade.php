@@ -130,6 +130,14 @@
                             <li><a href="{{route('movievip.index')}}"><i class="fa fa-angle-right"></i> Liệt kê phim bản quyền </a></li>
                             <li><a href="{{route('showapi')}}"><i class="fa fa-angle-right"></i> Xem dữ liệu api film bản quyền</a></li>
                         </ul>
+
+                        <li class="treeview">
+                            <a href="{{route('sitemap')}}">
+                                <i class="fa fa-film"></i>
+                                <span>Cập nhập lại sitemap</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                        </li>
                         
 
                         {{-- UL bên phần thêm tập phim của movie vip --}}

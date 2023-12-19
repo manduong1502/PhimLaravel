@@ -156,10 +156,17 @@ Route::get('/sitemap',function() {
     Category::all()->each(function(Category $cate) use ($sitemap) {
         $sitemap->add(Url::create("/danh-muc/{$cate->slug}")->setLastModificationDate(Carbon::now('Asia/Ho_Chi_Minh'))->setChangeFrequency(Url::CHANGE_FREQUENCY_YEARLY)->setPriority(0.8));
     });
+
+    Genre::all()->each(function(Genre $cate) use ($sitemap) {
+        $sitemap->add(Url::create("/the-loai/{$cate->slug}")->setLastModificationDate(Carbon::now('Asia/Ho_Chi_Minh'))->setChangeFrequency(Url::CHANGE_FREQUENCY_YEARLY)->setPriority(0.8));
+    });
+    Country::all()->each(function(Country $cate) use ($sitemap) {
+        $sitemap->add(Url::create("/quoc-gia/{$cate->slug}")->setLastModificationDate(Carbon::now('Asia/Ho_Chi_Minh'))->setChangeFrequency(Url::CHANGE_FREQUENCY_YEARLY)->setPriority(0.8));
+    });
     Movie::all()->each(function(Movie $cate) use ($sitemap) {
         $sitemap->add(Url::create("/phim/{$cate->slug}")->setLastModificationDate(Carbon::now('Asia/Ho_Chi_Minh'))->setChangeFrequency(Url::CHANGE_FREQUENCY_YEARLY)->setPriority(0.8));
     });
 
     $sitemap->writeToFile(public_path('sitemap.xml'));
-    return "Thành công";
-});
+    return redirect()->back()->with('success', 'Bạn đã cập nhập sitemap thành công');
+})->name('sitemap')->middleware(CheckAdmin::class);
