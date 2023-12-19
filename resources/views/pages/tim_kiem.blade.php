@@ -4,6 +4,9 @@
     <div class="container film-title">
         <h2>Tìm Kiếm</h2>
     </div>
+
+    @include('pages.the_loai.form_locphim')
+    
     <div class="container film-card d-grid">
         <div class="card-total m-2">
             @foreach ($movie as $key => $mov)

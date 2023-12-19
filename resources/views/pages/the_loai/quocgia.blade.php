@@ -4,6 +4,8 @@
     <div class="container film-title">
         <h2>{{ $coun_slug->title }}</h2>
     </div>
+
+    @include('pages.the_loai.form_locphim')
     <div class="container film-card"
         style="display: grid ;grid-template-columns: repeat(auto-fit, minmax(19%, 1fr)); gap: 5px;">
         @foreach ($movie as $key => $mov)

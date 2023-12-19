@@ -130,7 +130,7 @@ class PageController extends Controller
         $user_id = Auth::id();
         $history_movie = History_movie::with('Movie', 'Movie_vip', 'episode')->where('user_id', $user_id)
         ->orderBy('id', 'DESC')
-        ->select('movie_id', 'episode_id') // Chỉ chọn trường movie_id
+        ->select('movie_id') // Chỉ chọn trường movie_id
         ->distinct() // Loại bỏ các bản ghi trùng lặp
         ->get();
    
@@ -321,8 +321,8 @@ class PageController extends Controller
             ->exists();
             History_movie::where('user_id', $userId)
             ->where('movie_id', $movieId)
+            ->where('ngay_tao', '<', Carbon::now('Asia/Ho_Chi_Minh')->subMonth()) // Filter records older than a month
             ->delete();
-            
             if( !$existingHistory ) {
             History_movie::create([
                 'user_id' => $userId,
@@ -465,22 +465,43 @@ class PageController extends Controller
 
 
 public function loc_phim() {
-    $category = Category::orderBy('id','DESC') ->get();
-        $genre = Genre::orderBy('id','DESC') ->get();
-        $country = Country::orderBy('id','DESC') ->get();
+    
+    $customCss = 'css/tong-the-loai.css';
 
+    $sapxep_get = $_GET['order'];
+    $genre_get = $_GET['genre'];
+    $country_get = $_GET['country'];
+    $year_get = $_GET['year'];
 
-    $sapxep = $_GET['order'];
-    $genre = $_GET['genre'];
-    $country = $_GET['country'];
-    $year = $_GET['year'];
-
-    if($sapxep== '' && $genre=='' && $country=='' && $year=='' ) {
+    if($sapxep_get== '' && $genre_get=='' && $country_get=='' && $year_get=='' ) {
         // $country_slug = country::where('slug',$slug) ->first();
         // $movie = Movie::where('country_id', $country_slug->id )->orderBy('ngaycapnhat','DESC')->paginate(40);
         return redirect()->back();
     }else {
-        $movie = Movie::where('category_id','=',$category)->where('genre_id','=',$genre)->where('country_id','=',$country)->orderBy('ngay_cap_nhap','DESC')->paginate(40);
+        $category = Category::orderBy('id','DESC') ->get();
+        $genre = Genre::orderBy('id','DESC') ->get();
+        $country = Country::orderBy('id','DESC') ->get();
+
+        $movie = Movie::withCount('episode');
+        if($genre_get) {
+            $movie = $movie->Where('genre_id','=',$genre_get);
+        }elseif($country_get) {
+            $movie = $movie->Where('country','=',$country_get);
+        }elseif($year_get) {
+            $movie = $movie->Where('nam_phim','=',$year_get);
+        }elseif($sapxep_get) {
+            $movie = $movie->Where('title','ASC');
+        }
+
+        $movie = $movie->orderBy('ngay_cap_nhap','DESC')->paginate(40);;
+        return view('pages.the_loai.locphim', compact(
+            'customCss',
+            'category',
+            'genre',
+            'country',
+            'movie',
+        ));
+        
     }
 
     

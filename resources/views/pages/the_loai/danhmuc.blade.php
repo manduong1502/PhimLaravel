@@ -6,62 +6,7 @@
 
     </div>
 
-    <div class="container">
-        <form action="{{ route('loc_phim') }}" method="get">
-            @csrf
-            <div class="row">
-
-                <div class="col-md-2">
-                    <div class="form-group">
-
-                        <select class="form-control" name="order" id="exampleFormControlSelect1">
-                            <option value="">----Sắp Xếp----</option>
-                            <option value="date">Ngày đăng</option>
-                            <option value="year_release">Năm sản xuất</option>
-                            <option value="name_movie">Tên Phim</option>
-                            <option value="views">Lượt xem</option>
-                            <option>5</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <div class="form-group">
-
-                        <select class="form-control" name="genre" id="exampleFormControlSelect1">
-                            <option value="">----Thể Loại----</option>
-                            @foreach ($genre as $key => $gen)
-                            <option value="{{$gen->id}}">{{$gen->title}}</option>
-                            @endforeach
-                            
-                        </select>
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <div class="form-group">
-
-                        <select class="form-control" name="country" id="exampleFormControlSelect1">
-                            <option value="">----Quốc gia----</option>
-                            @foreach ($country as $key => $coun)
-                            <option value="{{$coun->id}}">{{$coun->title}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <div class="form-group">
-                            {!! Form::selectYear('year', 2000, 2023,null, [
-                                        'class' => 'form-control',
-                                        'placeholder' => '----Năm phim-----'
-                                    ]) !!}
-                    </div>
-                </div>
-                <div class="col-md-2">
-                <input type="submit" class="btn btn-sm btn-default" value="Lọc Phim">
-            </div>
-            </div>
-            
-        </form>
-    </div>
+    @include('pages.the_loai.form_locphim')
 
 
     <div class="container film-card"
