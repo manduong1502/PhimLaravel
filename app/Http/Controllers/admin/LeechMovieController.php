@@ -94,6 +94,7 @@ class LeechMovieController extends Controller
         $movie->quality = $res['quality'];
         $movie->lang = $res['lang'];
         $movie->view = $res['view'];
+        $movie->type = $res['type'];
         $movie->save();
         //Thêm nhiêu thể loại cho phim
         $movie->movie_genre()->attach($genre);

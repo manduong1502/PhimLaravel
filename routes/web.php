@@ -149,9 +149,7 @@ Route::get('/sitemap',function() {
     ->add(Url::create(route('gioithieu'))->setLastModificationDate(Carbon::now('Asia/Ho_Chi_Minh'))->setChangeFrequency(Url::CHANGE_FREQUENCY_YEARLY)->setPriority(1))
     ->add(Url::create(route('auth.index'))->setLastModificationDate(Carbon::now('Asia/Ho_Chi_Minh'))->setChangeFrequency(Url::CHANGE_FREQUENCY_YEARLY)->setPriority(1))
     ;
-    // $sitemap = Sitemap::create()
-    // ->add(Url::create(route('login'))->setLastModificationDate(Carbon::now('Asia/Ho_Chi_Minh'))->setChangeFrequency(Url::CHANGE_FREQUENCY_YEARLY)->setPriority(0.2))
-    // ;
+
 
     Category::all()->each(function(Category $cate) use ($sitemap) {
         $sitemap->add(Url::create("/danh-muc/{$cate->slug}")->setLastModificationDate(Carbon::now('Asia/Ho_Chi_Minh'))->setChangeFrequency(Url::CHANGE_FREQUENCY_YEARLY)->setPriority(0.8));

@@ -361,6 +361,13 @@ class PageController extends Controller
         //điều kiện slug
         $cate_slug = Category::where('slug',$slug) ->first();
         $movie = Movie::where('category_id', $cate_slug->id)->withCount('episode')->orderBy('ngay_cap_nhap','DESC')->paginate(10);
+
+        $top_view = Movie::whereNotNull('view')->orderBy('view','desc')->take(10)->get();
+
+        $movie_phimbo = Movie::where('type','series')->whereNotNull('view')->orderBy('view','desc')->get()->take(10);
+
+        $movie_phimle = Movie::where('type','single')->whereNotNull('view')->orderBy('view','desc')->get()->take(10);
+
         return view('pages.the_loai.danhmuc', compact(
             'customCss',
             'category',
@@ -368,6 +375,9 @@ class PageController extends Controller
             'country',
             'cate_slug',
             'movie',
+            'top_view',
+            'movie_phimbo',
+            'movie_phimle'
         ));
     }
 
