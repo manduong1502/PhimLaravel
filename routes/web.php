@@ -17,6 +17,7 @@ use App\Http\Controllers\admin\GenreController;
 use App\Http\Controllers\admin\BlogController;
 use App\Http\Controllers\admin\LeechMovieController;
 use App\Http\Controllers\admin\LinkMovieController;
+use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\CheckoutController;
 
 

@@ -10,7 +10,7 @@ use App\Models\User;
 
 class LoginController extends Controller
 {
-    public function index () {
+    public function index() {
         if (Auth::check()) {
             // Kiểm tra xem người dùng đã đăng nhập hay chưa
             $user = Auth::user();

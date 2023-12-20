@@ -411,15 +411,6 @@ header .btn-vip {
 .zoom:hover {
   transform: scale(1.2); /* Phóng to khi di chuột qua */
 }
-select {
-  overflow: hidden;
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  text-overflow: '';
-  padding-right: 2rem; /* Thêm khoảng trống bên phải để ẩn thanh cuộn */
-}
-
 
 
   
