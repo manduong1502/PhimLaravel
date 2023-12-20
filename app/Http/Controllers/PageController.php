@@ -102,13 +102,21 @@ class PageController extends Controller
         $customCss = 'css/tong-the-loai.css';
         //điều kiện slug
         $movie = Movie::where('title','LIKE','%'.$search.'%')->orderBy('ngay_cap_nhap','DESC')->paginate(40);
+        $top_view = Movie::whereNotNull('view')->orderBy('view','desc')->take(10)->get();
+
+        $movie_phimbo = Movie::where('type','series')->whereNotNull('view')->orderBy('view','desc')->get()->take(10);
+
+        $movie_phimle = Movie::where('type','single')->whereNotNull('view')->orderBy('view','desc')->get()->take(10);
         return view('pages.tim_kiem', compact(
             'customCss',
             'category',
             'genre',
             'country',
             'movie',
-            'search'
+            'search',
+            'top_view',
+            'movie_phimbo',
+            'movie_phimle'
         ));
         }else {
             return redirect()->route('pages.trangchu');
@@ -162,6 +170,7 @@ class PageController extends Controller
         $count_total = Rating::where('movie_id',$movie->id)->count();
 
         $movie_full = Episode::with('movie')->where('movie_id', $movie->id)->where('episode', 'Full')->take(1)->first();
+        $blog_news = Blog::orderBy('ngay_cap_nhat','DESC')->where('status',1)->get();
         return view('pages.chitiet', compact(
             'customCss',
             'category',
@@ -173,7 +182,8 @@ class PageController extends Controller
             'movie_tapdau',
             'rating',
             'count_total',
-            'movie_full'
+            'movie_full',
+            'blog_news'
         ));
     }
 
@@ -399,13 +409,22 @@ class PageController extends Controller
         }
         //Điều kiện lấy film
         $movie = Movie::whereIn('id', $many_genre)->withCount('episode')->orderBy('ngay_cap_nhap','DESC')->paginate(40); 
+
+        $top_view = Movie::whereNotNull('view')->orderBy('view','desc')->take(10)->get();
+
+        $movie_phimbo = Movie::where('type','series')->whereNotNull('view')->orderBy('view','desc')->get()->take(10);
+
+        $movie_phimle = Movie::where('type','single')->whereNotNull('view')->orderBy('view','desc')->get()->take(10);
         return view('pages.the_loai.theloai', compact(
             'customCss',
             'category',
             'genre',
             'country',
             'gen_slug',
-            'movie'
+            'movie',
+            'top_view',
+            'movie_phimbo',
+            'movie_phimle'
         ));
     }
 
@@ -421,13 +440,22 @@ class PageController extends Controller
         $coun_slug = Country::where('slug',$slug) ->first();
         //Điều kiện lấy film
         $movie = Movie::where('country_id', $coun_slug->id)->withCount('episode')->orderBy('ngay_cap_nhap','DESC')->paginate(40); 
+
+        $top_view = Movie::whereNotNull('view')->orderBy('view','desc')->take(10)->get();
+
+        $movie_phimbo = Movie::where('type','series')->whereNotNull('view')->orderBy('view','desc')->get()->take(10);
+
+        $movie_phimle = Movie::where('type','single')->whereNotNull('view')->orderBy('view','desc')->get()->take(10);
         return view('pages.the_loai.quocgia', compact(
             'customCss',
             'category',
             'genre',
             'country',
             'coun_slug',
-            'movie'
+            'movie',
+            'top_view',
+            'movie_phimbo',
+            'movie_phimle'
         ));
     }
 

@@ -46,66 +46,66 @@
                     <div class="detail-title-small mt-2 d-flex ">
                         <span>Thời Lượng: </span>
 
-                            <div class="" style="margin-left: 5px; color: rgb(255, 255, 255);">
-                                {{ $movie->time }}
-                            </div>
-  
+                        <div class="" style="margin-left: 5px; color: rgb(255, 255, 255);">
+                            {{ $movie->time }}
+                        </div>
+
                     </div>
 
                     <div class="detail-title-small mt-2 d-flex ">
                         <span>Tập: </span>
 
-                            <div class="" style="margin-left: 5px; color: rgb(255, 255, 255);">
-                                {{$movie->episode_count}}/{{ $movie->so_tap }}
-                                @if($movie->episode_count == $movie->so_tap)
+                        <div class="" style="margin-left: 5px; color: rgb(255, 255, 255);">
+                            {{ $movie->episode_count }}/{{ $movie->so_tap }}
+                            @if ($movie->episode_count == $movie->so_tap)
                                 <span>(Hoàn thành)</span>
-                                @endif
-                            </div>
-  
+                            @endif
+                        </div>
+
                     </div>
 
                     <div class="detail-title-small mt-2 d-flex ">
                         <span>Năm: </span>
 
-                            <div class="" style="margin-left: 5px; color: rgb(255, 255, 255);">
-                                {{ $movie->nam_phim }}
-                            </div>
-  
+                        <div class="" style="margin-left: 5px; color: rgb(255, 255, 255);">
+                            {{ $movie->nam_phim }}
+                        </div>
+
                     </div>
-                    
+
                     <div class="detail-title-small mt-2 d-flex ">
                         <span>Chất lượng: </span>
 
-                            <div class="" style="margin-left: 5px; color: rgb(255, 255, 255);">
-                                {{ $movie->quality }}
-                            </div>
-  
+                        <div class="" style="margin-left: 5px; color: rgb(255, 255, 255);">
+                            {{ $movie->quality }}
+                        </div>
+
                     </div>
 
                     <div class="detail-title-small mt-2  d-flex" style="text-align: left;">
                         <span class="text-title-name col-3 ">Tập mới nhất: </span>
                         <div class=" col-9">
                             @foreach ($episode as $key => $epi)
-                                <a href="{{ url('xem-phim/' . $epi->movie->slug . '/tap-' . $epi->episode. '/server-' . $epi->server) }}"
+                                <a href="{{ url('xem-phim/' . $epi->movie->slug . '/tap-' . $epi->episode . '/server-' . $epi->server) }}"
                                     style="text-decoration: none; color: white; margin-left: 5px; font-weight: bold"> Tập
                                     {{ $epi->episode }}</a>
                             @endforeach
                         </div>
                     </div>
 
-            
+
                     <div class="detail-title-small mt-3 d-flex" style="text-align: left;">
-                        @if($movie_tapdau && $movie_tapdau->episode && $movie_tapdau->episode !== 'Full')
-                        <a href="{{ url('xem-phim/' . $movie->slug . '/tap-' . $movie_tapdau->episode . '/server-' . $movie_tapdau->server) }}"
-                            class="btn btn-issue">
-                            <i class="fa-solid fa-play"></i> Phát ngay
-                        </a>
-                    @elseif($movie_tapdau && $movie_tapdau->episode && $movie_tapdau->episode === 'Full')
-                        <a href="{{ url('xem-phim/' . $movie->slug . '/tap-Full/server-' . $movie_tapdau->server) }}"
-                            class="btn btn-issue">
-                            <i class="fa-solid fa-play"></i> Phát ngay
-                        </a>
-                    @endif
+                        @if ($movie_tapdau && $movie_tapdau->episode && $movie_tapdau->episode !== 'Full')
+                            <a href="{{ url('xem-phim/' . $movie->slug . '/tap-' . $movie_tapdau->episode . '/server-' . $movie_tapdau->server) }}"
+                                class="btn btn-issue">
+                                <i class="fa-solid fa-play"></i> Phát ngay
+                            </a>
+                        @elseif($movie_tapdau && $movie_tapdau->episode && $movie_tapdau->episode === 'Full')
+                            <a href="{{ url('xem-phim/' . $movie->slug . '/tap-Full/server-' . $movie_tapdau->server) }}"
+                                class="btn btn-issue">
+                                <i class="fa-solid fa-play"></i> Phát ngay
+                            </a>
+                        @endif
                         <button class="btn btn-share"><i class="fa-solid fa-share"></i> Chia sẽ</button>
                         <button class="btn btn-share"><i class="fa-solid fa-cloud"></i> Sưu tập</button>
                     </div>
@@ -122,7 +122,6 @@
                         style="margin-bottom: 10px;">
                         <li><a href="#info1">Thông tin</a></li>
                         <li><a href="#info2">Đánh giá</a></li>
-                        <li><a href="#info3">Tin tức</a></li>
                     </ul>
                     <hr>
                 </div>
@@ -131,16 +130,16 @@
                     <div id="info1" class="info">
                         <div class="container-fluid">
                             <h3>Tóm tắt</h3>
-                            {!!$movie ->description!!}
+                            {!! $movie->description !!}
                             <h3>Trailer</h3>
                             <iframe width="100%"
-                            height="515"src="{{ asset('https://www.youtube.com/embed/' . $movie->trailer) }}"
-                            frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen style="border-radius: 10px;"></iframe>
+                                height="515"src="{{ asset('https://www.youtube.com/embed/' . $movie->trailer) }}"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen style="border-radius: 10px;"></iframe>
                         </div>
-                        
-                        
+
+
 
                     </div>
                     <!-- begin info3-->
@@ -157,58 +156,7 @@
                     <!-- end info3-->
 
                     <!-- begin info4-->
-                    <div id="info3" class="info">
-                        <div class="miscellaneous-content-2-block-film container d-flex">
-                            <div class="miscellaneous-content-2-block-film-img">
-                                <img src="public/image/image-37.png" height="170px" alt="">
-                            </div>
-
-                            <div class="miscellaneous-content-2-block-film-text">
-                                <h4>Review Thanh Gươm Trừ Tà - Sự kết hợp thú vị giữa hài và tâm linh</h6>
-                                    <div class="blog-content-information d-flex">
-                                        <p class="blog-content-information-text">Đánh giá phim</p>
-                                        <p class="blog-content-information-text">levu2004</p>
-                                        <p class="blog-content-information-number">14 giờ trước</p>
-                                    </div>
-                                    <p>Thanh Gươm Trừ Tà (Dr. Cheon And The Lost Talisman) đã mang đến những giây phút giải
-                                        trí vui nhộn cho khán giả.</p>
-                            </div>
-                        </div>
-
-                        <div class="miscellaneous-content-2-block-film container d-flex">
-                            <div class="miscellaneous-content-2-block-film-img">
-                                <img src="public/image/image-37.png" height="170px" alt="">
-                            </div>
-
-                            <div class="miscellaneous-content-2-block-film-text">
-                                <h4>Review Thanh Gươm Trừ Tà - Sự kết hợp thú vị giữa hài và tâm linh</h6>
-                                    <div class="blog-content-information d-flex">
-                                        <p class="blog-content-information-text">Đánh giá phim</p>
-                                        <p class="blog-content-information-text">levu2004</p>
-                                        <p class="blog-content-information-number">14 giờ trước</p>
-                                    </div>
-                                    <p>Thanh Gươm Trừ Tà (Dr. Cheon And The Lost Talisman) đã mang đến những giây phút giải
-                                        trí vui nhộn cho khán giả.</p>
-                            </div>
-                        </div>
-
-                        <div class="miscellaneous-content-2-block-film container d-flex">
-                            <div class="miscellaneous-content-2-block-film-img">
-                                <img src="public/image/image-37.png" height="170px" alt="">
-                            </div>
-
-                            <div class="miscellaneous-content-2-block-film-text">
-                                <h4>Review Thanh Gươm Trừ Tà - Sự kết hợp thú vị giữa hài và tâm linh</h6>
-                                    <div class="blog-content-information d-flex">
-                                        <p class="blog-content-information-text">Đánh giá phim</p>
-                                        <p class="blog-content-information-text">levu2004</p>
-                                        <p class="blog-content-information-number">14 giờ trước</p>
-                                    </div>
-                                    <p>Thanh Gươm Trừ Tà (Dr. Cheon And The Lost Talisman) đã mang đến những giây phút giải
-                                        trí vui nhộn cho khán giả.</p>
-                            </div>
-                        </div>
-                    </div>
+                
                 </div>
                 <!-- end info4-->
 
