@@ -215,7 +215,7 @@ class MovieController extends Controller
         }
         $movie->save();
         $movie->movie_genre()->sync($data['genre']);
-        return redirect()->route('movie.index')->with('success', 'Bạn đã cập nhập thành công');;
+        return redirect()->route('movie.index')->with('success', 'Bạn đã cập nhập thành công');
     }
 
     /**
