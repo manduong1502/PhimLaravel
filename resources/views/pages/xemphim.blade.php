@@ -1,6 +1,25 @@
 @extends('index')
 
 @section('content')
+    <style type="text/css">
+    .halim-episode {
+    list-style: none;
+    margin-bottom: 10px;
+}
+
+.halim-btn {
+    text-decoration: none;
+    display: block;
+    border-radius: 5px;
+}
+
+/* Điều chỉnh kiểu cho tập phim đang xem */
+.halim-episode.active .btn-halim-active  {
+    background-color: #ffcc00; /* Màu nền tập phim đang xem */
+    color: #fff; /* Màu chữ tập phim đang xem */
+    border-color: #ffcc00; /* Màu viền tập phim đang xem */
+}
+    </style>
     <div class="container film">
         <style type="text/css">
             .iframe-phim iframe {
@@ -50,12 +69,11 @@
                                             <ul class="halim-list-eps" style="padding: 0; display: grid; grid-template-columns: repeat(10, 1fr)">
                                                 @foreach ($episode_list as $key => $epi)
                                                     @if ($epi->server == $ser->id)
-                                                        <a href="{{ url('xemphim/' . $movie->slug . '/tap-' . $epi->episode . '/server-' . $epi->server) }}"
+                                                        <a href="{{ url('xem-phim/' . $movie->slug . '/tap-' . $epi->episode . '/server-' . $epi->server) }}"
                                                             style="text-decoration: none; list-style: none; padding-right: 10px; margin-bottom: 10px">
-                                                            <li class="halim-episode">
-                                                                <span
-                                                                    class="halim-btn hanlim-btn-2 {{ $tapphim == $epi->episode && $server_active == 'server-' . $ser->id ? 'active' : '' }} halim-info-1-1 box-shadow">
-                                                                    <div>{{ $epi->episode }}</div>
+                                                            <li class="halim-episode {{ $tapphim == $epi->episode && $server_active == 'server-' . $ser->id ? 'active' : '' }}">
+                                                                <span class="halim-btn hanlim-btn-2 halim-info-1-1 box-shadow">
+                                                                    <div class="btn-halim-active" >{{ $epi->episode }}</div>
                                                                 </span>
                                                             </li>
                                                         </a>

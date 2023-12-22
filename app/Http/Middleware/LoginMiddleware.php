@@ -28,7 +28,7 @@ class LoginMiddleware
             } else {
                 if ($request->routeIs('auth.index')) {
                     // Nếu là người dùng bình thường và đang truy cập trang đăng nhập, điều hướng đến trang người dùng bình thường
-                    return redirect()->route('user.dashboard');
+                    return redirect()->route('pages.trangchu')->with('error','Bạn đang đăng nhập,Nếu bạn muốn quay lại trang đăng nhập vui lòng đăng xuất');
                 }
                 // Nếu là người dùng bình thường và không phải trang đăng nhập, tiếp tục xử lý request
             }

@@ -9,7 +9,12 @@ class Episode extends Model
 {
     use HasFactory;
 
+    protected $casts = [
+        'episode' => 'array',
+    ];
     public function movie () {
         return $this->belongsTo(Movie::class);
     }
+
+
 }

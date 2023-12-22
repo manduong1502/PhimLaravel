@@ -3,41 +3,45 @@
     <div id="carouselExampleCaptions" class="carousel slide">
 
         <div class="carousel-inner">
-            @foreach ($slide as $key => $sli) 
-            <div class="carousel-item active">
-                <div class="dark-bg-image">
-                    @php
-                        $image_check =substr($sli->image1,0,5);
-                    @endphp
-                    @if($image_check  =='https')
-                        <img src="{{$sli->image1}}" class="d-block " width="100" alt="...">
-                    @else
-                        <img src="{{ asset('uploads/movie/imagebig/' . $sli->image1) }}" class="d-block " width="100" alt="...">
-                    @endif    
-                </div>
-                <div class="carousel-caption d-none d-md-block">
-                    <div class="title-carousel-caption responsive-text">{{$sli->title}}</div>
-                    <div class="top-trending-carousel-caption d-flex">
-                        <div class="top-title ">TOP 5</div>
-                        <div class="trending-title">Top phim thịnh hành</div>
+            @foreach ($slide as $key => $sli)
+                <div class="carousel-item active">
+                    <div class="dark-bg-image">
+                        @php
+                            $image_check = substr($sli->image1, 0, 5);
+                        @endphp
+                        @if ($image_check == 'https')
+                            <img src="{{ $sli->image1 }}" class="d-block " width="100" alt="...">
+                        @else
+                            <img src="{{ asset('uploads/movie/imagebig/' . $sli->image1) }}" class="d-block " width="100"
+                                alt="...">
+                        @endif
                     </div>
-                    <div class="title-smail-carousel-captison d-flex ">
-                        @foreach($sli->movie_genre as $gen)
-                            <div class="text-title">{{$gen->title}}</div>
-                        @endforeach  
-                    </div>
-
-                    <div class="play-round-carousel-captison d-flex">
-                        <div class="round-play">
-                            <a href="{{route('pages.chitiet',$sli->slug)}}"><button class="circular-button"><i class="fa-solid fa-circle-play"></i></button></a>
+                    <div class="carousel-caption d-none d-md-block">
+                        <div class="title-carousel-caption responsive-text">{{ $sli->title }}</div>
+                        <div class="top-trending-carousel-caption d-flex">
+                            <div class="top-title ">TOP 5</div>
+                            <div class="trending-title">Top phim thịnh hành</div>
+                        </div>
+                        <div class="title-smail-carousel-captison d-flex ">
+                            @foreach ($sli->movie_genre as $gen)
+                                <div class="text-title">
+                                    {{ $gen->title }}
+                                </div>
+                            @endforeach
                         </div>
 
-                        <div class="round-play">
-                            <button class="circular-button-note"><i class="fa-solid fa-note-sticky"></i></button>
+                        <div class="play-round-carousel-captison d-flex">
+                            <div class="round-play">
+                                <a href="{{ route('pages.chitiet', $sli->slug) }}"><button class="circular-button"><i
+                                            class="fa-solid fa-circle-play"></i></button></a>
+                            </div>
+
+                            <div class="round-play">
+                                <button class="circular-button-note"><i class="fa-solid fa-note-sticky"></i></button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
             @endforeach
 
 
@@ -50,16 +54,18 @@
                 </div>
                 <div class="row slider">
                     @foreach ($phimhot as $key => $hot)
-                        <a href="{{route('pages.chitiet',$hot->slug)}}" style="text-decoration: none;">
+                        <a href="{{ route('pages.chitiet', $hot->slug) }}" style="text-decoration: none;">
                             <div class="slider-card" style="width: 180px;">
                                 <div class="card cards">
                                     @php
-                                        $image_check =substr($hot->image,0,5);
+                                        $image_check = substr($hot->image, 0, 5);
                                     @endphp
-                                    @if($image_check  =='https')
-                                        <img src="{{$hot->image}}" alt="" style="width: 100%; height: 265px">
+                                    @if ($image_check == 'https')
+                                        <img src="{{ $hot->image }}" alt="" style="width: 100%; height: 265px">
+                                        
                                     @else
-                                        <img src="{{ asset('uploads/movie/' . $hot->image) }}" alt="" style="width: 100%; height: 265px">
+                                        <img src="{{ asset('uploads/movie/' . $hot->image) }}" alt=""
+                                            style="width: 100%; height: 265px">
                                     @endif
                                     <div class="icon-overlay">
                                         <i class="fa-solid fa-circle-play"></i>
@@ -67,7 +73,14 @@
                                 </div>
 
                                 <div class="card-text">
-                                    <p>{{$hot->title}}</p>
+                                    <p>{{ $hot->title }}</p>
+                                    <span class="episode" aria-hidden="true">
+                                        {{$hot->episode_count}}/{{ $hot->so_tap }}
+                                    </span>
+
+                                    <span class="episode" aria-hidden="true" >
+                                        {{$hot->lang}}
+                                    </span>
                                 </div>
                             </div>
                         </a>
@@ -84,7 +97,46 @@
             <span class="visually-hidden">Next</span>
         </button>
     </div>
-    
+
+    @if($history_movie->isNotEmpty())
+    <div class="container contents">
+        <div class="content-title">
+            <div class="content-title-big">
+                <h2>Xem tiếp tục</h2>
+            </div>
+        </div>
+
+        <div class="row slider">
+            @foreach ($history_movie->take(10) as $key => $his_mov)
+                    <a href="{{ route('pages.chitiet', $his_mov->movie->slug) }}" style="text-decoration: none">
+                        <div class="slider-card">
+                            <div class="card cards" style="position: relative">
+                                @php
+                                    $image_check = substr($his_mov->movie->image, 0, 5);
+                                @endphp
+                                @if ($image_check == 'https')
+                                    <img src="{{ $his_mov->movie->image }}" alt=""
+                                        style="width: 250px; height:330px; border-radius: 5px; position: relative">
+                                @else
+                                    <img src="{{ asset('uploads/movie/' . $his_mov->movie->image) }}" alt=""
+                                        style="width: 250px; height:330px; border-radius: 5px; position: relative">
+                                @endif
+                                <div class="icon-overlay">
+                                    <i class="fa-solid fa-circle-play"></i>
+                                </div>
+                            </div>
+
+                            <div class="card-text">
+                                {{ $his_mov->movie->title }}
+                                <span class="episode" aria-hidden="true">
+                                </span>
+                            </div>
+                        </div>
+                    </a>
+                @endforeach
+        </div>
+    </div>
+    @endif
 
     <div class="container contents">
         <div class="content-title">
@@ -95,11 +147,12 @@
 
         <div class="row slider">
             @foreach ($movie_vip->take(10) as $key => $mov_vip)
-                <a href="{{route('pages.chitetvip',$mov_vip->slug)}}" style="text-decoration: none">
+                <a href="{{ route('pages.chitetvip', $mov_vip->slug) }}" style="text-decoration: none">
                     <div class="slider-card">
                         <div class="card cards" style="position: relative">
 
-                            <img src="{{ asset('uploads/movie/' . $mov_vip->image) }}" alt="" style="width: 250px; height:330px; border-radius: 5px; position: relative">
+                            <img src="{{ asset('uploads/movie/' . $mov_vip->image) }}" alt=""
+                                style="width: 250px; height:330px; border-radius: 5px; position: relative">
                             <div class="icon-overlay">
                                 <i class="fa-solid fa-circle-play"></i>
                             </div>
@@ -107,6 +160,12 @@
 
                         <div class="card-text">
                             {{ $mov_vip->title }}
+                            <span class="episode" aria-hidden="true">
+                                {{$mov_vip->episode_count}}/{{ $mov_vip->so_tap }}
+                                @if($mov_vip->episode_count == $mov_vip->so_tap)
+                                <span>Hoàn thành</span>
+                                @endif
+                            </span>
                         </div>
                     </div>
                 </a>
@@ -114,7 +173,7 @@
         </div>
     </div>
 
-    
+
     @foreach ($category_home as $key => $cate_home)
         <div class="container contents">
             <div class="content-title">
@@ -125,16 +184,18 @@
 
             <div class="row slider">
                 @foreach ($cate_home->movie->take(10) as $key => $mov)
-                    <a href="{{route('pages.chitiet',$mov->slug)}}" style="text-decoration: none">
+                    <a href="{{ route('pages.chitiet', $mov->slug) }}" style="text-decoration: none">
                         <div class="slider-card">
                             <div class="card cards" style="position: relative">
                                 @php
-                                    $image_check =substr($mov->image,0,5);
+                                    $image_check = substr($mov->image, 0, 5);
                                 @endphp
-                                @if($image_check == 'https')
-                                <img src="{{$mov->image}}" alt="" style="width: 250px; height:330px; border-radius: 5px; position: relative">
-                                @else 
-                                <img src="{{ asset('uploads/movie/' . $mov->image) }}" alt="" style="width: 250px; height:330px; border-radius: 5px; position: relative">
+                                @if ($image_check == 'https')
+                                    <img src="{{ $mov->image }}" alt=""
+                                        style="width: 250px; height:330px; border-radius: 5px; position: relative">
+                                @else
+                                    <img src="{{ asset('uploads/movie/' . $mov->image) }}" alt=""
+                                        style="width: 250px; height:330px; border-radius: 5px; position: relative">
                                 @endif
                                 <div class="icon-overlay">
                                     <i class="fa-solid fa-circle-play"></i>
@@ -143,6 +204,13 @@
 
                             <div class="card-text">
                                 {{ $mov->title }}
+                                <span class="episode" aria-hidden="true">
+                                    {{$mov->episode_count}}/{{ $mov->so_tap }}
+                                </span>
+
+                                <span class="episode" aria-hidden="true" >
+                                    {{$mov->lang}}
+                                </span>
                             </div>
                         </div>
                     </a>
@@ -150,9 +218,4 @@
             </div>
         </div>
     @endforeach
-
-    
-
-    
-    
 @endsection

@@ -76,12 +76,7 @@
                 </form>
 
                 <ul class="navbar-nav mb-2 mb-lg-0">
-                    <li class="nav-item mt-3">
-                        <a class="nav-link active text-white" aria-current="page" href="#"><i
-                                class="fa-regular fa-clock"></i> Xem
-                            lịch
-                            sử</a>
-                    </li>
+                    
                     <li class="nav-item dropdown ">
                         <a href="#" class="nav-link" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false"><img class="navbar-brand"

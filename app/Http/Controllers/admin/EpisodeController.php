@@ -42,12 +42,12 @@ class EpisodeController extends Controller
     public function store(EpisodeRequest $request)
     {
         $episode = new Episode();
-        $episode->movie_vip_id = $request->movie_vip_id;
+        $episode->movie_id = $request->movie_id;
         $episode->linkphim = $request->linkphim;
         $episode->server = $request->linkserver;
         $episode->episode = $request->episode;
         $episode->save();
-        return redirect()->back()->with('success', 'Bạn đã thêm thành công');;
+        return redirect()->back()->with('success', 'Bạn đã thêm thành công');
     }
 
     public function add_episode ($id) {

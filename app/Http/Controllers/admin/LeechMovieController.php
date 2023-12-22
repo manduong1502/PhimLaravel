@@ -74,6 +74,7 @@ class LeechMovieController extends Controller
         $movie->slide = 0;
         $movie->trailer = $res['trailer_url'];
         $movie->phim_hot = 0;
+        $movie->nam_phim = $res['year'];
 
         $category= Category::orderBy('id','DESC')->first();
         $movie->category_id = $category->id;
@@ -89,6 +90,11 @@ class LeechMovieController extends Controller
         $movie->image = $res['thumb_url'];
         $movie->image1 = $res['poster_url'];
         $movie->actor = $request->actor;
+        $movie->time = $res['time'];
+        $movie->quality = $res['quality'];
+        $movie->lang = $res['lang'];
+        $movie->view = $res['view'];
+        $movie->type = $res['type'];
         $movie->save();
         //Thêm nhiêu thể loại cho phim
         $movie->movie_genre()->attach($genre);

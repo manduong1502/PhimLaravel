@@ -18,13 +18,34 @@ use App\Http\Controllers\admin\BlogController;
 use App\Http\Controllers\admin\LeechMovieController;
 use App\Http\Controllers\admin\LinkMovieController;
 use App\Http\Controllers\CheckoutController;
-use App\HTTp\Controllers\admin\UserController;
+use App\Http\Controllers\admin\UserController;
+use App\Http\Controllers\LoginGoogleController;
+use App\Http\Controllers\LoginFacebookController;
+//sitemap
+use Carbon\Carbon;
+use Spatie\Sitemap\Sitemap;
+use Spatie\Sitemap\Tags\Url;
+use App\Models\Category;
+use App\Models\Genre;
+use App\Models\Blog;
+use App\Models\Country;
+use App\Models\Movie;
 
 
 //login
 Route::get('/login', [LoginController::class, 'index'])->name('auth.index')->middleware(LoginMiddleware::class);
 Route::post('/do_login', [LoginController::class, 'login'])->name('auth.do_login');
 Route::get('/logout', [LoginController::class, 'logout'])->name('auth.logout');
+
+//login google
+Route::controller(LoginGoogleController::class)->group(function(){
+    Route::get('auth/google', 'redirectToGoogle')->name('auth.google');
+    Route::get('auth/google/callback', 'handleGoogleCallback');
+});
+
+//login facebook
+Route::get('auth/facebook', [LoginFacebookController::class, 'redirectToFacebook'])->name('auth.facebook');
+Route::get('auth/facebook/callback', [LoginFacebookController::class, 'handleFacebookCallback']);
 
 
 // login admin
@@ -67,7 +88,7 @@ Route::post('/do_register', [RegisterController::class, 'register'])->name('auth
 
 
 
-Route::get('/', [PageController::class, 'getGioithieu']);
+Route::get('/', [PageController::class, 'getGioithieu'])->name('gioithieu');
 Route::get('/index', [PageController::class, 'getTrangchu'])->name('pages.trangchu')->middleware(AuthMiddleware::class);
 
 
@@ -115,3 +136,35 @@ Route::post('/watch-leech-detail', [LeechMovieController::class, 'watch_leech_de
 //cổng thanh toán
 Route::post('/momo_payment', [CheckoutController::class, 'momo_payment'])->name('momo_payment');
 Route::post('/vnpay_payment', [CheckoutController::class, 'vnpay_payment'])->name('vnpay_payment');
+
+
+//Lọc phim
+Route::get('loc-phim', [PageController::class, 'loc_phim'])->name('loc_phim')->middleware(AuthMiddleware::class);
+
+
+//sitemap
+
+Route::get('/sitemap',function() {
+    $sitemap = Sitemap::create()
+    ->add(Url::create(route('gioithieu'))->setLastModificationDate(Carbon::now('Asia/Ho_Chi_Minh'))->setChangeFrequency(Url::CHANGE_FREQUENCY_YEARLY)->setPriority(1))
+    ->add(Url::create(route('auth.index'))->setLastModificationDate(Carbon::now('Asia/Ho_Chi_Minh'))->setChangeFrequency(Url::CHANGE_FREQUENCY_YEARLY)->setPriority(1))
+    ;
+
+
+    Category::all()->each(function(Category $cate) use ($sitemap) {
+        $sitemap->add(Url::create("/danh-muc/{$cate->slug}")->setLastModificationDate(Carbon::now('Asia/Ho_Chi_Minh'))->setChangeFrequency(Url::CHANGE_FREQUENCY_YEARLY)->setPriority(0.8));
+    });
+
+    Genre::all()->each(function(Genre $cate) use ($sitemap) {
+        $sitemap->add(Url::create("/the-loai/{$cate->slug}")->setLastModificationDate(Carbon::now('Asia/Ho_Chi_Minh'))->setChangeFrequency(Url::CHANGE_FREQUENCY_YEARLY)->setPriority(0.8));
+    });
+    Country::all()->each(function(Country $cate) use ($sitemap) {
+        $sitemap->add(Url::create("/quoc-gia/{$cate->slug}")->setLastModificationDate(Carbon::now('Asia/Ho_Chi_Minh'))->setChangeFrequency(Url::CHANGE_FREQUENCY_YEARLY)->setPriority(0.8));
+    });
+    Movie::all()->each(function(Movie $cate) use ($sitemap) {
+        $sitemap->add(Url::create("/phim/{$cate->slug}")->setLastModificationDate(Carbon::now('Asia/Ho_Chi_Minh'))->setChangeFrequency(Url::CHANGE_FREQUENCY_YEARLY)->setPriority(0.8));
+    });
+
+    $sitemap->writeToFile(public_path('sitemap.xml'));
+    return redirect()->back()->with('success', 'Bạn đã cập nhập sitemap thành công');
+})->name('sitemap')->middleware(CheckAdmin::class);
