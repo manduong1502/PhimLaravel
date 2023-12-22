@@ -93,7 +93,7 @@
             <label>Hiển thị</label>
           </div>
           <div class="pass-link">
-            <a href="#">Quên mật khẩu</a>
+            <a href="{{route('forget_password')}}">Quên mật khẩu</a>
           </div>
         </div>
         <button type="submit">Đăng Nhập</button>

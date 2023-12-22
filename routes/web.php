@@ -47,6 +47,13 @@ Route::controller(LoginGoogleController::class)->group(function(){
 Route::get('auth/facebook', [LoginFacebookController::class, 'redirectToFacebook'])->name('auth.facebook');
 Route::get('auth/facebook/callback', [LoginFacebookController::class, 'handleFacebookCallback']);
 
+// quen mật khẩu 
+
+Route::get('/forget-password', [LoginController::class, 'forget_password'])->name('forget_password');
+Route::post('/forpost-password', [LoginController::class, 'post_password'])->name('post_password');
+Route::get('/get-password/{customer}/{token}', [LoginController::class, 'getPass'])->name('getPass');
+Route::post('/get-password123/{customer}/{token}', [LoginController::class, 'post_Getpass'])->name('post_Getpass');
+
 
 // login admin
 Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard') ->middleware(CheckAdmin::class);
