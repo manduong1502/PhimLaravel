@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Exception;
 use Laravel\Socialite\Facades\Socialite;
+use Illuminate\Support\Str;
 class LoginGoogleController extends Controller
 {
     /**
@@ -71,7 +72,7 @@ class LoginGoogleController extends Controller
         return Socialite::driver('google')->redirect();
     }
 
-    public function handleGoogleCallback()
+    public function handleGoogleCallback(Request $request)
     {
         try {
         
@@ -85,11 +86,14 @@ class LoginGoogleController extends Controller
                 return redirect()->route('pages.trangchu');
          
             }else{
+                $token= Str::random(10);
                 $newUser = User::create([
                     'username' => $user->name,
                     'email' => $user->email,
                     'google_id'=> $user->id,
-                    'password' => encrypt('123456789')
+                    'password' => encrypt($token),
+                    'status' => 1,
+                    'remember_token' => $token
                 ]);
                 if($newUser){
                     $newUser->assignRole('userfree');

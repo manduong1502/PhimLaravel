@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Exception;
 use Laravel\Socialite\Facades\Socialite;
+use Illuminate\Support\Str;
 class LoginFacebookController extends Controller
 {
     /**
@@ -86,11 +87,16 @@ class LoginFacebookController extends Controller
                 return redirect()->route('pages.trangchu');
          
             }else{
+                $token= Str::random(10);
+                $user->remember_token = $token;
                 $newUser = User::create([
                     'username' => $user->name,
                     'email' => $user->email,
                     'google_id'=> $user->id,
-                    'password' => encrypt('123456789')
+                    'password' => encrypt($token),
+                    'status' => 1,
+                    'remember_token' => $token
+
                 ]);
                 if($newUser){
                     $newUser->assignRole('userfree');

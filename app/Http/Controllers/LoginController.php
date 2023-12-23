@@ -16,16 +16,24 @@ use Illuminate\Support\Facades\Config;
 
 class LoginController extends Controller
 {
-    public function index () {
+    public function index (Request $request) {
         if (Auth::check()) {
             // Kiểm tra xem người dùng đã đăng nhập hay chưa
             $user = Auth::user();
             
-            if ($user->hasRole('admin')) {
+            if ($user->hasRole('admin') && $user->status == 1) {
                 // Kiểm tra quyền admin
                 return redirect()->route('admin.dashboard'); // Điều hướng đến trang quản trị
             } else {
-                return redirect()->route('pages.trangchu'); // Điều hướng đến trang chính
+                if($user->status == null) {
+
+                    Auth::logout();
+                    $request->session()->invalidate();
+                    $request->session()->regenerateToken();
+                    return redirect()->route('auth.index')->with('error', 'Hiện tại tài khoản của bạn chưa được kích hoạt, Vui lòng check email của bạn để kích hoạt tài khoản.');
+                }else {
+                    return redirect()->route('pages.trangchu');
+                }
             }
         }
         return view('auth.login');
@@ -49,9 +57,16 @@ class LoginController extends Controller
                 $user->remember_token = $token;
                 $user->save();
                 return redirect()->route('admin.dashboard')->with('success', 'Bạn đã đăng nhập thành công');
-            } else {
+            }else {
                 // Nếu người dùng không phải là admin, điều hướng đến trang chính
-                return redirect()->route('pages.trangchu')->with('success', 'Bạn đã đăng nhập thành công');
+                if($user->status == null) {
+                    Auth::logout();
+                    $authRequest->session()->invalidate();
+                    $authRequest->session()->regenerateToken();
+                    return redirect()->route('auth.index')->with('error', 'Hiện tại tài khoản của bạn chưa được kích hoạt, Vui lòng check email của bạn để kích hoạt tài khoản.');
+                }else {
+                    return redirect()->route('pages.trangchu')->with('success', 'Bạn đã đăng nhập thành công');
+                }
             }
         }
         return redirect() ->route('auth.index')->with('error','Email hoặc mật khẩu của bạn sai');

@@ -35,22 +35,12 @@
     </div>
 
         <div class="form-container login-container">
-            <form method="POST" action="{{ route('post_password') }}">
+            <form method="POST" action="{{ route('post_GetpassRegister', ['customer' => $customer->id, 'token' => $customer->remember_token]) }}">
                 @csrf
-                <h1>Quên mật khẩu</h1>
-                <input name="email" type="email" placeholder="Email"  required>
-                @if ($errors->has('email'))
-                    <span class="errors-message">{{ $errors->first('email') }}</span>
-                @endif
+                <h1>Kích hoạt tài khoản khi mới đăng kí</h1>
+                <p>Ấn vào nút để kích hoạt tài khoản</p>
                 
-                <div class="content">
-                    
-                    {{-- <div class="pass-link">
-            <a href="#">Quên mật khẩu</a>
-          </div> --}}
-                </div>
-                <button type="submit">Gửi email</button>
-                        
+                <button type="submit">Kịch hoạt tài khoản </button>
             </form>
         </div>
 

@@ -48,12 +48,14 @@ Route::get('auth/facebook', [LoginFacebookController::class, 'redirectToFacebook
 Route::get('auth/facebook/callback', [LoginFacebookController::class, 'handleFacebookCallback']);
 
 // quen mật khẩu 
-
 Route::get('/forget-password', [LoginController::class, 'forget_password'])->name('forget_password');
 Route::post('/forpost-password', [LoginController::class, 'post_password'])->name('post_password');
 Route::get('/get-password/{customer}/{token}', [LoginController::class, 'getPass'])->name('getPass');
 Route::post('/get-password123/{customer}/{token}', [LoginController::class, 'post_Getpass'])->name('post_Getpass');
 
+// Kích hoạt tài khoản 
+Route::get('/get-getPassRegister/{customer}/{token}', [RegisterController::class, 'getPass'])->name('getPassRegister');
+Route::post('/get-Register123/{customer}/{token}', [RegisterController::class, 'post_Getpass'])->name('post_GetpassRegister');
 
 // login admin
 Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard') ->middleware(CheckAdmin::class);
