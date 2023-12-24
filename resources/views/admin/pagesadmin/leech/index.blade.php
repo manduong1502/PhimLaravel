@@ -8,6 +8,18 @@
     ]) !!}
     <button type="submit" class="btn btn-success">Tìm trang</button>
 </form>
+
+<form method="get" action="{{ route('leech_store_all') }}">
+    @csrf
+    <input type="hidden" name="page" value="{{ $selectedPage }}">
+    <button type="submit" class="btn btn-success">Thêm thông tin film nhanh trang {{$selectedPage}}</button>
+</form>
+
+<form method="get" action="{{ route('leech_episode_store_all') }}">
+    @csrf
+    <input type="hidden" name="page" value="{{ $selectedPage }}">
+    <button type="submit" class="btn btn-success">Thêm tập film của trang film nhanh trang {{$selectedPage}}</button>
+</form>
     <!-- Modal -->
     <div class="modal " id="chitietphim" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">

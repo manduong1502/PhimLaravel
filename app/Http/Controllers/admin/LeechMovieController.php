@@ -15,7 +15,7 @@ use Carbon\Carbon;
 
 class LeechMovieController extends Controller
 {
-    
+    // Thêm tập film
     public function leech_episode_store (Request $request, $slug) {
         $movie = Movie::where('slug',$slug)->first();
         $resp =Http::get("https://ophim1.com/phim/".$slug)->json();
@@ -25,6 +25,7 @@ class LeechMovieController extends Controller
                 $episode->movie_id = $movie->id;
                 $episode-> linkphim = "<p><iframe width='560' height='315' src='".$ser_data['link_embed']."' allowfullscreen></iframe></p>";
                 $episode->episode = $ser_data['name'];
+                $episode->filename = $ser_data['filename'];
                 if($key_data ==0) {
                     $linkmovie =LinkMovie::orderBy('id','DESC')->first();
                     $episode->server = $linkmovie->id;
@@ -37,8 +38,58 @@ class LeechMovieController extends Controller
                 $episode->save();
             }
         }
-        return redirect()->back()->with('success', 'Bạn đã thêm thành công');;
-    }   
+        return redirect()->back()->with('success', 'Bạn đã thêm thành công');
+    }
+
+    public function leech_episode_store_all(Request $request) {
+        $selectedPage = $request->input('page', 1);
+        $resp = Http::get("https://ophim1.com/danh-sach/phim-moi-cap-nhat?page=".$selectedPage)->json();
+    
+        if (isset($resp['items'])) {
+            $movies = $resp['items'];
+    
+            foreach ($movies as $movieItem) {
+                $slug = $movieItem['slug'];
+                $movie = Movie::where('slug', $slug)->first();
+            
+                if ($movie) {
+                    $movieInfo = Http::get("https://ophim1.com/phim/$slug")->json();
+            
+                    if (isset($movieInfo['episodes'])) {
+                        foreach ($movieInfo['episodes'] as $key => $res) {
+                            foreach ($res['server_data'] as $key_data => $ser_data) {
+                                $existingEpisode = Episode::where('movie_id', $movie->id)
+                                ->where('filename', $ser_data['filename']) // Check if the filename already exists
+                                ->first();
+                                if (!$existingEpisode) {
+                                $episode = new Episode();
+                                $episode->movie_id = $movie->id;
+                                $episode->linkphim = "<p><iframe width='560' height='315' src='" . $ser_data['link_embed'] . "' allowfullscreen></iframe></p>";
+                                $episode->episode = $ser_data['name'];
+                                $episode->filename = $ser_data['filename'];
+                                if($key_data ==0) {
+                                    $linkmovie =LinkMovie::orderBy('id','DESC')->first();
+                                    $episode->server = $linkmovie->id;
+                                }else{
+                                    $linkmovie =LinkMovie::orderBy('id','ASC')->first();
+                                    $episode->server = $linkmovie->id;
+                                }
+                                $episode->created_at = Carbon::now('Asia/Ho_Chi_Minh');
+                                $episode->updated_at = Carbon::now('Asia/Ho_Chi_Minh');
+                                $episode->save();
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+    
+            return redirect()->back()->with('success', 'Đã thêm tất cả tập phim từ trang ' . $selectedPage . ' thành công');
+        } else {
+            return redirect()->back()->with('error', 'Không tìm thấy danh sách phim từ trang ' . $selectedPage . '!');
+        }
+    }
+
 
     public function leech_movie(Request $request) {
         $selectedPage = $request->input('page', 1);
@@ -57,6 +108,8 @@ class LeechMovieController extends Controller
         return view('admin.pagesadmin.leech.leech_episode',compact('resp'));
     }
 
+
+    // thêm thông tin film theo trang
     public function leech_store(Request $request, $slug) {
         $resp =Http::get("https://ophim1.com/phim/".$slug)->json();
         $resp_movie[] = $resp['movie'];
@@ -65,7 +118,7 @@ class LeechMovieController extends Controller
         $movie->title = $res['name'];
         $movie->slug = $res['slug'];
         if(!is_numeric($res['episode_total'])) {
-            $movie->so_tap = 0;
+            $movie->so_tap = $res['episode_total'];
         }else{
             $movie->so_tap = $res['episode_total'];
         }
@@ -101,66 +154,69 @@ class LeechMovieController extends Controller
         return redirect()->back();
     }
 }
+public function leech_store_all (Request $request) {
+    $selectedPage = $request->input('page', 1);
+    $resp = Http::get("https://ophim1.com/danh-sach/phim-moi-cap-nhat?page=".$selectedPage)->json();
 
-    
-    
-    /**
-     * 
-     * 
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
+    if (isset($resp['items']) && count($resp['items']) > 0) {
+        $movies = $resp['items'];
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
+        foreach ($movies as $movieItem) {
+            $slug = $movieItem['slug'];
+            $existingMovie = Movie::where('slug', $slug)->first();
+            if (!$existingMovie) {
+            $movieInfo = Http::get("https://ophim1.com/phim/$slug")->json();
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+            if (isset($movieInfo['movie'])) {
+                $res = $movieInfo['movie'];
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
+                $movie = new Movie();
+                $movie->title = $res['name'];
+                $movie->slug = $res['slug'];
+                if(!is_numeric($res['episode_total'])) {
+                $movie->so_tap = $res['episode_total'];
+                }else{
+                    $movie->so_tap = $res['episode_total'];
+                }
+                $movie->description = $res['content'];
+                $movie->status = 1;
+                $movie->slide = 0;
+                $movie->trailer = $res['trailer_url'];
+                $movie->phim_hot = 0;
+                $movie->nam_phim = $res['year'];
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
+                $category= Category::orderBy('id','DESC')->first();
+                $movie->category_id = $category->id;
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
+                $country= Country::orderBy('id','DESC')->first();
+                $movie->country_id = $country->id;
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+                $genre= Genre::orderBy('id','DESC')->first();
+                $movie->genre_id = $genre->id;
+
+                $movie->ngay_tao = Carbon::now('Asia/Ho_Chi_Minh');
+                $movie->ngay_cap_nhap = Carbon::now('Asia/Ho_Chi_Minh');
+                $movie->image = $res['thumb_url'];
+                $movie->image1 = $res['poster_url'];
+                $movie->actor = $request->actor;
+                $movie->time = $res['time'];
+                $movie->quality = $res['quality'];
+                $movie->lang = $res['lang'];
+                $movie->view = $res['view'];
+                $movie->type = $res['type'];
+                $movie->save();
+        //Thêm nhiêu thể loại cho phim
+        $movie->movie_genre()->attach($genre);
+            }
+        }
     }
+        return redirect()->back()->with('success', 'Tất cả các phim từ trang ' . $selectedPage . ' đã được thêm vào cơ sở dữ liệu!');
+    } else {
+        return redirect()->back()->with('error', 'Không tìm thấy danh sách phim từ trang ' . $selectedPage . ' !');
+    }
+}
+
+
 
     public function watch_leech_detail(Request $request){ 
         $slug = $request->slug;
