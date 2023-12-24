@@ -37,8 +37,8 @@
 
                           @foreach($category_home as $key => $cate_home)
                             <p class="tieude_phim">Danh mục: {{$cate_home->title}} </p>
-                            <div class="row movie_position" id="sortable_movie">
-                              @foreach ($cate_home->movie->sortBy('position')->take(10) as $key => $mov)
+                            <div class="row movie_position sortable_movie" id="">
+                              @foreach ($cate_home->movie->sortByDesc('position')->take(10) as $key => $mov)
                               <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 box_phim" id="{{$mov->id}}">
                                 <div class="card" style="width: 18rem;">
                                   @php

@@ -440,7 +440,7 @@
 
 <script type="text/javascript">
   $( function() {
-    $( "#sortable_movie" ).sortable({
+    $( ".sortable_movie" ).sortable({
       placeholder: "ui-state-highlight",
       update: function( event, ui ) {
       var array_id =[];
@@ -461,6 +461,6 @@
     }
 
     });
-    $( "#sortable_movie" ).disableSelection();
+    $( ".sortable_movie" ).disableSelection();
   } );
   </script>

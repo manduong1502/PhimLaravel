@@ -19,8 +19,31 @@ class LeechMovieController extends Controller
     public function leech_episode_store (Request $request, $slug) {
         $movie = Movie::where('slug',$slug)->first();
         $resp =Http::get("https://ophim1.com/phim/".$slug)->json();
+        $categories = $resp['movie']['category'];
+
+        foreach ($categories as $categoryData) {
+            // Check if the category already exists in the database
+            $genre = Genre::where('slug', $categoryData['slug'])->first();
+    
+            if (!$genre) {
+                // Category doesn't exist, create and save it
+                $genre = new Genre();
+                $genre->title = $categoryData['name'];
+                $genre->slug = $categoryData['slug'];
+                $genre->status = 1;
+                
+                // Other category attributes if available
+                $genre->save();
+            }
+    
+            // Associate the movie with the category
+                $movie->genre_id = $genre->id;
+                $movie->save();
+        }
+
         foreach ($resp['episodes'] as $key => $res) {
             foreach ($res['server_data'] as $key_data => $ser_data) {
+                
                 $episode = new Episode();
                 $episode->movie_id = $movie->id;
                 $episode-> linkphim = "<p><iframe width='560' height='315' src='".$ser_data['link_embed']."' allowfullscreen></iframe></p>";
@@ -53,7 +76,54 @@ class LeechMovieController extends Controller
                 $movie = Movie::where('slug', $slug)->first();
             
                 if ($movie) {
+                    
                     $movieInfo = Http::get("https://ophim1.com/phim/$slug")->json();
+                    $genres = $movieInfo['movie']['category'];
+                    $countries = $movieInfo['movie']['country'];
+
+                    //lưu danh mục của các film
+                    if (isset($genres)) {
+                    foreach ($genres as $categoryData) {
+                        // Check if the category already exists in the database
+                        $genre = Genre::where('slug', $categoryData['slug'])->first();
+                
+                        if (!$genre) {
+                            // Category doesn't exist, create and save it
+                            $genre = new Genre();
+                            $genre->title = $categoryData['name'];
+                            $genre->slug = $categoryData['slug'];
+                            $genre->status = 1;
+                            // Other category attributes if available
+                            $genre->save();
+                        }
+                
+                        
+                        $movie->movie_genre()->attach($genre); 
+                        $movie->save();
+                    }
+                    }
+
+                    if (isset($countries)) {
+                        foreach ($countries as $countryData) {
+                            // Check if the category already exists in the database
+                            $country = Country::where('slug', $countryData['slug'])->first();
+                    
+                            if (!$country) {
+                                // Category doesn't exist, create and save it
+                                $country = new Country();
+                                $country->title = $countryData['name'];
+                                $country->slug = $countryData['slug'];
+                                $country->status = 1;
+                                
+                                // Other category attributes if available
+                                $country->save();
+                            }
+                    
+                            // Associate the movie with the category
+                            $movie->country_id = $country->id; // Gán category_id cho phim
+                            $movie->save();
+                        }
+                        }
             
                     if (isset($movieInfo['episodes'])) {
                         foreach ($movieInfo['episodes'] as $key => $res) {
@@ -124,10 +194,13 @@ class LeechMovieController extends Controller
         }
         $movie->description = $res['content'];
         $movie->status = 1;
-        $movie->slide = 0;
+        $movie->slide = 1;
         $movie->trailer = $res['trailer_url'];
-        $movie->phim_hot = 0;
+        $movie->phim_hot = 1;
         $movie->nam_phim = $res['year'];
+
+        $categoryData = $res['category'][0];
+        $category = Category::where('slug', $categoryData['slug'])->first();
 
         $category= Category::orderBy('id','DESC')->first();
         $movie->category_id = $category->id;
@@ -182,9 +255,9 @@ public function leech_store_all (Request $request) {
                 }
                 $movie->description = $res['content'];
                 $movie->status = 1;
-                $movie->slide = 0;
+                $movie->slide = 1;
                 $movie->trailer = $res['trailer_url'];
-                $movie->phim_hot = 0;
+                $movie->phim_hot = 1;
                 $movie->nam_phim = $res['year'];
 
                 $category= Category::orderBy('id','DESC')->first();
