@@ -148,6 +148,8 @@ class LeechMovieController extends Controller
         $movie->lang = $res['lang'];
         $movie->view = $res['view'];
         $movie->type = $res['type'];
+        $nextPosition = Movie::max('position') + 1;
+        $movie->position = $nextPosition;
         $movie->save();
         //Thêm nhiêu thể loại cho phim
         $movie->movie_genre()->attach($genre);
@@ -204,6 +206,9 @@ public function leech_store_all (Request $request) {
                 $movie->lang = $res['lang'];
                 $movie->view = $res['view'];
                 $movie->type = $res['type'];
+
+                $nextPosition = Movie::max('position') + 1;
+                $movie->position = $nextPosition;
                 $movie->save();
         //Thêm nhiêu thể loại cho phim
         $movie->movie_genre()->attach($genre);

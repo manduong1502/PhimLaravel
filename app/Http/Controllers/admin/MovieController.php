@@ -43,6 +43,32 @@ class MovieController extends Controller
         'movie_genre'
         ));
     }
+
+    public function sort_movie () {
+        $category = Category::orderBy('position','ASC')->get();
+        $category_home = Category::with(['movie'=> function($q) {$q->withCount('episode');}])->where('status',1)->orderBy('position','ASC') ->get();
+        return view('admin.pagesadmin.movie.sort_movie',compact('category','category_home'));
+    }
+
+    public function sort_movie_navbar (Request $request) {
+        $data = $request->all();
+        foreach($data['array_id'] as $key => $value) {
+            $category = Category::find($value);
+            $category -> position = $key;
+            $category -> save();
+        }
+     }
+
+     public function sort_movie_movie (Request $request) {
+        $data = $request->all();
+        foreach($data['array_id'] as $key => $value) {
+            $movie = Movie::find($value);
+            $movie -> position = $key;
+            $movie -> save();
+        }
+     }
+
+
     
     public function update_year (Request $request) {
         $movie = new Movie();
@@ -98,6 +124,9 @@ class MovieController extends Controller
         $movie->country_id = $request->country_id;
         $movie->ngay_tao = Carbon::now('Asia/Ho_Chi_Minh');
         $movie->ngay_cap_nhap = Carbon::now('Asia/Ho_Chi_Minh');
+        $nextPosition = Movie::max('position') + 1;
+        $movie->position = $nextPosition;
+        
         
         foreach($data['genre'] as $key => $gen) {
             $movie -> genre_id = $gen[0];
@@ -308,5 +337,7 @@ class MovieController extends Controller
         $output['video_link'] = $movie->linkphim;
         echo json_encode($output);
     }
+
+    
     
 }

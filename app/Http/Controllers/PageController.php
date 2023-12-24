@@ -131,7 +131,7 @@ class PageController extends Controller
         $category = Category::orderBy('id','DESC') ->where('status',1)->get();
         $genre = Genre::orderBy('id','DESC')->where('status',1) ->get();
         $country = Country::orderBy('id','DESC')->where('status',1) ->get();
-        $category_home = Category::with(['movie'=> function($q) {$q->withCount('episode');}])->where('status',1)->orderBy('id','DESC') ->get();
+        $category_home = Category::with(['movie'=> function($q) {$q->withCount('episode');}])->where('status',1)->orderBy('position','ASC') ->get();
         $movie_vip = Movie_vip::withCount('episode')->with('country','genre','category')->where('status',1)->orderBy('id','DESC')->get();
 
 

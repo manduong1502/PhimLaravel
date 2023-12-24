@@ -75,6 +75,9 @@ Route::get('admin/user/phan-quyen/{id}', [UserController::class,'phan_quyen'])->
 Route::post('admin/user/insert-quyen/{id}', [UserController::class,'insert_quyen'])->middleware(CheckAdmin::class)->name('insert_quyen');
 Route::post('admin/user/add-permission', [UserController::class,'add_permissions'])->middleware(CheckAdmin::class)->name('add_permissions');
 Route::post('admin/user/add-roles', [UserController::class,'add_roles'])->middleware(CheckAdmin::class)->name('add_roles');
+Route::get('/sort-movie', [MovieController::class,'sort_movie'])->middleware(CheckAdmin::class)->name('sort_movie');
+Route::post('/sort-movie-post', [MovieController::class,'sort_movie_navbar'])->name('sort_movie_navbar');
+Route::post('/sort-movie-movie', [MovieController::class,'sort_movie_movie'])->name('sort_movie_movie');
 
 //Thay đổi dữ liệu trong movie ajax
 Route::get('update-nam-phim', [MovieController::class,'update_year'])->name('update-year-phim');
