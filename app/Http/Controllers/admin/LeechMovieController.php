@@ -37,8 +37,8 @@ class LeechMovieController extends Controller
             }
     
             // Associate the movie with the category
-                $movie->genre_id = $genre->id;
-                $movie->save();
+            $movie->movie_genre()->attach($genre); 
+            $movie->save();
         }
 
         foreach ($resp['episodes'] as $key => $res) {
