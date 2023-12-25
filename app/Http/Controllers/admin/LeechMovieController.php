@@ -258,6 +258,7 @@ class LeechMovieController extends Controller
         $movie->trailer = $res['trailer_url'];
         $movie->phim_hot = 1;
         $movie->nam_phim = $res['year'];
+        $movie->origin_name = $res['origin_name'];
 
         $categoryData = $res['category'][0];
         $category = Category::where('slug', $categoryData['slug'])->first();
@@ -319,6 +320,7 @@ public function leech_store_all (Request $request) {
                 $movie->trailer = $res['trailer_url'];
                 $movie->phim_hot = 1;
                 $movie->nam_phim = $res['year'];
+                $movie->origin_name = $res['origin_name'];
 
                 $category= Category::orderBy('id','DESC')->first();
                 $movie->category_id = $category->id;

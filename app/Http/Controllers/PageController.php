@@ -160,7 +160,7 @@ class PageController extends Controller
         $genre = Genre::orderBy('id','DESC')->where('status',1) ->get();
         $country = Country::orderBy('id','DESC')->where('status',1) ->get();
         $customCss = 'css/chitiet.css';
-        $movie = Movie::with('country','genre','category')->withCount('episode')->where('slug',$slug)->first();
+        $movie = Movie::with('category', 'country', 'genre', 'movie_genre','movie_actor','actor')->withCount('episode')->where('slug',$slug)->first();
         $movie_related = Movie::with('country','genre','category','movie_genre')->where('category_id',$movie->category->id)->orderBy(DB::raw('RAND()'))->whereNotIn('slug',[$slug])->get();
         $movie_tapdau = Episode::with('movie')->where('movie_id',$movie->id)->orderBy('episode','ASC')->take(1)->first();
         $episode = Episode::with('movie')->where('movie_id',$movie->id)->orderBy('id','DESC')->take(3)->get();

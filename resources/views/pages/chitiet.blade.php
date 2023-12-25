@@ -31,16 +31,10 @@
                     <div class="detail-title-small   mt-2 d-flex ">
                         <div class="text-title-name ">Diễn viên chính: </div>
                         <div class="d-flex">
-                            @if ($movie->actor != null)
-                                @php
-                                    $actor = [];
-                                    $actor = explode(',', $movie->actor);
-                                @endphp
-                                @foreach ($actor as $key => $act)
-                                    <a href=""
-                                        style="text-decoration: none; color: white; margin-left: 5px; font-weight: bold">{{ $act }}</a>
-                                @endforeach
-                            @endif
+                            @foreach ($movie->movie_actor as $act)
+                            <div class="text-title" style="margin-left: 5px; color: black; padding: 0 5px 0 5px;">
+                                {{ $act->name }}</div>
+                        @endforeach
                         </div>
                     </div>
                     <div class="detail-title-small mt-2 d-flex ">
