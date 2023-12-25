@@ -22,6 +22,32 @@
                             </div>
                         @endif
                         <a href="{{route('pages.trangchu')}}">Trang chủ</a>
+                          {{-- Danh mục hot --}}
+                          <p class="tieude_phim">Danh mục: Danh mục hot </p>
+                          <div class="row movie_position sortable_movie" id="">
+                            @foreach ($phimhot->take(10) as $key => $mov)
+                            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 box_phim" id="{{$mov->id}}">
+                              <div class="card" style="width: 18rem;">
+                                @php
+                                  $image_check = substr($mov->image, 0, 5);
+                              @endphp
+                              @if ($image_check == 'https')
+                                  <img src="{{ $mov->image }}" alt=""
+                                      style="width: 250px; height:330px; border-radius: 5px; position: relative">
+                              @else
+                                  <img src="{{ asset('uploads/movie/' . $mov->image) }}" alt=""
+                                      style="width: 250px; height:330px; border-radius: 5px; position: relative">
+                              @endif
+                                <div class="card-body">
+                                  {{ $mov->title }}
+                                </div>
+                              </div>
+                            </div>
+                            @endforeach
+                          </div>
+
+
+
                         <nav class="navbar navbar-expand-lg navbar-light bg-light">
                             <div class="container-fluid">
                               
