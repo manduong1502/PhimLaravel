@@ -322,7 +322,15 @@
                                         <option value="0" {{$cate->status == 0 ? 'selected' : ''}}>Không hiển thị</option>
                                     </select>
                                 </td>
-                                <td>{{ $cate->actor }}</td>
+                                <td>
+                                    @if (isset($movie_actor))
+                                        @foreach ($cate->movie_actor as $act)
+                                            <div class="badge bg-dark d-block mb-1">{{ $act->name }}</div>
+                                        @endforeach
+                                    @else
+                                        <div class="badge bg-dark d-block mb-1">{{ $act->actor->name }}</div>
+                                    @endif
+                                </td>
                                 <td>
                                     {{-- @if ($cate->phim_hot == 1)
                                         <span class="badge badge-success">Hiển thị</span>

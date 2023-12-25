@@ -11,7 +11,9 @@ use App\Models\Country;
 use App\Models\Genre;
 use App\Models\Episode;
 use App\Models\LinkMovie;
+use App\Models\Actor;
 use Carbon\Carbon;
+
 
 class LeechMovieController extends Controller
 {
@@ -20,6 +22,7 @@ class LeechMovieController extends Controller
         $movie = Movie::where('slug',$slug)->first();
         $resp =Http::get("https://ophim1.com/phim/".$slug)->json();
         $categories = $resp['movie']['category'];
+        $actors = $resp['movie']['actor'];
 
         foreach ($categories as $categoryData) {
             // Check if the category already exists in the database
@@ -38,6 +41,33 @@ class LeechMovieController extends Controller
     
             // Associate the movie with the category
             $movie->movie_genre()->attach($genre); 
+            $movie->save();
+        }
+
+        if (isset($actors)) {
+            foreach ($actors as $actorName) {
+                // Tìm diễn viên theo tên hoặc một trường dữ liệu duy nhất khác để xác định
+                $actor = Actor::where('name', $actorName)->first();
+        
+                if (!$actor) {
+                    // Nếu không tìm thấy, tạo diễn viên mới
+                    $newActor = new Actor();
+                    $newActor->name = $actorName;
+                    // Các thông tin khác nếu có
+                    $newActor->save();
+                    
+                    // Gắn diễn viên mới vào phim
+                    $movie->movie_actor()->attach($newActor->id);
+                } else {
+                    // Nếu diễn viên đã tồn tại, kiểm tra xem đã gắn vào phim chưa
+                    $isAttached = $movie->movie_actor()->where('actor_id', $actor->id)->exists();
+                    if (!$isAttached) {
+                        // Nếu chưa gắn, thêm vào danh sách diễn viên của phim
+                        $movie->movie_actor()->attach($actor->id);
+                    }
+                }
+            }
+            // Lưu lại phim sau khi đã gắn diễn viên vào mỗi phim
             $movie->save();
         }
 
@@ -67,7 +97,7 @@ class LeechMovieController extends Controller
     public function leech_episode_store_all(Request $request) {
         $selectedPage = $request->input('page', 1);
         $resp = Http::get("https://ophim1.com/danh-sach/phim-moi-cap-nhat?page=".$selectedPage)->json();
-    
+        $actorIds = [];
         if (isset($resp['items'])) {
             $movies = $resp['items'];
     
@@ -80,7 +110,7 @@ class LeechMovieController extends Controller
                     $movieInfo = Http::get("https://ophim1.com/phim/$slug")->json();
                     $genres = $movieInfo['movie']['category'];
                     $countries = $movieInfo['movie']['country'];
-
+                    $actors = $movieInfo['movie']['actor'];
                     //lưu danh mục của các film
                     if (isset($genres)) {
                     foreach ($genres as $categoryData) {
@@ -102,7 +132,7 @@ class LeechMovieController extends Controller
                         $movie->save();
                     }
                     }
-
+                    // thêm quốc gia
                     if (isset($countries)) {
                         foreach ($countries as $countryData) {
                             // Check if the category already exists in the database
@@ -124,6 +154,36 @@ class LeechMovieController extends Controller
                             $movie->save();
                         }
                         }
+
+                        // thêm diễn viên 
+
+                        if (isset($actors)) {
+                            foreach ($actors as $actorName) {
+                                // Tìm diễn viên theo tên hoặc một trường dữ liệu duy nhất khác để xác định
+                                $actor = Actor::where('name', $actorName)->first();
+                        
+                                if (!$actor) {
+                                    // Nếu không tìm thấy, tạo diễn viên mới
+                                    $newActor = new Actor();
+                                    $newActor->name = $actorName;
+                                    // Các thông tin khác nếu có
+                                    $newActor->save();
+                                    
+                                    // Gắn diễn viên mới vào phim
+                                    $movie->movie_actor()->attach($newActor->id);
+                                } else {
+                                    // Nếu diễn viên đã tồn tại, kiểm tra xem đã gắn vào phim chưa
+                                    $isAttached = $movie->movie_actor()->where('actor_id', $actor->id)->exists();
+                                    if (!$isAttached) {
+                                        // Nếu chưa gắn, thêm vào danh sách diễn viên của phim
+                                        $movie->movie_actor()->attach($actor->id);
+                                    }
+                                }
+                            }
+                            // Lưu lại phim sau khi đã gắn diễn viên vào mỗi phim
+                            $movie->save();
+                        }
+                        
             
                     if (isset($movieInfo['episodes'])) {
                         foreach ($movieInfo['episodes'] as $key => $res) {
@@ -269,11 +329,14 @@ public function leech_store_all (Request $request) {
                 $genre= Genre::orderBy('id','DESC')->first();
                 $movie->genre_id = $genre->id;
 
+
+                $actor= Actor::orderBy('id','DESC')->first();
+                $movie->actor_id = $actor->id;
+
                 $movie->ngay_tao = Carbon::now('Asia/Ho_Chi_Minh');
                 $movie->ngay_cap_nhap = Carbon::now('Asia/Ho_Chi_Minh');
                 $movie->image = $res['thumb_url'];
                 $movie->image1 = $res['poster_url'];
-                $movie->actor = $request->actor;
                 $movie->time = $res['time'];
                 $movie->quality = $res['quality'];
                 $movie->lang = $res['lang'];
@@ -285,6 +348,7 @@ public function leech_store_all (Request $request) {
                 $movie->save();
         //Thêm nhiêu thể loại cho phim
         $movie->movie_genre()->attach($genre);
+        $movie->movie_actor()->attach($actor);
             }
         }
     }
