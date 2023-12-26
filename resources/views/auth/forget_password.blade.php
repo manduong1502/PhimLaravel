@@ -5,7 +5,19 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Admin</title>
+    <title>{{$meta_title}}</title>
+    <link rel="canonical" href="{{Request::url()}}">
+
+    <link rel="next" href="">
+    <link rel="icon" type="image/png" href="{{$meta_image}}">
+
+    <meta name="revisit-after" content="1 days"/>
+    <meta name="robots" content="index,follow"/>
+    <meta property="og:locale" content="vi_VN" />
+    <meta property="og:title" content="{{$meta_title}}" />
+    <meta property="og:description" content="{{$meta_description}}" />
+    <meta property="og:url" content="{{Request::url()}}" />
+    <meta property="og:image" content="{{$meta_image}}" />
     <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('css/dang-nhap-dangky.css') }}">
     

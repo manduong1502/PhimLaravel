@@ -17,7 +17,9 @@ class RegisterController extends Controller
 
     public function index()
     {
-        return view('auth.login');
+        $meta_title = 'Đăng kí cosmic';
+        $meta_description = 'Hãy đăng nhập, đăng kí để vào web film cosmic';
+        return view('auth.login',compact('meta_title', 'meta_description'));
     }
 
     protected function register(AuthRegisterRequest $request)
@@ -53,7 +55,9 @@ class RegisterController extends Controller
     
 public function getPass (User $customer,$token) {
     if($customer->remember_token === $token ) {
-        return view('email.get_email_register',compact('customer', 'token'));
+        $meta_title = 'Kích hoạt tài khoản cosmic';
+        $meta_description = 'Hãy đăng nhập, đăng kí để vào web film cosmic';
+        return view('email.get_email_register',compact('customer', 'token','meta_title', 'meta_description'));
     }
     return abort(404);
     }

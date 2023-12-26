@@ -20,6 +20,16 @@
                     @php
                         $segment= Request::segment(1);   
                     @endphp
+                    <li class="treeview ">
+                        <a href="#">
+                            <i class="fa fa-file"></i>
+                            <span>Thông tin website</span>
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="{{route('info.create')}}"><i class="fa fa-angle-right"></i>Chỉnh sửa thông tin website</a></li>
+                        </ul>
+                    </li>
                     <li class="treeview {{($segment == 'category') ? 'active' : ''}}">
                         <a href="#">
                             <i class="fa fa-file"></i>

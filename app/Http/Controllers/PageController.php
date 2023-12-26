@@ -12,6 +12,7 @@ use App\Models\Rating;
 use App\Models\Blog;
 use App\Models\Movie_vip;
 use App\Models\Episode_vip;
+use App\Models\Info;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
@@ -27,12 +28,20 @@ use Illuminate\Support\Facades\Auth;
 class PageController extends Controller
 {
     public function getGioithieu()
-    {
-        return view('pages.gioithieu');
+    {   
+        $info = Info::find(1);
+        $meta_title = $info->title;
+        $meta_description = $info->description;
+        return view('pages.gioithieu',compact(
+            'meta_title',
+            'meta_description'
+        ));
     }
 
     public function getGoiphim($id)
     {
+        $meta_title = "Gói phim | Cosmic";
+        $meta_description = "Giao diện chinh của web film cosmic";
         $category = Category::orderBy('id','DESC') ->where('status',1)->get();
         $genre = Genre::orderBy('id','DESC')->where('status',1) ->get();
         $country = Country::orderBy('id','DESC')->where('status',1) ->get();
@@ -56,11 +65,15 @@ class PageController extends Controller
             'customCss',
             'category',
             'country',
-            'genre'
+            'genre',
+            'meta_title',
+            'meta_description'
         ));
     }
     public function getGoiphim_thanhtoan()
     {
+        $meta_title = "Thanh toán | Cosmic";
+        $meta_description = "Giao diện chinh của web film cosmic";
         $category = Category::orderBy('id','DESC') ->where('status',1)->get();
         $genre = Genre::orderBy('id','DESC')->where('status',1) ->get();
         $country = Country::orderBy('id','DESC')->where('status',1) ->get();
@@ -86,12 +99,16 @@ class PageController extends Controller
             'customCss',
             'category',
             'country',
-            'genre'
+            'genre',
+            'meta_title',
+            'meta_description',
         ));
     }
 
     public function search()
     {
+        $meta_title = "Tìm kiếm | Cosmic";
+        $meta_description = "Giao diện chinh của web film cosmic";
         if(isset($_GET['search'])) {
             $search = $_GET['search'];
             //điền kiện
@@ -116,7 +133,9 @@ class PageController extends Controller
             'search',
             'top_view',
             'movie_phimbo',
-            'movie_phimle'
+            'movie_phimle',
+            'meta_title',
+            'meta_description'
         ));
         }else {
             return redirect()->route('pages.trangchu');
@@ -126,6 +145,8 @@ class PageController extends Controller
 
     public function getTrangchu()
     {
+        $meta_title = "Trang chủ | Cosmic";
+        $meta_description = "Giao diện chinh của web film cosmic";
         $phimhot = Movie::withCount('episode')->where('phim_hot',1)->where('status',1)->orderBy('position','ASC')->get();
         $slide = Movie::withCount('episode')->with('country','genre','category','movie_genre')->where('slide',1)->where('status',1)->orderBy('ngay_cap_nhap','DESC')->get();
         $category = Category::orderBy('id','DESC') ->where('status',1)->get();
@@ -151,11 +172,14 @@ class PageController extends Controller
             'slide',
             'movie_vip',
             'history_movie',
+            'meta_title',
+            'meta_description'
         ));
     }
 
     public function getChitiet($slug)
     {
+        
         $category = Category::orderBy('id','DESC') ->where('status',1)->get();
         $genre = Genre::orderBy('id','DESC')->where('status',1) ->get();
         $country = Country::orderBy('id','DESC')->where('status',1) ->get();
@@ -170,7 +194,11 @@ class PageController extends Controller
         $count_total = Rating::where('movie_id',$movie->id)->count();
 
         $movie_full = Episode::with('movie')->where('movie_id', $movie->id)->where('episode', 'Full')->take(1)->first();
+
         $blog_news = Blog::orderBy('ngay_cap_nhat','DESC')->where('status',1)->get();
+
+        $meta_title = "Chi tiết ".$movie ->title ." | Cosmic";
+        $meta_description = $movie->desctiption;
         return view('pages.chitiet', compact(
             'customCss',
             'category',
@@ -183,7 +211,9 @@ class PageController extends Controller
             'rating',
             'count_total',
             'movie_full',
-            'blog_news'
+            'blog_news',
+            'meta_title',
+            'meta_description'
         ));
     }
 
@@ -199,6 +229,8 @@ class PageController extends Controller
         $movie_tapdau = Episode_vip::with('movie_vip')->where('movie_vip_id',$movie->id)->orderBy('episode','ASC')->take(1)->first();
         $episode = Episode_vip::with('movie_vip')->where('movie_vip_id',$movie->id)->orderBy('id','DESC')->take(3)->get();
 
+        $meta_title = "Chi tiết  ".$movie ->title ." | Cosmic";
+        $meta_description = $movie->desctiption;
         return view('pages.chitiet_vip', compact(
             'customCss',
             'category',
@@ -208,6 +240,8 @@ class PageController extends Controller
             'movie_related',
             'episode',
             'movie_tapdau',
+            'meta_title',
+            'meta_description'
         ));
     }
 
@@ -258,6 +292,9 @@ class PageController extends Controller
             }
         }
 
+
+        $meta_title = "Xem phim ".$movie ->title ." | Cosmic";
+        $meta_description = $movie->desctiption;
         
         return view('pages.xemphim_vip', compact(
             'customCss',
@@ -271,7 +308,9 @@ class PageController extends Controller
             'server',
             'episode_movie',
             'episode_list',
-            'server_active'
+            'server_active',
+            'meta_title',
+            'meta_description'
         ));
     }
     // public function add_rating (Request $request) {
@@ -344,6 +383,9 @@ class PageController extends Controller
         }
         }
 
+        $meta_title = "Xem phim ".$movie ->title ." | Cosmic";
+        $meta_description = $movie->desctiption;
+
         return view('pages.xemphim', compact(
             'customCss',
             'category',
@@ -356,7 +398,9 @@ class PageController extends Controller
             'server',
             'episode_movie',
             'episode_list',
-            'server_active'
+            'server_active',
+            'meta_title',
+            'meta_description'
         ));
     }
 
@@ -378,6 +422,9 @@ class PageController extends Controller
 
         $movie_phimle = Movie::where('type','single')->whereNotNull('view')->orderBy('view','desc')->get()->take(10);
 
+        $meta_title = "Danh mục ".$cate_slug ->title ." | Cosmic";
+        $meta_description ="Giao diện chinh của web film cosmic";
+
         return view('pages.the_loai.danhmuc', compact(
             'customCss',
             'category',
@@ -387,7 +434,9 @@ class PageController extends Controller
             'movie',
             'top_view',
             'movie_phimbo',
-            'movie_phimle'
+            'movie_phimle',
+            'meta_title',
+            'meta_description'
         ));
     }
 
@@ -415,6 +464,9 @@ class PageController extends Controller
         $movie_phimbo = Movie::where('type','series')->whereNotNull('view')->orderBy('view','desc')->get()->take(10);
 
         $movie_phimle = Movie::where('type','single')->whereNotNull('view')->orderBy('view','desc')->get()->take(10);
+
+        $meta_title = "Thể loại ".$gen_slug ->title ." | Cosmic";
+        $meta_description ="Giao diện chinh của web film cosmic";
         return view('pages.the_loai.theloai', compact(
             'customCss',
             'category',
@@ -424,7 +476,9 @@ class PageController extends Controller
             'movie',
             'top_view',
             'movie_phimbo',
-            'movie_phimle'
+            'movie_phimle',
+            'meta_title',
+            'meta_description'
         ));
     }
 
@@ -446,6 +500,8 @@ class PageController extends Controller
         $movie_phimbo = Movie::where('type','series')->whereNotNull('view')->orderBy('view','desc')->get()->take(10);
 
         $movie_phimle = Movie::where('type','single')->whereNotNull('view')->orderBy('view','desc')->get()->take(10);
+        $meta_title = "Quốc gia ".$coun_slug ->title ." | Cosmic";
+        $meta_description ="Giao diện chinh của web film cosmic";
         return view('pages.the_loai.quocgia', compact(
             'customCss',
             'category',
@@ -455,7 +511,10 @@ class PageController extends Controller
             'movie',
             'top_view',
             'movie_phimbo',
-            'movie_phimle'
+            'movie_phimle',
+            'movie_phimle',
+            'meta_title',
+            'meta_description'
         ));
     }
 
@@ -470,6 +529,8 @@ class PageController extends Controller
         $blog_news = Blog::orderBy('ngay_cap_nhat','DESC')->where('status',1)->get();
         $review = Blog::orderBy('ngay_cap_nhat','DESC')->where('status',1)->where('review',1)->get();
         $customCss = 'css/blog.css';
+        $meta_title = "Bài viết | Cosmic";
+        $meta_description ="Giao diện chinh của web film cosmic";
         return view('pages.blog',compact(
             'customCss',
             'category',
@@ -479,7 +540,9 @@ class PageController extends Controller
             'blog',
             'list_blog',
             'blog_news',
-            'review'
+            'review',
+            'meta_title',
+            'meta_description'
         ));
     }
 
@@ -491,13 +554,17 @@ class PageController extends Controller
         $blog = Blog::with('genre')->where('slug',$slug)->first();
         $blog_related = Blog::with('genre')->where('genre_id',$blog->genre->id)->orderBy(DB::raw('RAND()'))->whereNotIn('slug',[$slug])->get();
         $customCss = 'css/blog-review.css';
+        $meta_title = "Bài viết ".$blog ->title ." | Cosmic";
+        $meta_description ="Giao diện chinh của web film cosmic";
         return view('pages.blog_review',compact(
             'customCss',
             'category',
             'genre',
             'country',
             'blog',
-            'blog_related'
+            'blog_related',
+            'meta_title',
+            'meta_description'
         ));
     }
 
@@ -531,13 +598,17 @@ public function loc_phim() {
             $movie = $movie->Where('title','ASC');
         }
 
-        $movie = $movie->orderBy('ngay_cap_nhap','DESC')->paginate(40);;
+        $movie = $movie->orderBy('ngay_cap_nhap','DESC')->paginate(40);
+        $meta_title = "Lọc phim | Cosmic";
+        $meta_description ="Giao diện chinh của web film cosmic";
         return view('pages.the_loai.locphim', compact(
             'customCss',
             'category',
             'genre',
             'country',
             'movie',
+            'meta_title',
+            'meta_description'
         ));
         
     }

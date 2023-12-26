@@ -16,6 +16,7 @@ use App\Http\Controllers\admin\EpisodeController;
 use App\Http\Controllers\admin\GenreController;
 use App\Http\Controllers\admin\BlogController;
 use App\Http\Controllers\admin\LeechMovieController;
+use App\Http\Controllers\admin\InfoController;
 use App\Http\Controllers\admin\LinkMovieController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\admin\UserController;
@@ -69,6 +70,7 @@ Route::resource('/admin/episode', EpisodeController::class)->middleware(CheckAdm
 Route::resource('/admin/blog', BlogController::class)->middleware(CheckAdmin::class);
 Route::resource('/admin/linkmovie', LinkMovieController::class)->middleware(CheckAdmin::class);
 Route::resource('/admin/user', UserController::class)->middleware(CheckAdmin::class);
+Route::resource('/admin/info', InfoController::class)->middleware(CheckAdmin::class);
 Route::get('admin/user/phan-vai-tro/{id}', [UserController::class,'phan_vaitro'])->middleware(CheckAdmin::class)->name('phan_vaitro');
 Route::post('admin/user/insert-roles/{id}', [UserController::class,'insert_roles'])->middleware(CheckAdmin::class)->name('insert_roles');
 Route::get('admin/user/phan-quyen/{id}', [UserController::class,'phan_quyen'])->middleware(CheckAdmin::class)->name('phan_quyen');

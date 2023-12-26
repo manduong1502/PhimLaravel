@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\Config;
 class LoginController extends Controller
 {
     public function index (Request $request) {
+        $meta_title = 'Đăng nhập cosmic';
+        $meta_description = 'Hãy đăng nhập, đăng kí để vào web film cosmic';
         if (Auth::check()) {
             // Kiểm tra xem người dùng đã đăng nhập hay chưa
             $user = Auth::user();
@@ -36,7 +38,10 @@ class LoginController extends Controller
                 }
             }
         }
-        return view('auth.login');
+        return view('auth.login',compact(
+            'meta_title',
+            'meta_description'
+        ));
     }
 
     public function login(AuthRequest $authRequest) {
@@ -86,8 +91,12 @@ class LoginController extends Controller
     }
 
     public function forget_password() {
-        
-        return view('auth.forget_password');
+        $meta_title = 'Quên mật khẩu cosmic';
+        $meta_description = 'Hãy đăng nhập, đăng kí để vào web film cosmic';
+        return view('auth.forget_password',compact(
+            'meta_title', 
+            'meta_description'
+        ));
     }
 
     public function post_password (Request $request) {
@@ -110,7 +119,14 @@ class LoginController extends Controller
 
 public function getPass (User $customer,$token) {
 if($customer->remember_token === $token && $customer->status === 1) {
-    return view('email.getpass',compact('customer', 'token'));
+    $meta_title = 'Cài đặt lại mật khẩu cosmic';
+    $meta_description = 'Hãy đăng nhập, đăng kí để vào web film cosmic';
+    return view('email.getpass',compact(
+        'customer',
+         'token',
+         'meta_title',
+         'meta_description'
+        ));
 }
 return abort(404);
 }
