@@ -1,68 +1,27 @@
-<footer  class="bg-dark text-white pt-5 pb-4 mt-5">
-
-    <div class="container text-center text-md-left">
-  
-      <div class="row text-center text-md-left">
-  
-        <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
-          <h5 class="text-uppercase mb-4 font-weight-bold text-warning">Company Name</h5>
-          <p>Here you can use rows and columns to organize your footer content. Lorem ipsum dolor sit amet,
-            ital consectetur lorem ipsum dolor sit amet adipisicing elit.</p>
-          
-        </div>
-  
-        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
-          <h5 class="text-uppercase mb-4 font-weight-bold text-warning">Products</h5>
-        <p>
-          <a href="#" class="text-white" style="text-decoration: none;"> TheProviders</a>
-        </p>
-        <p>
-          <a href="#" class="text-white" style="text-decoration: none;"> Creativity</a>
-        </p>
-        <p>
-          <a href="#" class="text-white" style="text-decoration: none;"> SourceFiles</a>
-        </p>
-        <p>
-          <a href="#" class="text-white" style="text-decoration: none;"> bootstrap 5 alpha</a>
-        </p>
-  
-        </div>
-  
-        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
-          <h5 class="text-uppercase mb-4 font-weight-bold text-warning">Useful links</h5>
-        <p>
-          <a href="#" class="text-white" style="text-decoration: none;"> Your Account</a>
-        </p>
-        <p>
-          <a href="#" class="text-white" style="text-decoration: none;"> Become an Affiliates</a>
-        </p>
-        <p>
-          <a href="#" class="text-white" style="text-decoration: none;">Shipping Rates</a>
-        </p>
-        <p>
-          <a href="#" class="text-white" style="text-decoration: none;"> Help</a>
-        </p>
-        </div>
-  
-        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
-          <h5 class="text-uppercase mb-4 font-weight-bold text-warning" >Contact</h5>
-          <p>
-            <i class="fas fa-home mr-3"></i>New York, NY 2333, US
-          </p>
-          <p>
-            <i class="fas fa-envelope mr-3"></i>theproviders98@gmail.com
-          </p>
-          <p>
-            <i class="fas fa-phone mr-3"></i>+92 3162859445
-          </p>
-          <p>
-            <i class="fas fa-print	 mr-3"></i>+01 335 633 77
-          </p>
-        </div>
-        
+<footer class="container-fluid text-center bg-dark text-white">
+  <div class="circle"><div class="circle_footer"></div></div>
+  <a class="contact" href="#">Bạn có câu hỏi? Liên hệ chúng tôi</a>
+  <div class="container">
+      <div class="row">
+          <div class="col">
+              <img src="./public/image/logo/logogốc_trắng.png" alt="Website Logo" style="height: 150px; position: relative; top: -40px"/>
+          </div>
+          <div class="col">
+              <a href="#"><p>Câu hỏi thường gặp</p></a>
+              <a href="#"><p>Tùy chọn cookie</p></a>
+          </div>
+          <div class="col">
+              <a href="#"><p>Trung tâm trợ giúp</p></a>
+              <a href="#"><p>Thông tin doanh nghiệp</p></a>
+          </div>
+          <div class="col">
+              <a href="#"><p>Điều khoản sử dụng</p></a>
+              <a href="#" target="_blank">Quyền riêng tư</a> 
+          </div>
+          <div class="col map"> 
+            <i class="fa-solid fa-map-location-dot"></i>
+            <a href="#">xem bản đồ</a>
+          </div> 
       </div>
-
-  
-    </div>
-    
-  </footer>
+  </div>
+</footer>

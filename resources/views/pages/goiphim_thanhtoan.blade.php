@@ -113,6 +113,14 @@
                         <div class="gia"><div id="gia"></div></div>
                         <div class="gianhap"><button>Gia nhập Cosmic Vip</button></div>
                     </div>
+                    {{-- nháp --}}
+                    <div style="width: 200px;
+                    height: 100px;
+                    background-color: lightblue;
+                    border-bottom-left-radius:30%;
+                    border-bottom-right-radius: 150%;">
+
+                    </div>
                 </div>
             </div>
         </div>

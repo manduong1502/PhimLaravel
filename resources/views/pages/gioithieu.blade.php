@@ -35,7 +35,10 @@
   <header id="site-header">
     <nav class="navbar navbar-expand-lg mt-3">
       <div class="container header">
-        <img class="navbar-brand" src="public/image/logo/logo.png" width="300" height="100" alt="">
+        <div class="logo"></div>
+        <div style="height: 80px; margin-right: 20px">
+          <img class="navbar-brand" src="{{ asset($meta_image) }}"  alt="" style="width: 220px; position:relative; z-index: 999; top: -50px; left: -120px">
+        </div>
         <ul class="navbar-nav">
           <li class="nav-item">
             <a href="{{route('auth.index')}}">

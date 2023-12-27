@@ -76,10 +76,12 @@
                                     <p style="margin: 0">{{ $hot->title }}</p>
                                 </div>
                                 <span class="episode" aria-hidden="true" style="position: absolute; top: 0; left: 0; background-color: black; color: white; font-weight: bold; width: auto; padding: 0 5px 0 5px; border-radius: 10px 0 10px 0; opacity: 0.8">
-                                    {{$hot->episode_count}}/{{ $hot->so_tap }}
+                        
                                     @if($hot->episode_count == $hot->so_tap) 
                                         <span>hoan thanh</span>
-                                    @else 
+                                    @else
+                                        {{$hot->episode_count}}/{{ $hot->so_tap }}
+                                    @endif
                                 </span>
                             </div>
                         </a>
