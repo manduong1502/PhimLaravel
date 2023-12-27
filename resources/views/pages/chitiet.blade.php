@@ -73,9 +73,13 @@
                         <span class="text-title-name col-3 " style="font-weight: bold;">Tập mới nhất: </span>
                         <div class=" col-9">
                             @foreach ($episode as $key => $epi)
+                                @if($epi->episode == '')
+                                    <span style="font-weight: bold;">Trailer</span>
+                                @else
                                 <a href="{{ url('xem-phim/' . $epi->movie->slug . '/tap-' . $epi->episode . '/server-' . $epi->server) }}"
                                     style="text-decoration: none; color: white; margin-left: 5px; font-weight: bold"> Tập
                                     {{ $epi->episode }}</a>
+                                @endif
                             @endforeach
                         </div>
                     </div>
