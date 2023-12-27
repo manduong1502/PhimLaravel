@@ -66,15 +66,15 @@
 
     <div class="blog-content container">
         <div class="row d-flex">
-            <div class="col-md-7">
-                <div class="background-blog-content-2-header">
+            <div class="col-md-7"> 
+                <div class="background-blog-content-2-header" style="border-radius: 15px 15px 0 0">
                     <p>Mới cập nhập</p>
                 </div>
-                <div class="background-blog-content-2">
+                <div class="background-blog-content-2"style="border-radius: 0 0 15px 15px">
                     <div class="background-blog-content-2-title container">
                       @foreach($blog_news->take(5) as $key=> $new)
-                      <a href="{{route('blog-view',$blog->slug)}}">
-                        <div class="blog-content-2-title row d-flex pt-4">
+                      <a href="{{route('blog-view',$blog->slug)}}" style="text-decoration: none; color: white;">
+                        <div class="blog-content-2-title row d-flex pb-3">
                             <div class="blog-content-2-title-img col-md-3">
                                 <img src="{{asset('uploads/video/trailer/'.$new->video)}}" width="120" height="140" alt="">
                             </div>
@@ -93,22 +93,22 @@
                         @endforeach
                     </div>
                 </div>
-                <div class="background-blog-content-2-header mt-4">
-                    <p>Xem thêm </p>
+                <div class="background-blog-content-2-header mt-4" style="border-radius: 15px;">
+                    <p>Xem thêm</p>
                 </div>
             </div>
             <div class="col-md-5">
-                <div class="background-blog-content-2-header">
+                <div class="background-blog-content-2-header" style="border-radius: 15px 15px 0 0">
                     <p>Review</p>
                 </div>
-                <div class="background-blog-content-2">
+                <div class="background-blog-content-2" style="border-radius: 0 0 15px 15px">
                     <div class="background-blog-content-2-title container">
 
                         @foreach ($review->take(5) as $key => $rev)
-                        <a href="{{route('blog-view',$blog->slug)}}">
+                        <a href="{{route('blog-view',$blog->slug)}}" style="text-decoration: none; color: white">
                         <div class="blog-content-2-title row d-flex pt-4">
                             <div class="blog-content-2-title-img col-md-3">
-                                <img src="{{asset('uploads/video/trailer/'.$new->video)}}" width="90" height="110" alt="">
+                                <img src="{{asset('uploads/video/trailer/'.$new->video)}}" width="110" height="110" alt="" style="margin-bottom: 20px; padding: 0;">
                             </div>
                             <div class="blog-content-2-title-text col-md-9">
                                 <h5>{{$rev->title}}</h5>

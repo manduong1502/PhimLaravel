@@ -47,14 +47,17 @@
     border-radius: 15px;
     margin-right: 10px;
     background-color: #f2f2f2;
+    transition: background-color 0.3s ease;
 }
 
 .card-body .goiphim button:hover{
     background-color: #f2f2f2;
-    border: 2px solid yellow;
+    border: 2px solid #febf83;
 }
+
 .content-btn .active{
     background-color: #fcf2e6;
+    border-color: #febf83;
 }
 .card-body .detail{
     padding: 10px 0 0 20px;
@@ -145,4 +148,3 @@
     height: auto;
     background-color: #f2bf83;
 }
-

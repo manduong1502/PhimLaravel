@@ -1,14 +1,15 @@
 <header id="site-header">
     <nav class="navbar navbar-expand-lg" style="background-color:rgba(0, 0, 0, 0.048);">
         <div class="container-fluid">
+            <div class="logo"></div>
             @role('uservip')
-                <a href="{{ route('pages.trangchu') }}"><img class="navbar-brand"
+                <a href="{{ route('pages.trangchu') }}" style="height: 80px; margin-right: 20px"><img class="navbar-brand"
                         src="{{ asset($meta_image_vip) }}" alt=""
-                        style="height: 80px; width: 220px;"></a>
+                        style="width: 220px;  position:relative; z-index: 999; top: -35px; left: -20px"></a>
             @else
-                <a href="{{ route('pages.trangchu') }}"><img class="navbar-brand"
+                <a href="{{ route('pages.trangchu') }}" style="height: 80px; margin-right: 20px"><img class="navbar-brand"
                         src="{{ asset($meta_image) }}" alt=""
-                        style="height: 80px; width: 220px;"></a>
+                        style="width: 220px; position:relative; z-index: 999; top: -35px; left: -20px"></a>
             @endrole
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -18,7 +19,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-ul navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item dropdown" onmouseover="showDropdown(this)" onmouseout="hideDropdown(this)">
-                        <a class="nav-link text-white" href="#" id="navbarDropdown" role="button">Danh mục</a>
+                        <a class="nav-link text-white me-3" href="#" id="navbarDropdown" role="button">Danh mục</a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown"
                             style="background-color:rgba(0, 0, 0, 0.50);">
                             @foreach ($category as $key => $cate)
@@ -31,7 +32,7 @@
                         </ul>
                     </li>
                     <li class="nav-item" onmouseover="showDropdown(this)" onmouseout="hideDropdown(this)">
-                        <a class="nav-link text-white" href="#" id="navbarDropdown" role="button">Thể Loại</a>
+                        <a class="nav-link text-white me-3" href="#" id="navbarDropdown" role="button">Thể Loại</a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown"
                             style="background-color:rgba(0, 0, 0, 0.50);">
                             @foreach ($genre as $key => $gen)
@@ -44,7 +45,7 @@
                         </ul>
                     </li>
                     <li class="nav-item" onmouseover="showDropdown(this)" onmouseout="hideDropdown(this)">
-                        <a class="nav-link text-white" href="#" id="navbarDropdown" role="button">Quốc gia</a>
+                        <a class="nav-link text-white me-3" href="#" id="navbarDropdown" role="button">Quốc gia</a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown"
                             style="background-color:rgba(0, 0, 0, 0.50);">
                             @foreach ($country as $key => $coun)
@@ -58,7 +59,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="{{ route('blog') }}" id="navbarDropdown"
+                        <a class="nav-link text-white me-3" href="{{ route('blog') }}" id="navbarDropdown"
                             role="button">Bài viết</a>
                     </li>
 
@@ -66,9 +67,9 @@
                 </ul>
                 <form class="d-flex" action="{{ route('search') }}" method="GET">
                     <div class="d-flex input-group">
-                        <input type="text" name="search" class="form-control me-2" id="timkiem"
+                        <input type="text" name="search" class="form-control " id="timkiem"
                             placeholder="Search" autocomplete="off">
-                        <button class="btn btn-outline-success">Search</button>
+                        <button class="btn btn-outline-success"><i class="fa-solid fa-magnifying-glass"></i></button>
                     </div>
                     <ul class="list-group" id="result"
                         style="display: none; position: absolute; top: 100%; left: 60.5%; border: 1px solid black; width: 300px; z-index: 999; ">

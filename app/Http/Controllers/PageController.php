@@ -369,6 +369,7 @@ class PageController extends Controller
             ->where('episode_id', $episodeId)
             ->exists();
             History_movie::where('user_id', $userId)
+            ->where('episode_id',$episodeId)
             ->where('movie_id', $movieId)
             ->where('ngay_tao', '<', Carbon::now('Asia/Ho_Chi_Minh')->subMonth()) // Filter records older than a month
             ->delete();
