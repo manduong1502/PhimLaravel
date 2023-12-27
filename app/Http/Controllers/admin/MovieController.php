@@ -10,6 +10,8 @@ use App\Models\Country;
 use App\Models\Genre;
 use App\Models\Episode;
 use App\Models\Movie_Genre;
+use App\Models\Movie_actor;
+use App\Models\Actor;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\File;
 use App\Http\Requests\MovieRequest;
@@ -23,11 +25,15 @@ class MovieController extends Controller
         $category = Category::pluck('title', 'id');
     $country = Country::pluck('title', 'id');
     $genre = Genre::pluck('title', 'id');
+    $actor = Actor::pluck('name', 'id');
     $list_genre = Genre::all();
-    $list = Movie::with('category', 'country', 'genre', 'movie_genre')->withCount('episode')->orderBy('id', 'DESC')->get();
+    $list = Movie::with('category', 'country', 'genre', 'movie_genre','movie_actor','actor')->withCount('episode')->orderBy('id', 'DESC')->get();
+    
     
     // Đảm bảo biến movie_genre đã được định nghĩa và cung cấp nó trong mảng compact
     $movie_genre = Genre::pluck('title', 'id');
+    $list_actor = Actor::all();
+    $movie_actor = Actor::pluck('name', 'id');
 
         $path = public_path()."/json/";
         if(!is_dir($path)) {
@@ -40,9 +46,39 @@ class MovieController extends Controller
         'genre',
         'category',
         'list_genre',
-        'movie_genre'
+        'movie_genre',
+        'movie_actor',
+        'list_actor',
+        'actor'
         ));
     }
+
+    public function sort_movie () {
+        $category = Category::orderBy('position','ASC')->get();
+        $category_home = Category::with(['movie'=> function($q) {$q->withCount('episode');}])->where('status',1)->orderBy('position','ASC') ->get();
+        $phimhot = Movie::withCount('episode')->where('phim_hot',1)->where('status',1)->orderBy('position','ASC')->get();
+        return view('admin.pagesadmin.movie.sort_movie',compact('category','category_home','phimhot'));
+    }
+
+    public function sort_movie_navbar (Request $request) {
+        $data = $request->all();
+        foreach($data['array_id'] as $key => $value) {
+            $category = Category::find($value);
+            $category -> position = $key;
+            $category -> save();
+        }
+     }
+
+     public function sort_movie_movie (Request $request) {
+        $data = $request->all();
+        foreach($data['array_id'] as $key => $value) {
+            $movie = Movie::find($value);
+            $movie -> position = $key;
+            $movie -> save();
+        }
+     }
+
+
     
     public function update_year (Request $request) {
         $movie = new Movie();
@@ -98,6 +134,9 @@ class MovieController extends Controller
         $movie->country_id = $request->country_id;
         $movie->ngay_tao = Carbon::now('Asia/Ho_Chi_Minh');
         $movie->ngay_cap_nhap = Carbon::now('Asia/Ho_Chi_Minh');
+        $nextPosition = Movie::max('position') + 1;
+        $movie->position = $nextPosition;
+        
         
         foreach($data['genre'] as $key => $gen) {
             $movie -> genre_id = $gen[0];
@@ -215,7 +254,7 @@ class MovieController extends Controller
         }
         $movie->save();
         $movie->movie_genre()->sync($data['genre']);
-        return redirect()->route('movie.index')->with('success', 'Bạn đã cập nhập thành công');;
+        return redirect()->route('movie.index')->with('success', 'Bạn đã cập nhập thành công');
     }
 
     /**
@@ -308,5 +347,7 @@ class MovieController extends Controller
         $output['video_link'] = $movie->linkphim;
         echo json_encode($output);
     }
+
+    
     
 }

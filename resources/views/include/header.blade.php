@@ -3,11 +3,11 @@
         <div class="container-fluid">
             @role('uservip')
                 <a href="{{ route('pages.trangchu') }}"><img class="navbar-brand"
-                        src="{{ asset('public/image/logo/anhvip.png') }}" alt=""
+                        src="{{ asset($meta_image_vip) }}" alt=""
                         style="height: 80px; width: 220px;"></a>
             @else
                 <a href="{{ route('pages.trangchu') }}"><img class="navbar-brand"
-                        src="{{ asset('public/image/logo/logo.png') }}" alt=""
+                        src="{{ asset($meta_image) }}" alt=""
                         style="height: 80px; width: 220px;"></a>
             @endrole
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"

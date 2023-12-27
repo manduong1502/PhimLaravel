@@ -4,7 +4,21 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Double Slider Login / Registration Form</title>
+  <title>{{$meta_title}}</title>
+  <link rel="canonical" href="{{Request::url()}}">
+
+  <link rel="next" href="">
+  <link rel="icon" type="image/png" href="{{$meta_image}}">
+
+  <meta name="revisit-after" content="1 days"/>
+  <meta name="robots" content="index,follow"/>
+  <meta property="og:locale" content="vi_VN" />
+  <meta property="og:title" content="{{$meta_title}}" />
+  <meta property="og:description" content="{{$meta_description}}" />
+  <meta property="og:url" content="{{Request::url()}}" />
+  <meta property="og:image" content="{{$meta_image}}" />
+
+  
   <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
   <link rel="stylesheet" href="css/dang-nhap-dangky.css">
 </head>
@@ -93,7 +107,7 @@
             <label>Hiển thị</label>
           </div>
           <div class="pass-link">
-            <a href="#">Quên mật khẩu</a>
+            <a href="{{route('forget_password')}}">Quên mật khẩu</a>
           </div>
         </div>
         <button type="submit">Đăng Nhập</button>

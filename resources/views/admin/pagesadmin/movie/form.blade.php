@@ -240,6 +240,7 @@
                             <th scope="col">Thời lượng/Tập</th>
                             <th scope="col">quality</th>
                             <th scope="col">lang</th>
+                            <th scope="col">View</th>
                             <th scope="col">Ngày tạo</th>
                             <th scope="col">Ngày cập nhập</th>
                             <th scope="col">Chỉnh sửa</th>
@@ -321,7 +322,15 @@
                                         <option value="0" {{$cate->status == 0 ? 'selected' : ''}}>Không hiển thị</option>
                                     </select>
                                 </td>
-                                <td>{{ $cate->actor }}</td>
+                                <td>
+                                    @if (isset($movie_actor))
+                                        @foreach ($cate->movie_actor as $act)
+                                            <div class="badge bg-dark d-block mb-1">{{ $act->name }}</div>
+                                        @endforeach
+                                    @else
+                                        <div class="badge bg-dark d-block mb-1">{{ $act->actor->name }}</div>
+                                    @endif
+                                </td>
                                 <td>
                                     {{-- @if ($cate->phim_hot == 1)
                                         <span class="badge badge-success">Hiển thị</span>
@@ -375,6 +384,7 @@
                                 <td>{{ $cate->time }}</td>
                                 <td>{{ $cate->quality }}</td>
                                 <td>{{ $cate->lang}}</td>
+                                <td>{{ $cate->view}}K view</td>
                                 <td>{{ $cate->ngay_tao }}</td>
                                 <td>{{ $cate->ngay_cap_nhap }}</td>
                                 <td>

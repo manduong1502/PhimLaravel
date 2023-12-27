@@ -1,7 +1,23 @@
 <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  
   <meta name="csrf-token" content="{{csrf_token()}}"/>
+  <title>{{$meta_title}}</title>
+    <link rel="canonical" href="{{Request::url()}}">
+
+    <link rel="next" href="">
+    <link rel="icon" type="image/png" href="{{$meta_image}}">
+
+    <meta name="revisit-after" content="1 days"/>
+    <meta name="robots" content="index,follow"/>
+    <meta property="og:locale" content="vi_VN" />
+    <meta property="og:title" content="{{$meta_title}}" />
+    <meta property="og:description" content="{{$meta_description}}" />
+    <meta property="og:url" content="{{Request::url()}}" />
+    <meta property="og:image" content="{{$meta_image}}" />
+
+
+
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"

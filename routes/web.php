@@ -16,11 +16,22 @@ use App\Http\Controllers\admin\EpisodeController;
 use App\Http\Controllers\admin\GenreController;
 use App\Http\Controllers\admin\BlogController;
 use App\Http\Controllers\admin\LeechMovieController;
+use App\Http\Controllers\admin\InfoController;
 use App\Http\Controllers\admin\LinkMovieController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\LoginGoogleController;
 use App\Http\Controllers\LoginFacebookController;
+//sitemap
+use Carbon\Carbon;
+use Spatie\Sitemap\Sitemap;
+use Spatie\Sitemap\Tags\Url;
+use App\Models\Category;
+use App\Models\Genre;
+use App\Models\Blog;
+use App\Models\Country;
+use App\Models\Movie;
+
 
 //login
 Route::get('/login', [LoginController::class, 'index'])->name('auth.index')->middleware(LoginMiddleware::class);
@@ -37,6 +48,15 @@ Route::controller(LoginGoogleController::class)->group(function(){
 Route::get('auth/facebook', [LoginFacebookController::class, 'redirectToFacebook'])->name('auth.facebook');
 Route::get('auth/facebook/callback', [LoginFacebookController::class, 'handleFacebookCallback']);
 
+// quen mật khẩu 
+Route::get('/forget-password', [LoginController::class, 'forget_password'])->name('forget_password');
+Route::post('/forpost-password', [LoginController::class, 'post_password'])->name('post_password');
+Route::get('/get-password/{customer}/{token}', [LoginController::class, 'getPass'])->name('getPass');
+Route::post('/get-password123/{customer}/{token}', [LoginController::class, 'post_Getpass'])->name('post_Getpass');
+
+// Kích hoạt tài khoản 
+Route::get('/get-getPassRegister/{customer}/{token}', [RegisterController::class, 'getPass'])->name('getPassRegister');
+Route::post('/get-Register123/{customer}/{token}', [RegisterController::class, 'post_Getpass'])->name('post_GetpassRegister');
 
 // login admin
 Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard') ->middleware(CheckAdmin::class);
@@ -50,12 +70,16 @@ Route::resource('/admin/episode', EpisodeController::class)->middleware(CheckAdm
 Route::resource('/admin/blog', BlogController::class)->middleware(CheckAdmin::class);
 Route::resource('/admin/linkmovie', LinkMovieController::class)->middleware(CheckAdmin::class);
 Route::resource('/admin/user', UserController::class)->middleware(CheckAdmin::class);
+Route::resource('/admin/info', InfoController::class)->middleware(CheckAdmin::class);
 Route::get('admin/user/phan-vai-tro/{id}', [UserController::class,'phan_vaitro'])->middleware(CheckAdmin::class)->name('phan_vaitro');
 Route::post('admin/user/insert-roles/{id}', [UserController::class,'insert_roles'])->middleware(CheckAdmin::class)->name('insert_roles');
 Route::get('admin/user/phan-quyen/{id}', [UserController::class,'phan_quyen'])->middleware(CheckAdmin::class)->name('phan_quyen');
 Route::post('admin/user/insert-quyen/{id}', [UserController::class,'insert_quyen'])->middleware(CheckAdmin::class)->name('insert_quyen');
 Route::post('admin/user/add-permission', [UserController::class,'add_permissions'])->middleware(CheckAdmin::class)->name('add_permissions');
 Route::post('admin/user/add-roles', [UserController::class,'add_roles'])->middleware(CheckAdmin::class)->name('add_roles');
+Route::get('/sort-movie', [MovieController::class,'sort_movie'])->middleware(CheckAdmin::class)->name('sort_movie');
+Route::post('/sort-movie-post', [MovieController::class,'sort_movie_navbar'])->name('sort_movie_navbar');
+Route::post('/sort-movie-movie', [MovieController::class,'sort_movie_movie'])->name('sort_movie_movie');
 
 //Thay đổi dữ liệu trong movie ajax
 Route::get('update-nam-phim', [MovieController::class,'update_year'])->name('update-year-phim');
@@ -78,7 +102,7 @@ Route::post('/do_register', [RegisterController::class, 'register'])->name('auth
 
 
 
-Route::get('/', [PageController::class, 'getGioithieu']);
+Route::get('/', [PageController::class, 'getGioithieu'])->name('gioithieu');
 Route::get('/index', [PageController::class, 'getTrangchu'])->name('pages.trangchu')->middleware(AuthMiddleware::class);
 
 
@@ -120,6 +144,11 @@ Route::get('/leech-detail/{slug}', [LeechMovieController::class, 'leech_detaiil'
 Route::post('/leech-store/{slug}', [LeechMovieController::class, 'leech_store'])->name('leech-store')->middleware(CheckAdmin::class);
 Route::get('/leech-episode/{slug}', [LeechMovieController::class, 'leech_episode'])->name('leech_episode')->middleware(CheckAdmin::class);
 Route::post('/leech-episode-store/{slug}', [LeechMovieController::class, 'leech_episode_store'])->name('leech-episode-store')->middleware(CheckAdmin::class);
+Route::get('/leech-store-all', [LeechMovieController::class, 'leech_store_all'])->name('leech_store_all')->middleware(CheckAdmin::class);
+Route::get('/leech-episode-store-all', [LeechMovieController::class, 'leech_episode_store_all'])->name('leech_episode_store_all')->middleware(CheckAdmin::class);
+
+
+
 //ajax chi tiet phim
 Route::post('/watch-leech-detail', [LeechMovieController::class, 'watch_leech_detail'])->name('watch-leech-detail');
 
@@ -130,3 +159,31 @@ Route::post('/vnpay_payment', [CheckoutController::class, 'vnpay_payment'])->nam
 
 //Lọc phim
 Route::get('loc-phim', [PageController::class, 'loc_phim'])->name('loc_phim')->middleware(AuthMiddleware::class);
+
+
+//sitemap
+
+Route::get('/sitemap',function() {
+    $sitemap = Sitemap::create()
+    ->add(Url::create(route('gioithieu'))->setLastModificationDate(Carbon::now('Asia/Ho_Chi_Minh'))->setChangeFrequency(Url::CHANGE_FREQUENCY_YEARLY)->setPriority(1))
+    ->add(Url::create(route('auth.index'))->setLastModificationDate(Carbon::now('Asia/Ho_Chi_Minh'))->setChangeFrequency(Url::CHANGE_FREQUENCY_YEARLY)->setPriority(1))
+    ;
+
+
+    Category::all()->each(function(Category $cate) use ($sitemap) {
+        $sitemap->add(Url::create("/danh-muc/{$cate->slug}")->setLastModificationDate(Carbon::now('Asia/Ho_Chi_Minh'))->setChangeFrequency(Url::CHANGE_FREQUENCY_YEARLY)->setPriority(0.8));
+    });
+
+    Genre::all()->each(function(Genre $cate) use ($sitemap) {
+        $sitemap->add(Url::create("/the-loai/{$cate->slug}")->setLastModificationDate(Carbon::now('Asia/Ho_Chi_Minh'))->setChangeFrequency(Url::CHANGE_FREQUENCY_YEARLY)->setPriority(0.8));
+    });
+    Country::all()->each(function(Country $cate) use ($sitemap) {
+        $sitemap->add(Url::create("/quoc-gia/{$cate->slug}")->setLastModificationDate(Carbon::now('Asia/Ho_Chi_Minh'))->setChangeFrequency(Url::CHANGE_FREQUENCY_YEARLY)->setPriority(0.8));
+    });
+    Movie::all()->each(function(Movie $cate) use ($sitemap) {
+        $sitemap->add(Url::create("/phim/{$cate->slug}")->setLastModificationDate(Carbon::now('Asia/Ho_Chi_Minh'))->setChangeFrequency(Url::CHANGE_FREQUENCY_YEARLY)->setPriority(0.8));
+    });
+
+    $sitemap->writeToFile(public_path('sitemap.xml'));
+    return redirect()->back()->with('success', 'Bạn đã cập nhập sitemap thành công');
+})->name('sitemap')->middleware(CheckAdmin::class);

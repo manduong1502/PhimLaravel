@@ -5,7 +5,12 @@
   @include('include.head')
 </head>
 
-<body>
+<body class="preloading">
+
+  <div class="load">
+    <img src="{{asset('uploads/load/200w.gif')}}" alt="">
+
+  </div>
   @include('include.header')
 
   <main>

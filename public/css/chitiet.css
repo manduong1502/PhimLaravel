@@ -115,13 +115,14 @@
     content: "";
     display: block;
     width: 100%;
-    height: 2px;
+    height: 1px;
     background-color: #33F43B; /* Màu gạch chân */
     position: absolute;
     bottom: -2px;
     top: 37px; /* Độ dài của gạch chân */
     left: 0;
     padding-bottom: 3px;
+    
 }
 
 .miscellaneous-content-1 {

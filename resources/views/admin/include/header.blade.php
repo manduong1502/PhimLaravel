@@ -20,6 +20,16 @@
                     @php
                         $segment= Request::segment(1);   
                     @endphp
+                    <li class="treeview ">
+                        <a href="#">
+                            <i class="fa fa-file"></i>
+                            <span>Thông tin website</span>
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="{{route('info.create')}}"><i class="fa fa-angle-right"></i>Chỉnh sửa thông tin website</a></li>
+                        </ul>
+                    </li>
                     <li class="treeview {{($segment == 'category') ? 'active' : ''}}">
                         <a href="#">
                             <i class="fa fa-file"></i>
@@ -66,6 +76,7 @@
                             <li><a href="{{route('movie.create')}}"><i class="fa fa-angle-right"></i> Thêm phim</a></li>
                             <li><a href="{{route('movie.index')}}"><i class="fa fa-angle-right"></i> Liệt kê phim</a></li>
                             <li><a href="{{route('leech_movie')}}"><i class="fa fa-angle-right"></i> API Phim</a></li>
+                            <li><a href="{{route('sort_movie')}}"><i class="fa fa-angle-right"></i> Sắp Xếp film</a></li>
                         </ul>
                     </li>
 
@@ -130,6 +141,14 @@
                             <li><a href="{{route('movievip.index')}}"><i class="fa fa-angle-right"></i> Liệt kê phim bản quyền </a></li>
                             <li><a href="{{route('showapi')}}"><i class="fa fa-angle-right"></i> Xem dữ liệu api film bản quyền</a></li>
                         </ul>
+
+                        <li class="treeview">
+                            <a href="{{route('sitemap')}}">
+                                <i class="fa fa-film"></i>
+                                <span>Cập nhập lại sitemap</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                        </li>
                         
 
                         {{-- UL bên phần thêm tập phim của movie vip --}}
@@ -145,6 +164,7 @@
                             </ul>
                         </li> --}}
                     </li>
+
 
                 </ul>
             </div>

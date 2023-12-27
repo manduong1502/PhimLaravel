@@ -410,3 +410,57 @@
       });
   });
 </script>
+
+  <script type="text/javascript">
+    $( function() {
+      $( "#sortable" ).sortable({
+        placeholder: "ui-state-highlight",
+        update: function( event, ui ) {
+        var array_id =[];
+        $(".category_position li").each(function(){
+          array_id.push($(this).attr('id'));
+        });
+        $.ajax({
+          headers:{
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          },
+          url:"{{route('sort_movie_navbar')}}",
+          method:"POST",
+          data:{array_id:array_id},
+          success:function(data){
+            alert('Sắp xếp thứ tự thành công');
+          }
+        })
+      }
+
+      });
+      $( "#sortable" ).disableSelection();
+    } );
+    </script>
+
+<script type="text/javascript">
+  $( function() {
+    $( ".sortable_movie" ).sortable({
+      placeholder: "ui-state-highlight",
+      update: function( event, ui ) {
+      var array_id =[];
+      $(".movie_position .box_phim").each(function(){
+        array_id.push($(this).attr('id'));
+      });
+      $.ajax({
+        headers:{
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        url:"{{route('sort_movie_movie')}}",
+        method:"POST",
+        data:{array_id:array_id},
+        success:function(data){
+          alert('Sắp xếp thứ tự thành công');
+        }
+      })
+    }
+
+    });
+    $( ".sortable_movie" ).disableSelection();
+  } );
+  </script>

@@ -1,3 +1,12 @@
+
+$(window).on('load', function(even) {
+  $('body').removeClass('preloading');
+  $('.load').delay(1000).fadeOut('fast');
+})
+
+
+
+
 const header = document.getElementById("site-header");
 
     // Sử dụng sự kiện cuộn (scroll) để kích hoạt header

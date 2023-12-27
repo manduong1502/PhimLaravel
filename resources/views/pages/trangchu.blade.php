@@ -184,7 +184,7 @@
             </div>
 
             <div class="row slider">
-                @foreach ($cate_home->movie->take(10) as $key => $mov)
+                @foreach ($cate_home->movie->sortByDesc('position')->take(10) as $key => $mov)
                     <a href="{{ route('pages.chitiet', $mov->slug) }}" style="text-decoration: none">
                         <div class="slider-card">
                             <div class="card cards" style="position: relative">
