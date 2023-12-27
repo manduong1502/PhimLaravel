@@ -5,7 +5,7 @@
 
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <div class="dark-bg-image  ">
+                <div class="dark-bg-image ">
                     <div class="dark-bg-image-2">
                         @php
                             $image_check = substr($movie->image1, 0, 5);

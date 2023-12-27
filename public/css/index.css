@@ -73,18 +73,7 @@ header.active:before {
   
 }
 
-.carousel-control-prev{
-    position: absolute;
-    top: 500px;
-    left: -40px;
-    
-}
-.carousel-control-next {
-    position: absolute;
-    top: 500px;
-    right: -10px;
-    
-}
+
 
 header form {
     margin-right: 20px;
@@ -102,9 +91,22 @@ header .btn-vip {
 
 .carousel-caption {
   top : 20%;
-  left: 60%;
+  left: 50%;
   display: none;
   animation: slide-up 1s ease-in-out forwards;
+  width: 600px;
+  text-align: left;
+}
+
+.responsive-text {
+  margin-top: 10px;
+  color: #FFF;
+font-family: Montserrat;
+font-size: 20px;
+font-style: normal;
+font-weight: 600;
+line-height: 40px; /* 200% */
+letter-spacing: 0.2px;
 }
 
 @keyframes slide-up {
@@ -119,16 +121,14 @@ header .btn-vip {
 }
 
 .carousel-caption .title-carousel-caption {
-  color: #e5e5e5;
-  text-align: left;
-  font-family: Molle;
-  font-size: 50px;
-  font-style: normal;
-  font-weight: 400;
-  font-weight: bold;
-  line-height: 40px;
-  letter-spacing: 0.2px;
-  width: 400px;
+  color: #FFF;
+
+font-family: Montserrat;
+font-size: 64px;
+font-style: normal;
+font-weight: 700;
+line-height: 40px; /* 62.5% */
+letter-spacing: 0.2px;
 }
 
 .carousel-caption .title-smail-carousel-captison {
@@ -158,14 +158,19 @@ header .btn-vip {
 }
 
 .top-trending-carousel-caption {
-  margin-top: 25px;
+  margin-top: 15px;
 }
 
 .top-trending-carousel-caption .top-title {
-  background-color: #33F43B;
   color: #FFF;
-  padding: 6px;
-  border-radius: 5px 0 0 5px;
+
+font-family: Montserrat;
+font-size: 16px;
+font-style: normal;
+font-weight: 700;
+line-height: 18px; /* 138.462% */
+letter-spacing: 0.2px;
+margin-bottom: 4px;
   
 }
 
@@ -178,38 +183,46 @@ header .btn-vip {
 
 .title-smail-carousel-captison {
   text-align: left;
+  
 }
 
 .play-round-carousel-captison {
-  text-align: left;
+  margin-top: 20px;
 }
 
+
 .circular-button {
-  width: 60px; 
-  height: 60px; 
-  border-radius: 50%; 
-  text-align: center; 
-  line-height: 50px; 
-  background-color: #4ECB71; 
-  color: white;
-  border: none; 
-  cursor: pointer; 
   margin-top: 20px;
-  font-size: 25px;
+  padding: 20px 30px;
+  flex-shrink: 0;
+  border-radius: 20px;
+  background-color: #A41717;
+  color: #FFF;
+text-align: center;
+font-family: Montserrat;
+font-size: 16px;
+font-style: italic;
+font-weight: 700;
+line-height: 40px; /* 250% */
+letter-spacing: 0.2px;
+text-decoration: none;
 }
 .circular-button-note {
-  width: 60px; 
-  height: 60px; 
-  border-radius: 50%; 
-  text-align: center; 
-  line-height: 50px; 
-  background-color: #BEC1C3; 
-  color: rgb(111, 111, 111);
-  border: none; 
-  cursor: pointer; 
   margin-top: 20px;
-  font-size: 25px;
-  margin-left: 20px;
+  padding: 20px 30px;
+  flex-shrink: 0;
+  border-radius: 20px;
+  background-color: #363535;
+  color: #FFF;
+text-align: center;
+font-family: Montserrat;
+font-size: 16px;
+font-style: italic;
+font-weight: 700;
+line-height: 40px; /* 250% */
+letter-spacing: 0.2px;
+text-decoration: none;
+margin-left: 20px;
 }
 
 .cards {
@@ -379,6 +392,8 @@ header .btn-vip {
   display: inline-block;
 }
 
+
+
 .dark-bg-image::before {
   content: "";
   position: absolute;
@@ -390,11 +405,9 @@ header .btn-vip {
   background: linear-gradient(to bottom, rgba(255, 255, 255, 0), #202020);
 }
 
-.dark-bg-image img {
-  display: block;
-  width: 100%;
-  height: auto;
-}
+
+
+
 
 /* //tập phim */
 .halim-episode span div{
@@ -431,7 +444,7 @@ header .btn-vip {
 }
 .load img {
   width: 200px;
-  height: 200px;
+  height: 150px;
 }
 
 

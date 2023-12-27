@@ -60,6 +60,45 @@ const header = document.getElementById("site-header");
     })
 
     $(document).ready(function () {
+      $('.card_hot').slick({
+        infinite: true,
+        slidesToShow: 6,
+        slidesToScroll: 4,
+        arrows: false,
+
+        responsive: [
+          {
+            breakpoint: 1200,
+            settings: {
+              slidesToShow: 5,
+              slidesToScroll: 4,
+              infinite: false,
+              dots: true
+            }
+          },
+          {
+            breakpoint: 900,
+            settings: {
+              slidesToShow: 4,
+              slidesToScroll: 3,
+              infinite: false,
+              dots: true
+            }
+          },
+          {
+            breakpoint: 600,
+            settings: {
+              slidesToShow: 3,
+              slidesToScroll: 1,
+              infinite: false,
+              dots: true
+            }
+          },
+        ]
+      });
+    })
+
+    $(document).ready(function () {
       $('.calendar').slick({
         infinite: false,
         slidesToShow: 4,

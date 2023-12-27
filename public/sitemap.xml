@@ -2,457 +2,577 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
     <url>
         <loc>http://127.0.0.1:8000</loc>
-        <lastmod>2023-12-21T21:49:35+07:00</lastmod>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
         <changefreq>yearly</changefreq>
         <priority>1.0</priority>
             </url>
     <url>
         <loc>http://127.0.0.1:8000/login</loc>
-        <lastmod>2023-12-21T21:49:35+07:00</lastmod>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
         <changefreq>yearly</changefreq>
         <priority>1.0</priority>
             </url>
     <url>
         <loc>http://127.0.0.1:8000/danh-muc/phim-moi</loc>
-        <lastmod>2023-12-21T21:49:35+07:00</lastmod>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.8</priority>
             </url>
     <url>
         <loc>http://127.0.0.1:8000/danh-muc/phim-hai</loc>
-        <lastmod>2023-12-21T21:49:35+07:00</lastmod>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/danh-muc/phim-hay</loc>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/danh-muc/phim-next</loc>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/danh-muc/chinh-kich</loc>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/danh-muc/kinh-di</loc>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/danh-muc/hanh-dong</loc>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/danh-muc/vien-tuong</loc>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/danh-muc/phieu-luu</loc>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/danh-muc/khoa-hoc</loc>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/danh-muc/hai-huoc</loc>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/danh-muc/tinh-cam</loc>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/danh-muc/tai-lieu</loc>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/danh-muc/bi-an</loc>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/danh-muc/tam-ly</loc>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/danh-muc/gia-dinh</loc>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/danh-muc/hinh-su</loc>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.8</priority>
             </url>
     <url>
         <loc>http://127.0.0.1:8000/the-loai/kich-tin</loc>
-        <lastmod>2023-12-21T21:49:35+07:00</lastmod>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.8</priority>
             </url>
     <url>
         <loc>http://127.0.0.1:8000/the-loai/hai-huoc</loc>
-        <lastmod>2023-12-21T21:49:35+07:00</lastmod>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/the-loai/kinh-di</loc>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/the-loai/chinh-kich</loc>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/the-loai/hanh-dong</loc>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/the-loai/vien-tuong</loc>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/the-loai/phieu-luu</loc>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/the-loai/khoa-hoc</loc>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/the-loai/tinh-cam</loc>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/the-loai/tai-lieu</loc>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/the-loai/bi-an</loc>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/the-loai/tam-ly</loc>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/the-loai/gia-dinh</loc>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/the-loai/hinh-su</loc>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/the-loai/vo-thuat</loc>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/the-loai/hoc-duong</loc>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/the-loai/co-trang</loc>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.8</priority>
             </url>
     <url>
         <loc>http://127.0.0.1:8000/quoc-gia/thai-lan</loc>
-        <lastmod>2023-12-21T21:49:35+07:00</lastmod>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.8</priority>
             </url>
     <url>
         <loc>http://127.0.0.1:8000/quoc-gia/trung-quoc</loc>
-        <lastmod>2023-12-21T21:49:35+07:00</lastmod>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.8</priority>
             </url>
     <url>
-        <loc>http://127.0.0.1:8000/phim/dich-nhan-kiet-muon-duong-am-binh</loc>
-        <lastmod>2023-12-21T21:49:35+07:00</lastmod>
+        <loc>http://127.0.0.1:8000/quoc-gia/au-my</loc>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.8</priority>
             </url>
     <url>
-        <loc>http://127.0.0.1:8000/phim/dao-ca-sau</loc>
-        <lastmod>2023-12-21T21:49:35+07:00</lastmod>
+        <loc>http://127.0.0.1:8000/quoc-gia/han-quoc</loc>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.8</priority>
             </url>
     <url>
-        <loc>http://127.0.0.1:8000/phim/quai-vat-bien-sau</loc>
-        <lastmod>2023-12-21T21:49:35+07:00</lastmod>
+        <loc>http://127.0.0.1:8000/quoc-gia/phap</loc>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.8</priority>
             </url>
     <url>
-        <loc>http://127.0.0.1:8000/phim/tam-long-quy-su</loc>
-        <lastmod>2023-12-21T21:49:35+07:00</lastmod>
+        <loc>http://127.0.0.1:8000/quoc-gia/canada</loc>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.8</priority>
             </url>
     <url>
-        <loc>http://127.0.0.1:8000/phim/bup-be-linh-hon</loc>
-        <lastmod>2023-12-21T21:49:35+07:00</lastmod>
+        <loc>http://127.0.0.1:8000/quoc-gia/uc</loc>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.8</priority>
             </url>
     <url>
-        <loc>http://127.0.0.1:8000/phim/hien-vuong-trung-coc</loc>
-        <lastmod>2023-12-21T21:49:35+07:00</lastmod>
+        <loc>http://127.0.0.1:8000/quoc-gia/philippines</loc>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.8</priority>
             </url>
     <url>
-        <loc>http://127.0.0.1:8000/phim/nguoi-may-so-8</loc>
-        <lastmod>2023-12-21T21:49:35+07:00</lastmod>
+        <loc>http://127.0.0.1:8000/quoc-gia/nhat-ban</loc>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.8</priority>
             </url>
     <url>
-        <loc>http://127.0.0.1:8000/phim/phong-an-quy-du</loc>
-        <lastmod>2023-12-21T21:49:35+07:00</lastmod>
+        <loc>http://127.0.0.1:8000/quoc-gia/an-do</loc>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.8</priority>
             </url>
     <url>
-        <loc>http://127.0.0.1:8000/phim/tu-bat-ngu-da-hanh-lang</loc>
-        <lastmod>2023-12-21T21:49:35+07:00</lastmod>
+        <loc>http://127.0.0.1:8000/quoc-gia/tho-nhi-ky</loc>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.8</priority>
             </url>
     <url>
-        <loc>http://127.0.0.1:8000/phim/ke-kien-tao</loc>
-        <lastmod>2023-12-21T21:49:35+07:00</lastmod>
+        <loc>http://127.0.0.1:8000/quoc-gia/anh</loc>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.8</priority>
             </url>
     <url>
-        <loc>http://127.0.0.1:8000/phim/dieu-ba-le-tu-than</loc>
-        <lastmod>2023-12-21T21:49:35+07:00</lastmod>
+        <loc>http://127.0.0.1:8000/quoc-gia/duc</loc>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.8</priority>
             </url>
     <url>
-        <loc>http://127.0.0.1:8000/phim/cuu-roi-chung-toi</loc>
-        <lastmod>2023-12-21T21:49:35+07:00</lastmod>
+        <loc>http://127.0.0.1:8000/quoc-gia/hong-kong</loc>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.8</priority>
             </url>
     <url>
-        <loc>http://127.0.0.1:8000/phim/gioi-tu-quy-thanh</loc>
-        <lastmod>2023-12-21T21:49:35+07:00</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://127.0.0.1:8000/phim/dinh-thu-ma-am</loc>
-        <lastmod>2023-12-21T21:49:35+07:00</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://127.0.0.1:8000/phim/flash</loc>
-        <lastmod>2023-12-21T21:49:35+07:00</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://127.0.0.1:8000/phim/thanh-tra-sat-nhan</loc>
-        <lastmod>2023-12-21T21:49:35+07:00</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://127.0.0.1:8000/phim/thu-kiem-an-cuu-luc</loc>
-        <lastmod>2023-12-21T21:49:35+07:00</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://127.0.0.1:8000/phim/ac-quy-ma-so-2</loc>
-        <lastmod>2023-12-21T21:49:35+07:00</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://127.0.0.1:8000/phim/thien-ac-doi-dau-3</loc>
-        <lastmod>2023-12-21T21:49:35+07:00</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://127.0.0.1:8000/phim/nhiem-vu-bat-kha-thi-7-nghiep-bao-phan-1</loc>
-        <lastmod>2023-12-21T21:49:35+07:00</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://127.0.0.1:8000/phim/phong-than-1-tam-bo-khuc</loc>
-        <lastmod>2023-12-21T21:49:35+07:00</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://127.0.0.1:8000/phim/bo-hung-xanh</loc>
-        <lastmod>2023-12-21T21:49:35+07:00</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://127.0.0.1:8000/phim/dracula-quy-du-thuc-tinh</loc>
-        <lastmod>2023-12-21T21:49:35+07:00</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://127.0.0.1:8000/phim/ca-map-sieu-bao-chua-2-vuc-sau</loc>
-        <lastmod>2023-12-21T21:49:35+07:00</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://127.0.0.1:8000/phim/lat-mat-6-tam-ve-dinh-menh</loc>
-        <lastmod>2023-12-21T21:49:35+07:00</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://127.0.0.1:8000/phim/tan-tuong-tu</loc>
-        <lastmod>2023-12-21T21:49:35+07:00</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://127.0.0.1:8000/phim/van-tam</loc>
-        <lastmod>2023-12-21T21:49:35+07:00</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://127.0.0.1:8000/phim/tue-tue-thanh-lien</loc>
-        <lastmod>2023-12-21T21:49:35+07:00</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://127.0.0.1:8000/phim/arthdal-nien-su-ky-thanh-guom-cua-aramun</loc>
-        <lastmod>2023-12-21T21:49:35+07:00</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://127.0.0.1:8000/phim/ngot-ngao-va-ruc-ro</loc>
-        <lastmod>2023-12-21T21:49:35+07:00</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://127.0.0.1:8000/phim/dang-sau-ke-phan-dien</loc>
-        <lastmod>2023-12-21T21:49:35+07:00</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://127.0.0.1:8000/phim/nhat-niem-hoa-khai</loc>
-        <lastmod>2023-12-21T21:49:35+07:00</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://127.0.0.1:8000/phim/vi-huu-am-huong-lai-tay-duyen-hoa</loc>
-        <lastmod>2023-12-21T21:49:35+07:00</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://127.0.0.1:8000/phim/nhip-dap-trai-tim</loc>
-        <lastmod>2023-12-21T21:49:35+07:00</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://127.0.0.1:8000/phim/luc-luong-nen-mong-phan-2</loc>
-        <lastmod>2023-12-21T21:49:35+07:00</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://127.0.0.1:8000/phim/deadloch</loc>
-        <lastmod>2023-12-21T21:49:35+07:00</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://127.0.0.1:8000/phim/cuoc-xam-luoc-bi-mat</loc>
-        <lastmod>2023-12-21T21:49:35+07:00</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://127.0.0.1:8000/phim/nu-hoang-mat-na</loc>
-        <lastmod>2023-12-21T21:49:35+07:00</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://127.0.0.1:8000/phim/xac-song-thanh-pho-chet</loc>
-        <lastmod>2023-12-21T21:49:35+07:00</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://127.0.0.1:8000/phim/cuoc-chien-sinh-ton-7-escape</loc>
-        <lastmod>2023-12-21T21:49:35+07:00</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://127.0.0.1:8000/phim/co-nang-manh-me-gang-nam-soon</loc>
-        <lastmod>2023-12-21T21:49:35+07:00</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://127.0.0.1:8000/phim/loki-than-lua-loc-phan-2</loc>
-        <lastmod>2023-12-21T21:49:35+07:00</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://127.0.0.1:8000/phim/ho-hac-yeu-su-luc</loc>
-        <lastmod>2023-12-21T21:49:35+07:00</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://127.0.0.1:8000/phim/gen-v</loc>
-        <lastmod>2023-12-21T21:49:35+07:00</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://127.0.0.1:8000/phim/anh-ay-buoc-ra-tu-anh-lua</loc>
-        <lastmod>2023-12-21T21:49:35+07:00</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://127.0.0.1:8000/phim/khach-san-continental-tu-the-gioi-cua-john-wick</loc>
-        <lastmod>2023-12-21T21:49:35+07:00</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://127.0.0.1:8000/phim/phon-thanh-chi-ha</loc>
-        <lastmod>2023-12-21T21:49:35+07:00</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://127.0.0.1:8000/phim/giao-dich-hoan-hao</loc>
-        <lastmod>2023-12-21T21:49:35+07:00</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://127.0.0.1:8000/phim/dai-chua-te</loc>
-        <lastmod>2023-12-21T21:49:35+07:00</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://127.0.0.1:8000/phim/la-phieu-tu-hinh</loc>
-        <lastmod>2023-12-21T21:49:35+07:00</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://127.0.0.1:8000/phim/chut-nang-am-moi-ngay</loc>
-        <lastmod>2023-12-21T21:49:35+07:00</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://127.0.0.1:8000/phim/nam-dem-kinh-hoang</loc>
-        <lastmod>2023-12-21T21:49:35+07:00</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://127.0.0.1:8000/phim/nguoi-dep-va-quai-vat</loc>
-        <lastmod>2023-12-21T21:49:35+07:00</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://127.0.0.1:8000/phim/nguoi-giup-viec</loc>
-        <lastmod>2023-12-21T21:49:35+07:00</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://127.0.0.1:8000/phim/di-ai-vi-doanh</loc>
-        <lastmod>2023-12-21T21:49:35+07:00</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://127.0.0.1:8000/phim/ngan-bau-troi-che-lap-di-vi-sao</loc>
-        <lastmod>2023-12-21T21:49:35+07:00</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://127.0.0.1:8000/phim/toi-muon-di-nguoc-chieu-gio</loc>
-        <lastmod>2023-12-21T21:49:35+07:00</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://127.0.0.1:8000/phim/ma-thoi-den-nam-hai-quy-hu-2023</loc>
-        <lastmod>2023-12-21T21:49:35+07:00</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://127.0.0.1:8000/phim/tet-o-lang-dia-nguc</loc>
-        <lastmod>2023-12-21T21:49:35+07:00</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://127.0.0.1:8000/phim/can-nha-khoai-lac</loc>
-        <lastmod>2023-12-21T21:49:35+07:00</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://127.0.0.1:8000/phim/hong-nhan-lenh</loc>
-        <lastmod>2023-12-21T21:49:35+07:00</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://127.0.0.1:8000/phim/buoc-chan-thep</loc>
-        <lastmod>2023-12-21T21:49:35+07:00</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://127.0.0.1:8000/phim/mau-va-co-vat-phan-2</loc>
-        <lastmod>2023-12-21T21:49:35+07:00</lastmod>
+        <loc>http://127.0.0.1:8000/phim/le-ta-on-kinh-hoang</loc>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.8</priority>
             </url>
     <url>
         <loc>http://127.0.0.1:8000/phim/chao-mung-den-samdal-ri</loc>
-        <lastmod>2023-12-21T21:49:35+07:00</lastmod>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.8</priority>
             </url>
     <url>
-        <loc>http://127.0.0.1:8000/phim/nhat-niem-quan-son</loc>
-        <lastmod>2023-12-21T21:49:35+07:00</lastmod>
+        <loc>http://127.0.0.1:8000/phim/what-if-phan-2</loc>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.8</priority>
             </url>
     <url>
-        <loc>http://127.0.0.1:8000/phim/chin-dua-tre-nghich-ngom</loc>
-        <lastmod>2023-12-21T21:49:35+07:00</lastmod>
+        <loc>http://127.0.0.1:8000/phim/foursome</loc>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.8</priority>
             </url>
     <url>
-        <loc>http://127.0.0.1:8000/phim/man-dem-kinh-hoang</loc>
-        <lastmod>2023-12-21T21:49:35+07:00</lastmod>
+        <loc>http://127.0.0.1:8000/phim/mau-va-co-vat-phan-2</loc>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.8</priority>
             </url>
     <url>
-        <loc>http://127.0.0.1:8000/phim/ky-an-tren-doi-tuyet</loc>
-        <lastmod>2023-12-21T21:49:35+07:00</lastmod>
+        <loc>http://127.0.0.1:8000/phim/shangri-la-frontier</loc>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/phim/toi-se-song-sot-bang-cach-su-dung-lieu-duoc</loc>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/phim/thanh-hiep-si-tu-noi-tan-cung-vua-nui-thiet-thuong</loc>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/phim/ma-thuat-dac-biet-cua-phu-thuy-quay-nguoc-thoi-gian</loc>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/phim/lam-chin-gan-lon-truoc-khi-an-da-nhe</loc>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/phim/cong-chua-ma-ca-rong-tam-thuong</loc>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/phim/cuoc-song-thuong-ngay-cua-tien-vuong-phan-4</loc>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/phim/ki-niem-tuoi-thanh-xuan</loc>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/phim/ca-ri-and-xyanua-vu-an-jolly-joseph</loc>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/phim/nguoi-yeu-cua-toi-la-than-tinh-yeu</loc>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/phim/nhac-truong-maestra-soi-day-chan-ly</loc>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/phim/sorbet-nam-viet-quat</loc>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/phim/tieng-hot-chim-hong-tuoc</loc>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/phim/gia-dinh</loc>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/phim/ocean-giants</loc>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/phim/chang-quy-cua-toi</loc>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/phim/hanh-tinh-trai-dat-3</loc>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/phim/kham-pha-ran-san-ho-great-barrier-cung-david-attenborough</loc>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/phim/cam-tu</loc>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/phim/thieu-nien-minh-long</loc>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/phim/hoa-mi</loc>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/phim/dai-chien-mai-moi</loc>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/phim/than-an</loc>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/phim/nu-hon-khuynh-thanh</loc>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/phim/a-bite-of-china</loc>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/phim/inside-the-factory-s3</loc>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/phim/nga-my-son</loc>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/phim/thien-nhien-hoang-da-hawaii</loc>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/phim/bay-the-gioi-mot-hanh-tinh</loc>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/phim/unforgotten-night-dem-kho-quen</loc>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/phim/tai-trai</loc>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/phim/the-gioi-phong-sinh</loc>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/phim/bi-mat-cua-anh-ay-va-co-ay</loc>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/phim/quan-ao-moi-cua-cong-chua</loc>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/phim/hong-nhan-lenh</loc>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/phim/tinh-yeu-mu-quang-2023</loc>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/phim/yeu-duong-di-trai-chu</loc>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/phim/tro-choi-song-con</loc>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/phim/pit-babe-the-series</loc>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/phim/oppa-xa-hoi-den-than-yeu</loc>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/phim/nghich-thien-ta-than</loc>
+        <lastmod>2023-12-27T10:45:55+07:00</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.8</priority>
             </url>
