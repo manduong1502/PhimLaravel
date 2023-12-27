@@ -90,14 +90,14 @@ header .btn-vip {
 }
 
 .carousel-caption .title-carousel-caption {
-  color: #FFF;
-
-font-family: Montserrat;
-font-size: 64px;
-font-style: normal;
-font-weight: 700;
-line-height: 40px; /* 62.5% */
-letter-spacing: 0.2px;
+    word-break: break-all; /* Đây là thuộc tính để ngăn các từ bị dính chặt lại khi xuống hàng */
+    color: #FFF;
+    font-family: Montserrat;
+    font-size: 64px;
+    font-style: normal;
+    font-weight: 1000;
+    line-height: 40px;
+    letter-spacing: 0.2px;
 }
 
 .carousel-caption .title-smail-carousel-captison {

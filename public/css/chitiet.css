@@ -1,5 +1,7 @@
 .carousel-caption {
-    width: 37%;
+    width: 600px;
+    top : 20%;
+    left: 55%;
 }
 .detail-title {
     width: 500px;
@@ -13,17 +15,12 @@
     text-align: left;
 }
 
-.dark-bg-image::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 70%;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(to right, #1c1c1c77 10%, #202020 80%);
-}
+.dark-bg-image {
+    position: relative;
+    display: inline-block;
+  }
 
-.dark-bg-image-2::before {
+.dark-bg-image::before {
     content: "";
     position: absolute;
     top: 60%;
@@ -31,6 +28,16 @@
     right: 0;
     bottom: 0;
     background: linear-gradient(to bottom, rgba(255, 255, 255, 0), #202020);
+}
+
+.dark-bg-image-2::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to right, rgba(28, 28, 28, 0.064) 0%, rgba(32, 32, 32, 1) 100%);
 }
 
 .dark-bg-image img {
@@ -60,25 +67,26 @@
 }
 
 .btn-issue {
-    background-color: #3ffc45;
+    padding: 10px 20px;
+    flex-shrink: 0;
+    border-radius: 20px;
+    background-color: #A41717;
     color: #FFF;
-    margin-right: 5px;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 16px;
+    font-style: italic;
+    font-weight: 700;
+    line-height: 40px;
+    letter-spacing: 0.2px;
+    text-decoration: none;
 }
 
 .btn-issue:hover {
-    background-color: #4ce852;
+    background-color: #952d2d;
 }
 
-.btn-share {
-    background: rgba(163, 163, 163, 0.8);
-    color: #fff;
-    margin-right: 5px;
-}
 
-.btn-share:hover {
-    background-color: rgba(163, 163, 163, 0.877);
-    color: #fff;
-}
 
 .miscellaneous-content-1-header-ul {
     list-style: none;
@@ -116,7 +124,7 @@
     display: block;
     width: 100%;
     height: 1px;
-    background-color: #33F43B; /* Màu gạch chân */
+    background-color: #952d2d; /* Màu gạch chân */
     position: absolute;
     bottom: -2px;
     top: 37px; /* Độ dài của gạch chân */
@@ -218,4 +226,41 @@
 .info3-assess-comments-form {
     margin-top: 20px;
     margin-bottom: 20px;
+}
+
+.responsive-text1 {
+    margin-top: 10px;
+    color: #FFF;
+  font-family: Montserrat;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 40px; /* 200% */
+  letter-spacing: 0.2px;
+  }
+
+  .responsive-text112 {
+    display: flex;
+    margin-bottom: 3px;
+}
+
+.responsive-text12 {/* Tạo khoảng cách giữa dấu gạch và nội dung */
+    color: #FFF;
+
+font-family: Montserrat;
+font-size: 16px;
+font-style: normal;
+font-weight: 600;
+letter-spacing: 0.2px;
+}
+
+.responsive-text12::before {
+    content: "|"; /* Ký tự bạn muốn sử dụng cho dấu đứng */
+    margin: 2px 5px;
+    color: #fff; 
+}
+
+.detail-title-small a:hover {
+    color: #a5a5a5;
+    
 }

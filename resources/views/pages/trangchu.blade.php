@@ -7,22 +7,24 @@
             @foreach ($slide as $key => $sli)
             <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
               <div class="dark-bg-image">
+                <div class="dark-bg-image-2">
                 @php
                 $image_check = substr($sli->image1, 0, 5);
                 @endphp
                 @if ($image_check == 'https')
-                <img src="{{ $sli->image1 }}" class="d-block w-100" style="object-fit: cover;" alt="...">
+                <img src="{{ $sli->image1 }}" class="d-block w-100" style="object-fit: cover;" height="900" alt="...">
                 @else
-                <img src="{{ asset('uploads/movie/imagebig/' . $sli->image1) }}" style="object-fit: cover;" class="d-block w-100" alt="...">
+                <img src="{{ asset('uploads/movie/imagebig/' . $sli->image1) }}" style="object-fit: cover;" class="d-block w-100" height="900" alt="...">
                 @endif
                 <div class="carousel-caption d-none d-md-block">
                     <div class="title-carousel-caption">{{ $sli->origin_name }}</div>
                     <div class="responsive-text">{{ $sli->title }}</div>
-                    <hr style="opacity: inherit;margin: 0;">
+                    <hr style="opacity: inherit;margin: 0; width: 500px;">
                     <div class="top-trending-carousel-caption ">
                         
                         <div class="top-title ">Thời lượng: {{$sli->time}}</div>
                         <div class="top-title ">Năm: {{$sli->nam_phim}}</div>
+                        <div class="top-title ">Quốc gia: {{$sli->country->title}}</div>
                         <div class="top-title ">Số tập: 
                             {{$sli->episode_count}} /
                             @if($sli->so_tap === '?')
@@ -64,6 +66,7 @@
                 </div>
               </div>
             </div>
+        </div>
 
             @endforeach
           </div>
@@ -200,7 +203,7 @@
     </div>
 
 
-    @foreach ($category_home as $key => $cate_home)
+    @foreach ($category_home->take(5) as $key => $cate_home)
         <div class="container contents">
             <div class="content-title">
                 <div class="content-title-big">

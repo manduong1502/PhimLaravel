@@ -20,6 +20,7 @@
     left: 55%;
     right: 0;
     bottom: 0;
+    margin-right: 30px;
     background: linear-gradient(to right, #1c1c1c77 10%, #202020 80%);
 }
 
@@ -231,9 +232,4 @@
 .info3-assess-comments-form {
     margin-top: 20px;
     margin-bottom: 20px;
-<<<<<<< HEAD
 }
-
-=======
-}
->>>>>>> mẫn-dương
