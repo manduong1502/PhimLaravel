@@ -73,15 +73,14 @@
                                 </div>
 
                                 <div class="card-text">
-                                    <p>{{ $hot->title }}</p>
-                                    <span class="episode" aria-hidden="true">
-                                        {{$hot->episode_count}}/{{ $hot->so_tap }}
-                                    </span>
-
-                                    <span class="episode" aria-hidden="true" >
-                                        {{$hot->lang}}
-                                    </span>
+                                    <p style="margin: 0">{{ $hot->title }}</p>
                                 </div>
+                                <span class="episode" aria-hidden="true" style="position: absolute; top: 0; left: 0; background-color: black; color: white; font-weight: bold; width: auto; padding: 0 5px 0 5px; border-radius: 10px 0 10px 0; opacity: 0.8">
+                                    {{$hot->episode_count}}/{{ $hot->so_tap }}
+                                    @if($hot->episode_count == $hot->so_tap) 
+                                        <span>hoan thanh</span>
+                                    @else 
+                                </span>
                             </div>
                         </a>
                     @endforeach
@@ -128,7 +127,7 @@
 
                             <div class="card-text">
                                 {{ $his_mov->movie->title }}
-                                <span class="episode" aria-hidden="true">
+                                <span class="episode" aria-hidden="true" style="position: absolute; top: -300px; left: 0; background-color: black; color: white; width: auto; padding: 0 5px 0 5px; border-radius: 10px 0 10px 0; opacity: 0.8">
                                 </span>
                             </div>
                         </div>
@@ -157,10 +156,12 @@
                                 <i class="fa-solid fa-circle-play"></i>
                             </div>
                         </div>
-
+                        <div class="icon-vip card">
+                            <p>Chỉ có trên Cosmic Vip</p>
+                        </div>
                         <div class="card-text">
                             {{ $mov_vip->title }}
-                            <span class="episode" aria-hidden="true">
+                            <span class="episode" aria-hidden="true" style="position: absolute; top: -300px; left: 0; background-color: black; color: white; width: auto; padding: 0 5px 0 5px; border-radius: 10px 0 10px 0; opacity: 0.8">
                                 {{$mov_vip->episode_count}}/{{ $mov_vip->so_tap }}
                                 @if($mov_vip->episode_count == $mov_vip->so_tap)
                                 <span>Hoàn thành</span>
@@ -204,13 +205,11 @@
 
                             <div class="card-text">
                                 {{ $mov->title }}
-                                <span class="episode" aria-hidden="true">
-                                    {{$mov->episode_count}}/{{ $mov->so_tap }}
-                                </span>
-
-                                <span class="episode" aria-hidden="true" >
-                                    {{$mov->lang}}
-                                </span>
+                                <div>
+                                    <span class="episode" aria-hidden="true" style="height:auto; position: absolute; top: -300px; left: -5px; background-color: black; color: white; width: auto; padding: 5px; border-radius: 10px 0 5px 0; opacity: 0.8">
+                                        {{$mov->episode_count}}/{{ $mov->so_tap }}
+                                    </span>
+                                </div>
                             </div>
                         </div>
                     </a>

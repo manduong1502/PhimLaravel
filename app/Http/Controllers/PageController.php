@@ -320,6 +320,7 @@ class PageController extends Controller
             ->where('episode_id', $episodeId)
             ->exists();
             History_movie::where('user_id', $userId)
+            ->where('episode_id',$episodeId)
             ->where('movie_id', $movieId)
             ->delete();
             

@@ -210,6 +210,7 @@ header .btn-vip {
 .cards {
   background-color: #202020;
   position:relative;
+  border-radius: 10px;
 }
 
 .icon-overlay {
@@ -230,10 +231,10 @@ header .btn-vip {
   border-radius: 10px;
 }
 
-.cards img:hover {
+.cards img:hover{
   transform: scale(1.1); /* Khi hover vào card, làm toàn bộ card to lớn hơn 10% */
   transition: transform 0.3s ease; /* Thời gian và kiểu easing của hiệu ứng */
-  border-radius: 10px;
+  /* border-radius: 10px; */
 }
 
 .card-text{
@@ -250,13 +251,29 @@ header .btn-vip {
   border-radius: 0 0 5px 5px;
 }
 
+
 .cards img {
-  width: 100%;
+  width: 240px;
 }
 
 .slider .slider-card {
   margin: 0 10px;
   position: relative;
+  overflow: hidden;
+  border-radius: 0 8px 8px 0;
+}
+.slider .slider-card .icon-vip{
+  position: absolute;
+  top: 0;
+  right: -1px;
+  background-color: black;
+  width: auto;
+  height: 30px;
+  border-radius: 0 0 0 8px;
+  align-items: center;
+  color: #febf83;
+  padding: 0 5px 0 5px ;
+  opacity: 0.8;
 }
 .slider a{
   width: 200px;

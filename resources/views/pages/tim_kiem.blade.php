@@ -10,12 +10,14 @@
                 <a href="{{ route('pages.chitiet', $mov->slug) }}">
                     <div class="film-card-img">
                         @php
-                            $image_check = substr($movie->image1, 0, 5);
+                            $image_check = substr($his_mov->movie->image, 0, 5);
                         @endphp
                         @if ($image_check == 'https')
-                        <img src="{{$mov->image }}" alt="">
+                            <img src="{{ $his_mov->movie->image }}" alt=""
+                                style="width: 250px; height:330px; border-radius: 5px; position: relative">
                         @else
-                        <img src="{{ asset('uploads/movie/' . $mov->image) }}" alt="">
+                            <img src="{{ asset('uploads/movie/' . $his_mov->movie->image) }}" alt=""
+                                style="width: 250px; height:330px; border-radius: 5px; position: relative">
                         @endif
                         <div class="play-icon">
                             <i class="fa-solid fa-circle-play"></i>
