@@ -587,7 +587,11 @@ public function loc_phim() {
         $category = Category::orderBy('id','DESC') ->get();
         $genre = Genre::orderBy('id','DESC') ->get();
         $country = Country::orderBy('id','DESC') ->get();
+        $top_view = Movie::whereNotNull('view')->orderBy('view','desc')->take(10)->get();
 
+        $movie_phimbo = Movie::where('type','series')->whereNotNull('view')->orderBy('view','desc')->get()->take(10);
+
+        $movie_phimle = Movie::where('type','single')->whereNotNull('view')->orderBy('view','desc')->get()->take(10);
         $movie = Movie::withCount('episode');
         if($genre_get) {
             $movie = $movie->Where('genre_id','=',$genre_get);
@@ -609,7 +613,10 @@ public function loc_phim() {
             'country',
             'movie',
             'meta_title',
-            'meta_description'
+            'meta_description',
+            'top_view',
+            'movie_phimbo',
+            'movie_phimle'
         ));
         
     }

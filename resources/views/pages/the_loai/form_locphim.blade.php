@@ -1,3 +1,4 @@
+
 <div class="container">
     <form action="{{ route('loc_phim') }}" method="get">
         @csrf
@@ -47,9 +48,10 @@
                 </div>
             </div>
             <div class="col-md-2 ">
-            <input style="margin-bottom:30px;background-color: rgb(8, 200, 8);" type="submit" class="btn  btn-default" value="Lọc Phim">
+            <input style="background-color: #A41717;box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);color:aliceblue" type="submit" class="btn  btn-loc" value="Lọc Phim">
         </div>
         </div>
         
     </form>
+    
 </div>
