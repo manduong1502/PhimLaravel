@@ -4,9 +4,11 @@
 }
 
 .blog-review-content-1 {
-    padding: 15px;
-    background-color: #353535;
+    padding: 30px;
+    background-color: #2C2C2C;
     height: auto;
+    box-shadow: 0px 4px 4px 0px #A41717;
+    border-radius: 40px;
 }
 
 .blog-review-content-2 {
@@ -105,3 +107,14 @@
     line-height: normal;
     padding-top: 15px;
 }
+
+ .blog-review-content-1 h2 {
+    color: #FFF;
+
+font-family: Montserrat;
+font-size: 40px;
+font-style: normal;
+font-weight: 700;
+line-height: 40px; /* 100% */
+letter-spacing: 0.2px;
+ }
