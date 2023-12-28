@@ -55,10 +55,7 @@ header.active:before {
     opacity: 1; 
   }
 
-.carousel-control-prev,
-.carousel-control-next {
-    z-index: 1 ;
-}
+
 
 header form {
     margin-right: 20px;
@@ -93,15 +90,14 @@ header .btn-vip {
 }
 
 .carousel-caption .title-carousel-caption {
-  color: #e5e5e5;
-  text-align: left;
-  font-family: Molle;
-  font-size: 60px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 28px;
-  letter-spacing: 0.2px;
-  width: 400px;
+    word-break: break-all; /* Đây là thuộc tính để ngăn các từ bị dính chặt lại khi xuống hàng */
+    color: #FFF;
+    font-family: Montserrat;
+    font-size: 64px;
+    font-style: normal;
+    font-weight: 1000;
+    line-height: 40px;
+    letter-spacing: 0.2px;
 }
 
 .carousel-caption .title-smail-carousel-captison {
@@ -158,17 +154,10 @@ header .btn-vip {
 }
 
 .circular-button {
-  width: 60px; 
-  height: 60px; 
-  border-radius: 50%; 
-  text-align: center; 
-  line-height: 50px; 
-  background-color: #4ECB71; 
-  color: white;
-  border: none; 
-  cursor: pointer; 
-  margin-top: 20px;
-  font-size: 25px;
+  padding: 30px 20px;
+  flex-shrink: 0;
+  border-radius: 20px;
+  
 }
 .circular-button-note {
   width: 60px; 
@@ -185,10 +174,6 @@ header .btn-vip {
   margin-left: 20px;
 }
 
-.cards {
-  background-color: #202020;
-  position: relative;
-}
 
 .icon-overlay {
   position: absolute;
@@ -203,6 +188,11 @@ header .btn-vip {
 
 .cards:hover .icon-overlay {
   opacity: 1;
+}
+
+.cards {
+  position: relative;
+  border: 3px solid red;
 }
 .cards img {
   border-radius: 10px;
@@ -334,7 +324,7 @@ header .btn-vip {
 
 
 
-.dark-bg-image {
+.dark-bg-image  {
   position: relative;
   display: inline-block;
 }
@@ -349,11 +339,9 @@ header .btn-vip {
   background: linear-gradient(to bottom, rgba(255, 255, 255, 0), #202020);
 }
 
-.dark-bg-image img {
-  display: block;
-  width: 100%;
-  height: auto;
-}
+
+
+
 
 
 

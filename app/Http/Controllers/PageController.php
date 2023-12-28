@@ -148,7 +148,7 @@ class PageController extends Controller
         $meta_title = "Trang chủ | Cosmic";
         $meta_description = "Giao diện chinh của web film cosmic";
         $phimhot = Movie::withCount('episode')->where('phim_hot',1)->where('status',1)->orderBy('position','ASC')->get();
-        $slide = Movie::withCount('episode')->with('country','genre','category','movie_genre')->where('slide',1)->where('status',1)->orderBy('ngay_cap_nhap','DESC')->get();
+        $slide = Movie::withCount('episode')->with('country','genre','category','movie_genre','movie_actor')->where('slide',1)->where('status',1)->orderBy('position','ASC')->get();
         $category = Category::orderBy('id','DESC') ->where('status',1)->get();
         $genre = Genre::orderBy('id','DESC')->where('status',1) ->get();
         $country = Country::orderBy('id','DESC')->where('status',1) ->get();

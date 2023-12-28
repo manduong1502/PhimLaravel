@@ -4,7 +4,7 @@
   <div class="container">
       <div class="row">
           <div class="col">
-              <img src="./public/image/logo/logogốc_trắng.png" alt="Website Logo" style="height: 150px; position: relative; top: -40px"/>
+              <img src="{{asset('/public/image/logo/logogốc_trắng.png')}}" alt="Website Logo" style="height: 150px; position: relative; top: -40px"/>
           </div>
           <div class="col">
               <a href="#"><p>Câu hỏi thường gặp</p></a>

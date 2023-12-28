@@ -2,16 +2,18 @@
 
 @section('content')
     <div class="container contents">
-        <div class="content-title">
+        <div class="content-title d-flex">
             <div class="content-title-big">
-                <h2>ĐỀ XUẤT HOT</h2>
+                <h2 style="font-size: 30px;color:#000"><i class="fa-solid fa-play" style="margin-right: 20px; color:#A41717;"></i>Đề xuất <span style="font-size: 35px;">Hot</span></h2>
             </div>
+            <div class="divider"></div>
+
         </div>
         <div class="row slider">
             @foreach ($movie_related as $key => $mov)
                 <a href="{{ route('pages.chitiet', $mov->slug) }}" style="text-decoration: none;">
                     <div class="slider-card">
-                        <div class="card"style="border-radius: 15px; border: 2px solid black">
+                        <div class="card cards"style="border-radius: 15px; border: 2px solid black">
                             @php
                                 $image_check = substr($mov->image1, 0, 5);
                             @endphp
@@ -36,21 +38,24 @@
     
     <div class="blog-content container">
         <div class="row d-flex" >
-            <div class="col-md-7">
-                <a href="{{route('blog-view',$blog->slug)}}" style="text-decoration: none; color: white">
-                <img src="{{asset('uploads/video/trailer/'.$blog->video)}}" width="100%" alt="">
-                <h4>{{$blog->title}}</h4>
-                <div class="blog-content-information d-flex">
+            <div class="col-md-7 blog-content-left">
+                <a href="{{route('blog-view',$blog->slug)}}" style="text-decoration: none; color: white; margin-top: 20px">
+                <img src="{{asset('uploads/video/trailer/'.$blog->video)}}" width="100%" height="400" alt=""  style="margin-top: 20px;border-radius: 40px;">
+                <div style="margin-left: 10px; padding: 10px">
+                    <h2>{{$blog->title}}</h2>
+                    <div class="blog-content-information d-flex">
                     <p class="blog-content-information-text">Đánh giá phim</p>
                     <p class="blog-content-information-text">levu2004</p>
                     <p class="blog-content-information-number">{{$blog->ngay_cap_nhap}}</p>
                 </div>
+                </div>
+                
                 </a>
             </div>
             <div class="col-md-5">
               @foreach($list_blog->take(4) as $key => $blog)
-              <a href="{{route('blog-view',$blog->slug)}}" style="text-decoration: none;">
-                <div class="background-blog-content">
+              <a href="{{route('blog-view',$blog->slug)}}" style="text-decoration: none; background-color: #2C2C2C;">
+                <div class="background-blog-content" style="text-decoration: none; color: #fff">
                     <h5>{{$blog->title}}</h5>
                     <div class="blog-content-information d-flex">
                         <p class="blog-content-information-text">Đánh giá phim</p>
@@ -93,9 +98,7 @@
                         @endforeach
                     </div>
                 </div>
-                <div class="background-blog-content-2-header mt-4" style="border-radius: 15px;">
-                    <p>Xem thêm</p>
-                </div>
+
             </div>
             <div class="col-md-5">
                 <div class="background-blog-content-2-header" style="border-radius: 15px 15px 0 0">

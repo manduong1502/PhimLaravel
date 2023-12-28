@@ -26,6 +26,26 @@ class LeechMovieController extends Controller
 
         foreach ($categories as $categoryData) {
             // Check if the category already exists in the database
+            $category = Category::where('slug', $categoryData['slug'])->first();
+    
+            if (!$category) {
+                // Category doesn't exist, create and save it
+                $category = new Category();
+                $category->title = $categoryData['name'];
+                $category->slug = $categoryData['slug'];
+                $category->status = 1;
+                
+                // Other category attributes if available
+                $category->save();
+            }
+    
+            // Associate the movie with the category
+            $movie->category_id = $category->id;
+            $movie->save();
+        }
+
+        foreach ($categories as $categoryData) {
+            // Check if the category already exists in the database
             $genre = Genre::where('slug', $categoryData['slug'])->first();
     
             if (!$genre) {
@@ -109,9 +129,33 @@ class LeechMovieController extends Controller
                     
                     $movieInfo = Http::get("https://ophim1.com/phim/$slug")->json();
                     $genres = $movieInfo['movie']['category'];
+                    $categorys = $movieInfo['movie']['category'];
                     $countries = $movieInfo['movie']['country'];
                     $actors = $movieInfo['movie']['actor'];
                     //lưu danh mục của các film
+
+                    if (isset($categorys)) {
+                        foreach ($categorys as $categoryData) {
+                            // Check if the category already exists in the database
+                            $category = Category::where('slug', $categoryData['slug'])->first();
+                    
+                            if (!$category) {
+                                // Category doesn't exist, create and save it
+                                $category = new Category();
+                                $category->title = $categoryData['name'];
+                                $category->slug = $categoryData['slug'];
+                                $category->status = 1;
+                                $nextPosition = Category::max('position') + 1;
+                                $category->position = $nextPosition;
+                                // Other category attributes if available
+                                $category->save();
+                            }
+                    
+                            
+                            $movie->category_id = $category->id;
+                            $movie->save();
+                        }
+                        }
                     if (isset($genres)) {
                     foreach ($genres as $categoryData) {
                         // Check if the category already exists in the database

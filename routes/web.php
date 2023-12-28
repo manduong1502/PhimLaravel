@@ -103,7 +103,7 @@ Route::post('/do_register', [RegisterController::class, 'register'])->name('auth
 
 
 Route::get('/', [PageController::class, 'getGioithieu'])->name('gioithieu');
-Route::get('/index', [PageController::class, 'getTrangchu'])->name('pages.trangchu')->middleware(AuthMiddleware::class);
+Route::get('/trang-chu', [PageController::class, 'getTrangchu'])->name('pages.trangchu')->middleware(AuthMiddleware::class);
 
 
 
