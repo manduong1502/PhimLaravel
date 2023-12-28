@@ -22,10 +22,9 @@ const header = document.getElementById("site-header");
     $(document).ready(function () {
       $('.slider').slick({
         infinite: true,
-        slidesToShow: 5,
-        slidesToScroll: 4,
-        prevArrow: "<button type='button' class='slick-prev pull-left slick-arrow'><i class='fa-solid fa-chevron-left' aria-hidden='true'></i></button>",
-        nextArrow: "<button type='button' class='slick-next pull-right slick-arrow'><i class='fa-solid fa-chevron-right' aria-hidden='true'></i></button>",
+        slidesToShow: 6,
+        slidesToScroll: 6,
+        arrows: false,
 
         responsive: [
           {

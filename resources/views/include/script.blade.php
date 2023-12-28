@@ -13,45 +13,36 @@
   @endif
 
   <script type="text/javascript">
-      $(document).ready(function() {
-          $('#timkiem').keyup(function() {
-              
-              $('#result').html('');
-              var search = $('#timkiem').val();
-              if (search != '') {
-                var expression = new RegExp(search, "i");
-                $.getJSON('/json/movies.json', function(data) {
-                  $.each(data, function(key, value) {
-                    if (value.title.search(expression) != -1) {
-                      $('#result').css('display','inherit')
-                      $('#result').append('<li style="cursor:pointer; display: flex; max-height: 200px; background-color: black" class="list-group-item link-class"><img src="' +
-                                  value.image +
-                                  '" width="100" class="" /><div style="flex-direction: column; margin-left: 2px; color: white;"><h4 width="100%">' +
-                                  value.title +
-                                  '</h4></div></li>') 
-                    }
-                  })
+    $(document).ready(function() {
+        $('#timkiem').keyup(function() {
+            
+            $('#result').html('');
+            var search = $('#timkiem').val();
+            if (search != '') {
+              $('#result').css('display','inherit');
+              var expression = new RegExp(search, "i");
+              $.getJSON('/json/movies.json', function(data) {
+                $.each(data, function(key, value) {
+                  if (value.title.search(expression) != -1) {
+                    $('#result').append('<li style="cursor:pointer; display: flex; max-height: 200px; background-color: #f8f9fa" class="list-group-item link-class"><img src="' +
+                                value.image +
+                                '" width="100" class="" /><div style="flex-direction: column; margin-left: 10px; color: #000000;"><p style=" width="100%">' +
+                                value.title +
+                                '</p></div></li>') 
+                  }
                 })
-              }
-          })
-          $('#result').on('click', 'li', function() {
-              var click_text = $(this).text().split('|');
-              $('#timkiem').val($.trim(click_text[0]));
-              $('#result').html('');
-          })
-      })
-      function showDropdown(element) {
-        const dropdown = element.querySelector('.dropdown-menu');
-        dropdown.style.display = 'block';
-      }
-
-      function hideDropdown(element) {
-        const dropdown = element.querySelector('.dropdown-menu');
-        dropdown.style.display = 'none';
-      }
-
-
-
+              })
+            }else {
+              $('#result').css('display','none');
+            }
+        })
+        $('#result').on('click', 'li', function() {
+            var click_text = $(this).text().split('|');
+            $('#timkiem').val($.trim(click_text[0]));
+            $('#result').html('');
+            $('#result').css('display','none');
+        })
+    })
   </script>
 
 

@@ -6,7 +6,7 @@
     <link rel="canonical" href="{{Request::url()}}">
 
     <link rel="next" href="">
-    <link rel="icon" type="image/png" href="{{$meta_image}}">
+    <link rel="icon" type="image/png" href="{{$meta_image}}" sizes="196x196">
 
     <meta name="revisit-after" content="1 days"/>
     <meta name="robots" content="index,follow"/>

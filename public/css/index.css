@@ -263,6 +263,8 @@ margin-left: 20px;
   border-radius: 10px;
 }
 
+
+
 .icon-overlay {
   position: absolute;
   top: 50%;
@@ -270,7 +272,7 @@ margin-left: 20px;
   transform: translate(-50%, -50%);
   opacity: 0;
   transition: opacity 0.3s ease;
-  color: #33F43B;
+  color: #A41717;
   font-size: 50px;
 }
 
@@ -398,11 +400,16 @@ margin-left: 20px;
   margin-bottom: 20px; 
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
-.content-title .content-title-big h2 {
-  color: #FFF;
+.divider {
+  flex-grow: 1; /* Cho phần đường kẻ mở rộng fill còn lại */
+  height: 1px;
+  background-color: #f5f5f5; /* Màu sắc của đường kẻ */
+  margin-left: 10px; /* Khoảng cách giữa đường kẻ và nội dung */
 }
+
 
 .content-title .content-title-a a {
   color: #FFF;
@@ -492,7 +499,7 @@ margin-left: 20px;
   align-items: center; /* Căn giữa theo chiều dọc */
 }
 .load img {
-  width: 200px;
+  width: 250px;
   height: 150px;
 }
 
@@ -643,6 +650,37 @@ footer{
     flex: 0 0 auto;
     width: 25%;
   }
+}
+
+
+.content-title-big {
+  padding: 10px 40px;
+  background-color: #D9D9D9;
+  border-radius: 25px;
+  
+}
+ 
+.content-title-big h2 {
+  text-transform: capitalize;
+  color: #000;
+
+font-family: Montserrat;
+font-size: 30px;
+font-style: normal;
+font-weight: 600;
+line-height: 40px; /* 111.111% */
+letter-spacing: 0.2px;
+margin: 0;
+}
+
+.content-title-big span {
+  color: #A41717;
+font-family: Montserrat;
+font-size: 32px;
+font-style: normal;
+font-weight: 700;
+line-height: 40px;
+letter-spacing: 0.2px;
 }
 
 

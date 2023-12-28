@@ -65,15 +65,16 @@
 
 
                 </ul>
-                <form class="d-flex" action="{{ route('search') }}" method="GET">
+                <form class="d-flex" action="{{ route('search') }}" method="GET" role="search">
                     <div class="d-flex input-group">
-                        <input type="text" name="search" class="form-control " id="timkiem"
-                            placeholder="Search" autocomplete="off">
+                        <input class="form-control" id="timkiem" type="text" name="search" width="0"
+                        placeholder="Search" aria-label="Search">
                         <button class="btn btn-outline-success"><i class="fa-solid fa-magnifying-glass"></i></button>
-                    </div>
-                    <ul class="list-group" id="result"
-                        style="display: none; position: absolute; top: 100%; left: 60.5%; border: 1px solid black; width: 300px; z-index: 999; ">
+                        <ul class="list-group" id="result"
+                        style="display: none; position: absolute; top: 100%; border: 1px solid rgb(153, 153, 153); width: 300px; z-index: 999; ">
                     </ul>
+                    </div>
+            
                 </form>
 
                 <ul class="navbar-nav mb-2 mb-lg-0">
