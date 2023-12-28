@@ -118,9 +118,9 @@
                 <div class="mb-3 container">
                     <div id="info1" class="info">
                         <div class="container-fluid">
-                            <h3>Tóm tắt</h3>
+                            <h3> <i class="fa-solid fa-play" style="color: #A41717; font-size:15px;"></i> Tóm tắt</h3>
                             {!! $movie->description !!}
-                            <h3>Trailer</h3>
+                            <h3> <i class="fa-solid fa-play" style="color: #A41717; font-size:15px;"></i> Trailer</h3>
                             <iframe width="100%"
                                 height="515"src="{{ asset('https://www.youtube.com/embed/' . $movie->trailer) }}"
                                 frameborder="0"
@@ -156,7 +156,6 @@
                     <div class="miscellaneous-content-2-header">
                         Phim liên quan
                     </div>
-                    <hr>
                     @foreach ($movie_related->take(5) as $key => $mov)
                         <a href="{{ route('pages.chitiet', $mov->slug) }}" style="text-decoration: none">
                             <div class="miscellaneous-content-2-block-film container d-flex">
@@ -174,9 +173,9 @@
 
                                 <div class="miscellaneous-content-2-block-film-text"
                                     style="text-decoration: none; color: white; font-weight: bold">
-                                    <h6>{{ $mov->title }}</h6>
-                                    <p>Kumarn - Drama, Horror</p>
-                                    <p>Khởi chiếu: 06/10/2023</p>
+                                    <div style="color: #FFF;font-family: Montserrat;font-size: 25px;font-style: normal;font-weight: 600;line-height: 28px; /* 200% */letter-spacing: 0.2px;">{{ $mov->title }}</div>
+                                    <p style="color: #FFF;font-family: Montserrat;font-size: 13px;font-style: normal;font-weight: 600;line-height: 28px; /* 233.333% */letter-spacing: 0.2px; margin:0">{{$mov->origin_name}}</p>
+                                    <p style="color: #FFF;font-family: Montserrat;font-size: 13px;font-style: normal;font-weight: 600;line-height: 28px; /* 233.333% */letter-spacing: 0.2px;">{{$mov->view}}N lượt quan tâm</p>
                                 </div>
                             </div>
                         </a>

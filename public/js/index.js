@@ -108,6 +108,48 @@ const header = document.getElementById("site-header");
     })
 
 
+    $(document).ready(function () {
+      $('.card_hot1').slick({
+        infinite: true,
+        slidesToShow: 5,
+        slidesToScroll: 5,
+        arrows: false,
+
+        responsive: [
+          {
+            breakpoint: 1200,
+            settings: {
+              slidesToShow: 4,
+              slidesToScroll: 4,
+              arrows: false,
+            }
+          },
+          {
+            breakpoint: 900,
+            settings: {
+              slidesToShow: 3,
+              slidesToScroll: 3,
+              infinite: false,
+              dots: true
+            }
+          },
+          {
+            breakpoint: 200,
+            settings: {
+              slidesToShow: 3,
+              slidesToScroll: 1,
+              infinite: false,
+              dots: true
+            }
+          },
+        ]
+      });
+    })
+
+
+    
+
+
     
     
 

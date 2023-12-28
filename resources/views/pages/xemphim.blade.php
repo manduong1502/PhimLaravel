@@ -25,6 +25,7 @@
             .iframe-phim iframe {
                 width: 100%;
                 height: 600px;
+                border: 1px solid #fff;
             }
         </style>
         {{-- hiển thị phim --}}
@@ -32,21 +33,15 @@
             {!! $episode->linkphim !!}
         </div>
 
-        <div class="film-btn-support d-flex">
-            <a href=""><i class="fa-solid fa-share"></i>Chia sẻ</a>
-            <a href=""><i class="fa-solid fa-cloud"></i>Sưu tầm</a>
-        </div>
-
         <div class="row mt-3">
             <div class="film-title mt-3 col-md-8">
-                <h2>{{ $movie->title }}</h2>
+                <h2 >{{ $movie->title }}</h2>
                 <div class="film-title-star d-flex">
-                    <div class="star"><i class="fa-solid fa-star"></i> 9.7 </div>
-                    <div>(99 người đã đánh giá)</div>
-                </div>
-                <div class="detail-content-top mt-2 d-flex">
-                    <div class="detail-content-top-text">Top 5</div>
-                    <div class="detail-content-top-text-1">Top phim thịnh hành</div>
+                    <div class="star"></i> 9.7 <span style="color:#ffffff">( {{$movie->view}} Người quan tâm  )</span> </div>
+                    <div >
+                        <a href="#" class="btn btn-share">Chia sẽ</a>
+                        <a href="#" class="btn btn-share">Lưu</a>
+                    </div>
                 </div>
                 <hr>
 
@@ -89,22 +84,23 @@
                 </div>
 
                 <div class="mt-5">
-                    <div class="content-title">
+                    <div class="content-title d-flex">
                         <div class="content-title-big">
-                            <h2>ĐỀ XUẤT HOT</h2>
+                            <h2 style="font-size: 30px;color:#000"><i class="fa-solid fa-play" style="margin-right: 20px; color:#A41717;"></i>Đề xuất <span style="font-size: 35px;">Hot</span></h2>
                         </div>
+                        <div class="divider"></div>
 
                     </div>
-                    <div class="row slider">
+                    <div class="row card_hot1">
                         @foreach ($movie_related as $key => $mov)
                             <a href="{{ route('pages.chitiet', $mov->slug) }}" style="text-decoration: none;">
-                                <div class="slider-card">
-                                    <div class="card"style="border-radius: 15px; border: 2px solid black">
+                                <div class="slider-card" style="margin-right: 15px">
+                                    <div class="card cards"style="border-radius: 15px; border: 2px solid black">
                                         @php
                                             $image_check = substr($mov->image1, 0, 5);
                                         @endphp
                                         @if ($image_check == 'https')
-                                            <img src="{{ $mov->image }}" alt="" style="height: 240px;border-radius: 10px;">
+                                            <img src="{{ $mov->image }}" alt="" style="height: 220px;border-radius: 10px;">
                                         @else
                                             <img src="{{ asset('uploads/movie/' . $mov->image) }}" alt="" style="height: 240px;border-radius: 10px;">
                                         @endif
@@ -122,38 +118,44 @@
                     </div>
                 </div>
 
-                <hr>
+
+                @php
+                            $current_url = Request::url();
+                        @endphp
+                        <div style="background-color: aliceblue" class="fb-comments" data-href="{{ $current_url }}"
+                            data-width="100%" data-numposts="10"></div>
             </div>
 
             <div class="col-md-4 miscellaneous-content-2">
                 <div class="miscellaneous-content-2-block ">
                     <div class="miscellaneous-content-2-header">
-                        Phim đang chiếu
+                        Phim liên quan
                     </div>
-                    <hr>
                     @foreach ($movie_related->take(5) as $key => $mov)
-                        <a href="{{ route('pages.chitiet', $mov->slug) }}" style="text-decoration: none; color: white;">
+                        <a href="{{ route('pages.chitiet', $mov->slug) }}" style="text-decoration: none; ">
                             <div class="miscellaneous-content-2-block-film container d-flex">
                                 <div class="miscellaneous-content-2-block-film-img">
                                     @php
-                                        $image_check = substr($mov->image, 0, 5);
+                                        $image_check = substr($mov->image1, 0, 5);
                                     @endphp
                                     @if ($image_check == 'https')
-                                        <img width="100" height="120" src="{{ $mov->image }}" alt="">
+                                        <img width="70" height="100" src="{{ $mov->image }}" alt="">
                                     @else
-                                        <img width="100" height="120"
+                                        <img width="70" height="100"
                                             src="{{ asset('uploads/movie/' . $mov->image) }}" alt="">
                                     @endif
                                 </div>
 
-                                <div class="miscellaneous-content-2-block-film-text">
-                                    <h6>{{ $mov->title }}</h6>
-                                    <p>Kumarn - Drama, Horror</p>
-                                    <p>Khởi chiếu: 06/10/2023</p>
+                                <div class="miscellaneous-content-2-block-film-text"
+                                    style="text-decoration: none; color: white; font-weight: bold">
+                                    <div style="color: #FFF;font-family: Montserrat;font-size: 25px;font-style: normal;font-weight: 600;line-height: 28px; /* 200% */letter-spacing: 0.2px;">{{ $mov->title }}</div>
+                                    <p style="color: #FFF;font-family: Montserrat;font-size: 13px;font-style: normal;font-weight: 600;line-height: 28px; /* 233.333% */letter-spacing: 0.2px; margin:0">{{$mov->origin_name}}</p>
+                                    <p style="color: #FFF;font-family: Montserrat;font-size: 13px;font-style: normal;font-weight: 600;line-height: 28px; /* 233.333% */letter-spacing: 0.2px;">{{$mov->view}}N lượt quan tâm</p>
                                 </div>
                             </div>
                         </a>
                     @endforeach
+
                 </div>
             </div>
         </div>
