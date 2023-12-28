@@ -96,6 +96,7 @@
                                 <div class="icon-overlay">
                                     <i class="fa-solid fa-circle-play"></i>
                                 </div>
+                            
                             </div>
 
                             <div class="card-text">
@@ -138,18 +139,18 @@
 
         <div class="row slider">
             @foreach ($history_movie->take(10) as $key => $his_mov)
-                    <a href="{{ route('pages.chitiet', $his_mov->movie->slug) }}" style="text-decoration: none">
-                        <div class="slider-card">
+                    <a href="{{ route('pages.chitiet', $his_mov->movie->slug) }}" style="text-decoration: none, margin-right: 10px;">
+                        <div class="slider-card" style="margin-right: 20px;">
                             <div class="card cards" style="position: relative">
                                 @php
                                     $image_check = substr($his_mov->movie->image, 0, 5);
                                 @endphp
                                 @if ($image_check == 'https')
                                     <img src="{{ $his_mov->movie->image }}" alt=""
-                                        style="width: 250px; height:330px; border-radius: 5px; position: relative">
+                                        style="width: 100%; height: 265px; ">
                                 @else
                                     <img src="{{ asset('uploads/movie/' . $his_mov->movie->image) }}" alt=""
-                                        style="width: 250px; height:330px; border-radius: 5px; position: relative">
+                                        style="width: 100%; height: 265px; border-radius: 5px; position: relative">
                                 @endif
                                 <div class="icon-overlay">
                                     <i class="fa-solid fa-circle-play"></i>
@@ -179,11 +180,11 @@
         <div class="row slider">
             @foreach ($movie_vip->take(10) as $key => $mov_vip)
                 <a href="{{ route('pages.chitetvip', $mov_vip->slug) }}" style="text-decoration: none">
-                    <div class="slider-card">
+                    <div class="slider-card" style="margin-right: 20px;">
                         <div class="card cards" style="position: relative">
 
                             <img src="{{ asset('uploads/movie/' . $mov_vip->image) }}" alt=""
-                                style="width: 250px; height:330px; border-radius: 5px; position: relative">
+                            style="width: 100%; height: 265px; ">
                             <div class="icon-overlay">
                                 <i class="fa-solid fa-circle-play"></i>
                             </div>
@@ -217,17 +218,17 @@
             <div class="row slider">
                 @foreach ($cate_home->movie->sortByDesc('position')->take(10) as $key => $mov)
                     <a href="{{ route('pages.chitiet', $mov->slug) }}" style="text-decoration: none">
-                        <div class="slider-card">
+                        <div class="slider-card" style="margin-right: 20px;">
                             <div class="card cards" style="position: relative">
                                 @php
                                     $image_check = substr($mov->image, 0, 5);
                                 @endphp
                                 @if ($image_check == 'https')
                                     <img src="{{ $mov->image }}" alt=""
-                                        style="width: 250px; height:300px; border-radius: 5px; position: relative">
+                                    style="width: 100%; height: 265px; ">
                                 @else
                                     <img src="{{ asset('uploads/movie/' . $mov->image) }}" alt=""
-                                        style="width: 250px; height:300px; border-radius: 5px; position: relative">
+                                    style="width: 100%; height: 265px; ">
                                 @endif
                                 <div class="icon-overlay">
                                     <i class="fa-solid fa-circle-play"></i>

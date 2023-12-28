@@ -4,6 +4,7 @@
   <div id="fb-root"></div>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v18.0&appId=1147305813340707" nonce="1bDodH7F"></script>
   <script src="{{asset('/js/index.js')}}"></script>
+
   
 
   @if (isset($customCssArr))

@@ -174,10 +174,6 @@ header .btn-vip {
   margin-left: 20px;
 }
 
-.cards {
-  background-color: #202020;
-  position: relative;
-}
 
 .icon-overlay {
   position: absolute;
@@ -192,6 +188,11 @@ header .btn-vip {
 
 .cards:hover .icon-overlay {
   opacity: 1;
+}
+
+.cards {
+  position: relative;
+  border: 3px solid red;
 }
 .cards img {
   border-radius: 10px;
@@ -337,6 +338,8 @@ header .btn-vip {
   bottom: 0;
   background: linear-gradient(to bottom, rgba(255, 255, 255, 0), #202020);
 }
+
+
 
 
 

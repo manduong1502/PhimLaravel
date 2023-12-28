@@ -19,40 +19,34 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-ul navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item dropdown" onmouseover="showDropdown(this)" onmouseout="hideDropdown(this)">
-                        <a class="nav-link text-white me-3" href="#" id="navbarDropdown" role="button">Danh mục</a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown"
-                            style="background-color:rgba(0, 0, 0, 0.50);">
+                        <a class="nav-link text-white me-3" href="#" id="navbarDropdown" role="button" style="magrin-bottom: 30px;">Danh mục <i class="fa-solid fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color: rgba(0, 0, 0, 0.749); display: grid; grid-template-columns: repeat(4, 1fr); width: auto">
                             @foreach ($category as $key => $cate)
-                                <li class="nav-item">
-                                    <a title="{{ $cate->title }}" class="nav-link"
-                                        href="{{ route('category', $cate->slug) }}"
-                                        style="color: white;">{{ $cate->title }}</a>
+                                <li class="nav-item" >
+                                    <a class="nav-link" href="{{ route('category', $cate->slug) }}" style="color: white;"> <i class="fa-solid fa-play" style="font-size: 13px"></i> {{ $cate->title }}</a>
                                 </li>
                             @endforeach
                         </ul>
                     </li>
-                    <li class="nav-item" onmouseover="showDropdown(this)" onmouseout="hideDropdown(this)">
-                        <a class="nav-link text-white me-3" href="#" id="navbarDropdown" role="button">Thể Loại</a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown"
-                            style="background-color:rgba(0, 0, 0, 0.50);">
+
+                
+                    <li class="nav-item dropdown" onmouseover="showDropdown(this)" onmouseout="hideDropdown(this)">
+                        <a class="nav-link text-white me-3" href="#" id="navbarDropdown" role="button" style="magrin-bottom: 30px;">Thể Loại <i class="fa-solid fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color: rgba(0, 0, 0, 0.749); display: grid; grid-template-columns: repeat(4, 1fr); width: auto">
                             @foreach ($genre as $key => $gen)
-                                <li class="nav-item">
-                                    <a title="{{ $gen->title }}" class="nav-link "
-                                        href="{{ route('genre', $gen->slug) }}"
-                                        style="color: white;">{{ $gen->title }}</a>
+                                <li class="nav-item" >
+                                    <a class="nav-link" href="{{ route('genre', $gen->slug) }}" style="color: white;"> <i class="fa-solid fa-play" style="font-size: 13px"></i> {{ $gen->title }}</a>
                                 </li>
                             @endforeach
                         </ul>
                     </li>
-                    <li class="nav-item" onmouseover="showDropdown(this)" onmouseout="hideDropdown(this)">
-                        <a class="nav-link text-white me-3" href="#" id="navbarDropdown" role="button">Quốc gia</a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown"
-                            style="background-color:rgba(0, 0, 0, 0.50);">
+                    
+                    <li class="nav-item dropdown" onmouseover="showDropdown(this)" onmouseout="hideDropdown(this)">
+                        <a class="nav-link text-white me-3" href="#" id="navbarDropdown" role="button" style="magrin-bottom: 30px;">Quốc gia <i class="fa-solid fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color: rgba(0, 0, 0, 0.749); display: grid; grid-template-columns: repeat(4, 1fr); width: auto">
                             @foreach ($country as $key => $coun)
-                                <li class="nav-item">
-                                    <a title="{{ $coun->title }}" class="nav-link "
-                                        href="{{ route('country', $coun->slug) }}"
-                                        style="color: white;">{{ $coun->title }}</a>
+                                <li class="nav-item" >
+                                    <a class="nav-link" href="{{ route('country', $coun->slug) }}" style="color: white;"> <i class="fa-solid fa-play" style="font-size: 13px"></i> {{ $coun->title }}</a>
                                 </li>
                             @endforeach
                         </ul>
