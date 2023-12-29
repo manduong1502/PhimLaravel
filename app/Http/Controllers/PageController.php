@@ -147,8 +147,8 @@ class PageController extends Controller
     {
         $meta_title = "Trang chủ | Cosmic";
         $meta_description = "Giao diện chinh của web film cosmic";
-        $phimhot = Movie::withCount('episode')->where('phim_hot',1)->where('status',1)->orderBy('position','ASC')->get();
-        $slide = Movie::withCount('episode')->with('country','genre','category','movie_genre','movie_actor')->where('slide',1)->where('status',1)->orderBy('position','ASC')->get();
+        $phimhot = Movie::withCount('episode')->where('phim_hot',1)->where('status',1)->orderBy('position','DESC')->get();
+        $slide = Movie::withCount('episode')->with('country','genre','category','movie_genre','movie_actor')->where('slide',1)->where('status',1)->orderBy('ngay_cap_nhap','DESC')->get();
         $category = Category::orderBy('id','DESC') ->where('status',1)->get();
         $genre = Genre::orderBy('id','DESC')->where('status',1) ->get();
         $country = Country::orderBy('id','DESC')->where('status',1) ->get();
@@ -251,7 +251,7 @@ class PageController extends Controller
         $category = Category::orderBy('id','DESC') ->where('status',1)->get();
         $genre = Genre::orderBy('id','DESC')->where('status',1) ->get();
         $country = Country::orderBy('id','DESC')->where('status',1) ->get();
-        $customCss = 'css/xemphim.css';
+        $customCssArr = ['css/goiphim_thanhtoan.css','css/xemphim.css'];
         $movie = Movie_vip::with('country','genre','category')->where('slug',$slug)->first();
         $movie_related = Movie_vip::with('country','genre','category','movie_genre','episode')->where('category_id',$movie->category->id)->orderBy(DB::raw('RAND()'))->whereNotIn('slug',[$slug])->get();
 
@@ -297,7 +297,7 @@ class PageController extends Controller
         $meta_description = $movie->desctiption;
         
         return view('pages.xemphim_vip', compact(
-            'customCss',
+            'customCssArr',
             'category',
             'genre',
             'country',
@@ -310,7 +310,7 @@ class PageController extends Controller
             'episode_list',
             'server_active',
             'meta_title',
-            'meta_description'
+            'meta_description',
         ));
     }
     // public function add_rating (Request $request) {

@@ -7,7 +7,7 @@
 
   
 
-  @if (isset($customCssArr))
+  @if (isset($customJsArr))
       @foreach ($customJsArr as $key => $val)
           <script src="{{ asset($val) }}"></script>
       @endforeach

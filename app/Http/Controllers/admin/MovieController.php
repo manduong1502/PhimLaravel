@@ -56,7 +56,7 @@ class MovieController extends Controller
     public function sort_movie () {
         $category = Category::orderBy('position','ASC')->get();
         $category_home = Category::with(['movie'=> function($q) {$q->withCount('episode');}])->where('status',1)->orderBy('position','ASC') ->get();
-        $phimhot = Movie::withCount('episode')->where('phim_hot',1)->where('status',1)->orderBy('position','ASC')->get();
+        $phimhot = Movie::withCount('episode')->where('phim_hot',1)->where('status',1)->orderBy('position','DESC')->get();
         return view('admin.pagesadmin.movie.sort_movie',compact('category','category_home','phimhot'));
     }
 
