@@ -109,8 +109,8 @@
                 <div class=" miscellaneous-content-1-header">
                     <ul class="d-flex miscellaneous-content-1-header-ul container-fluid custom-list"
                         style="margin-bottom: 10px;">
-                        <li><a href="#info1">Thông tin</a></li>
-                        <li><a href="#info2">Đánh giá</a></li>
+                        <li style="margin-top:20px"><a href="#info1">Thông tin</a></li>
+                        <li style="margin-top:20px"><a href="#info2">Đánh giá</a></li>
                     </ul>
                     <hr>
                 </div>
