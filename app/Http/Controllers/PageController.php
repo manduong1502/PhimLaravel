@@ -224,8 +224,8 @@ class PageController extends Controller
         $country = Country::orderBy('id','DESC')->where('status',1) ->get();
         $customCss = 'css/chitiet.css';
 
-        $movie = Movie_vip::with('country','genre','category')->where('slug',$slug)->first();
-        $movie_related = Movie_vip::with('country','genre','category','movie_genre')->where('category_id',$movie->category->id)->orderBy(DB::raw('RAND()'))->whereNotIn('slug',[$slug])->get();
+        $movie = Movie_vip::with('category', 'country', 'genre', 'movie_genre','movie_actor','actor')->where('slug',$slug)->first();
+        $movie_related = Movie_vip::with('category', 'country', 'genre', 'movie_genre','movie_actor','actor')->where('category_id',$movie->category->id)->orderBy(DB::raw('RAND()'))->whereNotIn('slug',[$slug])->get();
         $movie_tapdau = Episode_vip::with('movie_vip')->where('movie_vip_id',$movie->id)->orderBy('episode','ASC')->take(1)->first();
         $episode = Episode_vip::with('movie_vip')->where('movie_vip_id',$movie->id)->orderBy('id','DESC')->take(3)->get();
 
@@ -624,3 +624,4 @@ public function loc_phim() {
     
 }
 }
+

@@ -5,69 +5,98 @@
 
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <div class="dark-bg-image  ">
+                <div class="dark-bg-image ">
                     <div class="dark-bg-image-2">
                         @php
                             $image_check = substr($movie->image1, 0, 5);
                         @endphp
                         @if ($image_check == 'https')
-                            <img src="{{ $movie->image1 }}" alt="...">
+                            <img src="{{ $movie->image1 }}" alt="..." width="100%" height="800">
                         @else
-                            <img src="{{ asset('uploads/movie/imagebig/' . $movie->image1) }}" alt="..." style="width: 100%;">
+                            <img src="{{ asset('uploads/movie/imagebig/' . $movie->image1) }}" alt="..."
+                                style="width: 100%;">
                         @endif
                     </div>
                 </div>
                 <div class="carousel-caption d-none d-md-block">
-                    <div class="detail-title responsive-text">{{ $movie->title }}</div>
-                    <div class="detail-content-top mt-3 d-flex">
-                        <div class="detail-content-top-text">Top 5</div>
-                        <div class="detail-content-top-text-1">Top phim thịnh hành</div>
-                    </div>
-                    <div class="detail-title-small mt-3 d-flex ">
-                        <span>Thể loại: </span>
-                        @foreach ($movie->movie_genre as $gen)
-                            <div class="text-title" style="margin-left: 5px; color: black; padding: 0 5px 0 5px;">{{ $gen->title }}</div>
-                        @endforeach
-                    </div>
+                    <div class="title-carousel-caption">{{ $movie->title }}</div>
+                    <div class="responsive-text">{{ $movie->origin_name }}</div>
+                    <div class="responsive-text112 " >
+                        <div class="responsive-text12">
+                            {{ $movie->nam_phim }}
+                        </div>
+                        <div class="responsive-text12">
+                            {{ $movie->quality }}
+                        </div>
+                        <div class="responsive-text12">
+                            {{ $movie->lang }}
+                        </div>
 
-                    <div class="detail-title-small   mt-3 d-flex ">
-                        <div class="text-title-name ">Diễn viên chính: </div>
-                        <div class="d-flex">
-                            @if ($movie->actor != null)
-                                @php
-                                    $actor = [];
-                                    $actor = explode(',', $movie->actor);
-                                @endphp
-                                @foreach ($actor as $key => $act)
-                                    <a href="" style="text-decoration: none; color: white; margin-left: 5px; font-weight: bold">{{ $act }}</a>
-                                @endforeach
+                        <div class="responsive-text12 ">
+                            {{$movie->episode_count}} /
+                            @if($movie->so_tap === '?')
+                                (Đang cập nhập)
+                            @elseif($movie->so_tap === '? tập')
+                                (Đang cập nhập)    
+                            @else
+                            <span>{{ substr($movie->so_tap, 0, 2) }} tập</span>   
                             @endif
+                           @if($movie->episode_count == $movie->so_tap) 
+                            <span style="color: rgb(211, 31, 31)">(Hoàn thành)</span>
+                           @endif
+                        </div>
+
+                        <div class="responsive-text12">
+                            {{ $movie->time }}
                         </div>
                     </div>
+                    <hr style="opacity: inherit;margin: 0; width: 500px;">
+                    <div class="top-trending-carousel-caption ">
+                        <div class="top-title ">
+                            Quốc gia: {{$movie->country->title}}
+                        </div>
+                        <div class="top-title ">Thể loại:
+                            @foreach ($movie->movie_genre->take(6) as $gen)
+                            {{ $gen->title }},
+                            @endforeach
+                            ...
+                        </div>
 
-                    <div class="detail-title-small mt-3 row d-flex" style="text-align: left;">
-                        <span class="text-title-name col-3 ">Tập mới nhất: </span>
+                        <div class="top-title"> Diễn viên:
+                            @foreach ($movie->movie_actor->take(5) as $act)
+                            {{ $act->name }},
+                            @endforeach
+                            ....
+                        </div>
+                    </div>
+                    <div class="detail-title-small mt-2  d-flex" style="text-align: left;">
+                        <span class="text-title-name col-3 " style="font-weight: bold;">Tập mới nhất: </span>
                         <div class=" col-9">
                             @foreach ($episode as $key => $epi)
-                                <a href="{{ url('xem-phim-vip/' . $epi->movie_vip->slug . '/tap-' . $epi->episode) }}" style="text-decoration: none; color: white; margin-left: 5px; font-weight: bold"> Tập
+                                @if($epi->episode == '')
+                                    <span style="font-weight: bold;">Trailer</span>
+                                @else
+                                <a href="{{ url('xem-phim-vip/' . $epi->movie_vip->slug . '/tap-' . $epi->episode . '/server-' . $epi->server) }}"
+                                    style="text-decoration: none; color: white; margin-left: 5px; font-weight: bold"> Tập
                                     {{ $epi->episode }}</a>
+                                @endif
                             @endforeach
                         </div>
                     </div>
 
-            
-                    <div class="detail-title-small mt-3 row d-flex" style="text-align: left;">
-                        <div class="text-title-name col-2 ">Miêu tả: </div>
-                        <div class=" col-10">
-                            {!! substr($movie->description, 0, 50) !!}
-                        </div>
-                    </div>
 
-                    <div class="detail-title-small mt-2 d-flex" style="text-align: left;">
-                        <a href="{{ url('xem-phim-vip/' . $movie->slug . '/tap-' . $movie_tapdau->episode . '/server-' . $movie_tapdau->server) }}"
-                            class="btn btn-issue"><i class="fa-solid fa-play"></i> Phát ngay</a>
-                        <button class="btn btn-share"><i class="fa-solid fa-share"></i> Chia sẽ</button>
-                        <button class="btn btn-share"><i class="fa-solid fa-cloud"></i> Sưu tập</button>
+                    <div class="detail-title-small mt-3 d-flex" style="text-align: left;">
+                        @if ($movie_tapdau && $movie_tapdau->episode && $movie_tapdau->episode !== 'Full')
+                            <a href="{{ url('xem-phim-vip/' . $movie->slug . '/tap-' . $movie_tapdau->episode . '/server-' . $movie_tapdau->server) }}"
+                                class="btn-issue">
+                                <i class="fa-solid fa-play"></i> Phát ngay
+                            </a>
+                        @elseif($movie_tapdau && $movie_tapdau->episode && $movie_tapdau->episode === 'Full')
+                            <a href="{{ url('xem-phim-vip/' . $movie->slug . '/tap-Full/server-' . $movie_tapdau->server) }}"
+                                class="btn-issue">
+                                <i class="fa-solid fa-play"></i> Phát ngay
+                            </a>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -78,24 +107,30 @@
         <div class="row  miscellaneous-content">
             <div class="col-md-8 miscellaneous-content-1 ">
                 <div class=" miscellaneous-content-1-header">
-                    <ul class="d-flex miscellaneous-content-1-header-ul container-fluid custom-list" style="margin-bottom: 10px;">
-                        <li><a href="#info1">Trailer</a></li>
+                    <ul class="d-flex miscellaneous-content-1-header-ul container-fluid custom-list"
+                        style="margin-bottom: 10px;">
+                        <li><a href="#info1">Thông tin</a></li>
                         <li><a href="#info2">Đánh giá</a></li>
-                        <li><a href="#info3">Tin tức</a></li>
                     </ul>
                     <hr>
                 </div>
 
                 <div class="mb-3 container">
                     <div id="info1" class="info">
-                        <iframe width="100%"
-                            height="515"src="{{ asset('https://www.youtube.com/embed/' . $movie->trailer) }}"
-                            frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen style="border-radius: 10px;"></iframe>
+                        <div class="container-fluid">
+                            <h3> <i class="fa-solid fa-play" style="color: #A41717; font-size:15px;"></i> Tóm tắt</h3>
+                            {!! $movie->description !!}
+                            <h3> <i class="fa-solid fa-play" style="color: #A41717; font-size:15px;"></i> Trailer</h3>
+                            <iframe width="100%"
+                                height="515"src="{{ asset('https://www.youtube.com/embed/' . $movie->trailer) }}"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen style="border-radius: 10px;"></iframe>
+                        </div>
+
+
+
                     </div>
-
-
                     <!-- begin info3-->
                     <div id="info2" class="info">
                         <div class="container info3-assess-header">
@@ -110,58 +145,7 @@
                     <!-- end info3-->
 
                     <!-- begin info4-->
-                    <div id="info3" class="info">
-                        <div class="miscellaneous-content-2-block-film container d-flex">
-                            <div class="miscellaneous-content-2-block-film-img">
-                                <img src="public/image/image-37.png" height="170px" alt="">
-                            </div>
-
-                            <div class="miscellaneous-content-2-block-film-text">
-                                <h4>Review Thanh Gươm Trừ Tà - Sự kết hợp thú vị giữa hài và tâm linh</h6>
-                                    <div class="blog-content-information d-flex">
-                                        <p class="blog-content-information-text">Đánh giá phim</p>
-                                        <p class="blog-content-information-text">levu2004</p>
-                                        <p class="blog-content-information-number">14 giờ trước</p>
-                                    </div>
-                                    <p>Thanh Gươm Trừ Tà (Dr. Cheon And The Lost Talisman) đã mang đến những giây phút giải
-                                        trí vui nhộn cho khán giả.</p>
-                            </div>
-                        </div>
-
-                        <div class="miscellaneous-content-2-block-film container d-flex">
-                            <div class="miscellaneous-content-2-block-film-img">
-                                <img src="public/image/image-37.png" height="170px" alt="">
-                            </div>
-
-                            <div class="miscellaneous-content-2-block-film-text">
-                                <h4>Review Thanh Gươm Trừ Tà - Sự kết hợp thú vị giữa hài và tâm linh</h6>
-                                    <div class="blog-content-information d-flex">
-                                        <p class="blog-content-information-text">Đánh giá phim</p>
-                                        <p class="blog-content-information-text">levu2004</p>
-                                        <p class="blog-content-information-number">14 giờ trước</p>
-                                    </div>
-                                    <p>Thanh Gươm Trừ Tà (Dr. Cheon And The Lost Talisman) đã mang đến những giây phút giải
-                                        trí vui nhộn cho khán giả.</p>
-                            </div>
-                        </div>
-
-                        <div class="miscellaneous-content-2-block-film container d-flex">
-                            <div class="miscellaneous-content-2-block-film-img">
-                                <img src="public/image/image-37.png" height="170px" alt="">
-                            </div>
-
-                            <div class="miscellaneous-content-2-block-film-text">
-                                <h4>Review Thanh Gươm Trừ Tà - Sự kết hợp thú vị giữa hài và tâm linh</h6>
-                                    <div class="blog-content-information d-flex">
-                                        <p class="blog-content-information-text">Đánh giá phim</p>
-                                        <p class="blog-content-information-text">levu2004</p>
-                                        <p class="blog-content-information-number">14 giờ trước</p>
-                                    </div>
-                                    <p>Thanh Gươm Trừ Tà (Dr. Cheon And The Lost Talisman) đã mang đến những giây phút giải
-                                        trí vui nhộn cho khán giả.</p>
-                            </div>
-                        </div>
-                    </div>
+                
                 </div>
                 <!-- end info4-->
 
@@ -172,7 +156,6 @@
                     <div class="miscellaneous-content-2-header">
                         Phim liên quan
                     </div>
-                    <hr>
                     @foreach ($movie_related->take(5) as $key => $mov)
                         <a href="{{ route('pages.chitiet', $mov->slug) }}" style="text-decoration: none">
                             <div class="miscellaneous-content-2-block-film container d-flex">
@@ -188,10 +171,11 @@
                                     @endif
                                 </div>
 
-                                <div class="miscellaneous-content-2-block-film-text" style="text-decoration: none; color: white; font-weight: bold">
-                                    <h6>{{ $mov->title }}</h6>
-                                    <p>Kumarn - Drama, Horror</p>
-                                    <p>Khởi chiếu: 06/10/2023</p>
+                                <div class="miscellaneous-content-2-block-film-text"
+                                    style="text-decoration: none; color: white; font-weight: bold">
+                                    <div style="color: #FFF;font-family: Montserrat;font-size: 25px;font-style: normal;font-weight: 600;line-height: 28px; /* 200% */letter-spacing: 0.2px;">{{ $mov->title }}</div>
+                                    <p style="color: #FFF;font-family: Montserrat;font-size: 13px;font-style: normal;font-weight: 600;line-height: 28px; /* 233.333% */letter-spacing: 0.2px; margin:0">{{$mov->origin_name}}</p>
+                                    <p style="color: #FFF;font-family: Montserrat;font-size: 13px;font-style: normal;font-weight: 600;line-height: 28px; /* 233.333% */letter-spacing: 0.2px;">{{$mov->view}}N lượt quan tâm</p>
                                 </div>
                             </div>
                         </a>
