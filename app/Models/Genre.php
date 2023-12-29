@@ -13,6 +13,10 @@ class Genre extends Model
         return $this->belongsTo(Movie::class);
     }
 
+    public function movie_vip () {
+        return $this->belongsTo(Movie_vip::class);
+    }
+
     public function blog () {
         return $this->belongsTo(Blog::class);
     }

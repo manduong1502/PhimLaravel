@@ -13,4 +13,8 @@ class Actor extends Model
     public function movie () {
         return $this->belongsTo(Movie::class);
     }
+
+    public function movie_vip () {
+        return $this->belongsTo(Movie_vip::class);
+    }
 }

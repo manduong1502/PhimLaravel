@@ -13,14 +13,14 @@
                                 {{ session('status') }}
                             </div>
                         @endif
-                        @if (!isset($movievip))
+                        @if (!isset($movie_vip))
                             {!! Form::open(['route' => 'movievip.store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
                         @else
-                            {!! Form::open(['route' => ['movievip.update', $movievip->id], 'method' => 'PUT', 'enctype' => 'multipart/form-data']) !!}
+                            {!! Form::open(['route' => ['movievip.update', $movie_vip->id], 'method' => 'PUT', 'enctype' => 'multipart/form-data']) !!}
                         @endif
                         <div class="form-group">
                             {!! Form::label('title', 'Tên Phim', []) !!}
-                            {!! Form::text('title', isset($movievip) ? $movievip->title : '', [
+                            {!! Form::text('title', isset($movie_vip) ? $movie_vip->title : '', [
                                 'class' => 'form-control',
                                 'placeholder' => 'Nhập vào dữ liệu...',
                                 'id' => 'slug',
@@ -30,9 +30,20 @@
                             <span class="errors-message">{{$errors->first('title')}}</span>
                           @endif --}}
                         </div>
+
+                        <div class="form-group">
+                            {!! Form::label('title', 'Tên Phim tiếng anh', []) !!}
+                            {!! Form::text('origin_name', isset($movie_vip) ? $movie_vip->origin_name : '', [
+                                'class' => 'form-control',
+                                'placeholder' => 'Nhập vào dữ liệu...',
+                            ]) !!}
+                            {{-- @if($errors->has('origin_name'))
+                            <span class="errors-message">{{$errors->first('origin_name')}}</span>
+                          @endif --}}
+                        </div>
                         <div class="form-group">
                             {!! Form::label('slug', 'Đường link', []) !!}
-                            {!! Form::text('slug', isset($movievip) ? $movievip->slug : '', [
+                            {!! Form::text('slug', isset($movie_vip) ? $movie_vip->slug : '', [
                                 'class' => 'form-control',
                                 'placeholder' => 'Nhập vào dữ liệu...',
                                 'id' => 'convert_slug',
@@ -44,7 +55,7 @@
 
                         <div class="form-group">
                             {!! Form::label('description', 'Mô tả', []) !!}
-                            {!! Form::textarea('description', isset($movievip) ? $movievip->description : '', [
+                            {!! Form::textarea('description', isset($movie_vip) ? $movie_vip->description : '', [
                                 'class' => 'form-control',
                                 'placeholder' => 'Nhập vào dữ liệu...',
                                 'id' => 'description',
@@ -55,7 +66,7 @@
                         </div>
                         <div class="form-group">
                             {!! Form::label('so_tap', 'Số Tập', []) !!}
-                            {!! Form::text('so_tap', isset($movievip) ? $movievip->so_tap : '', [
+                            {!! Form::text('so_tap', isset($movie_vip) ? $movie_vip->so_tap : '', [
                                 'class' => 'form-control',
                                 'placeholder' => 'Nhập vào dữ liệu...',
                                 'id' => 'slug',
@@ -65,27 +76,65 @@
                           @endif --}}
                         </div>
                         <div class="form-group">
-                            {!! Form::label('title', 'Diễn viên (mỗi diễn viên cách dấu phẩy vd: dv1,dv2)', []) !!}
-                            {!! Form::text('actor', isset($movievip) ? $movievip->actor : '', [
+                            {!! Form::label('title', 'Chất lượng', []) !!}
+                            {!! Form::text('quality', isset($movie_vip) ? $movie_vip->quality : '', [
                                 'class' => 'form-control',
                                 'placeholder' => 'Nhập vào dữ liệu...',
                             ]) !!}
-                            {{-- @if($errors->has('actor'))
-                            <span class="errors-message">{{$errors->first('actor')}}</span>
+                            {{-- @if($errors->has('title'))
+                            <span class="errors-message">{{$errors->first('quality')}}</span>
                           @endif --}}
                         </div>
+
                         <div class="form-group">
-                            {!! Form::label('daodien', 'Daodien', []) !!}
-                            {!! Form::textarea('daodien', isset($movievip) ? $movievip->daodien : '', [
+                            {!! Form::label('title', 'Lang(Vietsub,thuyetminh)', []) !!}
+                            {!! Form::text('lang', isset($movie_vip) ? $movie_vip->lang : '', [
                                 'class' => 'form-control',
                                 'placeholder' => 'Nhập vào dữ liệu...',
-                                'id' => 'daodien',
                             ]) !!}
+                            {{-- @if($errors->has('origin_name'))
+                            <span class="errors-message">{{$errors->first('lang')}}</span>
+                          @endif --}}
+                        </div>
+
+                        <div class="form-group">
+                            {!! Form::label('title', 'Thời lượng', []) !!}
+                            {!! Form::text('time', isset($movie_vip) ? $movie_vip->movie_vip : '', [
+                                'class' => 'form-control',
+                                'placeholder' => 'Nhập vào dữ liệu...',
+                            ]) !!}
+
+                        </div>
+
+                        <div class="form-group">
+                            {!! Form::label('Actor', 'Diễn viên', []) !!} <br>
+                            @foreach ($list_actor as $key => $list_act)
+                                @if (isset($movie_vip))
+                                    {!! Form::checkbox(
+                                        'actor[]',
+                                        $list_act->id,
+                                        isset($movie_actor) && $movie_actor->contains($list_act->id) ? true : false,
+                                    ) !!}
+                                @else
+                                    {!! Form::checkbox('actor[]', $list_act->id) !!}
+                                @endif
+                                {!! Form::label('actor', $list_act->name) !!}
+                            @endforeach
+                        </div>
+
+                        <div class="form-group">
+                            {!! Form::label('Active', 'Năm phim', []) !!}
+                            {!! Form::selectYear('nam_phim', 2000, 2023, isset($movie_vip) ? $movie_vip->nam_phim : '', [
+                                        'class' => 'form-control',
+                                    ]) !!}
+                            {{-- @if($errors->has('status'))
+                            <span class="errors-message">{{$errors->first('status')}}</span>
+                          @endif --}}
                         </div>
 
                         <div class="form-group">
                             {!! Form::label('Active', 'Hiển thị', []) !!}
-                            {!! Form::select('status', ['1' => 'Hiển thị', '0' => 'Không hiển thị'], isset($movievip) ? $movievip->status : '', [
+                            {!! Form::select('status', ['1' => 'Hiển thị', '0' => 'Không hiển thị'], isset($movie_vip) ? $movie_vip->status : '', [
                                 'class' => 'form-control',
                             ]) !!}
                             {{-- @if($errors->has('status'))
@@ -95,7 +144,7 @@
 
                         <div class="form-group">
                             {!! Form::label('Category', 'Danh mục', []) !!}
-                            {!! Form::select('category_id', $category, isset($movievip) ? $movievip->category_id : '', [
+                            {!! Form::select('category_id', $category, isset($movie_vip) ? $movie_vip->category_id : '', [
                                 'class' => 'form-control',
                             ]) !!}
                             {{-- @if($errors->has('category_id'))
@@ -105,7 +154,7 @@
 
                         <div class="form-group">
                             {!! Form::label('Country', 'Quốc Gia', []) !!}
-                            {!! Form::select('country_id', $country, isset($movievip) ? $movievip->country_id : '', ['class' => 'form-control']) !!}
+                            {!! Form::select('country_id', $country, isset($movie_vip) ? $movie_vip->country_id : '', ['class' => 'form-control']) !!}
                             {{-- @if($errors->has('country_id'))
                                 <span class="errors-message">{{$errors->first('country_id')}}</span>
                             @endif --}}
@@ -113,13 +162,13 @@
 
                         <div class="form-group">
                             {!! Form::label('Genre', 'Thể Loại', []) !!} <br>
-                            {{-- {!! Form::select('genre_id', $genre, isset($movievip) ? $movievip->genre_id : '', ['class' => 'form-control']) !!} --}}
+                            {{-- {!! Form::select('genre_id', $genre, isset($movie_vip) ? $movie_vip->genre_id : '', ['class' => 'form-control']) !!} --}}
                             @foreach ($list_genre as $key => $list_gen)
-                                @if (isset($movievip))
+                                @if (isset($movie_vip))
                                     {!! Form::checkbox(
                                         'genre[]',
                                         $list_gen->id,
-                                        isset($movievip_genre) && $movievip_genre->contains($list_gen->id) ? true : false,
+                                        isset($movie_genre) && $movie_genre->contains($list_gen->id) ? true : false,
                                     ) !!}
                                 @else
                                     {!! Form::checkbox('genre[]', $list_gen->id) !!}
@@ -131,7 +180,13 @@
 
                         <div class="form-group">
                             {!! Form::label('Phim hot', 'Hiển thị slide', []) !!}
-                            {!! Form::select('slide', ['0' => 'Không hiển thị', '1' => 'Hiển thị'], isset($movievip) ? $movievip->slide : '', [
+                            {!! Form::select('slide', ['0' => 'Không hiển thị', '1' => 'Hiển thị'], isset($movie_vip) ? $movie_vip->slide : '', [
+                                'class' => 'form-control',
+                            ]) !!}
+                        </div>
+                        <div class="form-group">
+                            {!! Form::label('Phim hot', 'Loại', []) !!}
+                            {!! Form::select('type', ['series' => 'Phim bộ', 'single' => 'Phim lẽ','hoathinh'=>'Hoạt hình'], isset($movie_vip) ? $movie_vip->type : '', [
                                 'class' => 'form-control',
                             ]) !!}
                         </div>
@@ -141,7 +196,7 @@
                             {!! Form::select(
                                 'phim_hot',
                                 ['0' => 'Không hiển thị', '1' => 'Hiển thị'],
-                                isset($movievip) ? $movievip->phim_hot : '',
+                                isset($movie_vip) ? $movie_vip->phim_hot : '',
                                 [
                                     'class' => 'form-control',
                                 ],
@@ -155,29 +210,29 @@
                         <div class="form-group">
                             {!! Form::label('Image', 'Ảnh nhỏ', []) !!}
                             {!! Form::file('image', ['class' => 'form-control-file']) !!}
-                            @if (isset($movievip))
-                                <img width="20%" src="{{ asset('uploads/movievip/' . $movievip->image) }}"alt="">
+                            @if (isset($movie_vip))
+                                <img width="20%" src="{{ asset('uploads/movie_vip/' . $movie_vip->image) }}"alt="">
                             @endif
                         </div>
 
                         <div class="form-group">
                             {!! Form::label('Image', 'Ảnh lớn', []) !!}
                             {!! Form::file('image1', ['class' => 'form-control-file']) !!}
-                            @if (isset($movievip))
-                                <img width="20%" src="{{ asset('uploads/movievip/imagebig/' . $movievip->image1) }}"alt="">
+                            @if (isset($movie_vip))
+                                <img width="20%" src="{{ asset('uploads/movie_vip/imagebig/' . $movie_vip->image1) }}"alt="">
                             @endif
                         </div>
 
                         <div class="form-group">
                             {!! Form::label('title', 'Trailer (link cuối đuôi youtube)', []) !!}
-                            {!! Form::text('trailer', isset($movievip) ? $movievip->trailer : '', [
+                            {!! Form::text('trailer', isset($movie_vip) ? $movie_vip->trailer : '', [
                                 'class' => 'form-control',
                                 'placeholder' => 'Nhập vào dữ liệu...',
                             ]) !!}
                         </div>
 
 
-                        @if (!isset($movievip))
+                        @if (!isset($movie_vip))
                             {!! Form::submit('Thêm dữ liêu', ['class' => 'btn btn-success mt-2']) !!}
                         @else
                             {!! Form::submit('Cập Nhập', ['class' => 'btn btn-success mt-2']) !!}

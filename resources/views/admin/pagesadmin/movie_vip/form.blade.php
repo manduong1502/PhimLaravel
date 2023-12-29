@@ -226,6 +226,7 @@
                             <th scope="col">Hình ảnh lớn</th>
                             <th scope="col">Trailer</th>
                             <th scope="col">Tiêu đề</th>
+                            <th scope="col">Tiêu đề tiếng anh</th>
                             <th scope="col">Tập phim</th>
                             <th scope="col">Đường dẫn phim</th>
                             <th scope="col">Mô tả</th>
@@ -237,8 +238,12 @@
                             <th scope="col">Thể loại</th>
                             <th scope="col">Quốc gia</th>
                             <th scope="col">Năm phim</th>
-                            <th scope="col">Ngày Cập Nhập</th>
-                            <th scope="col">Năm phim</th>
+                            <th scope="col">Thời lượng/Tập</th>
+                            <th scope="col">quality</th>
+                            <th scope="col">lang</th>
+                            <th scope="col">View</th>
+                            <th scope="col">Ngày tạo</th>
+                            <th scope="col">Ngày cập nhập</th>
                             <th scope="col">Chỉnh sửa</th>
                         </tr>
                     </thead>
@@ -291,6 +296,7 @@
                                     @endif
                                 </td>
                                 <td>{{ $cate->title }}</td>
+                                <td>{{ $cate->origin_name }}</td>
                                 <td>
                                     <a href="{{ route('episodemovievip', [$cate->id]) }}" class="btn btn-danger btn-sm">Thêm tập
                                         phim</a>
@@ -318,7 +324,15 @@
                                         <option value="0" {{$cate->status == 0 ? 'selected' : ''}}>Không hiển thị</option>
                                     </select>
                                 </td>
-                                <td>{{ $cate->actor }}</td>
+                                <td>
+                                    @if (isset($movie_actor))
+                                        @foreach ($cate->movie_actor as $act)
+                                            <div class="badge bg-dark d-block mb-1">{{ $act->name }}</div>
+                                        @endforeach
+                                    @else
+                                        <div class="badge bg-dark d-block mb-1">{{ $act->actor->name }}</div>
+                                    @endif
+                                </td>
                                 <td>
                                     {{-- @if ($cate->phim_hot == 1)
                                         <span class="badge badge-success">Hiển thị</span>
@@ -369,16 +383,20 @@
                                         'id' => $cate->id,
                                     ]) !!}
                                 </td>
+                                <td>{{ $cate->time }}</td>
+                                <td>{{ $cate->quality }}</td>
+                                <td>{{ $cate->lang}}</td>
+                                <td>{{ $cate->view}}K view</td>
                                 <td>{{ $cate->ngay_tao }}</td>
                                 <td>{{ $cate->ngay_cap_nhap }}</td>
                                 <td>
                                     {!! Form::open([
                                         'method' => 'DELETE',
-                                        'route' => ['movie.destroy', $cate->id, 'onsubmit' => 'return confirm("Bạn có muốn xóa hay ko?")'],
+                                        'route' => ['movievip.destroy', $cate->id, 'onsubmit' => 'return confirm("Bạn có muốn xóa hay ko?")'],
                                     ]) !!}
                                     {!! Form::submit('Xóa', ['class' => 'btn btn-danger']) !!}
                                     {!! Form::close() !!}
-                                    <a href="{{ route('movie.edit', $cate->id) }}" class="btn btn-warning">Sửa</a>
+                                    <a href="{{ route('movievip.edit', $cate->id) }}" class="btn btn-warning">Sửa</a>
                                 </td>
                             </tr>
                         @endforeach

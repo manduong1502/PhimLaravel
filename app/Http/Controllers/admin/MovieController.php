@@ -97,11 +97,13 @@ class MovieController extends Controller
     $category = Category::pluck('title', 'id');
     $country = Country::pluck('title', 'id');
     $genre = Genre::pluck('title', 'id');
+    $actor = Actor::pluck('name', 'id');
     $list_genre = Genre::all();
-    $list = Movie::with('category', 'country', 'genre', 'movie_genre')->withCount('episode')->orderBy('id', 'DESC')->get();
-    
+    $list_actor = Actor::all();
+    $list = Movie::with('category', 'country', 'genre', 'movie_genre','movie_actor')->withCount('episode')->orderBy('id', 'DESC')->get();
     // Đảm bảo biến movie_genre đã được định nghĩa và cung cấp nó trong mảng compact
     $movie_genre = Genre::pluck('title', 'id');
+    $movie_actor = Actor::pluck('name', 'id');
     
     return view('admin.pagesadmin.movie.index', compact(
         'list',
@@ -109,7 +111,10 @@ class MovieController extends Controller
         'genre',
         'category',
         'list_genre',
-        'movie_genre' // Thêm biến movie_genre vào danh sách các biến cần truyền vào view
+        'movie_genre', // Thêm biến movie_genre vào danh sách các biến cần truyền vào view
+        'list_actor',
+        'movie_actor'
+
     ));
 }
 
@@ -124,9 +129,7 @@ class MovieController extends Controller
         $movie->slug = $request->slug;
         $movie->so_tap = $request->so_tap;
         $movie->description = $request->description;
-        $movie->daodien = $request->daodien;
         $movie->status = $request->status;
-        $movie->actor = $request->actor;
         $movie->slide = $request->slide;
         $movie->trailer = $request->trailer;
         $movie->phim_hot = $request->phim_hot;
@@ -136,11 +139,24 @@ class MovieController extends Controller
         $movie->ngay_cap_nhap = Carbon::now('Asia/Ho_Chi_Minh');
         $nextPosition = Movie::max('position') + 1;
         $movie->position = $nextPosition;
+        $movie->time = $request->time;
+        $movie->quality = $request->quality;
+        $movie->lang = $request->lang;
+        $movie->view = $request->view;
+        $movie->type = $request->type;
+        $movie->nam_phim = $request->nam_phim;
+        $movie->origin_name = $request->origin_name;
+        
         
         
         foreach($data['genre'] as $key => $gen) {
             $movie -> genre_id = $gen[0];
         }
+
+        foreach($data['actor'] as $key => $act) {
+            $movie -> actor_id = $act[0];
+        }
+
 
         //thêm hình ảnh nhỏ
         $get_image = $request ->file('image');
@@ -165,6 +181,7 @@ class MovieController extends Controller
         $movie->save();
         //Thêm nhiêu thể loại cho phim
         $movie->movie_genre()->attach($data['genre']);
+        $movie->movie_actor()->attach($data['actor']);
         return redirect()->back()->with('success', 'Bạn đã thêm thành công');;
     }
 
@@ -184,10 +201,14 @@ class MovieController extends Controller
         $category = Category::pluck('title','id');
         $country = Country::pluck('title','id');
         $genre = Genre::pluck('title','id');
-        $list = Movie::with('category','country','genre')->orderBy('id','DESC')->get();
+        $actor = Actor::pluck('name','id');
+        $list = Movie::with('category','country','genre','movie_genre','movie_actor')->orderBy('id','DESC')->get();
         $list_genre = Genre::all();
         $movie = Movie::find($id);
         $movie_genre = $movie->movie_genre;
+        $list_actor = Actor::all();
+        $movie_actor = $movie->movie_actor;
+        
         if (!$movie) {
             return redirect()->route('movie.create')->with('error', 'Không tìm thấy bộ phim.');
         }
@@ -198,7 +219,10 @@ class MovieController extends Controller
             'category',
             'movie',
             'list_genre',
-            'movie_genre'
+            'movie_genre',
+            'list_actor',
+            'movie_actor',
+            'actor'
         ))->with('success', 'Bạn đã cập nhập thành công');
     }
 
@@ -213,8 +237,6 @@ class MovieController extends Controller
         $movie->slug = $request->slug;
         $movie->so_tap = $request->so_tap;
         $movie->description = $request->description;
-        $movie->actor = $request->actor;
-        $movie->daodien = $request->daodien;
         $movie->trailer = $request->trailer;
         $movie->status = $request->status;
         $movie->slide = $request->slide;
@@ -223,8 +245,20 @@ class MovieController extends Controller
         $movie->country_id = $request->country_id;
         $movie->ngay_cap_nhap = Carbon::now('Asia/Ho_Chi_Minh');
 
+        $movie->time = $request->time;
+        $movie->quality = $request->quality;
+        $movie->lang = $request->lang;
+        $movie->view = $request->view;  
+        $movie->type = $request->type;
+        $movie->nam_phim = $request->nam_phim;
+        $movie->origin_name = $request->origin_name;
+
         foreach($data['genre'] as $key => $gen) {
             $movie -> genre_id = $gen[0];
+        }
+
+        foreach($data['actor'] as $key => $act) {
+            $movie -> actor_id = $act[0];
         }
 
         //thêm hình ảnh
@@ -254,6 +288,7 @@ class MovieController extends Controller
         }
         $movie->save();
         $movie->movie_genre()->sync($data['genre']);
+        $movie->movie_actor()->sync($data['actor']);
         return redirect()->route('movie.index')->with('success', 'Bạn đã cập nhập thành công');
     }
 
@@ -271,10 +306,11 @@ class MovieController extends Controller
         } 
         //Nhiều thể loại
         //Điều kiện lấy film
+        Movie_Actor::whereIn('movie_id', [$movie->id])->delete(); 
         Movie_Genre::whereIn('movie_id', [$movie->id])->delete(); 
         Episode::whereIn('movie_id', [$movie->id])->delete(); 
         $movie->delete();
-        return redirect()->back()->with('success', 'Bạn đã xóa thành công');;
+        return redirect()->back()->with('success', 'Bạn đã xóa thành công');
     }
 
     public function resorting (Request $request) {

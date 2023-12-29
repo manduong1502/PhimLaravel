@@ -31,6 +31,16 @@
                           @endif
                         </div>
                         <div class="form-group">
+                            {!! Form::label('title', 'Tên Phim tiếng anh', []) !!}
+                            {!! Form::text('origin_name', isset($movie) ? $movie->origin_name : '', [
+                                'class' => 'form-control',
+                                'placeholder' => 'Nhập vào dữ liệu...',
+                            ]) !!}
+                            @if($errors->has('origin_name'))
+                            <span class="errors-message">{{$errors->first('origin_name')}}</span>
+                          @endif
+                        </div>
+                        <div class="form-group">
                             {!! Form::label('slug', 'Đường link', []) !!}
                             {!! Form::text('slug', isset($movie) ? $movie->slug : '', [
                                 'class' => 'form-control',
@@ -64,23 +74,62 @@
                             <span class="errors-message">{{$errors->first('so_tap')}}</span>
                           @endif
                         </div>
+
                         <div class="form-group">
-                            {!! Form::label('title', 'Diễn viên (mỗi diễn viên cách dấu phẩy vd: dv1,dv2)', []) !!}
-                            {!! Form::text('actor', isset($movie) ? $movie->actor : '', [
+                            {!! Form::label('title', 'Chất lượng', []) !!}
+                            {!! Form::text('quality', isset($movie) ? $movie->quality : '', [
                                 'class' => 'form-control',
                                 'placeholder' => 'Nhập vào dữ liệu...',
                             ]) !!}
-                            @if($errors->has('actor'))
-                            <span class="errors-message">{{$errors->first('actor')}}</span>
+                            @if($errors->has('title'))
+                            <span class="errors-message">{{$errors->first('quality')}}</span>
+                          @endif
+                        </div>
+
+                        <div class="form-group">
+                            {!! Form::label('title', 'Lang(Vietsub,thuyetminh)', []) !!}
+                            {!! Form::text('lang', isset($movie) ? $movie->lang : '', [
+                                'class' => 'form-control',
+                                'placeholder' => 'Nhập vào dữ liệu...',
+                            ]) !!}
+                            @if($errors->has('origin_name'))
+                            <span class="errors-message">{{$errors->first('lang')}}</span>
+                          @endif
+                        </div>
+
+                        <div class="form-group">
+                            {!! Form::label('title', 'Thời lượng', []) !!}
+                            {!! Form::text('time', isset($movie) ? $movie->time : '', [
+                                'class' => 'form-control',
+                                'placeholder' => 'Nhập vào dữ liệu...',
+                            ]) !!}
+                            @if($errors->has('origin_name'))
+                            <span class="errors-message">{{$errors->first('time')}}</span>
                           @endif
                         </div>
                         <div class="form-group">
-                            {!! Form::label('daodien', 'Daodien', []) !!}
-                            {!! Form::textarea('daodien', isset($movie) ? $movie->daodien : '', [
-                                'class' => 'form-control',
-                                'placeholder' => 'Nhập vào dữ liệu...',
-                                'id' => 'daodien',
-                            ]) !!}
+                            {!! Form::label('Actor', 'Diễn viên', []) !!} <br>
+                            @foreach ($list_actor as $key => $list_act)
+                                @if (isset($movie))
+                                    {!! Form::checkbox(
+                                        'actor[]',
+                                        $list_act->id,
+                                        isset($movie_actor) && $movie_actor->contains($list_act->id) ? true : false,
+                                    ) !!}
+                                @else
+                                    {!! Form::checkbox('actor[]', $list_act->id) !!}
+                                @endif
+                                {!! Form::label('actor', $list_act->name) !!}
+                            @endforeach
+                        </div>
+                        <div class="form-group">
+                            {!! Form::label('Active', 'Năm phim', []) !!}
+                            {!! Form::selectYear('nam_phim', 2000, 2023, isset($movie) ? $movie->nam_phim : '', [
+                                        'class' => 'form-control',
+                                    ]) !!}
+                            @if($errors->has('status'))
+                            <span class="errors-message">{{$errors->first('status')}}</span>
+                          @endif
                         </div>
 
                         <div class="form-group">
@@ -128,6 +177,13 @@
                             @endforeach
                         </div>
 
+
+                        <div class="form-group">
+                            {!! Form::label('Phim hot', 'Loại', []) !!}
+                            {!! Form::select('type', ['series' => 'Phim bộ', 'single' => 'Phim lẽ','hoathinh'=>'Hoạt hình'], isset($movie) ? $movie->type : '', [
+                                'class' => 'form-control',
+                            ]) !!}
+                        </div>
 
                         <div class="form-group">
                             {!! Form::label('Phim hot', 'Hiển thị slide', []) !!}
