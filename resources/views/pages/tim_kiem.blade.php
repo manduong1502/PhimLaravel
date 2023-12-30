@@ -15,29 +15,37 @@
                 @include('pages.the_loai.form_locphim')
                 <div class=" film-card" >
                     @foreach ($movie as $key => $mov)
-                        <a href="{{ route('pages.chitiet', $mov->slug) }}"
-                            style="text-decoration: none; margin-bottom: 10px; margin-right:10px" >
-                            <div class="card cards " style=" flex-direction: column;">
+                    <a href="{{ route('pages.chitiet', $mov->slug) }}" style="text-decoration: none;">
+                        <div class="slider-card" style="width: 180px;">
+                            <div class="card cards">
                                 @php
-                                    $image_check = substr($mov->image1, 0, 5);
+                                    $image_check = substr($mov->image, 0, 5);
                                 @endphp
                                 @if ($image_check == 'https')
-                                    <img src="{{ $mov->image }}" alt=""
-                                        style="width: 100%; height:270px; border-radius: 5px">
+                                    <img src="{{ $mov->image }}" alt="" style="width: 100%; height: 265px">
+                                    
                                 @else
                                     <img src="{{ asset('uploads/movie/' . $mov->image) }}" alt=""
-                                        style="width: 100%; height:270px; border-radius: 5px">
+                                        style="width: 100%; height: 265px">
                                 @endif
-                                <div class="play-icon">
+                                <div class="icon-overlay">
                                     <i class="fa-solid fa-circle-play"></i>
                                 </div>
-                                <div class="film-text"
-                                    style="width: 250px;font-weight: bold; color: white; position: absolute; bottom: 0; left: 2.5px; right: 0;color: white; padding: 5px; text-align: center; border-radius: 0 0 5px 5px">
-                                    {{ $mov->title }}
-                                    {{ $mov->episode_count }}/{{ $mov->so_tap }}
-                                </div>
+                                <span class="episode" aria-hidden="true"  >
+                                    @if($mov->episode_count == $mov->so_tap)
+                                        <span>Hoàn thành</span>
+                                    @else
+                                    {{$mov->episode_count}}/{{ $mov->so_tap }}
+                                    @endif
+                                </span>
                             </div>
-                        </a>
+
+                            <div class="card-text" style="position: relative; z-index: 99;">
+                                <p>{{ $mov->title }}</p>
+                    
+                            </div>
+                        </div>
+                    </a>
                     @endforeach
 
                 </div>

@@ -4,13 +4,13 @@
     <div class="container contents">
         <div class="content-title d-flex">
             <div class="content-title-big">
-                <h2 style="font-size: 30px;color:#000"><i class="fa-solid fa-play" style="margin-right: 20px; color:#A41717;"></i>Đề xuất <span style="font-size: 35px;">Hot</span></h2>
+                <h2 style="font-size: 30px;color:#000"><i class="fa-solid fa-play" style="margin-right: 20px; color:#A41717;"></i>Đề xuất <span style="font-size: 35px;">mov</span></h2>
             </div>
             <div class="divider"></div>
 
         </div>
         <div class="row slider">
-            @foreach ($movie_related as $key => $mov)
+            {{-- @foreach ($movie_related as $key => $mov)
                 <a href="{{ route('pages.chitiet', $mov->slug) }}" style="text-decoration: none;">
                     <div class="slider-card">
                         <div class="card cards"style="border-radius: 15px; border: 2px solid black">
@@ -32,7 +32,40 @@
                         </div>
                     </div>
                 </a>
-            @endforeach
+            @endforeach --}}
+            @foreach ($movie_related as $key => $mov)
+                    <a href="{{ route('pages.chitiet', $mov->slug) }}" style="text-decoration: none;">
+                        <div class="slider-card" style="width: 180px;">
+                            <div class="card cards">
+                                @php
+                                    $image_check = substr($mov->image, 0, 5);
+                                @endphp
+                                @if ($image_check == 'https')
+                                    <img src="{{ $mov->image }}" alt="" style="width: 100%; height: 265px">
+                                    
+                                @else
+                                    <img src="{{ asset('uploads/movie/' . $mov->image) }}" alt=""
+                                        style="width: 100%; height: 265px">
+                                @endif
+                                <div class="icon-overlay">
+                                    <i class="fa-solid fa-circle-play"></i>
+                                </div>
+                                <span class="episode" aria-hidden="true"  >
+                                    @if($mov->episode_count == $mov->so_tap)
+                                        <span>Hoàn thành</span>
+                                    @else
+                                    {{$mov->episode_count}}/{{ $mov->so_tap }}
+                                    @endif
+                                </span>
+                            </div>
+
+                            <div class="card-text" style="position: relative; z-index: 99; top: -10px">
+                                <p>{{ $mov->title }}</p>
+                    
+                            </div>
+                        </div>
+                    </a>
+                @endforeach
         </div>
     </div>
     

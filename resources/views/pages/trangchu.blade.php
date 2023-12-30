@@ -105,7 +105,7 @@
                                 </span>
                             </div>
 
-                            <div class="card-text" style="position: relative; z-index: 99;">
+                            <div class="card-text" style="position: relative; z-index: 99; top: -10px">
                                 <p>{{ $hot->title }}</p>
                     
                             </div>
@@ -139,37 +139,37 @@
 
         <div class="row slider">
             @foreach ($history_movie->take(10) as $key => $his_mov)
-                    <a href="{{ route('pages.chitiet', $his_mov->movie->slug) }}" style="text-decoration: none, margin-right: 10px;">
-                        <div class="slider-card" style="margin-right: 20px;">
-                            <div class="card cards" style="position: relative">
-                                @php
-                                    $image_check = substr($his_mov->movie->image, 0, 5);
-                                @endphp
-                                @if ($image_check == 'https')
-                                    <img src="{{ $his_mov->movie->image }}" alt=""
-                                        style="width: 100%; height: 265px; ">
-                                @else
-                                    <img src="{{ asset('uploads/movie/' . $his_mov->movie->image) }}" alt=""
-                                        style="width: 100%; height: 265px; border-radius: 5px; position: relative">
-                                @endif
-                                <div class="icon-overlay">
-                                    <i class="fa-solid fa-circle-play"></i>
-                                </div>
-                                <span class="episode" aria-hidden="true"  >
-                                    @if($his->episode_count == $his->so_tap)
-                                        <span>Hoàn thành</span>
-                                    @else
-                                    {{$his->episode_count}}/{{ $his->so_tap }}
-                                    @endif
-                                </span>
-                            </div>
-
-                            <div class="card-text">
-                                {{ $his_mov->movie->title }}
-                                
-                            </div>
+            <a href="{{ route('pages.chitiet', $his_mov->slug) }}" style="text-decoration: none;">
+                <div class="slider-card" style="width: 180px;">
+                    <div class="card cards">
+                        @php
+                            $image_check = substr($his_mov->image, 0, 5);
+                        @endphp
+                        @if ($image_check == 'https')
+                            <img src="{{ $his_mov->image }}" alt="" style="width: 100%; height: 265px">
+                            
+                        @else
+                            <img src="{{ asset('uploads/movie/' . $his_mov->image) }}" alt=""
+                                style="width: 100%; height: 265px">
+                        @endif
+                        <div class="icon-overlay">
+                            <i class="fa-solid fa-circle-play"></i>
                         </div>
-                    </a>
+                        <span class="episode" aria-hidden="true"  >
+                            @if($his_mov->episode_count == $his_mov->so_tap)
+                                <span>Hoàn thành</span>
+                            @else
+                            {{$his_mov->episode_count}}/{{ $his_mov->so_tap }}
+                            @endif
+                        </span>
+                    </div>
+
+                    <div class="card-text" style="position: relative; z-index: 99; top: -10px">
+                        <p>{{ $his_mov->title }}</p>
+            
+                    </div>
+                </div>
+            </a>
                 @endforeach
         </div>
     </div>
@@ -185,26 +185,34 @@
 
         <div class="row slider">
             @foreach ($movie_vip->take(10) as $key => $mov_vip)
-                <a href="{{ route('pages.chitetvip', $mov_vip->slug) }}" style="text-decoration: none">
-                    <div class="slider-card" style="margin-right: 20px;">
-                        <div class="card cards" style="position: relative">
-
-                            <img src="{{ asset('uploads/movie/' . $mov_vip->image) }}" alt=""
-                            style="width: 100%; height: 265px; ">
+                <a href="{{ route('pages.chitiet', $mov_vip->slug) }}" style="text-decoration: none;">
+                    <div class="slider-card" style="width: 180px;">
+                        <div class="card cards">
+                            @php
+                                $image_check = substr($mov_vip->image, 0, 5);
+                            @endphp
+                            @if ($image_check == 'https')
+                                <img src="{{ $mov_vip->image }}" alt="" style="width: 100%; height: 265px">
+                                
+                            @else
+                                <img src="{{ asset('uploads/movie/' . $mov_vip->image) }}" alt=""
+                                    style="width: 100%; height: 265px">
+                            @endif
                             <div class="icon-overlay">
                                 <i class="fa-solid fa-circle-play"></i>
                             </div>
-                            <span class="episode" aria-hidden="true">
+                            <span class="episode" aria-hidden="true"  >
                                 @if($mov_vip->episode_count == $mov_vip->so_tap)
                                     <span>Hoàn thành</span>
                                 @else
-                                    {{$mov_vip->episode_count}}/{{ $mov_vip->so_tap }}
+                                {{$mov_vip->episode_count}}/{{ $mov_vip->so_tap }}
                                 @endif
                             </span>
                         </div>
 
-                        <div class="card-text">
-                            {{ $mov_vip->title }}
+                        <div class="card-text" style="position: relative; z-index: 99; top: -10px">
+                            <p>{{ $mov_vip->title }}</p>
+                
                         </div>
                     </div>
                 </a>
@@ -224,34 +232,34 @@
 
             <div class="row slider">
                 @foreach ($cate_home->movie->sortByDesc('position')->take(10) as $key => $mov)
-                    <a href="{{ route('pages.chitiet', $mov->slug) }}" style="text-decoration: none">
-                        <div class="slider-card" style="margin-right: 20px;">
-                            <div class="card cards" style="position: relative">
+                    <a href="{{ route('pages.chitiet', $mov->slug) }}" style="text-decoration: none;">
+                        <div class="slider-card" style="width: 180px;">
+                            <div class="card cards">
                                 @php
                                     $image_check = substr($mov->image, 0, 5);
                                 @endphp
                                 @if ($image_check == 'https')
-                                    <img src="{{ $mov->image }}" alt=""
-                                    style="width: 100%; height: 265px; ">
+                                    <img src="{{ $mov->image }}" alt="" style="width: 100%; height: 265px">
+                                    
                                 @else
                                     <img src="{{ asset('uploads/movie/' . $mov->image) }}" alt=""
-                                    style="width: 100%; height: 265px; ">
+                                        style="width: 100%; height: 265px">
                                 @endif
                                 <div class="icon-overlay">
                                     <i class="fa-solid fa-circle-play"></i>
                                 </div>
-                                <span class="episode" aria-hidden="true">
+                                <span class="episode" aria-hidden="true"  >
                                     @if($mov->episode_count == $mov->so_tap)
                                         <span>Hoàn thành</span>
                                     @else
-                                        {{$mov->episode_count}}/{{ $mov->so_tap }}
+                                    {{$mov->episode_count}}/{{ $mov->so_tap }}
                                     @endif
                                 </span>
                             </div>
 
-                            <div class="card-text">
-                                {{ $mov->title }}
-
+                            <div class="card-text" style="position: relative; z-index: 99; top: -10px">
+                                <p>{{ $mov->title }}</p>
+                    
                             </div>
                         </div>
                     </a>
