@@ -22,6 +22,130 @@
 }
 
 
+.modal-dialog{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.modal-content{
+    position: absolute;
+    width: 200%;
+    top: 10px;
+    background-color: #000;
+    border: 2px solid white;
+}
+.modal-content .modal-body .card{
+    background-color: #000;
+    padding: 30px;
+    align-items: center;
+    color: white;
+
+}
+
+.logovip{
+    height: 150px;
+    width: 400px;
+    padding-left: 30px;
+}
+.goiphim{ 
+    height: auto;
+    margin-top: 100px;
+    position: relative;
+}
+.goiphim .goiphim_detail{
+    background: #FFF;
+    border-radius: 45px;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    text-align: center;
+}
+.tieude{
+    width: 100%;
+    height: 70px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 10px;
+    border-radius: 45px;
+    background: #FFF;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    color: #C00;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 35px; /* 87.5% */
+    letter-spacing: 0.2px;
+}
+.detail{
+    padding: 0 20px 0 20px;
+}
+.price{
+    color: #000;
+    margin: 0;
+    width: 100%;
+    border-bottom: 2px solid black;
+    text-align: center;
+    padding: 0 65px 30px 65px;
+    margin: 30px 0 0 0;
+}
+.price .gia{
+    margin: 0;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    border-bottom: 2px solid black;
+}
+.price p{
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+.quantity, .resolution{
+    color: #C00;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    border-bottom: 2px solid black;
+    padding: 0 0 30px 0;
+    margin: 30px 0 0 0;
+}
+.quantity .chatluong, .resolution .phangiai, .device .thietbi{
+    color: #000;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+.device{
+    color: #C00;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    padding: 0 0 30px 0;
+    margin: 30px 0 0 0;
+}
+.pay{
+    position: relative;
+    background-color: #C00;
+    border-radius: 0px 0px 45px 45px;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    bottom: -13px;
+    box-shadow: 0px -6px 4px 0px rgba(0, 0, 0, 0.25);
+}
+.pay form button p{
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+}
+
 .vip-tag {
     position: absolute;
     top: 0;
@@ -46,15 +170,15 @@
 
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
     <div class="modal-dialog">
-      <div class="modal-content"  >
+      <div class="modal-content" >
         <div class="modal-header">
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <button type="button" class="btn-close btn-close-white" aria-label="Close"></button>
         </div>
         <div class="modal-body" >
-            <div class="card" >
-                <img src="{{asset('/public/image/logo/logopro_trắng.png')}}" class="img-fluid logovip" alt="Cosmic Cinema" height="400" width="1000px">
-                <h1>Chọn một gói phù hợp với bạn</h1>
-                <h3>Bằng việc đăng ký gói Cosmic Vip, bạn đồng ý với Điều khoản dịch vụ của Cosmic. Lưu ý: Chính sách quyền riêng tư của Cosmic mô tả cách dữ liệu được xử lý trong dịch vụ này.</h3>
+            <div class="card">
+                <img src="{{asset('/public/image/logo/logopro_trắng.png')}}" class="img-fluid logovip" alt="Cosmic Cinema" height="200">
+                <h3>Chọn một gói phù hợp với bạn</h3>
+                <h5>Bằng việc đăng ký gói Cosmic Vip, bạn đồng ý với Điều khoản dịch vụ của Cosmic. Lưu ý: Chính sách quyền riêng tư của Cosmic mô tả cách dữ liệu được xử lý trong dịch vụ này.</h5>
             
                 <div class="container">
                     <div class="row goiphim">

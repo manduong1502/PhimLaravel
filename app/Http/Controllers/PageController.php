@@ -251,7 +251,7 @@ class PageController extends Controller
         $category = Category::orderBy('id','DESC') ->where('status',1)->get();
         $genre = Genre::orderBy('id','DESC')->where('status',1) ->get();
         $country = Country::orderBy('id','DESC')->where('status',1) ->get();
-        $customCssArr = ['css/goiphim_thanhtoan.css','css/xemphim.css'];
+        $customCssArr = ['css/xemphim.css'];
         $movie = Movie_vip::with('country','genre','category')->where('slug',$slug)->first();
         $movie_related = Movie_vip::with('country','genre','category','movie_genre','episode')->where('category_id',$movie->category->id)->orderBy(DB::raw('RAND()'))->whereNotIn('slug',[$slug])->get();
 
