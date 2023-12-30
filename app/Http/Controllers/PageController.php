@@ -118,7 +118,7 @@ class PageController extends Controller
         //css
         $customCss = 'css/tong-the-loai.css';
         //điều kiện slug
-        $movie = Movie::where('title','LIKE','%'.$search.'%')->orderBy('ngay_cap_nhap','DESC')->paginate(40);
+        $movie = Movie::withCount('episode')->where('title','LIKE','%'.$search.'%')->orderBy('ngay_cap_nhap','DESC')->paginate(40);
         $top_view = Movie::whereNotNull('view')->orderBy('view','desc')->take(10)->get();
 
         $movie_phimbo = Movie::where('type','series')->whereNotNull('view')->orderBy('view','desc')->get()->take(10);
@@ -253,7 +253,7 @@ class PageController extends Controller
         $country = Country::orderBy('id','DESC')->where('status',1) ->get();
         $customCssArr = ['css/xemphim.css'];
         $movie = Movie_vip::with('country','genre','category')->where('slug',$slug)->first();
-        $movie_related = Movie_vip::with('country','genre','category','movie_genre','episode')->where('category_id',$movie->category->id)->orderBy(DB::raw('RAND()'))->whereNotIn('slug',[$slug])->get();
+        $movie_related = Movie_vip::withCount('episode')->with('country','genre','category','movie_genre','episode')->where('category_id',$movie->category->id)->orderBy(DB::raw('RAND()'))->whereNotIn('slug',[$slug])->get();
 
         if(isset($tap)) {
             $tapphim = $tap;
@@ -337,7 +337,7 @@ class PageController extends Controller
         $country = Country::orderBy('id','DESC')->where('status',1) ->get();
         $customCss = 'css/xemphim.css';
         $movie = Movie::with('country','genre','category')->where('slug',$slug)->first();
-        $movie_related = Movie::with('country','genre','category','movie_genre','episode')->where('category_id',$movie->category->id)->orderBy(DB::raw('RAND()'))->whereNotIn('slug',[$slug])->get();
+        $movie_related = Movie::withCount('episode')->with('country','genre','category','movie_genre','episode')->where('category_id',$movie->category->id)->orderBy(DB::raw('RAND()'))->whereNotIn('slug',[$slug])->get();
 
         
         if ($tap === 'tap-Full') {
@@ -415,7 +415,7 @@ class PageController extends Controller
         $customCss = 'css/tong-the-loai.css';
         //điều kiện slug
         $cate_slug = Category::where('slug',$slug) ->first();
-        $movie = Movie::where('category_id', $cate_slug->id)->withCount('episode')->orderBy('ngay_cap_nhap','DESC')->paginate(10);
+        $movie = Movie::withCount('episode')->where('category_id', $cate_slug->id)->withCount('episode')->orderBy('ngay_cap_nhap','DESC')->paginate(10);
 
         $top_view = Movie::whereNotNull('view')->orderBy('view','desc')->take(10)->get();
 
@@ -494,7 +494,7 @@ class PageController extends Controller
         //điều kiện slug
         $coun_slug = Country::where('slug',$slug) ->first();
         //Điều kiện lấy film
-        $movie = Movie::where('country_id', $coun_slug->id)->withCount('episode')->orderBy('ngay_cap_nhap','DESC')->paginate(40); 
+        $movie = Movie::withCount('episode')->where('country_id', $coun_slug->id)->withCount('episode')->orderBy('ngay_cap_nhap','DESC')->paginate(40); 
 
         $top_view = Movie::whereNotNull('view')->orderBy('view','desc')->take(10)->get();
 
@@ -524,7 +524,7 @@ class PageController extends Controller
         $category = Category::orderBy('id','DESC') ->where('status',1)->get();
         $genre = Genre::orderBy('id','DESC')->where('status',1) ->get();
         $country = Country::orderBy('id','DESC')->where('status',1) ->get();
-        $movie_related = Movie::with('country','genre','category','movie_genre','episode')->orderBy(DB::raw('RAND()'))->get();
+        $movie_related = Movie::withCount('episode')->with('country','genre','category','movie_genre','episode')->orderBy(DB::raw('RAND()'))->get();
         $blog = Blog::orderBy('ngay_cap_nhat','DESC')->where('status',1) ->first();
         $list_blog = Blog::orderBy('id','DESC')->where('status',1)->get();
         $blog_news = Blog::orderBy('ngay_cap_nhat','DESC')->where('status',1)->get();

@@ -1,4 +1,4 @@
-  <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+h  <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
   <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
   <div id="fb-root"></div>
@@ -25,11 +25,11 @@
               $.getJSON('/json/movies.json', function(data) {
                 $.each(data, function(key, value) {
                   if (value.title.search(expression) != -1) {
-                    $('#result').append('<li style="cursor:pointer; display: flex; max-height: 200px; background-color: #f8f9fa" class="list-group-item link-class"><img src="' +
+                    $('#result').append('<li style="cursor:pointer; display: flex; max-height: 200px; background-color: #2C2C2C;" class="list-group-item link-class"><img src="' +
                                 value.image +
-                                '" width="100" class="" /><div style="flex-direction: column; margin-left: 10px; color: #000000;"><p style=" width="100%">' +
+                                '" width="70" height="100" class="" /><div style="flex-direction: column; margin-left: 10px; color: #fff;"><h6 style=" width="100%">' +
                                 value.title +
-                                '</p></div></li>') 
+                                '</h6></div></li>') 
                   }
                 })
               })

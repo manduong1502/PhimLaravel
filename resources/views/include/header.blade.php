@@ -63,9 +63,9 @@
                     <div class="d-flex input-group">
                         <input class="form-control" id="timkiem" type="text" name="search" width="0"
                         placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success"><i class="fa-solid fa-magnifying-glass"></i></button>
+                        <button class="btn btn-outline-success" style=" border-radius: 0 10px 10px 0;"><i class="fa-solid fa-magnifying-glass"></i></button>
                         <ul class="list-group" id="result"
-                        style="display: none; position: absolute; top: 100%; border: 1px solid rgb(153, 153, 153); width: 300px; z-index: 999; ">
+                        style="display: none; position: absolute; top: 100%; border: 1px solid rgb(153, 153, 153); width: 250px; z-index: 999; ">
                     </ul>
                     </div>
             
@@ -91,7 +91,7 @@
                     </li>
                     <li class="nav-item mt-3 btn-vip">
                         <a class="btn btn-outline-success" href="{{ route('goiphim') }}"><i
-                                class="fa-solid fa-star"></i>VIP</a>
+                                class="fa-solid fa-star" style=" color: #efeb0b;"></i>VIP</a>
                     </li>
                 </ul>
             </div>

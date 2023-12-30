@@ -113,7 +113,14 @@
                                         @if($mov->episode_count == $mov->so_tap)
                                             <span>Hoàn thành</span>
                                         @else
-                                        {{$mov->episode_count}}/{{ $mov->so_tap }}
+                                        {{$mov->episode_count}}/
+                                        @if ($mov->so_tap === '?')
+                                            <span style="font-size: 10px;">(cập nhập)</span>
+                                        @elseif($mov->so_tap === '? tập')
+                                            <span style="font-size: 13px;">(cập nhập)</span>
+                                        @else
+                                            <span>{{ substr($mov->so_tap, 0, 2) }} tập</span>
+                                        @endif
                                         @endif
                                     </span>
                                 </div>
