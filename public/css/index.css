@@ -475,7 +475,17 @@ margin-left: 20px;
 }
 
 
-
+.episode{
+  width: auto;
+  text-align:center;
+  padding:0 15px 0 10px;
+  position: absolute;
+  top: 20px; left: 0px;
+  color: white;
+  font-weight: bold;
+  background-color: red; 
+  clip-path: polygon(100% 0, 90% 50%, 100% 100%, 0 100%, 0 0);
+}
 
 
 /* //tập phim */

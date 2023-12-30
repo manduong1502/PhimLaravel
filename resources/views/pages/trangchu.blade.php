@@ -72,7 +72,7 @@
           </div>
 
 
-        <div class="container content" style="margin-top: 50px">
+        <div class="container content" style="margin-top: 50px; margin-bottom: 30px">
             <div class="content-title">
                 <div class="content-title-big">
                     <h2 ><i class="fa-solid fa-play" style="margin-right: 20px; color:#A41717;"></i>Phim <span >Hot</span></h2>
@@ -96,18 +96,18 @@
                                 <div class="icon-overlay">
                                     <i class="fa-solid fa-circle-play"></i>
                                 </div>
-                            
+                                <span class="episode" aria-hidden="true"  >
+                                    @if($hot->episode_count == $hot->so_tap)
+                                        <span>Hoàn thành</span>
+                                    @else
+                                    {{$hot->episode_count}}/{{ $hot->so_tap }}
+                                    @endif
+                                </span>
                             </div>
 
-                            <div class="card-text">
+                            <div class="card-text" style="position: relative; z-index: 99;">
                                 <p>{{ $hot->title }}</p>
-                                <span class="episode" aria-hidden="true">
-                                    {{$hot->episode_count}}/{{ $hot->so_tap }}
-                                </span>
-
-                                <span class="episode" aria-hidden="true" >
-                                    {{$hot->lang}}
-                                </span>
+                    
                             </div>
                         </div>
                     </a>
@@ -155,12 +155,18 @@
                                 <div class="icon-overlay">
                                     <i class="fa-solid fa-circle-play"></i>
                                 </div>
+                                <span class="episode" aria-hidden="true"  >
+                                    @if($his->episode_count == $his->so_tap)
+                                        <span>Hoàn thành</span>
+                                    @else
+                                    {{$his->episode_count}}/{{ $his->so_tap }}
+                                    @endif
+                                </span>
                             </div>
 
                             <div class="card-text">
                                 {{ $his_mov->movie->title }}
-                                <span class="episode" aria-hidden="true">
-                                </span>
+                                
                             </div>
                         </div>
                     </a>
@@ -188,16 +194,17 @@
                             <div class="icon-overlay">
                                 <i class="fa-solid fa-circle-play"></i>
                             </div>
+                            <span class="episode" aria-hidden="true">
+                                @if($mov_vip->episode_count == $mov_vip->so_tap)
+                                    <span>Hoàn thành</span>
+                                @else
+                                    {{$mov_vip->episode_count}}/{{ $mov_vip->so_tap }}
+                                @endif
+                            </span>
                         </div>
 
                         <div class="card-text">
                             {{ $mov_vip->title }}
-                            <span class="episode" aria-hidden="true">
-                                {{$mov_vip->episode_count}}/{{ $mov_vip->so_tap }}
-                                @if($mov_vip->episode_count == $mov_vip->so_tap)
-                                <span>Hoàn thành</span>
-                                @endif
-                            </span>
                         </div>
                     </div>
                 </a>
@@ -233,17 +240,18 @@
                                 <div class="icon-overlay">
                                     <i class="fa-solid fa-circle-play"></i>
                                 </div>
+                                <span class="episode" aria-hidden="true">
+                                    @if($mov->episode_count == $mov->so_tap)
+                                        <span>Hoàn thành</span>
+                                    @else
+                                        {{$mov->episode_count}}/{{ $mov->so_tap }}
+                                    @endif
+                                </span>
                             </div>
 
                             <div class="card-text">
                                 {{ $mov->title }}
-                                <span class="episode" aria-hidden="true">
-                                    {{$mov->episode_count}}/{{ $mov->so_tap }}
-                                </span>
 
-                                <span class="episode" aria-hidden="true" >
-                                    {{$mov->lang}}
-                                </span>
                             </div>
                         </div>
                     </a>
