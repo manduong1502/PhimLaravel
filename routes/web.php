@@ -119,7 +119,7 @@ Route::post('add-rating', [PageController::class, 'add_rating'])->name('add-rati
 Route::get('/xem-phim/{slug}/{tap}/{server_active}', [PageController::class, 'getXemphim'])->name('watch_vip')->middleware(AuthMiddleware::class);
 
 //chi tiết phim vip
-Route::get('/chi-tiet-vip/{slug}', [PageController::class, 'getChitiet_vip'])->name('pages.chitetvip')->middleware(AuthMiddleware::class);
+Route::get('/chi-tiet-vip/{slug}', [PageController::class, 'getChitiet_vip'])->name('pages.chitietvip')->middleware(AuthMiddleware::class);
 Route::get('/xem-phim-vip/{slug}/{tap}/{server_active}', [PageController::class, 'getXemphim_vip'])->name('watch_vip')->middleware(AuthMiddleware::class);
 
 //gói phim

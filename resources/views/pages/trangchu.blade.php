@@ -205,7 +205,7 @@
 
         <div class="row slider">
             @foreach ($movie_vip->take(10) as $key => $mov_vip)
-                <a href="{{ route('pages.chitiet', $mov_vip->slug) }}" style="text-decoration: none;">
+                <a href="{{ route('pages.chitietvip', $mov_vip->slug) }}" style="text-decoration: none;">
                     <div class="slider-card" style="width: 180px;">
                         <div class="card cards">
                             @php
