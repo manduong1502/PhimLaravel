@@ -157,7 +157,7 @@ class PageController extends Controller
 
 
         $user_id = Auth::id();
-        $history_movie = History_movie::with('Movie', 'Movie_vip', 'episode')->where('user_id', $user_id)
+        $history_movie = History_movie::with(['movie'=> function($q) {$q->withCount('episode');}], 'Movie_vip')->where('user_id', $user_id)
         ->orderBy('id', 'DESC')
         ->select('movie_id') // Chỉ chọn trường movie_id
         ->distinct() // Loại bỏ các bản ghi trùng lặp

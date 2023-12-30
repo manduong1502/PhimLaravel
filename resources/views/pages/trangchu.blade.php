@@ -156,10 +156,10 @@
                                     <i class="fa-solid fa-circle-play"></i>
                                 </div>
                                 <span class="episode" aria-hidden="true"  >
-                                    @if($his->episode_count == $his->so_tap)
+                                    @if($his_mov->episode_count == $his_mov->so_tap)
                                         <span>Hoàn thành</span>
                                     @else
-                                    {{$his->episode_count}}/{{ $his->so_tap }}
+                                    {{$his_mov->episode_count}}/{{ $his_mov->so_tap }}
                                     @endif
                                 </span>
                             </div>
