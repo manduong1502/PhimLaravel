@@ -25,7 +25,7 @@
                           {{-- Danh mục hot --}}
                           <p class="tieude_phim">Danh mục: Danh mục hot </p>
                           <div class="row movie_position sortable_movie" id="">
-                            @foreach ($phimhot->take(10) as $key => $mov)
+                            @foreach ($phimhot->take(24) as $key => $mov)
                             <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 box_phim" id="{{$mov->id}}">
                               <div class="card" style="width: 18rem;">
                                 @php

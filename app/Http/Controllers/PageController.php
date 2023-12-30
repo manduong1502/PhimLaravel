@@ -147,8 +147,8 @@ class PageController extends Controller
     {
         $meta_title = "Trang chủ | Cosmic";
         $meta_description = "Giao diện chinh của web film cosmic";
-        $phimhot = Movie::withCount('episode')->where('phim_hot',1)->where('status',1)->orderBy('position','ASC')->get();
-        $slide = Movie::withCount('episode')->with('country','genre','category','movie_genre','movie_actor')->where('slide',1)->where('status',1)->orderBy('position','ASC')->get();
+        $phimhot = Movie::withCount('episode')->where('phim_hot',1)->where('status',1)->orderBy('position','DESC')->get();
+        $slide = Movie::withCount('episode')->with('country','genre','category','movie_genre','movie_actor')->where('slide',1)->where('status',1)->orderBy('ngay_cap_nhap','DESC')->get();
         $category = Category::orderBy('id','DESC') ->where('status',1)->get();
         $genre = Genre::orderBy('id','DESC')->where('status',1) ->get();
         $country = Country::orderBy('id','DESC')->where('status',1) ->get();
@@ -185,7 +185,7 @@ class PageController extends Controller
         $country = Country::orderBy('id','DESC')->where('status',1) ->get();
         $customCss = 'css/chitiet.css';
         $movie = Movie::with('category', 'country', 'genre', 'movie_genre','movie_actor','actor')->withCount('episode')->where('slug',$slug)->first();
-        $movie_related = Movie::with('country','genre','category','movie_genre')->where('category_id',$movie->category->id)->orderBy(DB::raw('RAND()'))->whereNotIn('slug',[$slug])->get();
+        $movie_related = Movie::with('category','country','genre','category','movie_genre')->where('category_id',$movie->category->id)->orderBy(DB::raw('RAND()'))->whereNotIn('slug',[$slug])->get();
         $movie_tapdau = Episode::with('movie')->where('movie_id',$movie->id)->orderBy('episode','ASC')->take(1)->first();
         $episode = Episode::with('movie')->where('movie_id',$movie->id)->orderBy('id','DESC')->take(3)->get();
 
@@ -224,8 +224,8 @@ class PageController extends Controller
         $country = Country::orderBy('id','DESC')->where('status',1) ->get();
         $customCss = 'css/chitiet.css';
 
-        $movie = Movie_vip::with('country','genre','category')->where('slug',$slug)->first();
-        $movie_related = Movie_vip::with('country','genre','category','movie_genre')->where('category_id',$movie->category->id)->orderBy(DB::raw('RAND()'))->whereNotIn('slug',[$slug])->get();
+        $movie = Movie_vip::with('category', 'country', 'genre', 'movie_genre','movie_actor','actor')->where('slug',$slug)->first();
+        $movie_related = Movie_vip::with('category', 'country', 'genre', 'movie_genre','movie_actor','actor')->where('category_id',$movie->category->id)->orderBy(DB::raw('RAND()'))->whereNotIn('slug',[$slug])->get();
         $movie_tapdau = Episode_vip::with('movie_vip')->where('movie_vip_id',$movie->id)->orderBy('episode','ASC')->take(1)->first();
         $episode = Episode_vip::with('movie_vip')->where('movie_vip_id',$movie->id)->orderBy('id','DESC')->take(3)->get();
 
@@ -251,7 +251,7 @@ class PageController extends Controller
         $category = Category::orderBy('id','DESC') ->where('status',1)->get();
         $genre = Genre::orderBy('id','DESC')->where('status',1) ->get();
         $country = Country::orderBy('id','DESC')->where('status',1) ->get();
-        $customCss = 'css/xemphim.css';
+        $customCssArr = ['css/goiphim_thanhtoan.css','css/xemphim.css'];
         $movie = Movie_vip::with('country','genre','category')->where('slug',$slug)->first();
         $movie_related = Movie_vip::with('country','genre','category','movie_genre','episode')->where('category_id',$movie->category->id)->orderBy(DB::raw('RAND()'))->whereNotIn('slug',[$slug])->get();
 
@@ -297,7 +297,7 @@ class PageController extends Controller
         $meta_description = $movie->desctiption;
         
         return view('pages.xemphim_vip', compact(
-            'customCss',
+            'customCssArr',
             'category',
             'genre',
             'country',
@@ -310,7 +310,7 @@ class PageController extends Controller
             'episode_list',
             'server_active',
             'meta_title',
-            'meta_description'
+            'meta_description',
         ));
     }
     // public function add_rating (Request $request) {
@@ -587,7 +587,11 @@ public function loc_phim() {
         $category = Category::orderBy('id','DESC') ->get();
         $genre = Genre::orderBy('id','DESC') ->get();
         $country = Country::orderBy('id','DESC') ->get();
+        $top_view = Movie::whereNotNull('view')->orderBy('view','desc')->take(10)->get();
 
+        $movie_phimbo = Movie::where('type','series')->whereNotNull('view')->orderBy('view','desc')->get()->take(10);
+
+        $movie_phimle = Movie::where('type','single')->whereNotNull('view')->orderBy('view','desc')->get()->take(10);
         $movie = Movie::withCount('episode');
         if($genre_get) {
             $movie = $movie->Where('genre_id','=',$genre_get);
@@ -609,7 +613,10 @@ public function loc_phim() {
             'country',
             'movie',
             'meta_title',
-            'meta_description'
+            'meta_description',
+            'top_view',
+            'movie_phimbo',
+            'movie_phimle'
         ));
         
     }
@@ -617,3 +624,4 @@ public function loc_phim() {
     
 }
 }
+

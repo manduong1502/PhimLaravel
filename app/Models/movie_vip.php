@@ -23,11 +23,19 @@ class Movie_vip extends Model
     public function genre () {
         return $this->belongsTo(Genre::class,'genre_id');
     }
+
+    public function actor () {
+        return $this->belongsTo(Actor::class,'actor_id');
+    }
     public function episode () {
         return $this->hasMany(Episode_vip::class);
     }
 
     public function movie_genre () {
         return $this->belongsToMany(Genre::class,'movie_genre','movie_id','genre_id');
+    }
+
+    public function movie_actor () {
+        return $this->belongsToMany(Actor::class,'movie_actors','movie_id','actor_id');
     }
 }
