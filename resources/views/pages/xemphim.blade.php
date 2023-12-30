@@ -93,27 +93,37 @@
                     </div>
                     <div class="row card_hot1">
                         @foreach ($movie_related as $key => $mov)
-                            <a href="{{ route('pages.chitiet', $mov->slug) }}" style="text-decoration: none;">
-                                <div class="slider-card" style="margin-right: 15px">
-                                    <div class="card cards"style="border-radius: 15px; border: 2px solid black">
-                                        @php
-                                            $image_check = substr($mov->image1, 0, 5);
-                                        @endphp
-                                        @if ($image_check == 'https')
-                                            <img src="{{ $mov->image }}" alt="" style="height: 220px;border-radius: 10px;">
+                        <a href="{{ route('pages.chitiet', $mov->slug) }}" style="text-decoration: none;">
+                            <div class="slider-card" style="width: 180px;">
+                                <div class="card cards">
+                                    @php
+                                        $image_check = substr($mov->image, 0, 5);
+                                    @endphp
+                                    @if ($image_check == 'https')
+                                        <img src="{{ $mov->image }}" alt="" style="width: 100%; height: 265px">
+                                        
+                                    @else
+                                        <img src="{{ asset('uploads/movie/' . $mov->image) }}" alt=""
+                                            style="width: 100%; height: 265px">
+                                    @endif
+                                    <div class="icon-overlay">
+                                        <i class="fa-solid fa-circle-play"></i>
+                                    </div>
+                                    <span class="episode" aria-hidden="true"  >
+                                        @if($mov->episode_count == $mov->so_tap)
+                                            <span>Hoàn thành</span>
                                         @else
-                                            <img src="{{ asset('uploads/movie/' . $mov->image) }}" alt="" style="height: 240px;border-radius: 10px;">
+                                        {{$mov->episode_count}}/{{ $mov->so_tap }}
                                         @endif
-                                        <div class="icon-overlay">
-                                            <i class="fa-solid fa-circle-play"></i>
-                                        </div>
-                                    </div>
-
-                                    <div class="card-text" style="background: linear-gradient(to bottom, rgba(0, 0, 0, 0.42), #151515); left:0.5px; border-radius: 0 0 14px 14px;">
-                                        <p>{{ $mov->title }}</p>
-                                    </div>
+                                    </span>
                                 </div>
-                            </a>
+    
+                                <div class="card-text" style="position: relative; z-index: 99; top: -10px">
+                                    <p>{{ $mov->title }}</p>
+                        
+                                </div>
+                            </div>
+                        </a>
                         @endforeach
                     </div>
                 </div>
