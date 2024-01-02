@@ -171,6 +171,7 @@ Route::get('/sitemap',function() {
     $sitemap = Sitemap::create()
     ->add(Url::create(route('gioithieu'))->setLastModificationDate(Carbon::now('Asia/Ho_Chi_Minh'))->setChangeFrequency(Url::CHANGE_FREQUENCY_YEARLY)->setPriority(1))
     ->add(Url::create(route('auth.index'))->setLastModificationDate(Carbon::now('Asia/Ho_Chi_Minh'))->setChangeFrequency(Url::CHANGE_FREQUENCY_YEARLY)->setPriority(1))
+    ->add(Url::create(route('blog'))->setLastModificationDate(Carbon::now('Asia/Ho_Chi_Minh'))->setChangeFrequency(Url::CHANGE_FREQUENCY_YEARLY)->setPriority(1))
     ;
 
 
@@ -185,7 +186,11 @@ Route::get('/sitemap',function() {
         $sitemap->add(Url::create("/quoc-gia/{$cate->slug}")->setLastModificationDate(Carbon::now('Asia/Ho_Chi_Minh'))->setChangeFrequency(Url::CHANGE_FREQUENCY_YEARLY)->setPriority(0.8));
     });
     Movie::all()->each(function(Movie $cate) use ($sitemap) {
-        $sitemap->add(Url::create("/phim/{$cate->slug}")->setLastModificationDate(Carbon::now('Asia/Ho_Chi_Minh'))->setChangeFrequency(Url::CHANGE_FREQUENCY_YEARLY)->setPriority(0.8));
+        $sitemap->add(Url::create("/chitiet/{$cate->slug}")->setLastModificationDate(Carbon::now('Asia/Ho_Chi_Minh'))->setChangeFrequency(Url::CHANGE_FREQUENCY_YEARLY)->setPriority(0.8));
+    });
+
+    Blog::all()->each(function(Blog $cate) use ($sitemap) {
+        $sitemap->add(Url::create("/blog_review/{$cate->slug}")->setLastModificationDate(Carbon::now('Asia/Ho_Chi_Minh'))->setChangeFrequency(Url::CHANGE_FREQUENCY_YEARLY)->setPriority(0.8));
     });
 
     $sitemap->writeToFile(public_path('sitemap.xml'));
