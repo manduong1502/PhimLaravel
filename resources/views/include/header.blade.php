@@ -77,12 +77,11 @@
                         <a href="#" class="nav-link" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false"><img class="navbar-brand"
                                 src="{{ asset('public/image/image-13.png') }}" alt=""></a>
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu" style="padding: 10px">
                             @auth
                                 <li>Xin chào, {{ Auth::user()->username }}</li>
                             @endauth
-                            <li><a class="dropdown-item" href="#">Thông tin</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><a class="dropdown-item" href="{{route('thongtin',$thong_tin_user)}}">Thông tin</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
@@ -98,5 +97,3 @@
         </div>
     </nav>
 </header>
-
-{{-- <ul class="list-group" id="result" style="display: none; position: absolute; top: 10%; left: 61%; background-color: white; border: 1px solid #ccc; width: 300px; z-index: 999; "></ul> --}}

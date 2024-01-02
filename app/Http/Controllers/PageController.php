@@ -21,6 +21,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use App\Models\History_movie;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 
 
@@ -46,6 +47,9 @@ class PageController extends Controller
         $genre = Genre::orderBy('id','DESC')->where('status',1) ->get();
         $country = Country::orderBy('id','DESC')->where('status',1) ->get();
         $customCss = 'css/goiphim_thanhtoan.css';
+        $user = Auth::user(); // Lấy đối tượng người dùng đã xác thực
+        $thong_tin_user = $user->remember_token; 
+        
 
 
         $user = User::find($id);
@@ -67,7 +71,8 @@ class PageController extends Controller
             'country',
             'genre',
             'meta_title',
-            'meta_description'
+            'meta_description',
+            'thong_tin_user'
         ));
     }
     public function getGoiphim_thanhtoan()
@@ -78,6 +83,8 @@ class PageController extends Controller
         $genre = Genre::orderBy('id','DESC')->where('status',1) ->get();
         $country = Country::orderBy('id','DESC')->where('status',1) ->get();
         $customCss = 'css/goiphim_thanhtoan.css';
+        $user = Auth::user(); // Lấy đối tượng người dùng đã xác thực
+        $thong_tin_user = $user->remember_token; 
 
         Config::set('vnp_Amount', 'thank toán thành công');
 
@@ -102,6 +109,7 @@ class PageController extends Controller
             'genre',
             'meta_title',
             'meta_description',
+            'thong_tin_user'
         ));
     }
 
@@ -115,6 +123,8 @@ class PageController extends Controller
             $category = Category::orderBy('id','DESC') ->where('status',1)->get();
             $genre = Genre::orderBy('id','DESC')->where('status',1) ->get();
             $country = Country::orderBy('id','DESC')->where('status',1) ->get();
+            $user = Auth::user(); // Lấy đối tượng người dùng đã xác thực
+            $thong_tin_user = $user->remember_token; 
         //css
         $customCss = 'css/tong-the-loai.css';
         //điều kiện slug
@@ -135,7 +145,8 @@ class PageController extends Controller
             'movie_phimbo',
             'movie_phimle',
             'meta_title',
-            'meta_description'
+            'meta_description',
+            'thong_tin_user'
         ));
         }else {
             return redirect()->route('pages.trangchu');
@@ -156,8 +167,9 @@ class PageController extends Controller
         $movie_vip = Movie_vip::withCount('episode')->with('country','genre','category')->where('status',1)->orderBy('id','DESC')->get();
 
 
-        $user_id = Auth::id();
-        $history_movie = History_movie::with(['movie'=> function($q) {$q->withCount('episode');}], 'Movie_vip')->where('user_id', $user_id)
+        $user = Auth::user(); // Lấy đối tượng người dùng đã xác thực
+        $thong_tin_user = $user->remember_token;        
+        $history_movie = History_movie::with(['movie'=> function($q) {$q->withCount('episode');}], 'Movie_vip')->where('user_id', $user)
         ->orderBy('id', 'DESC')
         ->select('movie_id') // Chỉ chọn trường movie_id
         ->distinct() // Loại bỏ các bản ghi trùng lặp
@@ -173,7 +185,8 @@ class PageController extends Controller
             'movie_vip',
             'history_movie',
             'meta_title',
-            'meta_description'
+            'meta_description',
+            'thong_tin_user',
         ));
     }
 
@@ -199,6 +212,9 @@ class PageController extends Controller
 
         $meta_title = "Chi tiết ".$movie ->title ." | Cosmic";
         $meta_description = $movie->desctiption;
+
+        $user = Auth::user(); // Lấy đối tượng người dùng đã xác thực
+        $thong_tin_user = $user->remember_token; 
         return view('pages.chitiet', compact(
             'customCss',
             'category',
@@ -213,7 +229,8 @@ class PageController extends Controller
             'movie_full',
             'blog_news',
             'meta_title',
-            'meta_description'
+            'meta_description',
+            'thong_tin_user'
         ));
     }
 
@@ -231,6 +248,8 @@ class PageController extends Controller
 
         $meta_title = "Chi tiết  ".$movie ->title ." | Cosmic";
         $meta_description = $movie->desctiption;
+        $user = Auth::user(); // Lấy đối tượng người dùng đã xác thực
+        $thong_tin_user = $user->remember_token; 
         return view('pages.chitiet_vip', compact(
             'customCss',
             'category',
@@ -241,7 +260,8 @@ class PageController extends Controller
             'episode',
             'movie_tapdau',
             'meta_title',
-            'meta_description'
+            'meta_description',
+            'thong_tin_user'
         ));
     }
 
@@ -254,7 +274,8 @@ class PageController extends Controller
         $customCssArr = ['css/xemphim.css'];
         $movie = Movie_vip::with('country','genre','category')->where('slug',$slug)->first();
         $movie_related = Movie_vip::withCount('episode')->with('country','genre','category','movie_genre','episode')->where('category_id',$movie->category->id)->orderBy(DB::raw('RAND()'))->whereNotIn('slug',[$slug])->get();
-
+        $user = Auth::user(); // Lấy đối tượng người dùng đã xác thực
+        $thong_tin_user = $user->remember_token; 
         if(isset($tap)) {
             $tapphim = $tap;
             $tapphim = substr($tap,4,1);
@@ -311,6 +332,7 @@ class PageController extends Controller
             'server_active',
             'meta_title',
             'meta_description',
+            'thong_tin_user'
         ));
     }
     // public function add_rating (Request $request) {
@@ -338,7 +360,8 @@ class PageController extends Controller
         $customCss = 'css/xemphim.css';
         $movie = Movie::with('country','genre','category')->where('slug',$slug)->first();
         $movie_related = Movie::withCount('episode')->with('country','genre','category','movie_genre','episode')->where('category_id',$movie->category->id)->orderBy(DB::raw('RAND()'))->whereNotIn('slug',[$slug])->get();
-
+        $user = Auth::user(); // Lấy đối tượng người dùng đã xác thực
+        $thong_tin_user = $user->remember_token; 
         
         if ($tap === 'tap-Full') {
             $tapphim = 1;
@@ -357,7 +380,19 @@ class PageController extends Controller
 
         $server =LinkMovie::orderBy('id','ASC')->get();
         $episode_movie =Episode::where('movie_id',$movie->id)->get()->unique('server');
-        $episode_list =Episode::where('movie_id',$movie->id)->orderBy('id','ASC')->get();
+        $episode_list = Episode::where('movie_id', $movie->id)
+    ->orderBy('id', 'ASC')
+    ->get();
+
+// Lấy thông tin về số thứ tự các tập phim
+$episodeNumbers = $episode_list->pluck('episode')->toArray();
+
+// Kiểm tra xem thứ tự hiện tại của các tập phim có ngược hay không
+$isReversed = $episodeNumbers === array_reverse($episodeNumbers);
+
+// Nếu thứ tự hiện tại là ngược, sắp xếp lại mảng theo thứ tự tăng dần
+$episode_list = $isReversed ? $episode_list->sortBy('episode')->values() : $episode_list;
+
 
         // Lưu lịch sử film
         if (Auth::check() && $episode) {
@@ -401,7 +436,8 @@ class PageController extends Controller
             'episode_list',
             'server_active',
             'meta_title',
-            'meta_description'
+            'meta_description',
+            'thong_tin_user'
         ));
     }
 
@@ -426,6 +462,9 @@ class PageController extends Controller
         $meta_title = "Danh mục ".$cate_slug ->title ." | Cosmic";
         $meta_description ="Giao diện chinh của web film cosmic";
 
+        $user = Auth::user(); // Lấy đối tượng người dùng đã xác thực
+        $thong_tin_user = $user->remember_token; 
+
         return view('pages.the_loai.danhmuc', compact(
             'customCss',
             'category',
@@ -437,7 +476,8 @@ class PageController extends Controller
             'movie_phimbo',
             'movie_phimle',
             'meta_title',
-            'meta_description'
+            'meta_description',
+            'thong_tin_user'
         ));
     }
 
@@ -468,6 +508,8 @@ class PageController extends Controller
 
         $meta_title = "Thể loại ".$gen_slug ->title ." | Cosmic";
         $meta_description ="Giao diện chinh của web film cosmic";
+        $user = Auth::user(); // Lấy đối tượng người dùng đã xác thực
+        $thong_tin_user = $user->remember_token; 
         return view('pages.the_loai.theloai', compact(
             'customCss',
             'category',
@@ -479,7 +521,8 @@ class PageController extends Controller
             'movie_phimbo',
             'movie_phimle',
             'meta_title',
-            'meta_description'
+            'meta_description',
+            'thong_tin_user'
         ));
     }
 
@@ -503,6 +546,8 @@ class PageController extends Controller
         $movie_phimle = Movie::where('type','single')->whereNotNull('view')->orderBy('view','desc')->get()->take(10);
         $meta_title = "Quốc gia ".$coun_slug ->title ." | Cosmic";
         $meta_description ="Giao diện chinh của web film cosmic";
+        $user = Auth::user(); // Lấy đối tượng người dùng đã xác thực
+        $thong_tin_user = $user->remember_token; 
         return view('pages.the_loai.quocgia', compact(
             'customCss',
             'category',
@@ -515,7 +560,8 @@ class PageController extends Controller
             'movie_phimle',
             'movie_phimle',
             'meta_title',
-            'meta_description'
+            'meta_description',
+            'thong_tin_user'
         ));
     }
 
@@ -532,6 +578,8 @@ class PageController extends Controller
         $customCss = 'css/blog.css';
         $meta_title = "Bài viết | Cosmic";
         $meta_description ="Giao diện chinh của web film cosmic";
+        $user = Auth::user(); // Lấy đối tượng người dùng đã xác thực
+        $thong_tin_user = $user->remember_token; 
         return view('pages.blog',compact(
             'customCss',
             'category',
@@ -543,7 +591,8 @@ class PageController extends Controller
             'blog_news',
             'review',
             'meta_title',
-            'meta_description'
+            'meta_description',
+            'thong_tin_user'
         ));
     }
 
@@ -557,6 +606,8 @@ class PageController extends Controller
         $customCss = 'css/blog-review.css';
         $meta_title = "Bài viết ".$blog ->title ." | Cosmic";
         $meta_description ="Giao diện chinh của web film cosmic";
+        $user = Auth::user(); // Lấy đối tượng người dùng đã xác thực
+        $thong_tin_user = $user->remember_token; 
         return view('pages.blog_review',compact(
             'customCss',
             'category',
@@ -565,7 +616,8 @@ class PageController extends Controller
             'blog',
             'blog_related',
             'meta_title',
-            'meta_description'
+            'meta_description',
+            'thong_tin_user'
         ));
     }
 
@@ -588,6 +640,8 @@ public function loc_phim() {
         $genre = Genre::orderBy('id','DESC') ->get();
         $country = Country::orderBy('id','DESC') ->get();
         $top_view = Movie::whereNotNull('view')->orderBy('view','desc')->take(10)->get();
+        $user = Auth::user(); // Lấy đối tượng người dùng đã xác thực
+        $thong_tin_user = $user->remember_token; 
 
         $movie_phimbo = Movie::where('type','series')->whereNotNull('view')->orderBy('view','desc')->get()->take(10);
 
@@ -616,12 +670,46 @@ public function loc_phim() {
             'meta_description',
             'top_view',
             'movie_phimbo',
-            'movie_phimle'
+            'movie_phimle',
+            'thong_tin_user'
         ));
         
     }
-
     
 }
+
+
+public function thongtin($thong_tin_user) {
+    $category = Category::orderBy('id','DESC')->get();
+    $genre = Genre::orderBy('id','DESC')->get();
+    $country = Country::orderBy('id','DESC')->get();
+    // Sử dụng trường khác để tìm kiếm người dùng, ví dụ: id
+    $user = User::where('remember_token', $thong_tin_user)->first();
+    $meta_title = "Thong tin | Cosmic";
+    $meta_description ="Giao diện chinh của web film cosmic";
+    
+    return view('pages.thongtin', compact(
+        'category',
+        'genre',
+        'country',
+        'user',
+        'meta_title',
+        'meta_description',
+        'thong_tin_user'
+    ));
+}
+
+public function thongtin_post(Request $request, $id)
+    {
+        $user = User::find($id);
+    $user->username = $request->username;
+    $user->email = $request->email;
+    
+    if ($request->filled('password')) {
+        $user->password = Hash::make($request->password);
+    }
+        $user->save();
+        return redirect()->back()->with('success','Bạn đã sửa thành công');
+    }
 }
 

@@ -160,6 +160,10 @@ Route::post('/vnpay_payment', [CheckoutController::class, 'vnpay_payment'])->nam
 //Lọc phim
 Route::get('loc-phim', [PageController::class, 'loc_phim'])->name('loc_phim')->middleware(AuthMiddleware::class);
 
+// thông tin người dùng
+Route::get('/thong-tin/{thong_tin_user}', [PageController::class, 'thongtin'])->name('thongtin')->middleware(AuthMiddleware::class);
+Route::post('/thong-tin-post/{id}', [PageController::class, 'thongtin_post'])->name('thongtin_post')->middleware(AuthMiddleware::class);
+
 
 //sitemap
 
