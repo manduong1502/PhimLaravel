@@ -77,6 +77,16 @@ const header = document.getElementById("site-header");
               dots: false,
             }
           },
+          {
+            breakpoint: 450,
+            settings: {
+              slidesToShow: 2,
+              slidesToScroll: 2,
+              arrows: false,
+              infinite: true,
+              dots: false,
+            }
+          },
         ]
       });
     })
@@ -134,6 +144,16 @@ const header = document.getElementById("site-header");
             settings: {
               slidesToShow: 3,
               slidesToScroll: 3,
+              arrows: false,
+              infinite: true,
+              dots: false,
+            }
+          },
+          {
+            breakpoint: 450,
+            settings: {
+              slidesToShow: 2,
+              slidesToScroll: 2,
               arrows: false,
               infinite: true,
               dots: false,
@@ -205,6 +225,16 @@ const header = document.getElementById("site-header");
             settings: {
               slidesToShow: 3,
               slidesToScroll: 3,
+              arrows: false,
+              infinite: true,
+              dots: false,
+            }
+          },
+          {
+            breakpoint: 450,
+            settings: {
+              slidesToShow: 2,
+              slidesToScroll: 2,
               arrows: false,
               infinite: true,
               dots: false,

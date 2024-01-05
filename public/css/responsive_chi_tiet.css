@@ -3,12 +3,12 @@
 /* cấu hình  Điện thoại di động dọc */
 @media screen and (max-width: 575.98px) {
     .dark-bg-image-2 img {
-        height: 500px;
+        height: 400px;
       }
 
       .carousel-caption {
-        left: 33%;
-        width: 300px;
+        left: 30%;
+        width: 370px;
     }
     .carousel-caption .title-carousel-caption {
         font-size: 30px;
@@ -35,7 +35,7 @@
       }
 
       .content-title-big {
-        padding: 10px 30px;
+        padding: 10px 20px;
       }
 
       .content-title-big h2 {
@@ -57,6 +57,18 @@
       .circular-button-note {
         padding: 15px 25px;
       }
+
+      .top-trending-carousel-caption .top-title {
+        font-size: 14px;
+      }
+
+      .btn-issue {
+        padding: 5px 10px;
+      } 
+
+      .miscellaneous-content-2 {
+        margin-top: 20px;
+      }
 }
 
 /* Điện thoại di động ngang hoặc máy tính bảng dọc */
@@ -64,7 +76,7 @@
 
     .carousel-caption {
         left: 40%;
-        width: 300px;
+        width: 450px;
     }
     .carousel-caption .title-carousel-caption {
         font-size: 30px;
@@ -80,7 +92,7 @@
          width: 280px;
       }
       .dark-bg-image-2 img {
-        height: 400px;
+        height: 450px;
       }
       .content-doc-quyen {
         margin-top: 250px;
@@ -103,10 +115,13 @@
 
     .carousel-caption {
         left: 45%;
-        width: 400px;
+        width: 500px;
+        padding: 10px;
     }
     .carousel-caption .title-carousel-caption {
         font-size: 40px;
+        font-weight: 600;
+        line-height: none;
     }
 
     .responsive-text {
@@ -134,6 +149,10 @@
 
       .content-doc-quyen {
         margin-top: 250px;
+      }
+
+      .btn-issue {
+        padding: 5px 15px;
       }
 }
 

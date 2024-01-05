@@ -85,7 +85,7 @@
                     </div>
 
 
-                    <div class="detail-title-small mt-3 d-flex" style="text-align: left;">
+                    <div class="detail-title-small mt-2 d-flex" style="text-align: left;">
                         @if ($movie_tapdau && $movie_tapdau->episode && $movie_tapdau->episode !== 'Full')
                             <a href="{{ url('xem-phim/' . $movie->slug . '/tap-' . $movie_tapdau->episode . '/server-' . $movie_tapdau->server) }}"
                                 class="btn-issue">
