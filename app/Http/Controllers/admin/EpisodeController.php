@@ -47,7 +47,7 @@ class EpisodeController extends Controller
         $episode->server = $request->linkserver;
         $episode->episode = $request->episode;
         $episode->save();
-        return redirect()->back()->with('success', 'Bạn đã thêm thành công');;
+        return redirect()->back()->with('success', 'Bạn đã thêm thành công');
     }
 
     public function add_episode ($id) {

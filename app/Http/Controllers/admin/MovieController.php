@@ -35,7 +35,7 @@ class MovieController extends Controller
         }
         File::put($path. 'movies.json',json_encode($list));
         return view('admin.pagesadmin.movie.form',compact(
-            'list',
+        'list',
         'country',
         'genre',
         'category',

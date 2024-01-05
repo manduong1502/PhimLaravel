@@ -71,6 +71,18 @@
                                 </div>
                             </a>
                         </div>
+
+                        <div class="col-md-3 widget">
+                            <a href="{{ route('movievip.index') }}">
+                                <div class="r3_counter_box">
+                                    <i class="pull-left fa fa-users dollar2 icon-rounded"></i>
+                                    <div class="stats">
+                                        <h5><strong>{{ $movie_vip_total }}</strong></h5>
+                                        <span>Phim bản quyền </span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
                         <div class="clearfix"></div>
                     </div>
 

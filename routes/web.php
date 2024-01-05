@@ -19,12 +19,34 @@ use App\Http\Controllers\admin\LeechMovieController;
 use App\Http\Controllers\admin\LinkMovieController;
 use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\admin\UserController;
+use App\Http\Controllers\LoginGoogleController;
+use App\Http\Controllers\LoginFacebookController;
+//sitemap
+use Carbon\Carbon;
+use Spatie\Sitemap\Sitemap;
+use Spatie\Sitemap\Tags\Url;
+use App\Models\Category;
+use App\Models\Genre;
+use App\Models\Blog;
+use App\Models\Country;
+use App\Models\Movie;
 
 
 //login
 Route::get('/login', [LoginController::class, 'index'])->name('auth.index')->middleware(LoginMiddleware::class);
 Route::post('/do_login', [LoginController::class, 'login'])->name('auth.do_login');
 Route::get('/logout', [LoginController::class, 'logout'])->name('auth.logout');
+
+//login google
+Route::controller(LoginGoogleController::class)->group(function(){
+    Route::get('auth/google', 'redirectToGoogle')->name('auth.google');
+    Route::get('auth/google/callback', 'handleGoogleCallback');
+});
+
+//login facebook
+Route::get('auth/facebook', [LoginFacebookController::class, 'redirectToFacebook'])->name('auth.facebook');
+Route::get('auth/facebook/callback', [LoginFacebookController::class, 'handleFacebookCallback']);
 
 
 // login admin
@@ -67,11 +89,11 @@ Route::post('/do_register', [RegisterController::class, 'register'])->name('auth
 
 
 
-Route::get('/', [PageController::class, 'getGioithieu']);
+Route::get('/', [PageController::class, 'getGioithieu'])->name('gioithieu');
 Route::get('/index', [PageController::class, 'getTrangchu'])->name('pages.trangchu')->middleware(AuthMiddleware::class);
 
 
-Route::get('/xemphim/{slug}/{tap}/{server_active}', [PageController::class, 'getXemphim'])->name('watch')->middleware(AuthMiddleware::class);
+
 
 //các thể loại
 Route::get('/danh-muc/{slug}', [PageController::class, 'getDanhmMuc'])->name('category')->middleware(AuthMiddleware::class);
@@ -81,6 +103,11 @@ Route::get('/quocgia/{slug}', [PageController::class, 'getQuocgia'])->name('coun
 //chi tiết phim
 Route::get('/chitiet/{slug}', [PageController::class, 'getChitiet'])->name('pages.chitiet')->middleware(AuthMiddleware::class);
 Route::post('add-rating', [PageController::class, 'add_rating'])->name('add-rating');
+Route::get('/xem-phim/{slug}/{tap}/{server_active}', [PageController::class, 'getXemphim'])->name('watch_vip')->middleware(AuthMiddleware::class);
+
+//chi tiết phim vip
+Route::get('/chi-tiet-vip/{slug}', [PageController::class, 'getChitiet_vip'])->name('pages.chitetvip')->middleware(AuthMiddleware::class);
+Route::get('/xem-phim-vip/{slug}/{tap}/{server_active}', [PageController::class, 'getXemphim_vip'])->name('watch_vip')->middleware(AuthMiddleware::class);
 
 //gói phim
 Route::get('/goiphim/{id}', [PageController::class, 'getGoiphim'])->middleware(AuthMiddleware::class)->name('goiphim_page');
@@ -107,3 +134,7 @@ Route::get('/leech-episode/{slug}', [LeechMovieController::class, 'leech_episode
 Route::post('/leech-episode-store/{slug}', [LeechMovieController::class, 'leech_episode_store'])->name('leech-episode-store')->middleware(CheckAdmin::class);
 //ajax chi tiet phim
 Route::post('/watch-leech-detail', [LeechMovieController::class, 'watch_leech_detail'])->name('watch-leech-detail');
+
+//cổng thanh toán
+Route::post('/momo_payment', [CheckoutController::class, 'momo_payment'])->name('momo_payment');
+Route::post('/vnpay_payment', [CheckoutController::class, 'vnpay_payment'])->name('vnpay_payment');

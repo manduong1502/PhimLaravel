@@ -2,7 +2,8 @@
 
 @section('content')
     <div class="container film-title">
-        <h2>{{ $coun_slug->title }}</h2>
+        <h2>Lọc phim</h2>
+
     </div>
 
     @include('pages.the_loai.form_locphim')
@@ -15,10 +16,11 @@
                         $image_check = substr($mov->image1, 0, 5);
                     @endphp
                     @if ($image_check == 'https')
-                        <img src="{{ $mov->image }}" alt="" style="width: 250px; height:350px; border-radius: 5px">
+                        <img src="{{ $mov->image }}" alt=""
+                            style="width: 250px; height:330px; border-radius: 5px">
                     @else
                         <img src="{{ asset('uploads/movie/' . $mov->image) }}" alt=""
-                            style="width: 250px; height:350px; border-radius: 5px">
+                            style="width: 250px; height:330px; border-radius: 5px">
                     @endif
                     <div class="play-icon">
                         <i class="fa-solid fa-circle-play"></i>

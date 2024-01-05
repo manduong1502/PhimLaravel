@@ -1,25 +1,6 @@
 @extends('index')
 
 @section('content')
-    <style type="text/css">
-    .halim-episode {
-    list-style: none;
-    margin-bottom: 10px;
-}
-
-.halim-btn {
-    text-decoration: none;
-    display: block;
-    border-radius: 5px;
-}
-
-/* Điều chỉnh kiểu cho tập phim đang xem */
-.halim-episode.active .btn-halim-active  {
-    background-color: #ffcc00; /* Màu nền tập phim đang xem */
-    color: #fff; /* Màu chữ tập phim đang xem */
-    border-color: #ffcc00; /* Màu viền tập phim đang xem */
-}
-    </style>
     <div class="container film">
         <style type="text/css">
             .iframe-phim iframe {
@@ -28,9 +9,18 @@
             }
         </style>
         {{-- hiển thị phim --}}
+        @role('uservip')
+            <div class="iframe-phim">
+                {!! $episode->linkphim !!}
+            </div>
+        @else
         <div class="iframe-phim">
-            {!! $episode->linkphim !!}
+            <iframe width="100%" src="{{ asset('https://www.youtube.com/embed/' . $movie->trailer) }}" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+            </iframe>
         </div>
+        @endrole
+
 
         <div class="film-btn-support d-flex">
             <a href=""><i class="fa-solid fa-share"></i>Chia sẻ</a>
@@ -66,14 +56,16 @@
                                                 </li>
                                             </a>
 
-                                            <ul class="halim-list-eps" style="padding: 0; display: grid; grid-template-columns: repeat(10, 1fr)">
+                                            <ul class="halim-list-eps"
+                                                style="padding: 0; display: grid; grid-template-columns: repeat(10, 1fr)">
                                                 @foreach ($episode_list as $key => $epi)
                                                     @if ($epi->server == $ser->id)
-                                                        <a href="{{ url('xem-phim/' . $movie->slug . '/tap-' . $epi->episode . '/server-' . $epi->server) }}"
+                                                        <a href="{{ url('xem-phim-vip/' . $movie->slug . '/tap-' . $epi->episode . '/server-' . $epi->server) }}"
                                                             style="text-decoration: none; list-style: none; padding-right: 10px; margin-bottom: 10px">
-                                                            <li class="halim-episode {{ $tapphim == $epi->episode && $server_active == 'server-' . $ser->id ? 'active' : '' }}">
-                                                                <span class="halim-btn hanlim-btn-2 halim-info-1-1 box-shadow">
-                                                                    <div class="btn-halim-active" >{{ $epi->episode }}</div>
+                                                            <li class="halim-episode">
+                                                                <span
+                                                                    class="halim-btn hanlim-btn-2 {{ $tapphim == $epi->episode && $server_active == 'server-' . $ser->id ? 'active' : '' }} halim-info-1-1 box-shadow">
+                                                                    <div>{{ $epi->episode }}</div>
                                                                 </span>
                                                             </li>
                                                         </a>
@@ -104,16 +96,19 @@
                                             $image_check = substr($mov->image1, 0, 5);
                                         @endphp
                                         @if ($image_check == 'https')
-                                            <img src="{{ $mov->image }}" alt="" style="height: 240px;border-radius: 10px;">
+                                            <img src="{{ $mov->image }}" alt=""
+                                                style="height: 240px;border-radius: 10px;">
                                         @else
-                                            <img src="{{ asset('uploads/movie/' . $mov->image) }}" alt="" style="height: 240px;border-radius: 10px;">
+                                            <img src="{{ asset('uploads/movie/' . $mov->image) }}" alt=""
+                                                style="height: 240px;border-radius: 10px;">
                                         @endif
                                         <div class="icon-overlay">
                                             <i class="fa-solid fa-circle-play"></i>
                                         </div>
                                     </div>
 
-                                    <div class="card-text" style="background: linear-gradient(to bottom, rgba(0, 0, 0, 0.42), #151515); left:0.5px; border-radius: 0 0 14px 14px;">
+                                    <div class="card-text"
+                                        style="background: linear-gradient(to bottom, rgba(0, 0, 0, 0.42), #151515); left:0.5px; border-radius: 0 0 14px 14px;">
                                         <p>{{ $mov->title }}</p>
                                     </div>
                                 </div>
@@ -158,4 +153,5 @@
             </div>
         </div>
     </div>
+
 @endsection

@@ -139,6 +139,62 @@
         });
     })
 </script>
+
+
+<script type="text/javascript">
+  $('.trangthai_choose_vip').change(function() {
+      var trangthai_val_vip = $(this).val();
+      var movie_vip_id = $(this).attr('id');
+      $.ajax({
+          url: "{{ route('trangthai_choose_vip') }}",
+          method: "GET",
+          data: {
+            trangthai_val_vip:trangthai_val_vip,
+            movie_vip_id:movie_vip_id,
+          },
+          success:function(data) {
+              alert('Thay đổi thành công');
+          }
+      });
+  })
+</script>
+
+<script type="text/javascript">
+  $('.country_choose_vip').change(function() {
+      var country_id_vip = $(this).val();
+      var movie_vip_id = $(this).attr('id');
+      $.ajax({
+          url: "{{ route('country_choose_vip') }}",
+          method: "GET",
+          data: {
+            country_id_vip:country_id_vip,
+            movie_vip_id:movie_vip_id,
+          },
+          success:function(data) {
+              alert('Thay đổi thành công');
+          }
+      });
+  })
+</script>
+
+<script type="text/javascript">
+  $('.category_choose_vip').change(function() {
+      var category_id_vip = $(this).val();
+      var movie_vip_id = $(this).attr('id');
+      $.ajax({
+          url: "{{ route('category_choose_vip') }}",
+          method: "GET",
+          data: {
+            category_id_vip:category_id_vip,
+            movie_vip_id:movie_vip_id,
+          },
+          success:function(data) {
+              alert('Thay đổi thành công');
+          }
+      });
+  })
+</script>
+
   <script type="text/javascript">
     $('.country_choose').change(function() {
         var country_id = $(this).val();
