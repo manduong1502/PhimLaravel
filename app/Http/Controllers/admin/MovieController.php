@@ -27,7 +27,7 @@ class MovieController extends Controller
     $genre = Genre::pluck('title', 'id');
     $actor = Actor::pluck('name', 'id');
     $list_genre = Genre::all();
-    $list = Movie::with('category', 'country', 'genre', 'movie_genre','movie_actor','actor')->withCount('episode')->orderBy('id', 'DESC')->get();
+    $list = Movie::with('category', 'country', 'genre', 'movie_genre','movie_actor','actor')->withCount('episode')->orderBy('id', 'DESC')->get()->take(40);
     
     
     // Đảm bảo biến movie_genre đã được định nghĩa và cung cấp nó trong mảng compact

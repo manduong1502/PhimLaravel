@@ -174,6 +174,8 @@ class PageController extends Controller
         ->select('movie_id') // Chỉ chọn trường movie_id
         ->distinct() // Loại bỏ các bản ghi trùng lặp
         ->get();
+
+        $customCssArr = ['css/responsive_trang_chu.css'];
    
         return view('pages.trangchu',compact(
             'category',
@@ -187,6 +189,7 @@ class PageController extends Controller
             'meta_title',
             'meta_description',
             'thong_tin_user',
+            'customCssArr'
         ));
     }
 
@@ -196,7 +199,6 @@ class PageController extends Controller
         $category = Category::orderBy('id','DESC') ->where('status',1)->get();
         $genre = Genre::orderBy('id','DESC')->where('status',1) ->get();
         $country = Country::orderBy('id','DESC')->where('status',1) ->get();
-        $customCss = 'css/chitiet.css';
         $movie = Movie::with('category', 'country', 'genre', 'movie_genre','movie_actor','actor')->withCount('episode')->where('slug',$slug)->first();
         $movie_related = Movie::with('category','country','genre','category','movie_genre')->where('category_id',$movie->category->id)->orderBy(DB::raw('RAND()'))->whereNotIn('slug',[$slug])->get();
         $movie_tapdau = Episode::with('movie')->where('movie_id',$movie->id)->orderBy('episode','ASC')->take(1)->first();
@@ -215,8 +217,13 @@ class PageController extends Controller
 
         $user = Auth::user(); // Lấy đối tượng người dùng đã xác thực
         $thong_tin_user = $user->remember_token; 
+
+        $customCssArr = [
+            'css/chitiet.css',
+            'css/responsive_chi_tiet.css'
+        ];
         return view('pages.chitiet', compact(
-            'customCss',
+            'customCssArr',
             'category',
             'genre',
             'country',

@@ -1,0 +1,180 @@
+
+
+/* cấu hình  Điện thoại di động dọc */
+@media screen and (max-width: 575.98px) {
+    .dark-bg-image-2 img {
+        height: 500px;
+      }
+
+      .carousel-caption {
+        left: 33%;
+        width: 300px;
+    }
+    .carousel-caption .title-carousel-caption {
+        font-size: 30px;
+        line-height:none;
+    }
+
+    .responsive-text {
+        font-size: 16px;
+    }
+
+    .carousel-caption hr {
+        opacity: inherit;
+        margin: 0;
+         width: 260px;
+      }
+
+      .cards {
+        height: 230px;
+        margin-right: 20px;
+      }
+
+      .content-doc-quyen {
+        margin-top: 350px;
+      }
+
+      .content-title-big {
+        padding: 10px 30px;
+      }
+
+      .content-title-big h2 {
+        font-size: 20px;
+      }
+
+      .content-title-big span {
+        font-size: 25px;
+      }
+
+      .content-doc-quyen {
+        margin-top: 450px;
+      }
+
+      .circular-button {
+        padding: 15px 25px;
+      }
+
+      .circular-button-note {
+        padding: 15px 25px;
+      }
+}
+
+/* Điện thoại di động ngang hoặc máy tính bảng dọc */
+@media screen and (min-width: 576px) and (max-width: 768px ) {
+
+    .carousel-caption {
+        left: 40%;
+        width: 300px;
+    }
+    .carousel-caption .title-carousel-caption {
+        font-size: 30px;
+    }
+
+    .responsive-text {
+        font-size: 16px;
+    }
+
+    .carousel-caption hr {
+        opacity: inherit;
+        margin: 0;
+         width: 280px;
+      }
+      .dark-bg-image-2 img {
+        height: 500px;
+      }
+      .content-doc-quyen {
+        margin-top: 250px;
+      }
+
+      .cards {
+        height: 230px;
+        margin-right: 20px;
+      }
+
+      .content-doc-quyen {
+        margin-top: 350px;
+      }
+      
+}
+
+
+/* cấu hình Máy tính bảng ngang hoặc máy tính để bàn nhỏ */
+@media screen and (min-width: 768px) and (max-width: 992px) {
+
+    .carousel-caption {
+        left: 45%;
+        width: 400px;
+    }
+    .carousel-caption .title-carousel-caption {
+        font-size: 40px;
+    }
+
+    .responsive-text {
+        font-size: 17px;
+    }
+
+    .carousel-caption hr {
+        opacity: inherit;
+        margin: 0;
+         width: 380px;
+      }
+
+      .dark-bg-image-2 img {
+        height: 700px;
+      }
+
+      .content-doc-quyen {
+        margin-top: 250px;
+      }
+
+      .cards {
+        height: 250px;
+        margin-right: 20px;
+      }
+
+      .content-doc-quyen {
+        margin-top: 250px;
+      }
+}
+
+/* cấu hình  Máy tính để bàn lớn */
+@media screen and (min-width: 992px ) and (max-width: 1200px ) {
+
+    .carousel-caption {
+        left: 50%;
+        width: 450px;
+    }
+    .carousel-caption .title-carousel-caption {
+        font-size: 40px;
+    }
+
+    .responsive-text {
+        font-size: 17px;
+    }
+
+    .carousel-caption hr {
+        opacity: inherit;
+        margin: 0;
+         width: 450px;
+      }
+
+    .dark-bg-image-2 img {
+        height: 800px;
+      }
+
+      .content {
+        position:absolute;
+        top: 550px;
+        bottom: 3%;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 2;
+        margin-top: 50px;
+        margin-bottom: 30px;
+      }
+
+      .content-doc-quyen {
+        margin-top: 250px;
+      }
+}
+

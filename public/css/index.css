@@ -283,6 +283,8 @@ margin-left: 20px;
 }
 
 
+
+
 .cards:hover {
   transform: scale(0.9);
 }
@@ -737,6 +739,42 @@ letter-spacing: 0.2px;
 .input-group-append {
   cursor: pointer;
 }
+
+
+
+
+
+.carousel-caption hr {
+  opacity: inherit;
+  margin: 0;
+   width: 500px;
+}
+
+.dark-bg-image-2 img {
+  height: 900px;
+}
+
+
+
+.content {
+  position:absolute;
+  top: 470px;
+  bottom: 3%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  margin-top: 50px;
+  margin-bottom: 30px;
+}
+
+.content-doc-quyen {
+  margin-top: 50px;
+} 
+
+.cards {
+  height: 265px;
+}
+
 
 
 

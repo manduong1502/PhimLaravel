@@ -30,28 +30,51 @@ const header = document.getElementById("site-header");
           {
             breakpoint: 1200,
             settings: {
+              slidesToShow: 5,
+              slidesToScroll: 5,
+              arrows: false,
+              infinite: true,
+              dots: false,
+            }
+          },
+          {
+            breakpoint: 1000,
+            settings: {
               slidesToShow: 4,
               slidesToScroll: 4,
+              arrows: false,
               infinite: true,
-              dots: true
+              dots: false,
             }
           },
           {
             breakpoint: 900,
             settings: {
+              slidesToShow: 4,
+              slidesToScroll: 4,
+              arrows: false,
+              infinite: true,
+              dots: false,
+            }
+          },
+          {
+            breakpoint: 800,
+            settings: {
               slidesToShow: 3,
               slidesToScroll: 3,
+              arrows: false,
               infinite: true,
-              dots: true
+              dots: false,
             }
           },
           {
             breakpoint: 600,
             settings: {
-              slidesToShow: 2,
-              slidesToScroll: 1,
+              slidesToShow: 3,
+              slidesToScroll: 3,
+              arrows: false,
               infinite: true,
-              dots: true
+              dots: false,
             }
           },
         ]
@@ -70,27 +93,50 @@ const header = document.getElementById("site-header");
             breakpoint: 1200,
             settings: {
               slidesToShow: 5,
+              slidesToScroll: 5,
+              arrows: false,
+              infinite: true,
+              dots: false,
+            }
+          },
+          {
+            breakpoint: 1000,
+            settings: {
+              slidesToShow: 4,
               slidesToScroll: 4,
-              infinite: false,
-              dots: true
+              arrows: false,
+              infinite: true,
+              dots: false,
             }
           },
           {
             breakpoint: 900,
             settings: {
               slidesToShow: 4,
+              slidesToScroll: 4,
+              arrows: false,
+              infinite: true,
+              dots: false,
+            }
+          },
+          {
+            breakpoint: 800,
+            settings: {
+              slidesToShow: 3,
               slidesToScroll: 3,
-              infinite: false,
-              dots: true
+              arrows: false,
+              infinite: true,
+              dots: false,
             }
           },
           {
             breakpoint: 600,
             settings: {
               slidesToShow: 3,
-              slidesToScroll: 1,
-              infinite: false,
-              dots: true
+              slidesToScroll: 3,
+              arrows: false,
+              infinite: true,
+              dots: false,
             }
           },
         ]
@@ -119,27 +165,49 @@ const header = document.getElementById("site-header");
           {
             breakpoint: 1200,
             settings: {
+              slidesToShow: 5,
+              slidesToScroll: 5,
+              arrows: false,
+            }
+          },
+          {
+            breakpoint: 1000,
+            settings: {
               slidesToShow: 4,
               slidesToScroll: 4,
               arrows: false,
+              infinite: true,
+              dots: false,
             }
           },
           {
             breakpoint: 900,
             settings: {
-              slidesToShow: 3,
-              slidesToScroll: 3,
+              slidesToShow: 4,
+              slidesToScroll: 4,
               infinite: false,
-              dots: true
+              dots: false,
+       arrows:false,
             }
           },
           {
-            breakpoint: 200,
+            breakpoint: 800,
             settings: {
               slidesToShow: 3,
-              slidesToScroll: 1,
-              infinite: false,
-              dots: true
+              slidesToScroll: 3,
+              arrows: false,
+              infinite: true,
+              dots: false,
+            }
+          },
+          {
+            breakpoint: 600,
+            settings: {
+              slidesToShow: 3,
+              slidesToScroll: 3,
+              arrows: false,
+              infinite: true,
+              dots: false,
             }
           },
         ]

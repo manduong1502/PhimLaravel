@@ -11,7 +11,7 @@
                         src="{{ asset($meta_image) }}" alt=""
                         style="width: 220px; position:relative; z-index: 999; top: -35px; left: -20px"></a>
             @endrole
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            <button style="background-color: aliceblue" class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>

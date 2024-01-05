@@ -37,7 +37,6 @@ class RegisterController extends Controller
             $user->save();
 
             $customer = User::where('email', $request->email)->first();
-            $customer->update(['token' => $token]);
 
             Mail::send('email.check_email_register',compact('customer'),function($email) use($customer) {
                 $email->subject('Xác Thực Email - Kích hoạt lại tài khoản');

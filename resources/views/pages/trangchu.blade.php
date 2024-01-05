@@ -12,16 +12,16 @@
                                 $image_check = substr($sli->image1, 0, 5);
                             @endphp
                             @if ($image_check == 'https')
-                                <img src="{{ $sli->image1 }}" class="d-block w-100" style="object-fit: cover;" height="900"
+                                <img src="{{ $sli->image1 }}" class="d-block w-100" style="object-fit: cover;" 
                                     alt="...">
                             @else
                                 <img src="{{ asset('uploads/movie/imagebig/' . $sli->image1) }}" style="object-fit: cover;"
                                     class="d-block w-100" height="900" alt="...">
                             @endif
-                            <div class="carousel-caption d-none d-md-block">
+                            <div class="carousel-caption d-block">
                                 <div class="title-carousel-caption">{{ $sli->origin_name }}</div>
                                 <div class="responsive-text">{{ $sli->title }}</div>
-                                <hr style="opacity: inherit;margin: 0; width: 500px;">
+                                <hr >
                                 <div class="top-trending-carousel-caption ">
 
                                     <div class="top-title ">Thời lượng: {{ $sli->time }}</div>
@@ -75,7 +75,7 @@
         </div>
 
 
-        <div class="container content" style="margin-top: 50px; margin-bottom: 30px">
+        <div class="container content" >
             <div class="content-title">
                 <div class="content-title-big">
                     <h2><i class="fa-solid fa-play" style="margin-right: 20px; color:#A41717;"></i>Phim <span>Hot</span>
@@ -91,10 +91,10 @@
                                     $image_check = substr($hot->image, 0, 5);
                                 @endphp
                                 @if ($image_check == 'https')
-                                    <img src="{{ $hot->image }}" alt="" style="width: 100%; height: 265px">
+                                    <img src="{{ $hot->image }}" alt="" style="width: 100%;">
                                 @else
                                     <img src="{{ asset('uploads/movie/' . $hot->image) }}" alt=""
-                                        style="width: 100%; height: 265px">
+                                        style="width: 100%; height:">
                                 @endif
                                 <div class="icon-overlay">
                                     <i class="fa-solid fa-circle-play"></i>
@@ -159,10 +159,10 @@
                                 @endphp
                                 @if ($image_check == 'https')
                                     <img src="{{ $his_mov->movie->image }}" alt=""
-                                        style="width: 100%; height: 265px; ">
+                                        style="width: 100%;  ">
                                 @else
                                     <img src="{{ asset('uploads/movie/' . $his_mov->movie->image) }}" alt=""
-                                        style="width: 100%; height: 265px; border-radius: 5px; position: relative">
+                                        style="width: 100%;  border-radius: 5px; position: relative">
                                 @endif
                                 <div class="icon-overlay">
                                     <i class="fa-solid fa-circle-play"></i>
@@ -194,7 +194,7 @@
         </div>
     @endif
 
-    <div class="container contents">
+    <div class="container content-doc-quyen">
         <div class="content-title d-flex">
             <div class="content-title-big">
                 <h2><i class="fa-solid fa-play" style="margin-right: 20px; color:#A41717;"></i>Độc quyền tại
@@ -212,10 +212,10 @@
                                 $image_check = substr($mov_vip->image, 0, 5);
                             @endphp
                             @if ($image_check == 'https')
-                                <img src="{{ $mov_vip->image }}" alt="" style="width: 100%; height: 265px">
+                                <img src="{{ $mov_vip->image }}" alt="" style="width: 100%;">
                             @else
                                 <img src="{{ asset('uploads/movie/' . $mov_vip->image) }}" alt=""
-                                    style="width: 100%; height: 265px">
+                                    style="width: 100%;">
                             @endif
                             <div class="icon-overlay">
                                 <i class="fa-solid fa-circle-play"></i>
@@ -266,10 +266,10 @@
                                     $image_check = substr($mov->image, 0, 5);
                                 @endphp
                                 @if ($image_check == 'https')
-                                    <img src="{{ $mov->image }}" alt="" style="width: 100%; height: 265px">
+                                    <img src="{{ $mov->image }}" alt="" style="width: 100%;">
                                 @else
                                     <img src="{{ asset('uploads/movie/' . $mov->image) }}" alt=""
-                                        style="width: 100%; height: 265px">
+                                        style="width: 100%;">
                                 @endif
                                 <div class="icon-overlay">
                                     <i class="fa-solid fa-circle-play"></i>

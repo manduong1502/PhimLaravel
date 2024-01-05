@@ -11,14 +11,14 @@
                             $image_check = substr($movie->image1, 0, 5);
                         @endphp
                         @if ($image_check == 'https')
-                            <img src="{{ $movie->image1 }}" alt="..." width="100%" height="800">
+                            <img src="{{ $movie->image1 }}" alt="..." width="100%" >
                         @else
                             <img src="{{ asset('uploads/movie/imagebig/' . $movie->image1) }}" alt="..."
                                 style="width: 100%;">
                         @endif
                     </div>
                 </div>
-                <div class="carousel-caption d-none d-md-block">
+                <div class="carousel-caption  d-block">
                     <div class="title-carousel-caption">{{ $movie->title }}</div>
                     <div class="responsive-text">{{ $movie->origin_name }}</div>
                     <div class="responsive-text112 " >
@@ -50,7 +50,7 @@
                             {{ $movie->time }}
                         </div>
                     </div>
-                    <hr style="opacity: inherit;margin: 0; width: 500px;">
+                    <hr >
                     <div class="top-trending-carousel-caption ">
                         <div class="top-title ">
                             Quốc gia: {{$movie->country->title}}
