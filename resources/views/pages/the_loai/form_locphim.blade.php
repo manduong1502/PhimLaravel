@@ -2,9 +2,9 @@
 <div class="container">
     <form action="{{ route('loc_phim') }}" method="get">
         @csrf
-        <div class="row">
+        <div class="row loc_phim">
 
-            <div class="col-md-2">
+            <div class="col-md-2 lua_chon">
                 <div class="form-group">
 
                     <select class="form-control stylish_filter" name="order" id="exampleFormControlSelect1">
@@ -16,7 +16,7 @@
                     </select>
                 </div>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-2 lua_chon">
                 <div class="form-group">
 
                     <select class="form-control stylish_filter" name="genre" id="exampleFormControlSelect1">
@@ -28,7 +28,7 @@
                     </select>
                 </div>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-2 lua_chon">
                 <div class="form-group">
 
                     <select class="form-control stylish_filter" name="country" id="exampleFormControlSelect1">
@@ -39,7 +39,7 @@
                     </select>
                 </div>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-2 lua_chon">
                 <div class="form-group stylish_filter">
                         {!! Form::selectYear('year', 2000, 2023,null, [
                                     'class' => 'form-control',
@@ -47,7 +47,7 @@
                                 ]) !!}
                 </div>
             </div>
-            <div class="col-md-2 ">
+            <div class="col-md-2 submit">
             <input style="background-color: #A41717;box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);color:aliceblue" type="submit" class="btn  btn-loc" value="Lọc Phim">
         </div>
         </div>

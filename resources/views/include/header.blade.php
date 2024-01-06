@@ -1,15 +1,13 @@
 <header id="site-header">
     <nav class="navbar navbar-expand-lg" style="background-color:rgba(0, 0, 0, 0.048);">
-        <div class="container-fluid">
+        <div class="container-fluid" style="height: 80px; margin-right: 20px;">
             <div class="logo"></div>
             @role('uservip')
-                <a href="{{ route('pages.trangchu') }}" style="height: 80px; margin-right: 20px"><img class="navbar-brand"
-                        src="{{ asset($meta_image_vip) }}" alt=""
-                        style="width: 220px;  position:relative; z-index: 999; top: -35px; left: -20px"></a>
+                <a href="{{ route('pages.trangchu') }}" class="home"><img class="navbar-brand"
+                        src="{{ asset($meta_image_vip) }}" alt=""></a>
             @else
-                <a href="{{ route('pages.trangchu') }}" style="height: 80px; margin-right: 20px"><img class="navbar-brand"
-                        src="{{ asset($meta_image) }}" alt=""
-                        style="width: 220px; position:relative; z-index: 999; top: -35px; left: -20px"></a>
+                <a href="{{ route('pages.trangchu') }}" class="home"><img class="navbar-brand"
+                        src="{{ asset($meta_image) }}" alt="" ></a>
             @endrole
             <button style="background-color: aliceblue" class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -71,11 +69,11 @@
             
                 </form>
 
-                <ul class="navbar-nav mb-2 mb-lg-0">
+                <ul class="navbar-nav mb-2 mb-lg-0 infouser">
                     
                     <li class="nav-item dropdown ">
                         <a href="#" class="nav-link" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false"><img class="navbar-brand"
+                            aria-expanded="false"><img class="navbar-brand2"
                                 src="{{ asset('public/image/image-13.png') }}" alt=""></a>
                         <ul class="dropdown-menu" style="padding: 10px">
                             @auth

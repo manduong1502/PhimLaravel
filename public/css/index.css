@@ -21,6 +21,19 @@ header  {
     transition: background-color 0.3s ease;
 }
 
+
+.nav-link{
+  height: 30px;
+}
+
+.navbar-brand{
+  width: 220px;  
+  position:relative; 
+  z-index: 999; 
+  top: -35px; 
+  left: -20px;
+}
+
 header:before {
     content: "";
     position: absolute;
@@ -69,6 +82,13 @@ header.active:before {
   background-color: white;
   clip-path: circle(50% at 50% 0);
 }
+.navbar-brand{
+  width: 220px;  
+  position:relative; 
+  z-index: 999; 
+  top: -10px; 
+  left: -20px;
+}
 .btn-outline-success {
   color: black;
   background-color: #FF2E2E;
@@ -104,17 +124,17 @@ header .btn-vip {
     position: relative;
     align-items: center;
 }
+.btn-vip a{
+  position: relative;
+  top: -7px;
+}
+
 @media (max-width: 768px) {
   header {
       position: static;
   }
 
-  .logo {
-      position: static;
-      width: 100%;
-      height: auto;
-      clip-path: none;
-  }
+
 
   header .navbar-ul li {
       display: block;
@@ -796,9 +816,265 @@ letter-spacing: 0.2px;
 
 
 
+/* responsive header */
+@media screen and (max-width: 600px) {
+  header  {
+    position: absolute ;
+    z-index: 99 ;
+    width: 100% ;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    transition: background-color 0.3s ease;
+}
+
+header:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7); 
+    opacity: 0; 
+    z-index: -1; 
+    transition: opacity 0.3s ease; 
+}
+
+header .navbar-ul li {
+    position: relative; 
+    list-style: none; 
+    padding:  0 ;
+  }
+header .navbar-ul li::after {
+    content: ''; 
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 1px;
+    background-color: transparent; 
+    transform: scaleX(0); 
+    transform-origin: right center; 
+    transition: transform 0.3s ease, background-color 0.3s ease; 
+  }
+header  .navbar-ul li:hover::after {
+    transform: scaleX(1); 
+    background-color: #ffffff; 
+  }
+
+header.active:before {
+    opacity: 1; 
+  }
+.logo{
+  position: absolute;
+  z-index: 0;
+  left: -150px;
+  top: -65px;
+  width: 400px;
+  height: 200px;
+  background-color: white;
+  clip-path: circle(50% at 50% 0);
+}
+.container-fluid .home{
+  height: 60px; 
+  margin-right: 20px;
+}
+
+.navbar-brand{
+  width: 220px;  
+  position:relative; 
+  z-index: 999; 
+  top: -55px; 
+  left: -50px;
+}
+.navbar-nav{
+  display: flex;
+}
+.nav-link{
+  z-index: 999;
+}
+.collapse{
+  position: relative;
+  right: -30px;
+  margin-top: 27px;
+  background-color: rgba(0, 0, 0, 0.50);
+  transition: background-color 0.3s ease;
+  padding: 0 10px 10px 10px;
+}
+.btn-vip{
+  position: relative;
+  top: 20px;
+}
+.navbar-toggler{
+  position: relative;
+}
+.btn-outline-success {
+  color: black;
+  background-color: #FF2E2E;
+  border-color: #FF2E2E;
+}
+
+.btn-outline-success:hover {
+  color: #f00;
+  background-color: #fff;
+  border-color: #f00;
+}
+
+.dropdown-menu{
+  padding: 0;
+  
+}
+.dropdown-menu li{
+  width: 150px;
+  text-align: center;
+}
+.dropdown-item:hover{
+  background-color: rgba(0, 0, 0, 0.50);
+}
 
 
 
+header form {
+    margin-right: 20px;
+}
+
+header .btn-vip {
+    margin-right: 20px ;
+    position: relative;
+    align-items: center;
+}
+}
+@media screen and (max-width: 1000px) and (min-width:601px) {
+  header  {
+    position: absolute ;
+    z-index: 99 ;
+    width: 100% ;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    transition: background-color 0.3s ease;
+}
+
+header:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7); 
+    opacity: 0; 
+    z-index: -1; 
+    transition: opacity 0.3s ease; 
+}
+
+header .navbar-ul li {
+    position: relative; 
+    list-style: none; 
+    padding:  0 ;
+  }
+header .navbar-ul li::after {
+    content: ''; 
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 1px;
+    background-color: transparent; 
+    transform: scaleX(0); 
+    transform-origin: right center; 
+    transition: transform 0.3s ease, background-color 0.3s ease; 
+  }
+header  .navbar-ul li:hover::after {
+    transform: scaleX(1); 
+    background-color: #ffffff; 
+  }
+
+header.active:before {
+    opacity: 1; 
+  }
+.logo{
+  position: absolute;
+  z-index: 0;
+  left: -150px;
+  top: -65px;
+  width: 400px;
+  height: 200px;
+  background-color: white;
+  clip-path: circle(50% at 50% 0);
+}
+.container-fluid .home{
+  height: 60px; 
+  margin-right: 20px;
+}
+
+.navbar-brand{
+  width: 220px;  
+  position:relative; 
+  z-index: 999; 
+  top: -55px; 
+  left: -50px;
+}
+.navbar-nav{
+  display: flex;
+}
+.nav-link{
+  z-index: 999;
+}
+.collapse{
+  position: relative;
+  right: -30px;
+  margin-top: 27px;
+  background-color: rgba(0, 0, 0, 0.50);
+  transition: background-color 0.3s ease;
+  padding: 0 10px 10px 10px;
+}
+.btn-vip{
+  position: relative;
+  top: 20px;
+}
+.navbar-toggler{
+  position: relative;
+}
+.btn-outline-success {
+  color: black;
+  background-color: #FF2E2E;
+  border-color: #FF2E2E;
+}
+
+.btn-outline-success:hover {
+  color: #f00;
+  background-color: #fff;
+  border-color: #f00;
+}
+
+.dropdown-menu{
+  padding: 0;
+  
+}
+.dropdown-menu li{
+  width: 150px;
+  text-align: center;
+}
+.dropdown-item:hover{
+  background-color: rgba(0, 0, 0, 0.50);
+}
+
+
+
+header form {
+    margin-right: 20px;
+}
+
+header .btn-vip {
+    margin-right: 20px ;
+    position: relative;
+    align-items: center;
+}
+}
 
 
 
