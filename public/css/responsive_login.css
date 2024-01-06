@@ -1,0 +1,79 @@
+
+
+/* cấu hình  Điện thoại di động dọc */
+@media screen and (max-width: 575.98px) {
+    form {
+        padding: 0 10px;
+    }
+
+    .overlay-panel {
+        padding: 0 10px;
+    }
+
+    button {
+        padding:12px 30px;
+    }
+
+    h1.title {
+        font-size: 30px;
+     }
+
+     .social-container {
+        margin-top: 10px 0;
+     }
+
+     p {
+        margin: 5px 0 15px;
+     }
+
+     span {
+        margin-top: 10px;
+     }
+
+     button {
+        padding:12px 30px;
+    }
+
+    h1 {
+        font-size: 30px;
+    }
+}
+
+/* Điện thoại di động ngang hoặc máy tính bảng dọc */
+@media screen and (min-width: 576px) and (max-width: 768px ) {
+    button {
+        padding:12px 50px;
+    }
+
+    form {
+        padding: 0 30px;
+    }
+
+    .overlay-panel {
+        padding: 0 30px;
+    }
+
+    h1.title {
+        font-size: 30px;
+    }
+
+    p {
+        margin: 10px 0 20px;
+    }
+
+      
+}
+
+
+/* cấu hình Máy tính bảng ngang hoặc máy tính để bàn nhỏ */
+@media screen and (min-width: 768px) and (max-width: 992px) {
+
+  
+}
+
+/* cấu hình  Máy tính để bàn lớn */
+@media screen and (min-width: 992px ) and (max-width: 1200px ) {
+
+    
+}
+

@@ -20,6 +20,7 @@
     <meta property="og:image" content="{{$meta_image}}" />
     <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('css/dang-nhap-dangky.css') }}">
+    <link rel="stylesheet" href="css/responsive_login.css">
     
     <style>
         .errors-message {

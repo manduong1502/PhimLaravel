@@ -21,6 +21,7 @@
   
   <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
   <link rel="stylesheet" href="css/dang-nhap-dangky.css">
+  <link rel="stylesheet" href="css/responsive_login.css">
 </head>
 <body>
   <div class="container" id="container">
