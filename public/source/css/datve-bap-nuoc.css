@@ -1,0 +1,61 @@
+
+.corn-water-information-1-header {
+    background-color: #353535;
+    height: 40px;
+    
+}
+
+
+.quantity {
+    margin-top: 10px;
+}
+.quantity input {
+    border: none;
+}
+
+.quantity .decrease{
+    width: 25px;
+    height: 25px;
+    border: none;
+    margin-right: 5px;
+}
+
+.quantity .increase  {
+    width: 25px;
+    height: 25px;
+    border: none;
+    margin-left: 5px;
+}
+
+.btn-checkbox {
+    margin-top: 10px;
+    margin-left: 10px;
+}
+.table tbody input {
+    width: 25px;
+    height: 25px;
+}
+
+
+.corn-water-information-2,
+.information-2-content-price {
+    background: #353535;
+    height: auto;
+    padding: 10px;
+}
+.corn-water-information-2 h4 {
+    color: #FFF;
+    font-family: Montserrat;
+    font-size: 25px;
+    font-style: normal;
+    line-height: 28px;
+    /* 116.667% */
+    letter-spacing: 0.2px;
+    margin-left: 15px;
+}
+
+
+.information-2-content-price {
+    margin-top: 10px;
+}
+
