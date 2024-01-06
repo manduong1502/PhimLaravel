@@ -16,17 +16,17 @@
                 <div class=" film-card" >
                     @foreach ($movie as $key => $mov)
                     <a href="{{ route('pages.chitiet', $mov->slug) }}" style="text-decoration: none;">
-                        <div class="slider-card" style="width: 180px;">
+                        <div class="slider-card">
                             <div class="card cards">
                                 @php
                                     $image_check = substr($mov->image, 0, 5);
                                 @endphp
                                 @if ($image_check == 'https')
-                                    <img src="{{ $mov->image }}" alt="" style="width: 100%; height: 265px">
+                                    <img src="{{ $mov->image }}" alt="" >
                                     
                                 @else
                                     <img src="{{ asset('uploads/movie/' . $mov->image) }}" alt=""
-                                        style="width: 100%; height: 265px">
+                                        >
                                 @endif
                                 <div class="icon-overlay">
                                     <i class="fa-solid fa-circle-play"></i>
@@ -83,7 +83,7 @@
             </div>
             </div>
 
-            <div class="col-md-3" style=" border-radius: 20px; box-shadow: 0px 4px 4px 0px #A41717, 0px 4px 4px 0px rgba(0, 0, 0, 0.25);background-color: #3a3938; padding:0;">
+            <div class="col-md-3 top_phim" style=" border-radius: 20px; box-shadow: 0px 4px 4px 0px #A41717, 0px 4px 4px 0px rgba(0, 0, 0, 0.25);background-color: #3a3938; padding:0;">
                 <div class="" style="width: 100%; height: auto;">
                     <div class=" miscellaneous-content-1-header">
                         <ul class="d-flex miscellaneous-content-1-header-ul container-fluid custom-list justify-content: center;"

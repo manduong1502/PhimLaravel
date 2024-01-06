@@ -126,7 +126,8 @@ class PageController extends Controller
             $user = Auth::user(); // Lấy đối tượng người dùng đã xác thực
             $thong_tin_user = $user->remember_token; 
         //css
-        $customCss = 'css/tong-the-loai.css';
+        $customCssArr = ['css/tong-the-loai.css'];
+        
         //điều kiện slug
         $movie = Movie::withCount('episode')->where('title','LIKE','%'.$search.'%')->orderBy('ngay_cap_nhap','DESC')->paginate(40);
         $top_view = Movie::whereNotNull('view')->orderBy('view','desc')->take(10)->get();
@@ -144,7 +145,7 @@ class PageController extends Controller
             'top_view',
             'movie_phimbo',
             'movie_phimle',
-            'meta_title',
+            'meta_titleArr',
             'meta_description',
             'thong_tin_user'
         ));
@@ -455,7 +456,8 @@ $episode_list = $isReversed ? $episode_list->sortBy('episode')->values() : $epis
         $genre = Genre::orderBy('id','DESC')->where('status',1) ->get();
         $country = Country::orderBy('id','DESC')->where('status',1) ->get();
         //css
-        $customCss = 'css/tong-the-loai.css';
+        $customCssArr = ['css/tong-the-loai.css'];
+        
         //điều kiện slug
         $cate_slug = Category::where('slug',$slug) ->first();
         $movie = Movie::withCount('episode')->where('category_id', $cate_slug->id)->withCount('episode')->orderBy('ngay_cap_nhap','DESC')->paginate(10);
@@ -473,7 +475,7 @@ $episode_list = $isReversed ? $episode_list->sortBy('episode')->values() : $epis
         $thong_tin_user = $user->remember_token; 
 
         return view('pages.the_loai.danhmuc', compact(
-            'customCss',
+            'customCssArr',
             'category',
             'genre',
             'country',
@@ -495,7 +497,8 @@ $episode_list = $isReversed ? $episode_list->sortBy('episode')->values() : $epis
         $genre = Genre::orderBy('id','DESC')->where('status',1) ->get();
         $country = Country::orderBy('id','DESC')->where('status',1) ->get();
         //css
-        $customCss = 'css/tong-the-loai.css';
+        $customCssArr = ['css/tong-the-loai.css'];
+        
         //điều kiện slug  
         $gen_slug = Genre::where('slug',$slug) ->first();
         //Nhiều thể loại
@@ -513,12 +516,12 @@ $episode_list = $isReversed ? $episode_list->sortBy('episode')->values() : $epis
 
         $movie_phimle = Movie::where('type','single')->whereNotNull('view')->orderBy('view','desc')->get()->take(10);
 
-        $meta_title = "Thể loại ".$gen_slug ->title ." | Cosmic";
+        $meta_title = "Thể loại ".$gen_slug ->title ." | CosmicArr";
         $meta_description ="Giao diện chinh của web film cosmic";
         $user = Auth::user(); // Lấy đối tượng người dùng đã xác thực
         $thong_tin_user = $user->remember_token; 
         return view('pages.the_loai.theloai', compact(
-            'customCss',
+            'customCssArr',
             'category',
             'genre',
             'country',
@@ -540,7 +543,8 @@ $episode_list = $isReversed ? $episode_list->sortBy('episode')->values() : $epis
         $genre = Genre::orderBy('id','DESC')->where('status',1) ->get();
         $country = Country::orderBy('id','DESC')->where('status',1) ->get();
         //css
-        $customCss = 'css/tong-the-loai.css';
+        $customCssArr = ['css/tong-the-loai.css'];
+        
         //điều kiện slug
         $coun_slug = Country::where('slug',$slug) ->first();
         //Điều kiện lấy film
@@ -556,7 +560,7 @@ $episode_list = $isReversed ? $episode_list->sortBy('episode')->values() : $epis
         $user = Auth::user(); // Lấy đối tượng người dùng đã xác thực
         $thong_tin_user = $user->remember_token; 
         return view('pages.the_loai.quocgia', compact(
-            'customCss',
+            'customCssArr',
             'category',
             'genre',
             'country',
@@ -631,7 +635,8 @@ $episode_list = $isReversed ? $episode_list->sortBy('episode')->values() : $epis
 
 public function loc_phim() {
     
-    $customCss = 'css/tong-the-loai.css';
+    $customCssArr = ['css/tong-the-loai.css'];
+    
 
     $sapxep_get = $_GET['order'];
     $genre_get = $_GET['genre'];
@@ -648,7 +653,7 @@ public function loc_phim() {
         $country = Country::orderBy('id','DESC') ->get();
         $top_view = Movie::whereNotNull('view')->orderBy('view','desc')->take(10)->get();
         $user = Auth::user(); // Lấy đối tượng người dùng đã xác thực
-        $thong_tin_user = $user->remember_token; 
+        $thong_tin_user = $user->remember_token;
 
         $movie_phimbo = Movie::where('type','series')->whereNotNull('view')->orderBy('view','desc')->get()->take(10);
 
@@ -668,7 +673,7 @@ public function loc_phim() {
         $meta_title = "Lọc phim | Cosmic";
         $meta_description ="Giao diện chinh của web film cosmic";
         return view('pages.the_loai.locphim', compact(
-            'customCss',
+            'customCssArr',
             'category',
             'genre',
             'country',

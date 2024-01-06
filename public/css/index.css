@@ -101,6 +101,25 @@ header form {
 
 header .btn-vip {
     margin-right: 20px ;
+    position: relative;
+    align-items: center;
+}
+@media (max-width: 768px) {
+  header {
+      position: static;
+  }
+
+  .logo {
+      position: static;
+      width: 100%;
+      height: auto;
+      clip-path: none;
+  }
+
+  header .navbar-ul li {
+      display: block;
+      width: 100%;
+  }
 }
 
 .carousel-inner {

@@ -4,7 +4,7 @@
 
     <div id="carouselExampleControls" class="carousel slide " data-bs-ride="carousel">
         <div class="carousel-inner">
-            @foreach ($slide as $key => $sli)
+            @foreach ($slide->take(25) as $key => $sli)
                 <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
                     <div class="dark-bg-image">
                         <div class="dark-bg-image-2">
@@ -30,9 +30,9 @@
                                     <div class="top-title ">Số tập:
                                         {{ $sli->episode_count }} /
                                         @if ($sli->so_tap === '?')
-                                            <span style="font-size: 10px;">(cập nhập)</span>
+                                            <span style="font-size: 10px;">(cập nhật)</span>
                                         @elseif($sli->so_tap === '? tập')
-                                            <span style="font-size: 13px;">(cập nhập)</span>
+                                            <span style="font-size: 13px;">(cập nhật)</span>
                                         @else
                                             <span>{{ substr($sli->so_tap, 0, 2) }} tập</span>
                                         @endif
@@ -105,9 +105,9 @@
                                     @else
                                         {{ $hot->episode_count }}/
                                         @if ($hot->so_tap === '?')
-                                            <span style="font-size: 10px;">(cập nhập)</span>
+                                            <span style="font-size: 10px;">(cập nhật)</span>
                                         @elseif($hot->so_tap === '? tập')
-                                            <span style="font-size: 13px;">(cập nhập)</span>
+                                            <span style="font-size: 13px;">(cập nhật)</span>
                                         @else
                                             <span>{{ substr($hot->so_tap, 0, 2) }} tập</span>
                                         @endif
@@ -173,9 +173,9 @@
                                     @else
                                         {{ $his_mov->movie->episode_count }}/
                                         @if ($his_mov->movie->so_tap === '?')
-                                            <span style="font-size: 10px;">(cập nhập)</span>
+                                            <span style="font-size: 10px;">(cập nhật)</span>
                                         @elseif($his_mov->movie->so_tap === '? tập')
-                                            <span style="font-size: 13px;">(cập nhập)</span>
+                                            <span style="font-size: 13px;">(cập nhật)</span>
                                         @else
                                             <span>{{ substr($his_mov->movie->so_tap, 0, 2) }} tập</span>
                                         @endif
@@ -226,9 +226,9 @@
                                 @else
                                     {{ $mov_vip->episode_count }}/
                                     @if ($mov_vip->so_tap === '?')
-                                        <span style="font-size: 10px;">(cập nhập)</span>
+                                        <span style="font-size: 10px;">(cập nhật)</span>
                                     @elseif($mov_vip->so_tap === '? tập')
-                                        <span style="font-size: 13px;">(cập nhập)</span>
+                                        <span style="font-size: 13px;">(cập nhật)</span>
                                     @else
                                         <span>{{ substr($mov_vip->so_tap, 0, 2) }} tập</span>
                                     @endif
@@ -280,9 +280,9 @@
                                     @else
                                         {{ $mov->episode_count }}/
                                         @if ($mov->so_tap === '?')
-                                            <span style="font-size: 10px;">(cập nhập)</span>
+                                            <span style="font-size: 10px;">(cập nhật)</span>
                                         @elseif($mov->so_tap === '? tập')
-                                            <span style="font-size: 13px;">(cập nhập)</span>
+                                            <span style="font-size: 13px;">(cập nhật)</span>
                                         @else
                                             <span>{{ substr($mov->so_tap, 0, 2) }} tập</span>
                                         @endif
